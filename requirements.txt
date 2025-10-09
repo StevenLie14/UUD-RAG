@@ -1,15 +1,13 @@
 # === LangChain Core Components ===
 langchain-core
-
 # === LangChain Integrations ===
-langchain-openai
+langchain-google-genai
 langchain-community
 langchain-chroma
 # === Data Loading and Processing ===
 pypdf
-tiktoken
 unstructured
 # === Vector Database ===
 chromadb
-# === Model Specific ===
-openai
+# === Google SDK ===
+google-genai
