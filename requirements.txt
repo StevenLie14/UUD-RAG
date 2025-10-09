@@ -1,0 +1,15 @@
+# === LangChain Core Components ===
+langchain-core
+
+# === LangChain Integrations ===
+langchain-openai
+langchain-community
+langchain-chroma
+# === Data Loading and Processing ===
+pypdf
+tiktoken
+unstructured
+# === Vector Database ===
+chromadb
+# === Model Specific ===
+openai
