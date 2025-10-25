@@ -1,17 +1,23 @@
+version: '3.8'
+
 services:
-  chroma:
-    image: ghcr.io/chroma-core/chroma:latest
-    container_name: chroma_server_uud45
+  qdrant:
+    image: qdrant/qdrant:v1-gpu-amd
+    container_name: qdrant_server_uud45
+    # 6333: Port HTTP/gRPC (API)
+    # 6334: Port gRPC yang digunakan oleh klien Python
     ports:
-      - "8000:8000"
+      - "6333:6333"
+      - "6334:6334"
     volumes:
-      - chroma_data:/app/chroma/chroma
+      - qdrant_storage:/qdrant/storage
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
-      interval: 30s
-      timeout: 10s
+      test: ["CMD", "curl", "-fail", "http://localhost:6333/qdrant"]
+      interval: 10s
+      timeout: 5s
       retries: 5
-      start_period: 30s
+      start_period: 20s
+
 volumes:
-  chroma_data:
+  qdrant_storage:
     driver: local

@@ -3,11 +3,11 @@ langchain-core
 # === LangChain Integrations ===
 langchain-google-genai
 langchain-community
-langchain-chroma
+langchain-qdrant
 # === Data Loading and Processing ===
 pypdf
 unstructured
 # === Vector Database ===
-chromadb
+qdrant-client
 # === Google SDK ===
 google-genai
