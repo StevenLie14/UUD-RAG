@@ -27,3 +27,5 @@ transformers
 torch
 charset-normalizer
 chardet
+
+fastembed

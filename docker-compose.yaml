@@ -1,6 +1,6 @@
 services:
   qdrant:
-    image: qdrant/qdrant:v1-gpu-amd
+    image: qdrant/qdrant:latest
     container_name: qdrant_server_uud45
     # 6333: Port HTTP/gRPC (API)
     # 6334: Port gRPC yang digunakan oleh klien Python
