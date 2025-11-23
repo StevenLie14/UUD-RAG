@@ -6,13 +6,12 @@ from llm import Gemini, Groq
 from database import Qdrant
 from generator import RecursiveGenerator
 from loader import LocalPDFLoader, HuggingFacePDFLoader
-from embedder import RecursiveEmbedder
 from fastembed import TextEmbedding, LateInteractionTextEmbedding, SparseTextEmbedding
 
 
 
 async def main():
-    STORE_DATA = False
+    STORE_DATA = True
     config = Config()
     loader = LocalPDFLoader("./test")
     gemini = Gemini("gemini-2.5-pro", config.GOOGLE_API_KEY)
@@ -37,9 +36,9 @@ async def main():
     # db.store_chunks(chunker.chunks)
     # recursive_chunker.load_data_to_chunks(loader.documents)
     # Logger.log("All chunks stored in Qdrant database.")
-    rag = RecursiveGenerator(recursive_db, gemini)
-    answer = rag.generate_answer("Apakah Bank Rakyat Indonesia adalah badan hukum?")
-    Logger.log(f"Answer: {answer}")
+    # rag = RecursiveGenerator(recursive_db, gemini)
+    # answer = rag.generate_answer("Apakah Bank Rakyat Indonesia adalah badan hukum?")
+    # Logger.log(f"Answer: {answer}")
     
     
 if __name__ == "__main__":

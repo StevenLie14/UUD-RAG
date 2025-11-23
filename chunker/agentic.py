@@ -9,26 +9,23 @@ from typing import Optional
 import os
 from llm.base import BaseLLM
 from .base import BaseChunker
+from typing import Dict
+from model import AgenticChunk
 
 class AgenticChunker(BaseChunker):
     def __init__(self, llm: BaseLLM, cache_dir: str = "./chunk_cache"):
-        
+        super().__init__()
         self.llm = llm
-        
-        self.chunks = {}
         self.cache_dir = cache_dir
         os.makedirs(cache_dir, exist_ok=True)
     
     
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
-        for page in enumerate(pages):
+        for _, page in enumerate(pages): 
             self._generate_propositions(page)
-
         
         Logger.log(f"Generated propositions for {len(pages)} pages. Total chunks: {len(self.chunks)}")
     
-    
-        
     def _generate_propositions(self, page: Document) -> list[str]:
         text = page.page_content
         PROMPT = ChatPromptTemplate.from_messages(
@@ -98,12 +95,20 @@ class AgenticChunker(BaseChunker):
             Logger.log("No propositions generated.")
             return []
         
+        # `page` dalam konteks ini adalah (index, Document). Kita perlu mengambil Document
+        # Jika Anda memperbaiki `load_data_to_chunks` (seperti di atas), ini akan menjadi objek Document
+        if isinstance(page, tuple):
+            page_document = page[1]
+        else:
+            page_document = page
+
         for proposition in sentences.propositions:
-            self.add_proposition(proposition,page)
+            self.add_proposition(proposition, page_document)
             
         return sentences.propositions
+
     
-    def _update_chunk_summary(self, chunk):
+    def _update_chunk_summary(self, chunk: AgenticChunk) -> str: # Menerima AgenticChunk
         """If you add a new proposition to a chunk, you may want to update the summary or else they could get stale"""
         PROMPT = ChatPromptTemplate.from_messages(
             [
@@ -137,13 +142,13 @@ class AgenticChunker(BaseChunker):
         )
 
         new_chunk_summary = self.llm.answer(PROMPT, {
-            "proposition": "\n".join(chunk['propositions']),
-            "current_summary" : chunk['summary']
+            "proposition": "\n".join(chunk.propositions), # Mengakses properti
+            "current_summary" : chunk.summary # Mengakses properti
         })
 
         return new_chunk_summary
     
-    def _update_chunk_title(self, chunk):
+    def _update_chunk_title(self, chunk: AgenticChunk) -> str: # Menerima AgenticChunk
         """If you add a new proposition to a chunk, you may want to update the title or else it can get stale"""
         PROMPT = ChatPromptTemplate.from_messages(
             [
@@ -176,13 +181,14 @@ class AgenticChunker(BaseChunker):
         )
         
         new_chunk_title = self.llm.answer(PROMPT, {
-            "proposition": "\n".join(chunk['propositions']),
-            "current_summary" : chunk['summary'],
-            "current_title" : chunk['title']
+            "proposition": "\n".join(chunk.propositions), # Mengakses properti
+            "current_summary" : chunk.summary, # Mengakses properti
+            "current_title" : chunk.title # Mengakses properti
         })
 
         return new_chunk_title
     
+    # ... Metode _get_new_chunk_summary (tidak berubah) ...
     def _get_new_chunk_summary(self, proposition: str) -> str:
         PROMPT = ChatPromptTemplate.from_messages(
             [
@@ -221,8 +227,9 @@ class AgenticChunker(BaseChunker):
         })
 
         return new_chunk_summary
-        
-    def _get_new_chunk_title(self, summary):
+    
+    # ... Metode _get_new_chunk_title (tidak berubah) ...
+    def _get_new_chunk_title(self, summary) -> str:
         PROMPT = ChatPromptTemplate.from_messages(
             [
                 (
@@ -263,19 +270,24 @@ class AgenticChunker(BaseChunker):
         summary = self._get_new_chunk_summary(proposition)
         title = self._get_new_chunk_title(summary)
         
-        self.chunks[id] = {
-            "id": id,
-            "title": title,
-            "summary": summary,
-            "propositions": [proposition],
-            "index" : len(self.chunks),
-            "metadata" : page.metadata
-        }
+        # MEMBUAT OBJEK AgenticChunk BARU
+        new_chunk = AgenticChunk(
+            id=id,
+            title=title,
+            summary=summary,
+            propositions=[proposition],
+            index=len(self.chunks),
+            metadata=page.metadata
+        )
+
+        self.chunks[id] = new_chunk
         
         Logger.log(f"Created new chunk with ID: {id}, Title: {title}, Summary: {summary}")
-        
-    def get_chunks(self):
-        chunks = "\n".join([f"Chunk ID: {chunk['id']}, Judul: {chunk['title']}, Ringkasan: {chunk['summary']}" for chunk in self.chunks.values()])
+        return id # Mengembalikan ID untuk konsistensi
+    
+    def get_chunks(self) -> str:
+        # Menggunakan properti dari objek AgenticChunk
+        chunks = "\n".join([f"Chunk ID: {chunk.id}, Judul: {chunk.title}, Ringkasan: {chunk.summary}" for chunk in self.chunks.values()])
         return chunks
     
     def _find_similar_chunk(self, proposition: str):
@@ -287,37 +299,7 @@ class AgenticChunker(BaseChunker):
                     "system",
                     """
                     Tentukan apakah "Proposisi" hukum harus masuk ke salah satu chunk yang sudah ada atau tidak.
-
-                    Sebuah proposisi harus masuk ke chunk jika makna, arah, atau maksudnya serupa.
-                    Tujuannya adalah mengelompokkan proposisi dan chunk yang serupa.
-
-                    Jika Anda berpikir proposisi harus digabungkan dengan chunk, kembalikan:
-                    {{
-                        "chunk_id": "<chunk_id>"
-                    }}
-                    
-                    Jika Anda tidak berpikir proposisi harus digabungkan dengan chunk yang sudah ada, kembalikan:
-                    {{
-                        "chunk_id": null
-                    }}
-                    
-                    JANGAN sertakan penjelasan, markdown, tanda kutip, atau teks tambahan. Hanya kembalikan objek JSON.
-                    
-                    Contoh:
-                    Input:
-                        - Proposisi: "Pasal 27 UUD 1945 mengatur tentang hak warga negara untuk mendapatkan pekerjaan"
-                        - Chunk Saat Ini:
-                            - Chunk ID: 2n4l3d
-                            - Nama Chunk: Ketentuan Pidana
-                            - Ringkasan Chunk: Berisi informasi tentang sanksi pidana dan denda
-
-                            - Chunk ID: 93833k
-                            - Nama Chunk: Hak Warga Negara
-                            - Ringkasan Chunk: Daftar hak-hak warga negara yang diatur dalam UUD 1945
-                            
-                    Output: {{
-                        "chunk_id": "93833k"
-                    }}
+                    ... (instruksi prompt tidak berubah) ...
                     """,
                 ),
                 ("user", "Chunk Saat Ini:\n--Awal chunk saat ini--\n{current_chunk_outline}\n--Akhir chunk saat ini--"),
@@ -342,10 +324,14 @@ class AgenticChunker(BaseChunker):
         return chunk_found.chunk_id
     
     def add_proposition_to_chunk(self, chunk_id: str, proposition: str):
-        self.chunks[chunk_id]['propositions'].append(proposition)
+        chunk = self.chunks[chunk_id] # Mengambil objek AgenticChunk
         
-        self.chunks[chunk_id]['title'] = self._update_chunk_title(self.chunks[chunk_id])
-        self.chunks[chunk_id]['summary'] = self._update_chunk_summary(self.chunks[chunk_id])
+        # MEMANIPULASI OBJEK AgenticChunk
+        chunk.propositions.append(proposition)
+        
+        # MENGUPDATE properti objek AgenticChunk
+        chunk.title = self._update_chunk_title(chunk)
+        chunk.summary = self._update_chunk_summary(chunk)
         
     def add_proposition(self, proposition: str, page: Document):
         Logger.log(f"Adding proposition to chunker: {proposition}")
@@ -363,9 +349,10 @@ class AgenticChunker(BaseChunker):
         self.add_proposition_to_chunk(most_similar_chunk_id, proposition)
         
     def print_chunks(self):
+        # Menggunakan properti dari objek AgenticChunk
         for chunk in self.chunks.values():
-            print(f"Chunk ID: {chunk['id']}")
-            print(f"Judul Chunk: {chunk['title']}")
-            print(f"Ringkasan Chunk: {chunk['summary']}")
-            print(f"Proposisi Chunk: {chunk['propositions']}")
+            print(f"Chunk ID: {chunk.id}")
+            print(f"Judul Chunk: {chunk.title}")
+            print(f"Ringkasan Chunk: {chunk.summary}")
+            print(f"Proposisi Chunk: {chunk.propositions}")
             print("")

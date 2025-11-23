@@ -2,10 +2,11 @@ from qdrant_client import QdrantClient
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from logger import Logger
 from qdrant_client.models import VectorParams, Distance, SparseVectorParams, PointStruct, SparseVector,Document, ScoredPoint, Prefetch, FusionQuery, Fusion, MultiVectorConfig, MultiVectorComparator, HnswConfigDiff
-from embedder import BaseEmbedder
 from fastembed import TextEmbedding, LateInteractionTextEmbedding, SparseTextEmbedding
 from fastembed.common.model_description import PoolingType, ModelSource
 from sentence_transformers import SentenceTransformer
+from model import BaseChunk
+from typing import Dict
 
 class Qdrant:
     def __init__(self, qdrant_url : str = "http://localhost:6333", qdrant_api_key: str = None, collection_name: str = "documents", late_interaction_model_name: str = "jinaai/jina-colbert-v2", sparse_model_name: str = "Qdrant/bm25", dense_model_name: str = "LazarusNLP/all-indo-e5-small-v4"):
@@ -171,11 +172,11 @@ class Qdrant:
             return []
         
         
-    def store_chunks(self, chunks):
+    def store_chunks(self, chunks : Dict[str, BaseChunk]):
         points = []
-        dense_embeddings = list(self.dense_model.encode([chunk["full_text"] for chunk in chunks.values()]))
-        sparse_embeddings = list(self.sparse_model.embed([chunk["full_text"] for chunk in chunks.values()]))
-        late_interaction_embeddings = list(self.late_interaction_model.embed([chunk["full_text"] for chunk in chunks.values()]))
+        dense_embeddings = list(self.dense_model.encode([chunk.get_context() for chunk in chunks.values()]))
+        sparse_embeddings = list(self.sparse_model.embed([chunk.get_context() for chunk in chunks.values()]))
+        late_interaction_embeddings = list(self.late_interaction_model.embed([chunk.get_context() for chunk in chunks.values()]))
         keys = list(chunks.keys())
         values = list(chunks.values())
         
@@ -187,7 +188,7 @@ class Qdrant:
                     "sparse" : sparse_vec.as_object(),
                     "late_interaction" : late_interaction_vec
                 },
-                payload=value
+                payload=value.get_payload()
             )
             points.append(point)
 
