@@ -30,7 +30,8 @@ class RecursiveGenerator(BaseGenerator):
                 "page": payload['page'],
                 "page_label": payload['page_label'],
                 "total_pages": payload['total_pages'],
-                "score": chunk.score
+                "score": chunk.score,
+                "content": payload['full_text']
             }) 
         
         context = "\n---\n".join(context_parts)

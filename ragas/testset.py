@@ -122,7 +122,7 @@ A: [Jawaban]
                         questions.append({
                             "question": current_q,
                             "ground_truth": current_a,
-                            "contexts": [current_context] 
+                            # "contexts": [current_context] 
                         })
                     current_q = line.split(':', 1)[1].strip()
                     current_a = ""
@@ -133,7 +133,7 @@ A: [Jawaban]
                 questions.append({
                     "question": current_q,
                     "ground_truth": current_a,
-                    "contexts": [current_context]
+                    # "contexts": [current_context]
                 })
                 
             return questions
@@ -207,7 +207,7 @@ A: [Jawaban]
                     rows.append({
                         'question': q['question'],
                         'ground_truth': answer,
-                        'contexts': [context] if isinstance(context, str) else context
+                        # 'contexts': [context] if isinstance(context, str) else context
                     })
                 
                 df = pd.DataFrame(rows)
@@ -221,7 +221,7 @@ A: [Jawaban]
                 testset_dict = {
                     'questions': df['question'].tolist(),
                     'ground_truths': df['ground_truth'].tolist(), 
-                    'contexts': df['contexts'].tolist(),
+                    # 'contexts': df['contexts'].tolist(),
                     'evolution_types': df['evolution_type'].tolist() if 'evolution_type' in df.columns else [],
                     'metadata': df['metadata'].tolist() if 'metadata' in df.columns else []
                 }
@@ -255,11 +255,12 @@ A: [Jawaban]
 def generate_sample_testset():
     generator = RAGTestsetGenerator(llm_type="groq")
     key_documents = [
-        "uu1-1945.pdf",
-        "uu-no-1-tahun-2024.pdf",
+    #     "uu1-1945.pdf",
+    #     "uu-no-1-tahun-2024.pdf",
+          "51uu012.pdf"
     ]
     docs = generator.load_documents(
-        doc_path="../peraturan_pdfs/",
+        doc_path="../test/",
         specific_files=key_documents
     )
     if not docs:

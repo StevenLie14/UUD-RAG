@@ -33,7 +33,8 @@ class AgenticGenerator(BaseGenerator):
                 "index": idx,
                 "title": payload['title'],
                 "summary": payload['summary'],
-                "score": chunk.score
+                "score": chunk.score,
+                "content": payload['full_text']
             }) 
         
         context = "\n---\n".join(context_parts)

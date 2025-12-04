@@ -36,7 +36,8 @@ class SemanticGenerator(BaseGenerator):
                     "total_pages": payload.get('total_pages', 0),
                     "score": chunk.score,
                     "chunk_id": payload.get('chunk_id', chunk.id),
-                    "chunk_type": payload.get('chunk_type', 'semantic')
+                    "chunk_type": payload.get('chunk_type', 'semantic'),
+                    "content": payload['full_text']
                 }
                 
                 if 'semantic_score' in payload:

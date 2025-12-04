@@ -25,22 +25,27 @@ class BaseLoader:
     async def _load_single_pdf(self, file_path: str, file_name: str):
         """Load a single PDF file"""
         try:
+            with open(file_path, 'rb') as f:
+                header = f.read(8)
+                if not header.startswith(b'%PDF'):
+                    return
+            
             loader = PyPDFLoader(file_path)
             pages_loaded = []
-            async for page in loader.alazy_load():
-                page.page_content = self._clean_text(page.page_content)
-                pages_loaded.append(page)
-            self.pages.extend(pages_loaded)
             
-        except PdfStreamError:
-            Logger.log(f"Corrupt PDF detected, retrying with PyMuPDF: {file_name}")
             try:
-                loader = PyMuPDFLoader(file_path)
-                docs = loader.load()
-                for doc in docs:
-                    doc.page_content = self._clean_text(doc.page_content)
-                    self.pages.append(doc)
-            except Exception as e:
-                Logger.log(f"Failed to load {file_name} with PyMuPDF: {e}")
+                async for page in loader.alazy_load():
+                    page.page_content = self._clean_text(page.page_content)
+                    pages_loaded.append(page)
+                self.pages.extend(pages_loaded)
+                
+            except Exception as async_error:
+                Logger.log(f"Async loading failed for {file_name}: {async_error}")
+                raise async_error
+                
+        except PdfStreamError as pdf_error:
+            Logger.log(f"PDF stream error for {file_name}: {pdf_error}")
+            self._try_pymupdf_fallback(file_path, file_name)
+            
         except Exception as e:
             Logger.log(f"Unexpected error on {file_name}: {e}")

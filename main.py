@@ -65,13 +65,12 @@ async def main():
             selected_chunker = agentic_chunker
             collection_name = "agentic_chunks"
             Logger.log("Using Agentic Chunker")
-        else:  # semantic
+        else:
             selected_chunker = semantic_chunker
             collection_name = "semantic_chunks"
             Logger.log("Using Semantic Chunker")
     else:
-        selected_chunker = recursive_chunker
-        collection_name = "recursive_chunks"
+        return
     
     if use_faiss:
         Logger.log("Using FAISS database")
