@@ -4,7 +4,7 @@ from sentence_transformers import SentenceTransformer
 from .base import BaseChunker
 import uuid
 from model.chunk.semantic_chunk import SemanticChunk
-from typing import Dict
+from typing import Dict, List
 from logger import Logger
 
 class SemanticChunker(BaseChunker):
@@ -12,8 +12,9 @@ class SemanticChunker(BaseChunker):
                  embedding_model_name: str = "LazarusNLP/all-indo-e5-small-v4",
                  breakpoint_threshold_type: str = "percentile",
                  breakpoint_threshold_amount: float = 95.0,
-                 number_of_chunks: int = None):
-        super().__init__()
+                 number_of_chunks: int = None,
+                 cache_dir: str = "./chunk_cache"):
+        super().__init__(cache_dir=cache_dir)
         
         Logger.log(f"Loading embedding model: {embedding_model_name}")
         self.embedding_model = SentenceTransformer(embedding_model_name)
@@ -42,11 +43,48 @@ class SemanticChunker(BaseChunker):
 
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
         try:
-            Logger.log(f"Processing {len(pages)} documents with semantic chunking...")
+            if use_cache:
+                uncached_pages = self.get_uncached_documents(pages)
+                if len(uncached_pages) < len(pages):
+                    Logger.log(f"Loaded {len(pages) - len(uncached_pages)} documents from cache")
+                pages = uncached_pages
             
-            docs = self.text_splitter.split_documents(pages)
+            if not pages:
+                Logger.log("All documents already cached")
+                return
             
-            Logger.log(f"Semantic chunker created {len(docs)} chunks from {len(pages)} documents")
+            Logger.log(f"Processing {len(pages)} uncached documents with semantic chunking...")
+            
+            # Process each document separately to maintain per-document caching
+            for page in pages:
+                doc_hash = self._get_document_hash(page)
+                chunk_ids = []
+                
+                # Split this specific page
+                split_docs = self.text_splitter.split_documents([page])
+                
+                for doc in split_docs:
+                    id = str(uuid.uuid4())
+                    metadata = doc.metadata or {}
+
+                    chunk_obj = SemanticChunk(
+                        id=id,
+                        content=doc.page_content,
+                        source=metadata.get("source"),
+                        page=metadata.get("page"),
+                        total_pages=metadata.get("total_pages"),
+                        page_label=metadata.get("page_label"),
+                    )
+
+                    self.chunks[id] = chunk_obj
+                    chunk_ids.append(id)
+                
+                # Cache chunks for this document
+                self.document_chunks[doc_hash] = chunk_ids
+                if use_cache:
+                    self._save_chunks_to_cache(doc_hash, chunk_ids)
+            
+            Logger.log(f"Semantic chunker created {len(self.chunks)} total chunks")
             
             for doc in docs:
                 chunk_id = str(uuid.uuid4())

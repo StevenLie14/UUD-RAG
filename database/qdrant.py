@@ -198,7 +198,7 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
             return []
         
         
-    def store_chunks(self, chunks : Dict[str, BaseChunk]):
+    def store_chunks(self, chunks: Dict[str, BaseChunk]):
         points = []
         dense_embeddings = list(self.dense_model.encode([chunk.get_context() for chunk in chunks.values()]))
         sparse_embeddings = list(self.sparse_model.embed([chunk.get_context() for chunk in chunks.values()]))

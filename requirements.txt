@@ -34,3 +34,5 @@ fastembed
 
 # === RAGAS ===
 ragas
+
+langchain-ollama

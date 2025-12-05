@@ -2,27 +2,46 @@ from logger import Logger
 import uuid
 from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, List
 from langchain_core.documents import Document
-from pydantic import BaseModel
-from typing import Optional
 import os
 from llm.base import BaseLLM
 from .base import BaseChunker
 from typing import Dict
 from model.chunk.agentic_chunk import AgenticChunk
 from utils import json_parser as utils
+
 class AgenticChunker(BaseChunker):
     def __init__(self, llm: BaseLLM, cache_dir: str = "./chunk_cache"):
-        super().__init__()
+        super().__init__(cache_dir=cache_dir)
         self.llm = llm
-        self.cache_dir = cache_dir
-        os.makedirs(cache_dir, exist_ok=True)
-    
+        self.current_doc_hash = None
+        self.current_doc_chunk_ids = []
     
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
-        for _, page in enumerate(pages): 
+        if use_cache:
+            uncached_pages = self.get_uncached_documents(pages)
+            if len(uncached_pages) < len(pages):
+                Logger.log(f"Loaded {len(pages) - len(uncached_pages)} documents from cache")
+            pages = uncached_pages
+        
+        if not pages:
+            Logger.log("All documents already cached")
+            return
+        
+        Logger.log(f"Processing {len(pages)} uncached documents with agentic chunking...")
+        
+        for page in pages:
+            doc_hash = self._get_document_hash(page)
+            self.current_doc_hash = doc_hash
+            self.current_doc_chunk_ids = []
+            
             self._generate_propositions(page)
+            
+            # Cache chunks for this document
+            self.document_chunks[doc_hash] = self.current_doc_chunk_ids
+            if use_cache:
+                self._save_chunks_to_cache(doc_hash, self.current_doc_chunk_ids)
         
         Logger.log(f"Generated propositions for {len(pages)} pages. Total chunks: {len(self.chunks)}")
     
@@ -141,8 +160,8 @@ class AgenticChunker(BaseChunker):
         )
 
         new_chunk_summary = self.llm.answer(PROMPT, {
-            "proposition": "\n".join(chunk.propositions), # Mengakses properti
-            "current_summary" : chunk.summary # Mengakses properti
+            "proposition": "\n".join(chunk.propositions),
+            "current_summary" : chunk.summary
         })
 
         return new_chunk_summary
@@ -281,6 +300,10 @@ class AgenticChunker(BaseChunker):
 
         self.chunks[id] = new_chunk
         
+        # Track this chunk for current document
+        if self.current_doc_chunk_ids is not None:
+            self.current_doc_chunk_ids.append(id)
+        
         Logger.log(f"Created new chunk with ID: {id}, Title: {title}, Summary: {summary}")
         return id # Mengembalikan ID untuk konsistensi
     
@@ -298,7 +321,29 @@ class AgenticChunker(BaseChunker):
                     "system",
                     """
                     Tentukan apakah "Proposisi" hukum harus masuk ke salah satu chunk yang sudah ada atau tidak.
-                    ... (instruksi prompt tidak berubah) ...
+                    
+                    Chunk merepresentasikan kelompok proposisi yang membahas topik serupa.
+                    
+                    Input:
+                    1. Proposisi baru
+                    2. Kumpulan chunk yang ada (ID, Judul, dan Ringkasan)
+                    
+                    Output harus dalam format JSON:
+                    {{
+                        "chunk_id": "id-chunk-yang-cocok-atau-null"
+                    }}
+                    
+                    Jika proposisi cocok dengan salah satu chunk yang ada, kembalikan ID chunk tersebut.
+                    Jika proposisi TIDAK cocok dengan chunk manapun, kembalikan null.
+                    
+                    JANGAN sertakan penjelasan, alasan, atau teks apapun di luar JSON.
+                    JANGAN gunakan markdown code fences seperti ```json.
+                    
+                    Contoh Output 1 (cocok):
+                    {{"chunk_id": "91c6850b-7fed-456b-bb98-656b552b8e68"}}
+                    
+                    Contoh Output 2 (tidak cocok):
+                    {{"chunk_id": null}}
                     """,
                 ),
                 ("user", "Chunk Saat Ini:\n--Awal chunk saat ini--\n{current_chunk_outline}\n--Akhir chunk saat ini--"),
@@ -316,7 +361,7 @@ class AgenticChunker(BaseChunker):
         class ChunkMatch(BaseModel):
             chunk_id: Optional[str] = None
             
-        chunk_found = self.parse_json_response(chunk_found, ChunkMatch)
+        chunk_found = utils.parse_json_response(chunk_found, ChunkMatch)
         
         if chunk_found is None or chunk_found.chunk_id not in self.chunks:
             return None

@@ -1,0 +1,23 @@
+{
+  "test_date": "2025-12-05T15:18:07.389506",
+  "testset": "ragas/uud_rag_sample_testset.json",
+  "num_questions": 6,
+  "results": [
+    {
+      "configuration": "recursive_faiss_dense",
+      "chunker": "recursive",
+      "database": "faiss",
+      "search_strategy": "dense",
+      "error": "0",
+      "timestamp": "2025-12-05T14:52:54.860351"
+    },
+    {
+      "configuration": "recursive_qdrant_dense",
+      "chunker": "recursive",
+      "database": "qdrant",
+      "search_strategy": "dense",
+      "error": "0",
+      "timestamp": "2025-12-05T15:18:07.388914"
+    }
+  ]
+}
