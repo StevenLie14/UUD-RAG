@@ -130,7 +130,11 @@ async def main():
         if use_cache:
             Logger.log("(Cached documents will be skipped)")
         
-        chunker.load_data_to_chunks(loader.pages, use_cache=use_cache)
+        try:
+            chunker.load_data_to_chunks(loader.pages, use_cache=use_cache)
+        except (KeyboardInterrupt, Exception) as e:
+            Logger.log(f"\nProcessing interrupted: {type(e).__name__}")
+            Logger.log(f"Saving chunks processed so far...")
         
         # Step 5: Display results
         print("\n" + "="*80)
@@ -186,6 +190,10 @@ async def main():
                 chunk_dict["total_pages"] = chunk.total_pages
             if hasattr(chunk, 'page_label'):
                 chunk_dict["page_label"] = chunk.page_label
+            if hasattr(chunk, 'semantic_score'):
+                chunk_dict["semantic_score"] = chunk.semantic_score
+            if hasattr(chunk, 'boundary_type'):
+                chunk_dict["boundary_type"] = chunk.boundary_type
             if hasattr(chunk, 'title'):
                 chunk_dict["title"] = chunk.title
             if hasattr(chunk, 'summary'):

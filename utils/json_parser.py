@@ -15,8 +15,10 @@ def parse_json_response(result: str, model: type[T]) -> Optional[T]:
     try:
         return model.model_validate_json(cleaned)
     except ValidationError as e:
-        print("[ERROR] JSON validation failed:", e)
+        print(f"[ERROR] JSON validation failed: {e}")
+        print(f"[ERROR] Raw response (first 200 chars): {result[:200]}")
         return None
     except Exception as e:
-        print("[ERROR] Failed to parse JSON:", e)
+        print(f"[ERROR] Failed to parse JSON: {e}")
+        print(f"[ERROR] Raw response (first 200 chars): {result[:200]}")
         return None

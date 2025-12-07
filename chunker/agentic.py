@@ -13,38 +13,65 @@ from utils import json_parser as utils
 
 class AgenticChunker(BaseChunker):
     def __init__(self, llm: BaseLLM, cache_dir: str = "./chunk_cache"):
-        super().__init__(cache_dir=cache_dir)
+        super().__init__(cache_dir=cache_dir, chunker_name="agentic")
         self.llm = llm
-        self.current_doc_hash = None
-        self.current_doc_chunk_ids = []
+        self.current_page = None
     
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
+        # Load existing cache
         if use_cache:
-            uncached_pages = self.get_uncached_documents(pages)
-            if len(uncached_pages) < len(pages):
-                Logger.log(f"Loaded {len(pages) - len(uncached_pages)} documents from cache")
-            pages = uncached_pages
+            self._load_consolidated_cache()
+            if len(self.chunks) > 0:
+                Logger.log(f"Loaded {len(self.chunks)} chunks from cache")
         
-        if not pages:
-            Logger.log("All documents already cached")
+        # Filter uncached documents
+        uncached_pages = self.get_uncached_documents(pages)
+        if len(uncached_pages) < len(pages):
+            Logger.log(f"Skipping {len(pages) - len(uncached_pages)} already processed documents")
+        
+        if not uncached_pages:
+            Logger.log("All documents already processed")
             return
         
-        Logger.log(f"Processing {len(pages)} uncached documents with agentic chunking...")
+        Logger.log(f"Processing {len(uncached_pages)} new documents with agentic chunking...")
         
-        for page in pages:
-            doc_hash = self._get_document_hash(page)
-            self.current_doc_hash = doc_hash
-            self.current_doc_chunk_ids = []
-            
-            self._generate_propositions(page)
-            
-            # Track document-to-chunks mapping (will be saved later)
-            self.document_chunks[doc_hash] = self.current_doc_chunk_ids
+        checkpoint_interval = 10  # Save every 10 documents
+        processed_count = 0
         
-        Logger.log(f"Generated propositions for {len(pages)} pages. Total chunks: {len(self.chunks)}")
+        try:
+            for idx, page in enumerate(uncached_pages, 1):
+                try:
+                    self.current_page = page
+                    
+                    self._generate_propositions(page)
+                    
+                    # Mark document as processed
+                    self.mark_document_processed(page)
+                    processed_count += 1
+                    
+                    # Checkpoint save every N documents
+                    if idx % checkpoint_interval == 0:
+                        Logger.log(f"Checkpoint: Saving progress ({idx}/{len(uncached_pages)} documents)...")
+                        self._save_consolidated_cache()
+                        Logger.log(f"Checkpoint saved. Total chunks so far: {len(self.chunks)}")
+                    
+                except Exception as e:
+                    Logger.log(f"Error processing document {idx}/{len(uncached_pages)}: {e}")
+                    Logger.log(f"Saving progress before continuing...")
+                    self._save_consolidated_cache()
+                    Logger.log(f"Progress saved. Skipping problematic document.")
+                    continue
         
-        # Export all chunks to cache after processing all documents
-        self.export_all_chunks_to_cache()
+        except KeyboardInterrupt:
+            Logger.log(f"\nInterrupted by user. Saving progress...")
+            self._save_consolidated_cache()
+            Logger.log(f"Progress saved: {processed_count}/{len(uncached_pages)} documents processed")
+            raise
+        
+        Logger.log(f"Total chunks: {len(self.chunks)} (added {processed_count} documents)")
+        
+        # Final save
+        self._save_consolidated_cache()
     
     def _generate_propositions(self, page: Document) -> list[str]:
         text = page.page_content
@@ -357,7 +384,7 @@ class AgenticChunker(BaseChunker):
             "current_chunk_outline": chunks
         })
         
-        Logger.log(f"Chunk found: {chunk_found}")
+        Logger.log(f"Chunk found response: {chunk_found[:200] if len(chunk_found) > 200 else chunk_found}")
         
         class ChunkMatch(BaseModel):
             chunk_id: Optional[str] = None
@@ -365,6 +392,7 @@ class AgenticChunker(BaseChunker):
         chunk_found = utils.parse_json_response(chunk_found, ChunkMatch)
         
         if chunk_found is None or chunk_found.chunk_id not in self.chunks:
+            Logger.log(f"No matching chunk found, will create new chunk")
             return None
         return chunk_found.chunk_id
     
@@ -405,9 +433,6 @@ class AgenticChunker(BaseChunker):
     def _get_chunk_type(self) -> str:
         return 'agentic'
     
-    def _reconstruct_chunks(self, chunks_data: Dict[str, dict], chunk_type: str) -> Dict[str, AgenticChunk]:
-        """Reconstruct AgenticChunk objects from JSON data"""
-        chunks = {}
-        for chunk_id, chunk_dict in chunks_data.items():
-            chunks[chunk_id] = AgenticChunk(**chunk_dict)
-        return chunks
+    def _reconstruct_chunk(self, chunk_dict: dict, chunk_type: str) -> AgenticChunk:
+        """Reconstruct AgenticChunk object from dict"""
+        return AgenticChunk(**chunk_dict)
