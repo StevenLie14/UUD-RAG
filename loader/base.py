@@ -10,14 +10,25 @@ class BaseLoader:
         self.pages = []
 
     def _clean_text(self,text: str) -> str:
+        # Remove common headers/footers and artifacts
         text = re.sub(r'PRESIDEN\s+REPUBLIK\s+INDONESIA', '', text, flags=re.IGNORECASE)
         text = re.sub(r'SK\s+No\s+\d+\s*[A-Z]*', '', text)
-        
-        # Hapus nomor halaman
-        text = re.sub(r'-\s*\d+\s*-', '', text)
-        # Bersihkan karakter aneh
-        text = re.sub(r"[^\w\s.,;:()'\-]", '', text)
-        return text
+        # Remove page number patterns like "- 12 -" or "(12)"
+        text = re.sub(r'(?:^|\n)\s*[-–—]?\s*\(?\d+\)?\s*[-–—]?\s*(?:$|\n)', '\n', text)
+        # Remove dot/bullet-only lines (leaders)
+        text = '\n'.join(
+            ln for ln in text.splitlines()
+            if not re.match(r"^\s*(?:[\.·•]+\s*)+$", ln)
+        )
+        # Remove leading dot leaders at start of lines
+        text = re.sub(r"(^|\n)\s*[\.·•]{2,}\s*", "\n", text)
+        # Normalize whitespace: collapse multiple spaces and excessive newlines
+        text = re.sub(r"[ \t]{2,}", " ", text)
+        text = re.sub(r"\n{3,}", "\n\n", text)
+        # Remove stray non-word artifacts but keep basic punctuation
+        text = re.sub(r"[^\w\s.,;:()'\-]", "", text)
+        # Trim
+        return text.strip()
     
     def load_data(self):
         raise NotImplementedError

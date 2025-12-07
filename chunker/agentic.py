@@ -16,6 +16,9 @@ class AgenticChunker(BaseChunker):
         super().__init__(cache_dir=cache_dir, chunker_name="agentic")
         self.llm = llm
         self.current_page = None
+        # Track chunk IDs created while processing a single document
+        # Initialized to None and set to a list at the start of processing each document
+        self.current_doc_chunk_ids = None
     
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
         # Load existing cache
@@ -35,18 +38,22 @@ class AgenticChunker(BaseChunker):
         
         Logger.log(f"Processing {len(uncached_pages)} new documents with agentic chunking...")
         
-        checkpoint_interval = 10  # Save every 10 documents
+        checkpoint_interval = 25  # Save every 25 documents
         processed_count = 0
         
         try:
             for idx, page in enumerate(uncached_pages, 1):
                 try:
+                    # Prepare per-document tracking for newly created chunk IDs
+                    self.current_doc_chunk_ids = []
                     self.current_page = page
                     
                     self._generate_propositions(page)
                     
                     # Mark document as processed
                     self.mark_document_processed(page)
+                    # Clear per-document tracking after processing
+                    self.current_doc_chunk_ids = None
                     processed_count += 1
                     
                     # Checkpoint save every N documents

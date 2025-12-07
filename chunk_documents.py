@@ -8,7 +8,7 @@ import asyncio
 import os
 from logger import Logger
 from loader import LocalPDFLoader
-from chunker import RecursiveChunker, SemanticChunker, AgenticChunker
+from chunker import RecursiveChunker, SemanticChunker, AgenticChunker, AgenticChunkerV2
 from llm import Gemini, GeminiLive, Ollama
 from config import Config
 
@@ -62,12 +62,19 @@ async def main():
         print("   - Splits on semantic boundaries")
         print("   - Good for coherent topics")
         
-        print("\n3. Agentic Chunker")
+        print("\n3. Agentic Chunker (V1)")
         print("   - Slow, uses LLM")
         print("   - Intelligent proposition-based chunking")
         print("   - Best quality for complex documents")
+        print("   - Includes title and summary generation")
         
-        chunker_choice = input("\nEnter your choice (1-3): ").strip()
+        print("\n4. Agentic Chunker V2")
+        print("   - Fast, uses LLM")
+        print("   - Direct semantic splitting")
+        print("   - Includes source and page tracking")
+        print("   - No title/summary overhead (~3x faster than V1)")
+        
+        chunker_choice = input("\nEnter your choice (1-4): ").strip()
         
         cache_dir = "./chunk_cache"
         
@@ -97,7 +104,7 @@ async def main():
             chunker_name = "semantic"
             
         elif chunker_choice == "3":
-            print("\nAgentic Chunker Configuration:")
+            print("\nAgentic Chunker V1 Configuration:")
             print("  Choose LLM:")
             print("  1. Gemini (gemini-2.0-flash-lite)")
             print("  2. GeminiLive (gemini-2.0-flash-exp)")
@@ -108,12 +115,31 @@ async def main():
             if llm_choice == "2":
                 llm = GeminiLive("gemini-2.0-flash-exp", config.GOOGLE_API_KEY)
             elif llm_choice == "3":
-                llm = Ollama("gemma3:12b", base_url="https://0c8fd33555ef.ngrok-free.app")
+                llm = Ollama("gemma3:12b", base_url="http://10.22.208.138:11434")
             else:
                 llm = Gemini("gemini-2.0-flash-lite", config.GOOGLE_API_KEY)
             
             chunker = AgenticChunker(llm, cache_dir=cache_dir)
             chunker_name = "agentic"
+            
+        elif chunker_choice == "4":
+            print("\nAgentic Chunker V2 Configuration:")
+            print("  Choose LLM:")
+            print("  1. Gemini (gemini-2.0-flash-lite)")
+            print("  2. GeminiLive (gemini-2.0-flash-exp)")
+            print("  3. Ollama (gemma3:12b)")
+            
+            llm_choice = input("\n  Enter your choice (1-3): ").strip()
+            
+            if llm_choice == "2":
+                llm = GeminiLive("gemini-2.0-flash-exp", config.GOOGLE_API_KEY)
+            elif llm_choice == "3":
+                llm = Ollama("gemma3:12b", base_url="http://10.22.208.138:11434")
+            else:
+                llm = Gemini("gemini-2.0-flash-lite", config.GOOGLE_API_KEY)
+            
+            chunker = AgenticChunkerV2(llm, cache_dir=cache_dir)
+            chunker_name = "agentic_v2"
         else:
             print("Invalid choice, using Recursive Chunker")
             chunker = RecursiveChunker(cache_dir=cache_dir)
@@ -229,10 +255,20 @@ async def main():
         print(f"✓ Chunks created: {len(chunker.chunks)}")
         print(f"✓ Chunker used: {chunker_name}")
         print(f"✓ Cache directory: {cache_dir}")
+        
+        # Show additional info for agentic_v2
+        if chunker_name == "agentic_v2":
+            chunks_with_source = sum(1 for c in chunker.chunks.values() if hasattr(c, 'source') and c.source)
+            chunks_with_page = sum(1 for c in chunker.chunks.values() if hasattr(c, 'page') and c.page is not None)
+            print(f"✓ Chunks with source info: {chunks_with_source}")
+            print(f"✓ Chunks with page info: {chunks_with_page}")
+        
         print("\nNext steps:")
         print("- Run this script again with different chunker to compare")
         print("- Use test_all_components.py to evaluate chunks in RAG pipeline")
         print("- Add new PDFs and re-run (only new documents will be processed)")
+        if chunker_name == "agentic_v2":
+            print("- Use example_source_page_info.py to explore source/page filtering")
         print("="*80)
         
         # Ask if user wants to try another chunker

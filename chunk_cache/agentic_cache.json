@@ -1,0 +1,2827 @@
+{
+  "chunk_type": "agentic",
+  "chunker_name": "agentic",
+  "total_chunks": 195,
+  "processed_docs": [
+    "3b07c7d6fd8ec86dfc298893ccdd58200459db53d001d5abe0f624ce78cc6572",
+    "acdc08349dcb1672f3513fbefd275308d8078864b7416cb39a8d9f98a4ad422b",
+    "748a0d898142444143b27b3c17f7643c0d7ca701a46c53ef70683e865b090f18",
+    "c2300fe4bd0e1675a2415517d2e90ac403a69761e859249ef24497b683533c8b",
+    "a54bd1a084f1172f9e89634ed6596da9115b1f1c54ca799cea0ffe7033c9319a",
+    "ceb10b97dd52743afbf94dd7938104ae2cc24ab8c64ba0754ec6dce25d8fff90",
+    "8e669c5011704754901c0f2e5575d2e3ae5f7d3356b44dc369cd73e24d1dc6f1",
+    "7317a2d45b039698121d133f3be7802b47229666f9149b0ca949103531ffc6ef",
+    "193808bbcc379a76dd6caf897d9f6c47159030994108d3f300a4a9845edcb6bd",
+    "0f85a698e1b07d5b459e1ef236140cf8530ef6c69406ba904d18bbc8ad89641b",
+    "0c5f4d1469d36897983d292019a5a6d9537be5d1cd1364a39a9e6f78ddb7cb0f",
+    "a50beda85130ea8d0414bb2cc179e72e76418c5f8c2b5e647d0c49fd042f7025",
+    "6559bb3aeabb5f5ca1fcb495ad335dde12e2364f2b94912c232f65c30b2ec53c",
+    "abf6735157a7457ea2652d5568c89887e5c043209ec4479413dd60b668572eed",
+    "5ea28d4a184a4f8fc48e099354e830931b705f091525a502c6a8c766105db75e",
+    "734652c54c13bc2ae9691d2fc788c0eeb7e9cdc08e46d1e2210d2ecc480c9ce0",
+    "d63450a8600a8ccacfde9217d19acf3f6a2f1d071ddf67dba579451b5383f84e",
+    "68343d4ec91cad3e6e1fe82d84b5e2f916a6ae630ec31ea6c1b360fc22f2d68f",
+    "95bc526fd796b3f1a52380b8692962450ca252fa5dcdb07282962ba9dea8865f",
+    "98726ce22d528622231d82dd5d4bb23be679634ae631e21efa1e533eb780d364",
+    "1908c36030ffa4c3cb4f6bb4c812b0853fef015fc72231d03a0df8496cfbee9e",
+    "c784eefc72f87546113133dabf860fa4a8d834fcc2a92e588836497b2a27e413",
+    "d3fcc069ab2adcf58ec6be9c028e6283002ac6d62a09584382a89b543a3f82b8",
+    "4450c36d09815bc93eae9dc8dc75e95344d02f5f6dec7799351d956c15ab8895",
+    "97a026afad883e3d2bfe0e993196e8ad29820a4c9eddf7002562c7a66eaea3ab",
+    "00d4dda95af9a46bea237a42bac8346005e851f604cb62dd26a1cb16c910e990",
+    "f430c2bfdc3b26ee2d5d642f178b2d8697e86c13dfb4d3632f9a0415f61b1ec3",
+    "3c5d6e9eaa37ea3f34aa8d8368a0f92a006a44ad81a5a220c7c47e790a9cbdb2",
+    "cf8d3373f232bee5d55b62c699e75be1268a9e438075066df3bd7600bd53873c",
+    "0d6b82487017800ea6f4af85b4935d170af456a1283c8e992a513f60fbbfad41",
+    "6c19d590a05abaf59e79a16377bc175bef684417196d8718e2fee63e55ad37f8",
+    "8dbcaae24bc03c801f769ef6b203635533a8924ec73a5f258311c9f74ebdbaaf",
+    "eb02cf0f2c9da374c157133310cdfdfce180597327ffd0906ab8115dcaf5cf4d",
+    "895e7dde4acc28162c8b7b46899b61ffd75b4c3327bdb293264febdeb8957d00",
+    "ce6a365d70190ec6b3d06957321163b46d5bb50b7e5f3f2301db4c7038dde6c5",
+    "6c2edc7ca48a1822e18591b9019d6f1b61d8735271c9f55bade6110f93babcdc",
+    "6901952b06b79ff17fcbf8e0e82e0814dd9f808fc5e41a8e77ccad2de29fa2a1",
+    "dd652b39e6434bf3df0b90dcad2c4341f88ac2c7343b241a0c47d40e15e8268e",
+    "e213b6c7cb493f7a1cbfd3c7986079b4b77ffc43ae0774cb6608e79f5d2f7a38",
+    "bbb342783c04b77c0864de1b96f3a8bd1f687af4006f65a75a7d3b10b0c2b673",
+    "bb7477bf5fce836e27fd0f5a3251bfc664469c81604e431b89ee6128cddd8dce",
+    "d2c891e340157e05a539a7b6e30dd38ff2d75d42cccee7c0ab4ba419a66dcc56",
+    "02d2809e0d3dab60fe151a32ee84facf80cffd1fde33f7aad2c163ceb3144880",
+    "7529940c714c6c91350bd70c65e8a99218954082dc96bd023e7da9db04330750",
+    "76136a6cdb458ee6a686205d54a8357d528bd03ecae3f7625c1a442b240e4ddb",
+    "228de2d6d3507c70300a5a5897be07328d89a7396c8cf406594cef728891a09b",
+    "5bcbe426e2dadad808c42badf8bf9b71d6de0d985e4c326cc1a68efbe44a2865",
+    "a896ad4fb4cf2420db3acac593e8da264143f45f3761ee314460b2973d1d7ce5",
+    "a25820c38f23a6525de33fa922f39a0bdfa4f15e913636c4f876129fcfb72e7b",
+    "7c16a20be71dd8497768a6e6c71f141766dc9eb1df691f3f77400b94d7b24681",
+    "2095cc77f95c94b6a66400432eb86023a18f4125e81b2aa983689fcc099f9b8c",
+    "78273211b587c8d63e4d5493659019b5f99f74fe0fb2193cb08daef1508f1146",
+    "7754cddc0c38e07d86404931887473d2878adbb67151aec4811e043d2f6b8284",
+    "4d66b92a05c2aa276f787e70d84c6e569c6f1e71329757dbfc0d2e0735c92578",
+    "dc70bc635704c09a49ea791c1dee25351def2c60401171cd50608ffe412a5b74",
+    "698ce88562335271d7b05b2c85e359f007306149c60597c7373d828b3ec053f1",
+    "53cc9909634ae37b53a40cfbf1da8c5678a4412ea2637200ec5b441ea71da0f4",
+    "f02cb8f18dc62d5f627abfefe55e00b2c7443f26a3f1f68b8283fad569e4a73f"
+  ],
+  "last_updated": "2025-12-07T20:48:17.578929",
+  "chunks": [
+    {
+      "id": "e03d0b23-c826-4402-873e-74948b2bccf8",
+      "title": "Ketentuan Pasal & Berlakunya Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi, berlakunya, dasar pertimbangan, dan ketentuan pasal dari undang-undang Republik Indonesia, serta referensi konstitusional, dan harus mencakup detail spesifik dari setiap undang-undang yang relevan, termasuk nomor undang-undang, tanggal pengesahan, dan proses pengundangan, serta detail spesifik dari setiap ketentuan pasal, dan harus mencakup detail spesifik dari setiap undang-undang yang relevan.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 24 Tahun 2022.",
+        "Undang-Undang ini menetapkan.",
+        "Undang-Undang ini memutuskan.",
+        "Undang-Undang ini mulai berlaku pada tanggal diundangkan.",
+        "Pasal 1 cukup jelas.",
+        "Pasal 2 cukup jelas.",
+        "Undang-Undang Republik Indonesia adalah Nomor 25 Tahun 2022.",
+        "Pertimbangan sebagaimana dimaksud dalam huruf a, huruf b, dan huruf c menjadi dasar.",
+        "Pasal 5 ayat (f) adalah bagian dari Undang-Undang Dasar Negara Republik Indonesia Tahun 1945.",
+        "Pasal 11 adalah bagian dari Undang-Undang Dasar Negara Republik Indonesia Tahun 1945.",
+        "Pasal 20 adalah bagian dari Undang-Undang Dasar Negara Republik Indonesia Tahun 1945.",
+        "Pasal 2 menyatakan bahwa Undang-Undang ini mulai berlaku pada tanggal diundangkan.",
+        "Perintah diberikan agar Undang-Undang ini diundangkan.",
+        "Pengundangan Undang-Undang ini dilakukan dengan penempatannya dalam Lembaran Negara Republik Indonesia.",
+        "Undang-Undang ini disahkan di Jakarta pada tanggal 27 September 2022.",
+        "Undang-Undang ini diundangkan di Jakarta pada tanggal 27 September 2022.",
+        "Pasal 1 cukup jelas.",
+        "Pasal 2 cukup jelas.",
+        "Pasal 5 ayat (1) Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 berlaku.",
+        "Pasal 20 Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 berlaku.",
+        "Pasal 23 ayat (1) Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 berlaku.",
+        "Undang-Undang Nomor 2 Tahun 2020 tentang Penetapan Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020 diundangkan dalam Lembaran Negara Republik Indonesia Tahun 2020 Nomor 134.",
+        "Pasal 13 membahas tentang berlakunya Undang-Undang."
+      ],
+      "index": 0
+    },
+    {
+      "id": "1e70c3d8-bec3-4b79-9afc-1af9fd6f10d6",
+      "title": "Ketentuan RCEP",
+      "summary": "Chunk ini berisi informasi tentang proses pengesahan, struktur, dan elemen utama perjanjian perdagangan internasional, dan perlu ditambahkan informasi lebih lanjut tentang ketentuan spesifik perjanjian tersebut, termasuk hak dan kewajiban yang terkait.",
+      "propositions": [
+        "Regional Comprehensive Economic Partnership Agreement memerlukan pengesahan.",
+        "Undang-Undang ini adalah tentang Pengesahan Regional Comprehensive Economic Partnership Agreement.",
+        "Regional Comprehensive Economic Partnership Agreement adalah Persetujuan Kemitraan Ekonomi Komprehensif Regional.",
+        "Pemerintah Indonesia menandatangani Regional Comprehensive Economic Partnership Agreement pada tanggal 15 November 2020.",
+        "Penandatanganan Regional Comprehensive Economic Partnership Agreement terjadi di Bogor, Indonesia.",
+        "Salinan naskah asli Regional Comprehensive Economic Partnership Agreement dalam bahasa Inggris merupakan bagian dari Undang-Undang ini.",
+        "Salinan terjemahan Regional Comprehensive Economic Partnership Agreement dalam bahasa Indonesia merupakan bagian dari Undang-Undang ini.",
+        "Salinan naskah asli dan terjemahan Regional Comprehensive Economic Partnership Agreement merupakan bagian yang tidak terpisahkan dari Undang-Undang ini.",
+        "Konsep Regional Comprehensive Economic Partnership diadopsi oleh Perhimpunan Bangsa-Bangsa Asia Tenggara (Association of Southeast Asian Nations).",
+        "Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) terdiri atas 20 (dua puluh) Bab.",
+        "Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) terdiri atas 17 (tujuh belas) Lampiran.",
+        "Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) terdiri atas 54 (lima puluh empat) jadwal komitmen.",
+        "Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) terdiri atas 3 (tiga) bagian utama.",
+        "Bagian utama Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) adalah akses pasar.",
+        "Bagian utama Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) adalah aturan.",
+        "Bagian utama Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) adalah kedaulatan.",
+        "Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) memiliki 2 (dua) elemen baru.",
+        "Elemen baru Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) adalah pengadaan barangjasa pemerintah.",
+        "Elemen baru Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) adalah usaha kecil dan menengah.",
+        "Elemen pengadaan barangjasa pemerintah dan usaha kecil dan menengah sebelumnya tidak ada di dalam kerangka Persetujuan Perhimpunan Bangsa-Bangsa Asia Tenggara.",
+        "Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) memiliki nilai tambah yang lebih sesuai dengan perkembangan dan situasi perekonomian dunia saat ini.",
+        "Implementasi Persetujuan Regional Comprehensive Economic Partnership (Kemitraan Ekonomi Komprehensif Regional) diharapkan dapat memberikan manfaat yang besar bagi perekonomian Indonesia.",
+        "Undang-Undang Nomor 25 Tahun 2022 adalah tentang Pengesahan Perjanjian Kemitraan Ekonomi Komprehensif.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif adalah antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea.",
+        "Perlu membentuk Undang-Undang tentang Pengesahan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea.",
+        "Diputuskan Undang-Undang tentang Pengesahan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea adalah perjanjian yang disetujui.",
+        "Pasal 1 mengesahkan Perjanjian Kemitraan Ekonomi Komprehensif."
+      ],
+      "index": 1
+    },
+    {
+      "id": "7321fdcb-d0c2-4233-ab62-8a92c38935f9",
+      "title": "Tindakan dan Kewenangan Pejabat",
+      "summary": "Chunk ini berisi informasi tentang tindakan dan dokumen resmi yang dikeluarkan oleh Presiden dan pejabat terkait penunjukan, pelantikan, dan kewenangan pejabat pemerintahan, serta prosedur yang digunakan dalam proses tersebut, dan harus mencakup informasi lebih lanjut tentang kewenangan dan tanggung jawab pejabat pemerintahan.",
+      "propositions": [
+        "Presiden Republik Indonesia memerintahkan agar setiap orang mengetahuinya.",
+        "PRESIDEN BLIK INDONESIA mengeluarkan dokumen.",
+        "Surat Presiden Nomor R-06Pres02 12022 tanggal 21 Februari 2022 mengatur penunjukan Menteri Keuangan untuk mewakili Presiden dalam penyampaian laporan Keuangan Pemerintah Pusat kepada Badan Pemeriksa Keuangan.",
+        "Pelantikan Penjabat Gubernur dilakukan oleh Menteri Dalam Negeri.",
+        "Pelantikan Penjabat Gubernur dilakukan atas nama Presiden.",
+        "Pelantikan Penjabat Gubernur dilakukan paling lama 6 (enam) bulan terhitung sejak Undang-Undang ini diundangkan.",
+        "Dokumen tersebut adalah dari Presiden Republik Indonesia.",
+        "M. A. PELLAUPESSY menjabat sebagai Menteri Kehakiman a. i."
+      ],
+      "index": 2
+    },
+    {
+      "id": "ba994fff-7051-4535-a6da-e72a4e671168",
+      "title": "Perdagangan & Investasi Nasional",
+      "summary": "Chunk ini berisi informasi mengenai kegiatan perdagangan, investasi, dan kerja sama ekonomi yang berdampak pada perekonomian nasional, dan harus mencakup ketentuan terkait regulasi, undang-undang, perjanjian, dan kontrak kerja sama yang mengatur sektor perdagangan, serta aspek-aspek terkait globalisasi, manfaat yang diharapkan, dan ketentuan terkait negara mitra dagang, termasuk ketentuan terkait sumber daya alam dan penerimaan negara, serta ketentuan terkait hak dan kewajiban tenaga kerja.",
+      "propositions": [
+        "Kegiatan perdagangan merupakan salah satu sektor penggerak perekonomian nasional.",
+        "Manfaat bagi perekonomian Indonesia diharapkan melalui peningkatan akses pasar barang.",
+        "Manfaat bagi perekonomian Indonesia diharapkan melalui peningkatan akses pasar jasa.",
+        "Manfaat bagi perekonomian Indonesia diharapkan melalui peningkatan akses penanaman modal.",
+        "Manfaat bagi perekonomian Indonesia diharapkan melalui fasilitasi perdagangan.",
+        "Manfaat bagi perekonomian Indonesia diharapkan melalui kerja sama ekonomi bagi Indonesia.",
+        "Kerja sama ekonomi diharapkan dapat mendorong upaya pemulihan dan penguatan perekonomian Indonesia.",
+        "Kegiatan perdagangan merupakan salah satu sektor utama penggerak perekonomian nasional.",
+        "Kegiatan perdagangan dapat dilakukan melalui kerja sama perdagangan internasional.",
+        "Kerja sama perdagangan internasional mendukung program pembangunan nasional di bidang ekonomi.",
+        "Undang-Undang Nomor 7 Tahun 2014 adalah tentang Perdagangan.",
+        "Undang-Undang Nomor 7 Tahun 2014 tentang Perdagangan terbit dalam Lembaran Negara Republik Indonesia Tahun 2014 Nomor 45.",
+        "Undang-Undang Nomor 7 Tahun 2014 tentang Perdagangan terbit dalam Tambahan Lembaran Negara Republik Indonesia Nomor 5512.",
+        "Kegiatan perdagangan merupakan salah satu sektor penggerak perekonomian nasional.",
+        "Kegiatan perdagangan merupakan pendukung pembangunan ekonomi nasional.",
+        "Indonesia dapat melakukan kerja sama perdagangan melalui perjanjian perdagangan internasional.",
+        "Perjanjian perdagangan internasional dilakukan dengan negara mitra dagang.",
+        "Perjanjian perdagangan internasional bertujuan untuk mendapatkan manfaat berupa akses pasar barang.",
+        "Perjanjian perdagangan internasional bertujuan untuk mendapatkan manfaat berupa akses pasar jasa.",
+        "Perjanjian perdagangan internasional bertujuan untuk mendapatkan manfaat berupa akses penanaman modal.",
+        "Perjanjian perdagangan internasional bertujuan untuk promosi penanaman modal.",
+        "Perjanjian perdagangan internasional bertujuan untuk pelindungan penanaman modal.",
+        "Perjanjian perdagangan internasional bertujuan untuk pengembangan sumber daya manusia.",
+        "Perjanjian perdagangan internasional bertujuan untuk program kerja sama ekonomi.",
+        "Perjanjian perdagangan internasional merupakan konsekuensi globalisasi terhadap kegiatan perdagangan.",
+        "Kegiatan perdagangan meliputi perdagangan barang.",
+        "Kegiatan perdagangan meliputi perdagangan jasa.",
+        "Kegiatan perdagangan meliputi penanaman modal.",
+        "Republik Korea merupakan negara mitra dagang dan penanaman modal terdekat Indonesia.",
+        "Presiden Republik Indonesia akan memberikan manfaat peningkatan akses pasar barang dan jasa.",
+        "Peningkatan akses pasar barang dan jasa termasuk tenaga kerja.",
+        "Peningkatan akses pasar barang dan jasa memfasilitasi arus barang dan kepabeanan.",
+        "Peningkatan akses pasar barang dan jasa memfasilitasi akses promosi dan pelindungan penanaman modal.",
+        "Peningkatan akses pasar barang dan jasa memfasilitasi pengembangan sumber daya manusia Indonesia.",
+        "Peningkatan akses pasar barang dan jasa memfasilitasi program kedaulatan ekonomi bagi Indonesia.",
+        "Studi kelayakan bersama menghasilkan kesimpulan bahwa Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea akan bermanfaat bagi kedua belah Pihak.",
+        "Realizasi penerimaan minyak bumi dan gas alam yang dilaporkan berdasarkan asas neto adalah pendapatan negara.",
+        "Kewajiban kontraktual pemerintah harus dibayarkan dalam rangka pelaksanaan kontrak kerja sama.",
+        "Kontrak kerja sama meliputi under lifting.",
+        "Kontrak kerja sama meliputi pajak daerah.",
+        "Kontrak kerja sama meliputi fee kegiatan hulu minyak bumi dan gas alam.",
+        "Pendapatan Badan Layanan Umum dari Kerja Sama Operasi yang dilaporkan berdasarkan asas neto adalah pendapatan negara.",
+        "Pendapatan negara diperoleh setelah memperhitungkan bagian yang merupakan hak mitra Kerja Sama Operasi.",
+        "Saldo Anggaran lebih berasal dari masyarakat.",
+        "Sumber daya non keuangan diperlukan untuk tahun berjalan.",
+        "Manfaat ekonomi danatau sosial diharapkan dapat diperoleh dari aset.",
+        "Penyelesaian utang pemerintah mengakibatkan aliran keluar sumber daya ekonomi pemerintah.",
+        "Terdapat perubahan skema pendanaan Proyek Kereta Cepat Jakarta Bandung.",
+        "Pemerintah belum menetapkan kebijakan atas penyelesaian tagihan Domestb Market Obligation Fee PT Pertamina Hulu Mahakam periode Januari 2020 sampai dengan Januari 2022.",
+        "Tagihan Domestb Market Obligation Fee PT Pertamina Hulu Mahakam periode Januari 2020 sampai dengan Januari 2022 berjumlah USD65,74 juta.",
+        "Provinsi Papua Barat Daya memiliki kewenangan pengelolaan sumber daya alam di laut provinsi."
+      ],
+      "index": 3
+    },
+    {
+      "id": "91a958f1-585a-4dff-bfc7-1b42a68de616",
+      "title": "Perjanjian Bilateral",
+      "summary": "Chunk ini berisi informasi tentang proses inisiatif, perundingan, ratifikasi, dan pelaksanaan perjanjian internasional bilateral, khususnya perjanjian ekonomi, dan harus mencakup informasi lebih lanjut tentang ketentuan perjanjian, forum internasional terkait, dan dampak perjanjian tersebut.",
+      "propositions": [
+        "Konferensi Tingkat Tinggi (KT'f) Perhimpunan Bangsa-Bangsa Asia Tenggara (Association of Southeast Asian Nations) ke-19 diselenggarakan di Bali pada tahun 2011.",
+        "Undang-Undang Nomor 24 Tahun 2000 adalah tentang Perjanjian Internasional.",
+        "Undang-Undang Nomor 24 Tahun 2000 tentang Perjanjian Internasional terbit dalam Lembaran Negara Republik Indonesia Tahun 2000 Nomor 185.",
+        "Undang-Undang Nomor 24 Tahun 2000 tentang Perjanjian Internasional terbit dalam Tambahan Lembaran Negara Republik Indonesia Nomor 4012.",
+        "Dewan Perwakilan Rakyat Republik Indonesia menyetujui.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif ditandatangani pada tanggal 18 Desember 2020.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif ditandatangani di Seoul, Republik Korea.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif adalah antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea.",
+        "Salinan naskah asli Perjanjian Kemitraan Ekonomi Komprehensif adalah dalam bahasa Indonesia.",
+        "Salinan naskah asli Perjanjian Kemitraan Ekonomi Komprehensif adalah dalam bahasa Korea.",
+        "Salinan naskah asli Perjanjian Kemitraan Ekonomi Komprehensif adalah dalam bahasa Inggris.",
+        "Salinan naskah asli Perjanjian Kemitraan Ekonomi Komprehensif sebagaimana terlampir merupakan bagian yang tidak terpisahkan dari Undang-Undang ini.",
+        "Setiap orang harus mengetahui Undang-Undang ini.",
+        "Joko Widodo menyahkan Undang-Undang ini.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea diinisiasi pada bulan Februari 2011.",
+        "Perundingan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea diluncurkan.",
+        "Perundingan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea diluncurkan oleh Presiden Republik Indonesia dan Presiden Republik Korea.",
+        "Perundingan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea dilaksanakan selama periode bulan Juli 2012 hingga bulan Februari 2014.",
+        "Perundingan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea terhenti sementara waktu karena pergantian pemerintahan.",
+        "Kedua kepala negara melakukan pertemuan di Seoul, Republik Korea.",
+        "Kedua kepala negara memberikan mandat untuk menjajaki kembali perundingan yang sempat terhenti.",
+        "Menteri Perdagangan kedua negara menindaklanjuti mandat dari kedua kepala negara.",
+        "Kedua negara sepakat untuk mengaktivasi kembali Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea.",
+        "Kedua negara sepakat untuk mengaktivasi kembali Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea dengan perspektif baru.",
+        "Kedua negara berhasil menyelesaikan substansi perundingan dalam jangka waktu 8 (delapan) bulan sejak perundingan diaktivasi kembali.",
+        "Kedua belah Pihak mengeluarkan pernyataan bersama terkait penyelesaian perundingan.",
+        "Pernyataan bersama dikeluarkan pada tanggal 25 November 2019.",
+        "Perjanjian Kemitraan Ekonomi antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea diselesaikan.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea ditandatangani.",
+        "Penandatanganan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea dilakukan oleh Menteri Perdagangan Republik Indonesia.",
+        "Penandatanganan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea dilakukan oleh Menteri Perdagangan, Industri dan Energi Republik Korea.",
+        "Penandatanganan Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea berlangsung di Seoul, Republik Korea.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea terdiri atas Pembukaan.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea terdiri atas 13 Bab.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea terdiri atas 16 Lampiran.",
+        "Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea terdiri atas 4 Apendiks.",
+        "Ruang lingkup Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea mencakup perdagangan barang.",
+        "Ruang lingkup Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea mencakup perdagangan jasa.",
+        "Ruang lingkup Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea mencakup penanaman modal.",
+        "Ruang lingkup Perjanjian Kemitraan Ekonomi Komprehensif antara Pemerintah Republik Indonesia dan Pemerintah Republik Korea mencakup kerja sama ekonomi.",
+        "Undang-Undang Nomor 2 Tahun 2020 adalah tentang Penetapan Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020."
+      ],
+      "index": 4
+    },
+    {
+      "id": "db3e55e5-d82b-482b-b4e0-6ed9eda47d39",
+      "title": "Keuangan Negara & APBN",
+      "summary": "Chunk ini berisi informasi tentang pengelolaan keuangan negara, termasuk APBN, laporan keuangan, dan pertanggungjawaban pelaksanaan anggaran; tambahkan informasi tentang ketentuan pasal terkait audit dan rekomendasi terkait tata kelola keuangan negara.",
+      "propositions": [
+        "Program pembangunan nasional bertujuan untuk memqiukan kesejahteraan umum.",
+        "Pembangunan ekonomi nasional bertujuan untuk memajukan kesejahteraan umum.",
+        "Kesejahteraan umum tercantum dalam Pembukaan Undang-Undang Dasar Negara Republik Indonesia Tahun 1945.",
+        "Undang-Undang Nomor 26 Tahun 2022 adalah tentang Pertanggungjawaban atas Pelaksanaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Undang-Undang Nomor 9 Tahun 2020 telah dibentuk tentang Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Undang-Undang Nomor 17 Tahun 2003 adalah tentang Keuangan Negara.",
+        "Pasal 3 ayat (21) Undang-Undang Nomor 17 Tahun 2003 mengatur tentang Keuangan Negara.",
+        "Undang-Undang Nomor 9 Tahun 2020 adalah tentang Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Pasal 40 Undang-Undang Nomor 9 Tahun 2020 mengatur tentang Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Pelaksanaan anggaran pendapatan dan belanja negara tahun anggaran 2021 memerlukan pertanggungjawaban.",
+        "Berdasarkan informasi pada huruf a, huruf b, dan huruf c, perlu membentuk Undang-Undang tentang Pertanggungjawaban atas Pelaksanaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Pasal 23E Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 berlaku.",
+        "Undang-Undang Nomor 1 Tahun 2004 adalah tentang Perbendaharaan Negara.",
+        "Undang-Undang Nomor 1 Tahun 2004 tentang Perbendaharaan Negara terbit dalam Lembaran Negara Republik Indonesia Tahun 2004 Nomor 5.",
+        "Undang-Undang Nomor 1 Tahun 2004 tentang Perbendaharaan Negara terbit dalam Tambahan Lembaran Negara Republik Indonesia Nomor 4355.",
+        "Undang-Undang Nomor 15 Tahun 2004 adalah tentang Pemeriksaan Pengelolaan dan Tanggung Jawab Keuangan Negara.",
+        "Undang-Undang Nomor 15 Tahun 2004 tentang Pemeriksaan Pengelolaan dan Tanggung Jawab Keuangan Negara terbit dalam Lembaran Negara Republik Indonesia Tahun 2004 Nomor 66.",
+        "Undang-Undang Nomor 15 Tahun 2004 tentang Pemeriksaan Pengelolaan dan Tanggung Jawab Keuangan Negara terbit dalam Tambahan Lembaran Negara Republik Indonesia Nomor 4400.",
+        "Undang-Undang Nomor 15 Tahun 2006 adalah tentang Badan Pemeriksa Keuangan.",
+        "Undang-Undang Nomor 15 Tahun 2006 tentang Badan Pemeriksa Keuangan terbit dalam Lembaran Negara Republik Indonesia Tahun 2006 Nomor 85.",
+        "Undang-Undang Nomor 15 Tahun 2006 tentang Badan Pemeriksa Keuangan terbit dalam Tambahan Lembaran Negara Republik Indonesia Nomor 4654.",
+        "Undang-Undang Nomor 9 Tahun 2020 adalah tentang Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Undang-Undang Nomor 9 Tahun 2020 tentang Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 diundangkan dalam Lembaran Negara Republik Indonesia Tahun 2020 Nomor 239.",
+        "Undang-Undang Nomor 9 Tahun 2020 tentang Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 diundangkan dalam Tambahan Lembaran Negara Republik Indonesia Nomor 6570.",
+        "Undang-Undang tentang Pertanggungjawaban atas Pendapatan dan Belanja Negara Tahun Anggaran 2021 diputuskan.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 memuat Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Laporan Keuangan Pemerintah Pusat sebagaimana dimaksud dalam Pasal 1 terdiri atas beberapa laporan.",
+        "Laporan Realisasi Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 merupakan bagian dari Laporan Keuangan Pemerintah Pusat.",
+        "Laporan Perubahan Saldo Anggaran Lebih Tahun Anggaran 2021 merupakan bagian dari Laporan Keuangan Pemerintah Pusat.",
+        "Neraca per 31 Desember 2021 merupakan bagian dari Laporan Keuangan Pemerintah Pusat.",
+        "Laporan Operasional Tahun Anggaran 2021 merupakan bagian dari Laporan Keuangan Pemerintah Pusat.",
+        "Laporan Arus Kas Tahun Anggaran 2021 merupakan bagian dari Laporan Keuangan Pemerintah Pusat.",
+        "Laporan Perubahan Ekuitas Tahun Anggaran 2021 merupakan bagian dari Laporan Keuangan Pemerintah Pusat.",
+        "Catatan atas Laporan Keuangan merupakan bagian dari Laporan Keuangan Pemerintah Pusat.",
+        "Laporan Keuangan Pemerintah Pusat disusun dan disajikan sesuai dengan Standar Akuntansi Pemerintahan berbasis akrual.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya dilampiri pada Laporan Keuangan Pemerintah Pusat.",
+        "Laporan Keuangan Pemerintah Pusat tercantum dalam lampiran yang merupakan bagian tidak terpisahkan dari Undang-Undang ini.",
+        "Laporan Realisasi Anggaran dan Belanja Negara Tahun Anggaran 2021 dimaksud dalam Pasal 2 ayat (1) huruf a.",
+        "Informasi Laporan Realisasi Anggaran dan Belanja Negara Tahun Anggaran 2021 merupakan bagian dari laporan keuangan.",
+        "Realisasi Pendapatan Negara Tahun Anggaran 2021 sebesar Rp2.011.347.072.417.932,00.",
+        "Jumlah Rp2.011.347.072.417.932,00 adalah dua kuadriliun sebelas triliun tiga ratus empat puluh tujuh miliar tujuh puluh dua juta empat ratus tujuh belas ribu sembilan ratus tiga puluh dua rupiah.",
+        "Realisasi Pendapatan Negara Tahun Anggaran 2021 adalah 115,35 persen dari Anggaran Pendapatan dalam Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Anggaran Pendapatan dalam Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 sebesar Rp1.743.648.547.327.000,00.",
+        "Jumlah Rp1.743.648.547.327.000,00 adalah satu kuadriliun tujuh ratus empat puluh tiga triliun enam ratus empat puluh delapan miliar lima ratus empat puluh tujuh juta tiga ratus dua puluh tujuh ribu rupiah.",
+        "Realisasi Belanja Negara Tahun Anggaran 2021 sebesar Rp2.706.411.359.562.815,00.",
+        "Jumlah Rp2.706.411.359.562.815,00 adalah dua kuadriliun tujuh ratus enam belas triliun empat ratus sebelas miliar tiga ratus lima puluh sembilan juta lima ratus enam puluh dua ribu delapan ratus lima belas rupiah.",
+        "Realisasi Belanja Negara Tahun Anggaran 2021 adalah 101,32 persen dari Anggaran Belanja dalam Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Anggaran Belanja dalam Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 sebesar Rp2.750.028.018.431.000,00.",
+        "Jumlah Rp2.750.028.018.431.000,00 adalah dua kuadriliun tujuh ratus lima puluh triliun dua puluh delapan miliar delapan belas juta empat ratus tiga puluh satu ribu rupiah.",
+        "Berdasarkan realisasi Pendapatan Negara, terdapat realisasi Defisit Anggaran Tahun Anggaran 2021.",
+        "Berdasarkan realisasi Belanja Negara, terdapat realisasi Defisit Anggaran Tahun Anggaran 2021.",
+        "Realisasi Defisit Anggaran Tahun Anggaran 2021 sebesar Rp775.064.287.144.883,00.",
+        "Jumlah Rp775.064.287.144.883,00 adalah tujuh ratus tujuh puluh lima triliun enam puluh empat miliar dua ratus delapan puluh tujuh juta seratus empat puluh empat ribu delapan ratus delapan puluh tiga rupiah.",
+        "Realisasi Defisit Anggaran Tahun Anggaran 2021 adalah 77,02 persen dari estimasi defisit dalam Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Estimasi defisit dalam Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 sebesar Rp1.006.379.471.104.000,00.",
+        "Jumlah Rp1.006.379.471.104.000,00 adalah satu kuadriliun enam triliun tiga ratus tqjuh puluh sembilan miliar empat ratus tujuh puluh satu juta seratus empat ribu rupiah.",
+        "Presiden Republik Indonesia bertujuan untuk menutup realisasi Defisit Anggaran.",
+        "Realisasi Defisit Anggaran berjumlah Rp871.723.163.588.761,00.",
+        "Rp871.723.163.588.761,00 adalah delapan ratus tujuh puluh satu triliun tujuh ratus dua puluh tiga miliar seratus enam puluh tiga juta lima ratus delapan puluh delapan ribu tujuh ratus enam puluh satu rupiah.",
+        "Rp871.723.163.588.761,00 adalah 86,620o (delapan puluh enam koma enam dua persen) dari anggaran pembiayaan.",
+        "Anggaran pembiayaan dalam Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2O2l berjumlah Rp 1.O06.379.471.104.000,00.",
+        "Rp 1.O06.379.471.104.000,00 adalah satu kuadriliun enam triliun tiga ratus tujuh puluh sembilan miliar empat ratus tqiuh puluh satu juta seratus empat ribu rupiah.",
+        "Terdapat Sisa Lebih Pembiayaan Anggaran sebesar Rp96.658.876.443.878,00.",
+        "Saldo Anggaran Lebih sebagai Penerimaan Pembiayaan Tahun Berjalan adalah sebesar Rp143.966.330.873.078,00.",
+        "Neraca per 31 Desember 2021 sebagaimana dimaksud dalam Pasal 2 ayat (1) huruf c memberikan informasi keuangan.",
+        "Laporan Operasional Tahun Anggaran 2021 sebagaimana dimaksud dalam Pasal 2 ayat (1) huruf d memberikan informasi keuangan.",
+        "Pendapatan adalah sebesar Rp2.234.253.743.472.902,00 (dua dua ratus tiga puluh empat triliun dua ratus lima puluh tiga miliar tujuh ratus empat puluh tiga juta empat ratus tujuh puluh dua ribu sembilan ratus dua rupiah).",
+        "Terdapat Defisit dari Kegiatan Operasional.",
+        "Defisit dari Kegiatan Operasional berjumlah Rp723.162.032.167.937,00.",
+        "Pasal 10 membahas tentang Saldo Anggaran Lebih.",
+        "Saldo Anggaran Lebih dapat digunakan ketika realisasi anggaran pengeluaran melebihi realisasi anggaran penerimaan tahun anggaran berjalan.",
+        "Pemerintah menindaklanjuti rekomendasi Badan Pemeriksa Keuangan.",
+        "Tata kelola yang baik dalam penyelenggaraan negara memerlukan pengelolaan keuangan negara yang terbuka dan jawab.",
+        "Pengelolaan keuangan negara perlu sesuai dengan aturan pokok yang telah ditetapkan dalam Undang-Undang Dasar Negara Republik Indonesia Tahun 1945.",
+        "Amanat Pasal 23E Undang-Undang Dasar Negara Republik Indonesia Tahun 1945 mengatur tentang keuangan negara.",
+        "Undang-Undang Nomor 17 Tahun 2003 adalah tentang Keuangan Negara.",
+        "Pasal 30 ayat (1) Undang-Undang Nomor 17 Tahun 2003 tentang Keuangan Negara mengatur audit laporan Keuangan Pemerintah Pusat.",
+        "Badan Pemeriksa Keuangan memberikan opini sebagaimana diamanatkan dalam Pasal 16 ayat (1) Undang-Undang Nomor 15 Tahun 2004 tentang Pemeriksaan Pengelolaan dan Tanggung Jawab Keuangan Negara.",
+        "Opini Wajar Tanpa Pengecualian menggambarkan bahwa Pemerintah Pusat telah melaksanakan pengelolaan keuangan negara yang sesuai dengan tata kelola dan praktik pengelolaan keuangan yang baik (best practices).",
+        "Opini Wajar Tanpa Pengecualian menggambarkan bahwa Pemerintah Pusat telah melaksanakan pengelolaan keuangan negara sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Anggaran Pendapatan dan Belanja Negara telah dikelola secara transparan.",
+        "Anggaran Pendapatan dan Belanja Negara telah dikelola secara akuntabel.",
+        "Pengelolaan Anggaran Pendapatan dan Belanja Negara diharapkan memberikan hasil pembangunan berupa peningkatan kesejahteraan rakyat.",
+        "Pengelolaan Anggaran Pendapatan dan Belanja Negara diharapkan menurunkan tingkat kemiskinan.",
+        "Pengelolaan Anggaran Pendapatan dan Belanja Negara diharapkan memberikan pertumbuhan ekonomi yang berkelanjutan.",
+        "Pasal I mengatur tentang larangan atas Pelaksanaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Penggunaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 terkait dengan penanganan Pandemi Corona Virus Disease 2019 (COVID-19).",
+        "Pendapatan negara diperoleh setelah memperhitungkan kewajiban kontraktual pemerintah.",
+        "Pasal 4 adalah tentang Saldo Anggaran lebih.",
+        "Saldo Anggaran lebih berasal dari akumulasi Sisa LebihKurang Pembiayaan Anggaran tahun-tahun anggaran.",
+        "Saldo Anggaran lebih berasal dari penyesuaian lain yang diperkenankan.",
+        "Kewajiban adalah utang pemerintah.",
+        "Utang pemerintah timbul dari kejadian masa lalu.",
+        "Anggaran Pendapatan dan Belanja Negara mencakup pendapatan.",
+        "Anggaran Pendapatan dan Belanja Negara mencakup pembiayaan.",
+        "Penganggaran, Pelaksanaan, dan Pertanggungjawaban Belanja Non Program PC-PEN pada 80 (delapan puluh) Kementerian/Lembaga minimal sebesar Rp12,52 triliun belum sepenuhnya sesuai ketentuan.",
+        "Penerimaan pembiayaan dan belanja yang berasal dari penarikan pinjaman luar negeri belum dapat disahkan dan dipertanggungjawabkan.",
+        "Badan Pemeriksa Keuangan mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Badan Pemeriksa Keuangan mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Keuangan memiliki status WTP.",
+        "Pasal 12 membahas tindak lanjut rekomendasi Badan Pemeriksa Keuangan.",
+        "Pemerintah akan menindaklanjuti rekomendasi Badan Pemeriksa Keuangan dalam Laporan Hasil Pemeriksaan atas laporan Keuangan Pemerintah Pusat."
+      ],
+      "index": 5
+    },
+    {
+      "id": "f7cffeb0-1170-44fc-8710-64c6a3cb43b3",
+      "title": "Pelaksanaan Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang pejabat pemerintah, proses legislasi, publikasi peraturan perundang-undangan, pelaksanaan ketentuan pasal, penyampaian laporan hasil pemeriksaan kepada lembaga pemerintahan, dan instruksi untuk menambahkan informasi terkait mekanisme pertanggungjawaban dan pengawasan pelaksanaan ketentuan.",
+      "propositions": [
+        "Pratikno adalah Menteri Sekretaris Negara Republik Indonesia.",
+        "Undang-Undang Nomor 2 Tahun 2020 tentang Penetapan Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020 diundangkan dalam Tambahan Lembaran Negara Republik Indonesia Nomor 6516.",
+        "Dewan Perwakilan Rakyat Republik Indonesia menyetujui undang-undang tersebut.",
+        "Pasal 12 membahas tentang tindak lanjut rekomendasi.",
+        "Pemerintah menindaklanjuti rekomendasi Dewan Perwakilan Rakyat.",
+        "Tindak lanjut rekomendasi dilakukan secara efektif.",
+        "Tindak lanjut rekomendasi dilakukan secara komprehensif.",
+        "Tindak lanjut rekomendasi dilakukan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Presiden Republik Indonesia menyusun penjelasan atas Undang-Undang Republik Indonesia Nomor 26 Tahun 2022.",
+        "Undang-Undang Nomor 2 Tahun 2020 adalah tentang Penetapan Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020.",
+        "Laporan hasil pemeriksaan disampaikan kepada Dewan Perwakilan Rakyat.",
+        "Laporan hasil pemeriksaan disampaikan kepada Dewan Perwakilan Daerah.",
+        "Laporan hasil pemeriksaan disampaikan kepada Presiden.",
+        "Penyampaian laporan hasil pemeriksaan dilakukan paling lambat 2 (dua) bulan setelah menerima Laporan Keuangan Pemerintah Pusat dari Pemerintah.",
+        "Laporan Hasil Pemeriksaan disampaikan kepada Ketua Dewan Perwakilan Rakyat melalui surat Ketua Badan Pemeriksa Keuangan Nomor 611SIUOS2022 tanggal 31 Mei 2022.",
+        "Laporan Hasil Pemeriksaan disampaikan kepada Ketua Dewan Perwakilan Daerah melalui surat Ketua Badan Pemeriksa Keuangan Nomor 623ll0512022 tanggal 31 Mei 2022.",
+        "Laporan Hasil Pemeriksaan disampaikan kepada Presiden melalui surat Ketua Badan Pemeriksa Keuangan Nomor 63  S  U OS I 2022 tanggal 31 Mei 2022.",
+        "Pasal 2 Ayat (11) cukup jelas.",
+        "Pasal 2 Ayat (12) cukup jelas.",
+        "Huruf b adalah bagian dari Pasal 5.",
+        "Pasal 13 cukup jelas.",
+        "Setiap orang harus mengetahui Undang-Undang ini.",
+        "Joko Widodo menyahkan Undang-Undang ini.",
+        "Pasal 1 cukup jelas.",
+        "Pasal 2 cukup jelas.",
+        "Pasal 3 cukup jelas.",
+        "Pasal 4 ayat (1) cukup jelas.",
+        "Pasal 16 memiliki ayat (1).",
+        "UNDANG-UNDANG ini mulai berlaku pada hari pengundangannya."
+      ],
+      "index": 6
+    },
+    {
+      "id": "5a1f6896-e2d5-4d53-ab12-d2c4634a356b",
+      "title": "Ketentuan Kebijakan Keuangan Negara",
+      "summary": "Chunk ini berisi informasi tentang ketentuan hukum terkait kebijakan keuangan negara dan stabilitas sistem keuangan, khususnya yang berkaitan dengan penanganan pandemi, dan harus mencakup ketentuan hukum terkait alasan dibalik penerbitan peraturan tersebut, serta detail mengenai lembaga yang terlibat dalam penerbitan dan pelaksanaan ketentuan tersebut, serta detail mengenai dampak ketentuan tersebut terhadap sektor ekonomi, serta informasi tambahan mengenai implementasi dan optimalisasi ketentuan tersebut.",
+      "propositions": [
+        "Republik Korea merupakan nama resmi dari negara Korea Selatan.",
+        "Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020 telah dibentuk tentang Negara dan Stabilitas Sistem Keuangan.",
+        "Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020 tentang Negara dan Stabilitas Sistem Keuangan telah ditetapkan menjadi Undang-Undang Nomor 2 Tahun 2020.",
+        "Undang-Undang Nomor 2 Tahun 2020 menetapkan Peraturan Pemerintah tentang dan Stabilitas Sistem Keuangan.",
+        "Undang-Undang Nomor 2 Tahun 2020 menetapkan Peraturan Pemerintah tentang dan Stabilitas Sistem Keuangan untuk Penanganan Pandemi Corona Virus Disease 2019 (COVID-19).",
+        "Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020 dibentuk dalam rangka Menghadapi Ancaman yang Membahayakan Perckonomian Nasional danatau Stabilitas Sistem Keuangan.",
+        "Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020 adalah tentang Kebijakan Keuangan Negara dan Stabilitas Sistem Keuangan untuk Pandemi Corona Virus Disease 2019 (COVID-19).",
+        "Peraturan Pemerintah Pengganti Undang-Undang Nomor 1 Tahun 2020 bertujuan untuk menghadapi ancaman yang membahayakan perekonomian nasional dan stabilitas sistem keuangan.",
+        "Undang-Undang Nomor 2 Tahun 2020 mengatur tentang Kebijakan Keuangan Negara dan Stabilitas Sistem Keuangan untuk Penanganan Pandemi Corona Virus Disea 2019 (COVID-19).",
+        "Undang-Undang Nomor 2 Tahun 2020 mengatur tentang Kebijakan Keuangan Negara dan Stabilitas Sistem Keuangan dalam rangka Ancaman yang Membahayakan Perekonomian Nasional dan atau Stabilitas Sistem Keuangan.",
+        "Pengungkapan yang memadai mencakup kebijakan fiskal keuangan dan ekonomi makro.",
+        "Penanganan Pandemi Corona Virus Disease 2019 (COVID-19) terkait dengan kebijakan keuangan negara.",
+        "Kebijakan keuangan negara terkait dengan menghadapi ancaman yang membahayakan perekonomian nasional.",
+        "Ancaman yang membahayakan perekonomian nasional terkait dengan stabilitas sistem keuangan.",
+        "Implementasi Nota antara Bank Indonesia dan Kementerian Keuangan belum optimal."
+      ],
+      "index": 7
+    },
+    {
+      "id": "d5cd40db-c291-4e48-9d87-bdf9d20f86d8",
+      "title": "Nilai Moneter & Opini Keuangan",
+      "summary": "Chunk ini berisi informasi tentang nilai moneter dan opini keuangan berbagai lembaga negara, dan harus mencakup jenis nilai moneter lainnya, mata uang, dan lembaga lainnya.",
+      "propositions": [
+        "Rp96.658.876.443.878,00 adalah sembilan puluh enam triliun enam ratus lima puluh delapan miliar delapan ratus tujuh puluh enam juta empat ratus empat puluh tiga ribu delapan ratus tqiuh puluh delapan rupiah.",
+        "Rp143.966.330.873.078,00 adalah seratus empat puluh tiga triliun sembilan ratus enam puluh enam miliar tiga ratus tiga puluh juta delapan ratus tujuh puluh tiga ribu tujuh puluh delapan rupiah.",
+        "Jumlah Aset adalah sebesar Rp11.454.670.815.794.452,00 (sebelas kuadriliun empat ratus lima puluh empat triliun enam ratus tujuh puluh miliar delapan ratus lima belas juta tujuh ratus sembilan puluh empat ribu empat ratus lima puluh dua rupiah).",
+        "Jumlah Kewajiban adalah sebesar Rp7.538.325.636.414.021,00 (tujuh kuadriliun lima ratus tiga puluh delapan triliun tiga ratus dua puluh lima miliar enam ratus tiga puluh enam juta empat ratus empat belas ribu dua puluh satu rupiah).",
+        "Jumlah Ekuitas adalah sebesar Rp3.916.345.179.380.431,00 (tiga kuadriliun sembilan ratus enam belas triliun tiga ratus empat puluh lima miliar seratus tujuh puluh sembilan juta tiga ratus delapan puluh ribu empat ratus tiga puluh satu rupiah).",
+        "Beban Operasional adalah sebesar Rp2.957.415.775.640.839,00 (dua kuadriliun sembilan ratus lima puluh tujuh triliun empat ratus lima belas miliar tujuh ratus tujuh puluh lima juta enam ratus empat puluh ribu delapan ratus tiga puluh sembilan rupiah).",
+        "Majelis Permusyawaratan Rakyat mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Majelis Permusyawaratan Rakyat mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Dewan Perwakilan Rakyat mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Mahkamah Agung mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Mahkamah Agung mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kejaksaan Republik Indonesia mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kejaksaan Republik Indonesia mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Sekretariat Negara mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Sekretariat Negara mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Dalam Negeri mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Dalam Negeri mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Luar Negeri mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Luar Negeri mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Pertahanan mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Pertahanan mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Hukum dan Hak Asasi Manusia mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Hukum dan Hak Asasi Manusia mendapat opini WTP pada tahun yang tidak disebutkan.",
+        "Kementerian Pertanian memiliki status WTP.",
+        "Kementerian Perhubungan memiliki status WTP.",
+        "Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi memiliki status WTP.",
+        "Kementerian Kesehatan memiliki status WTP.",
+        "Kementerian Agama memiliki status WTP."
+      ],
+      "index": 8
+    },
+    {
+      "id": "104f844c-885f-4002-89df-fae8cf8d0f90",
+      "title": "Laporan Keuangan Pemerintah Pusat",
+      "summary": "Chunk ini berisi informasi detail mengenai laporan keuangan Pemerintah Pusat Tahun Anggaran 2021, termasuk realisasi anggaran, arus kas, dan perubahan ekuitas; tambahkan informasi tentang dasar hukum dan standar akuntansi yang digunakan dalam penyusunan laporan keuangan.",
+      "propositions": [
+        "Sisa Lebih Pembiayaan Anggaran Tahun Anggaran 2021 adalah sebesar Rp96.658.876.443.878,00.",
+        "Terdapat Surplus dari Kegiatan Non Operasional.",
+        "Surplus dari Kegiatan Non Operasional berjumlah Rp65.925.097.066.115,00.",
+        "Tidak terdapat SurplusDefisit dari Pos Luar Biasa.",
+        "Terdapat Defisit Laporan Operasional Tahun Anggaran 2021.",
+        "Defisit Laporan Operasional Tahun Anggaran 2021 berjumlah Rp657.236.935.101.822,00.",
+        "Laporan Arus Kas Tahun Anggaran 2021 memberikan informasi keuangan.",
+        "Laporan Arus Kas Tahun Anggaran 2021 sebagaimana dimaksud dalam Pasal 2 ayat (1) huruf e memberikan informasi keuangan.",
+        "Jumlah Arus Kas Bersih dari Aktivitas Operasi adalah minus Rp535.924.760.649.717,00.",
+        "Jumlah Arus Kas Bersih dari Aktivitas Operasi adalah minus Rp535.924.760.649.717,00 sebagaimana dimaksud dalam Pasal 2 ayat (1) huruf e.",
+        "Jumlah Arus Kas Bersih dari Aktivitas Investasi adalah minus Rp383.858.647.637.838,00.",
+        "Nilai minus Rp383.858.647.637.838,00 adalah jumlah Arus Kas Bersih dari Aktivitas Investasi.",
+        "Jumlah Arus Kas Bersih dari Aktivitas Pendanaan adalah Rp1.016.442.284.731.433,00.",
+        "Nilai Rp1.016.442.284.731.433,00 adalah jumlah Arus Kas Bersih dari Aktivitas Pendanaan.",
+        "Jumlah Arus Kas Bersih dari Aktivitas Transitoris adalah Rp39.284.569.942.339,00.",
+        "Nilai Rp39.284.569.942.339,00 adalah jumlah Arus Kas Bersih dari Aktivitas Transitoris.",
+        "Laporan Perubahan Ekuitas Tahun Anggaran 2021 memberikan informasi keuangan.",
+        "Laporan Perubahan Ekuitas Tahun Anggaran 2021 sebagaimana dimaksud dalam Pasal 2 ayat (1) huruf f memberikan informasi keuangan.",
+        "Ekuitas Awal Tahun Anggaran 2021 adalah sebesar Rp4.473.198.498.758.480,00.",
+        "Nilai Rp4.473.198.498.758.480,00 adalah Ekuitas Awal Tahun Anggaran 2021.",
+        "Defisit Laporan Operasional Tahun Anggaran 2021 adalah sebesar Rp657.236.935.101.822,00.",
+        "Nilai Rp657.236.935.101.822,00 adalah Defisit Laporan Operasional Tahun Anggaran 2021.",
+        "Defisit Laporan Operasional Tahun Anggaran 2021 sebagaimana dimaksud dalam Pasal 6 huruf f adalah sebesar Rp657.236.935.101.822,00.",
+        "Koreksi-koreksi yang Langsung Menambah Mengurangi Ekuitas berjumlah Rp 100.023.789.648.181,00 (seratus triliun dua puluh tiga miliar tujuh ratus delapan puluh sembilan juta enam ratus empat puluh delapan ribu seratus delapan puluh satu rupiah).",
+        "Transaksi Antar Entitas berjumlah Rp359.826.075.592,00 (tiga ratus lima puluh sembilan miliar delapan ratus dua puluh enam juta tujuh puluh lima ribu lima ratus sembilan puluh dua rupiah).",
+        "Ekuitas Awal Tahun Anggaran 2021 sebagaimana dimaksud dalam huruf a.",
+        "Defisit laporan Operasional Tahun Anggaran 2021 sebagaimana dimaksud dalam huruf b.",
+        "Koreksi-koreksi yang Langsung Menambah Mengurangi Ekuitas sebagaimana dimaksud dalam huruf c.",
+        "Laporan Realisasi Anggaran Pendapatan dan Belanja Negara adalah sebuah laporan.",
+        "Laporan Perubahan Saldo Anggaran kbih adalah sebuah laporan.",
+        "Saldo Anggaran Lebih dapat digunakan ketika terdapat pengembalian pendapatan tahun-tahun yang lalu.",
+        "Pasal 11 membahas tentang Laporan Keuangan Pemerintah Pusat.",
+        "Laporan Keuangan Pemerintah Pusat telah diperiksa oleh Badan Pemeriksa Keuangan.",
+        "Badan Pemeriksa Keuangan memberikan opini Wajar Tanpa Pengecualian pada Laporan Keuangan Pemerintah Pusat.",
+        "Undang-Undang Republik Indonesia Nomor 26 Tahun 2022 adalah tentang Pertanggungjawaban atas Pelaksanaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Undang-Undang Nomor 9 Tahun 2020 adalah tentang Anggaran dan Belanja Negara Tahun Anggaran 2021.",
+        "Pemerintah menyusun laporan pelaksanaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Laporan pelaksanaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 berbentuk Laporan Keuangan Pemerintah Pusat Tahun 2021.",
+        "Pemerintah Pusat menyusun dan menyajikan laporan keuangan berdasarkan Standar Akuntansi Pemerintahan berbasis akrual.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 terdiri dari Laporan Realisasi Anggaran Pendapatan dan Belanja Negara.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 terdiri dari Laporan Perubahan Saldo Anggaran Lebih.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 terdiri dari Neraca.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 terdiri dari Laporan Operasional.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 terdiri dari Laporan Arus Kas.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 terdiri dari Laporan Perubahan Ekuitas.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 terdiri dari Catatan atas Laporan Keuangan.",
+        "Laporan Realisasi Anggaran Pendapatan dan Belanja Negara menggambarkan anggaran dan realisasi Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Laporan Realisasi Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 mencakup pendapatan, belanja, dan pembiayaan.",
+        "Laporan Perubahan Saldo Anggaran menyajikan informasi kenaikan atau penurunan Saldo Anggaran Tahun Anggaran 2021.",
+        "Neraca adalah laporan yang menggambarkan posisi keuangan Pemerintah Pusat.",
+        "Posisi keuangan Pemerintah Pusat menggambarkan aset, kewajiban, dan ekuitas pada tanggal 31 Desember 2021.",
+        "Laporan Operasional menyajikan basis akrual dalam rangka penyelenggaraan pemerintahan selama Tahun Anggaran 2021.",
+        "Laporan Arus Kas menyajikan informasi mengenai sumber, penggunaan, perubahan kas dan setara kas selama Tahun Anggaran 2021.",
+        "Saldo kas dan setara kas pada tanggal 31 Desember 2021 disajikan dalam Laporan Arus Kas.",
+        "Laporan Perubahan Ekuitas menyajikan informasi mengenai perubahan saldo ekuitas Pemerintah selama Tahun Anggaran 2021.",
+        "Catatan atas Laporan Keuangan menyajikan informasi tentang penjelasan pos-pos laporan keuangan.",
+        "Penjelasan pos-pos laporan keuangan bertujuan untuk pengungkapan yang memadai.",
+        "Pengungkapan yang memadai mencakup dasar penyusunan laporan keuangan.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya dilampirkan dalam Laporan Keuangan Pemerintah Pusat Tahun 2021.",
+        "Laporan Keuangan Pemerintah Pusat diaudit oleh Badan Pemeriksa Keuangan sebelum disampaikan kepada Dewan Perwakilan Rakyat.",
+        "Pemerintah telah menyampaikan laporan Keuangan Pemerintah Pusat Tahun 2021 kepada Badan Pemeriksa Keuangan untuk diaudit.",
+        "Surat Menteri Keuangan Nomor S-284MK.O5 2022 tanggal 28 Maret 2022 digunakan untuk menyampaikan laporan Keuangan Pemerintah Pusat kepada Badan Pemeriksa Keuangan.",
+        "Penyampaian Laporan Keuangan Pemerintah Pusat Tahun 2021 dengan status belum diperiksa (Unandited) oleh Menteri Keuangan kepada Badan Pemeriksa Keuangan sesuai dengan surat Presiden.",
+        "Badan Pemeriksa Keuangan menyampaikan laporan hasil pemeriksaan atas Laporan Keuangan Pemerintah Pusat.",
+        "Badan Pemeriksa Keuangan menyampaikan Laporan Hasil Pemeriksaan atas Laporan Keuangan Pemerintah Pusat Tahun 2021.",
+        "Badan Pemeriksa Keuangan memberikan opini Wajar Tanpa Pengecualian atas Laporan Keuangan Pemerintah Pusat Tahun 2021.",
+        "Opini Wajar Tanpa Pengecualian memberikan informasi kepada publik bahwa Anggaran Pendapatan dan Belanja Negara telah dikelola secara efisien.",
+        "Badan Pemeriksa Keuangan melakukan pemeriksaan terhadap Laporan Keuangan Pemerintah Pusat Tahun 2021.",
+        "Angka-angka yang disajikan dalam Laporan Keuangan Pemerintah Pusat Tahun 2021 disampaikan dalam Undang-Undang ini.",
+        "Larangan atas Pelaksanaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021 mencakup penggunaan Anggaran Pendapatan dan Belanja Negara Tahun Anggaran 2021.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya memuat informasi tentang aktiva.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya memuat informasi tentang ekuitas.",
+        "Perlakuan Dana Fasilitas Likuiditas Pembiayaan Perumahan sebagai Investasi Jangka Panjang Non Permanen Lainnya pada Laporan Keuangan Pemerintah Pusat Tahun 2021 belum didukung keselarasan regulasi.",
+        "Perlakuan Dana Fasilitas Likuiditas Pembiayaan Perumahan sebagai Investasi Jangka Panjang Non Permanen Lainnya pada Laporan Keuangan Pemerintah Pusat Tahun 2021 belum didukung kejelasan skema pengelolaan dana.",
+        "Perlakuan Dana Fasilitas Likuiditas Pembiayaan Perumahan sebagai Investasi Jangka Panjang Non Permanen Lainnya pada Laporan Keuangan Pemerintah Pusat Tahun 2021 belum didukung penyajian dalam Laporan Keuangan Badan Pengelola Tabungan Perumahan Rakyat.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 disusun berdasarkan konsolidasi Laporan Keuangan Kementerian dan Lembaga.",
+        "Laporan Keuangan Pemerintah Pusat Tahun 2021 disusun berdasarkan konsolidasi Laporan Keuangan Bendahara Umum Negara Tahun 2021.",
+        "Laporan Keuangan Kementerian dan Lembaga Tahun 2021 telah diaudit.",
+        "Laporan Keuangan Kementerian dan Lembaga Tahun 2021 telah diberi opini oleh Badan Pemeriksa Keuangan.",
+        "Laporan Keuangan Badan Pemeriksa Keuangan Tahun 2021 diaudit oleh Kantor Akuntan Publik.",
+        "83 Laporan Keuangan Kementerian Lembaga mendapat opini Wajar Tanpa Pengecualian.",
+        "4 Laporan Keuangan Kementerian Lembaga mendapat opini Wajar Dengan Pengecualian.",
+        "Laporan Keuangan Bendahara Umum Negara mendapat opini Wajar Tanpa Pengecualian.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya merupakan bagian dari Laporan Keuangan Bendahara Umum Negara.",
+        "Pemerintah akan melakukan koordinasi dan pemantauan secara berkala atas penyelesaian tindak lanjut rekomendasi Badan Pemeriksa Keuangan dalam laporan Hasil Pemeriksaan atas laporan Keuangan Pemerintah Pusat Tahun 2021."
+      ],
+      "index": 9
+    },
+    {
+      "id": "f4555f61-4c74-4b7e-af10-7592958ebba9",
+      "title": "Ketentuan Laporan Keuangan",
+      "summary": "Chunk ini berisi informasi tentang transaksi, laporan keuangan, pengungkapan, dan investasi yang wajib diungkapkan oleh entitas, dan harus mencakup informasi lebih lanjut tentang ketentuan akuntansi dan pelaporan lainnya, serta informasi terkait ketentuan transaksi dan investasi.",
+      "propositions": [
+        "Transaksi Antar Entitas sebagaimana dimaksud dalam huruf d.",
+        "Neraca adalah sebuah laporan.",
+        "Laporan Arus Kas adalah sebuah laporan.",
+        "Laporan Perubahan Ekuitas adalah sebuah laporan.",
+        "Pengungkapan yang memadai mencakup kebijakan akuntansi.",
+        "Pengungkapan yang memadai mencakup kejadian penting lainnya.",
+        "Pengungkapan yang memadai mencakup informasi tambahan yang diperlukan.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya memuat informasi tentang kewajiban.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya memuat informasi tentang pendapatan.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya memuat informasi tentang beban.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya memuat informasi tentang laba rugi bersih dari Perusahaan Negara.",
+        "Ikhtisar Laporan Keuangan Perusahaan Negara dan Badan Lainnya memuat informasi tentang laba rugi bersih dari Badan Lainnya.",
+        "Kontrak kerja sama meliputi pengembalian Pajak Pertambahan Nilai.",
+        "Transaksi meliputi penjualan aset non lancar.",
+        "Transaksi Antar Entitas adalah transaksi yang melibatkan dua entitas.",
+        "Kas tidak didukung dengan keberadaan fisik Kas sebesar Rp127,97 juta.",
+        "Penyajian Investasi Non Permanen pada laporan Keuangan Pemerintah Pusat Laporan Keuangan Bendahara Umum Negara Tahun 2021 berupa kepemilikan saham pada PT Sejahtera Eka Graha belum sepenuhnya sesuai ketentuan.",
+        "Penyajian Investasi Non Permanen pada laporan Keuangan Pemerintah Pusat Laporan Keuangan Bendahara Umum Negara Tahun 2021 berupa kepemilikan saham pada PT Aldevco belum sepenuhnya sesuai ketentuan.",
+        "Rincian opini Laporan Keuangan Kementerian Lembaga Tahun 2020 adalah sebagai berikut.",
+        "Rincian opini Laporan Keuangan Kementerian Lembaga Tahun 2021 adalah sebagai berikut.",
+        "Dewan Perwakilan Rakyat mendapat opini WTP pada tahun yang tidak disebutkan."
+      ],
+      "index": 10
+    },
+    {
+      "id": "6ac6cf73-97e4-4e4c-99cd-93597bead1a7",
+      "title": "Penerbitan & Pengundangan Dokumen Negara",
+      "summary": "Chunk ini berisi informasi tentang proses penerbitan dan peresmian dokumen resmi pemerintah Republik Indonesia, termasuk Surat Keputusan dan publikasi Lembaran Negara, dan harus mencakup detail tentang pejabat yang terlibat, nomor dokumen, dan proses penandatanganan dokumen.",
+      "propositions": [
+        "SK No 15614tl A adalah sebuah Surat Keputusan.",
+        "Presiden Republik Indonesia mengeluarkan dokumen.",
+        "SK No l56142A adalah sebuah dokumen.",
+        "Lembaran Negara Republik Indonesia memiliki nomor 6819.",
+        "Peresmian Provinsi Papua Barat Daya dilakukan atas nama Presiden.",
+        "Lembaran Negara Republik Indonesia adalah publikasi resmi.",
+        "Pratikno mengundangkan Undang-Undang ini.",
+        "Pratikno adalah Menteri Sekretaris Negara Republik Indonesia.",
+        "Pengundangan Undang-undang ini dilakukan dengan penempatan dalam Lembaran Negara Republik Indonesia.",
+        "Djuanda menandatangani Undang-undang ini sebagai Menteri Perhubungan.",
+        "Rappang-Sidenreng memiliki surat keputusan tanggal 141939 No. 39H.2.",
+        "Soppeng memiliki surat keputusan tanggal 31939 No. 83H.2."
+      ],
+      "index": 11
+    },
+    {
+      "id": "616f33be-6fdd-430c-83a6-b071f5fd40f5",
+      "title": "Detail Formal Dokumen",
+      "summary": "Chunk ini berisi informasi tentang detail formal dokumen hukum, seperti lokasi pengesahan, tanggal, nomor Lembaran Negara, dan detail publikasi, dan harus mencakup informasi tambahan tentang detail formal lainnya seperti tanggal penerbitan, pihak yang bertanggung jawab, dan detail publikasi.",
+      "propositions": [
+        "Dokumen ini disahkan di Jakarta.",
+        "Nomor 6819 adalah tambahan Lembaran Negara Republik Indonesia.",
+        "Undang-Undang ini diundangkan dalam Lembaran Negara Republik Indonesia.",
+        "Undang-Undang ini disahkan di Jakarta pada tanggal 8 Desember 2022.",
+        "Undang-Undang ini diundangkan di Jakarta pada tanggal 8 Desember 2022.",
+        "Lembaran Negara Republik Indonesia Tahun 2022 memiliki nomor 223.",
+        "Lembar Negara Republik Indonesia memiliki nomor 6831.",
+        "Undang-undang ini ditetapkan di Jakarta.",
+        "Undang-undang ini memiliki nomor LN 195181.",
+        "Undang-undang ini dapat ditemukan di http:www.bphn.go.id.",
+        "Goa memiliki surat keputusan tanggal 201939 No. 49.",
+        "Undang-undang ini disahkan di Jakarta pada tanggal 29 Agustus 1951.",
+        "LN 195184 adalah nomor Lembaran Negara.",
+        "Ordonansi 23 September 1949 memiliki nomor Staatsblad 1949 No. 261."
+      ],
+      "index": 12
+    },
+    {
+      "id": "c9f30b7f-75af-4b60-bd90-1c1c59181f31",
+      "title": "Definisi & Ketentuan Peraturan",
+      "summary": "Chunk ini berisi definisi istilah terkait sumber daya ekonomi, unit organisasi, dan ketentuan pasal dalam peraturan, dan perlu ditambahkan definisi istilah lainnya yang relevan dengan terminologi peraturan, terutama yang berkaitan dengan klasifikasi dan pengukuran aset, kewajiban, hak, dan aliran sumber daya ekonomi, serta penjelasan mengenai surplus dan beban operasional.",
+      "propositions": [
+        "Yang dimaksud dengan badan lainnya adalah unit organisasi.",
+        "Huruf c adalah cukup jelas.",
+        "Huruf d adalah cukup jelas.",
+        "Huruf e adalah cukup jelas.",
+        "Huruf f adalah cukup jelas.",
+        "Saldo Anggaran lebih termasuk sumber daya non keuangan.",
+        "Sumber daya non keuangan dapat diukur dalam satuan uang.",
+        "Pasal 5 adalah tentang Aset.",
+        "Aset adalah sumber daya ekonomi yang dikuasai oleh pemerintah.",
+        "Pemerintah menguasai aset sebagai akibat dari peristiwa masa lalu.",
+        "Aliran keluar sumber daya ekonomi pemerintah terjadi di masa yang akan datang.",
+        "Ekuitas adalah kekayaan bersih pemerintah.",
+        "Kekayaan bersih pemerintah adalah selisih antara aset dan kewajiban pemerintah.",
+        "Pendapatan Operasional adalah hak pemerintah pusat.",
+        "Hak pemerintah pusat diakui sebagai penambah ekuitas dalam periode tahun anggaran yang bersangkutan.",
+        "Pendapatan Operasional tidak perlu dibayar kembali.",
+        "Beban Operasional adalah penurunan manfaat ekonomi atau potensi jasa dalam periode pelaporan.",
+        "Beban Operasional meliputi pengeluaran atau konsumsi aset.",
+        "Beban Operasional meliputi timbulnya kewajiban.",
+        "Surplus dari Kegiatan Non adalah selisihlebih antara pendapatan dan beban.",
+        "Surplus dari Kegiatan Non bersifat tidak rutin.",
+        "Surplus dari Kegiatan Non berasal dari transaksi.",
+        "Transaksi meliputi kewajiban jangka panjang.",
+        "Transaksi meliputi kegiatan non operasional lainnya.",
+        "SurplusDefisit dari pos Luar Biasa adalah selisih lebihkurang antara pendapatan dan beban.",
+        "Pendapatan dan beban pada pos Luar Biasa bukan merupakan operasi biasa.",
+        "Pendapatan dan beban pada pos Luar Biasa tidak diharapkan sering atau rutin terjadi.",
+        "Aktivitas Operasi adalah aktivitas penerimaan dan pengeluaran kas.",
+        "Aktivitas Investasi adalah aktivitas penerimaan dan pengeluaran kas.",
+        "Aktivitas Investasi ditujukan untuk perolehan aset tetap.",
+        "Investasi lainnya tidak termasuk dalam setara kas.",
+        "Aktivitas Pendanaan adalah aktivitas penerimaan kas yang perlu dibayar kembali.",
+        "Aktivitas Pendanaan adalah aktivitas pengeluaran kas yang akan diterima kembali.",
+        "Aktivitas Transitoris adalah aktivitas penerimaan kas.",
+        "Aktivitas Transitoris adalah aktivitas pengeluaran kas.",
+        "Aktivitas Transitoris tidak termasuk dalam aktivitas operasi.",
+        "Aktivitas Transitoris tidak termasuk dalam aktivitas investasi.",
+        "Pasal 13 adalah pasal.",
+        "Pengelolaan sumber daya alam harus sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Pendapatan bersih dikurangkan dengan jumlah biaya."
+      ],
+      "index": 13
+    },
+    {
+      "id": "a5dd2ad5-9b3d-4c9c-8f74-3c008f9a427e",
+      "title": "Permasalahan Pengelolaan Keuangan Negara",
+      "summary": "Chunk ini berisi informasi tentang berbagai permasalahan dan rekomendasi terkait pengelolaan keuangan negara, termasuk aktivitas operasional, investasi, pendanaan, piutang, aset, penyertaan modal, akuntabilitas publik, dan pengawasan daerah, serta perlu ditambahkan informasi tentang mekanisme penyelesaian masalah dan tindak lanjut rekomendasi yang telah diberikan.",
+      "propositions": [
+        "Pemerintah menyediakan jasa bagi masyarakat umum.",
+        "Pendapatan Operasional berasal dari kegiatan utama pemerintahan.",
+        "Penurunan manfaat ekonomi atau potensi jasa dalam periode pelaporan menurunkan ekuitas.",
+        "Beban Operasional digunakan untuk penyelenggaraan kegiatan utama pemerintahan.",
+        "Aktivitas penerimaan dan pengeluaran kas ditujukan untuk kegiatan operasional pemerintah.",
+        "Kegiatan operasional pemerintah berlangsung selama satu periode akuntansi.",
+        "Aktivitas Investasi ditujukan untuk investasi lainnya.",
+        "Aktivitas Pendanaan menyebabkan perubahan dalam jumlah utang.",
+        "Aktivitas Pendanaan menyebabkan perubahan dalam komposisi utang.",
+        "Aktivitas Pendanaan menyebabkan perubahan dalam jumlah piutang.",
+        "Aktivitas Pendanaan menyebabkan perubahan dalam komposisi piutang.",
+        "Aktivitas Transitoris tidak termasuk dalam aktivitas pendanaan.",
+        "Aktivitas Transitoris tidak mempengaruhi pos-pos dalam Anggaran Pendapatan dan Belanja Negara.",
+        "Anggaran Pendapatan dan Belanja Negara mencakup belanja.",
+        "Transaksi Antar Entitas melibatkan lebih dari dua entitas.",
+        "Entitas yang terlibat dalam Transaksi Antar Entitas berbeda satu sama lain.",
+        "Transaksi Antar Entitas dapat melibatkan internal Kementerian.",
+        "Transaksi Antar Entitas dapat melibatkan internal Lembaga.",
+        "Transaksi Antar Entitas dapat melibatkan internal Bagian Anggaran Bendahara Umum Negara.",
+        "Transaksi Antar Entitas dapat melibatkan antar Kementerian.",
+        "Transaksi Antar Entitas dapat melibatkan antar Lembaga.",
+        "Transaksi Antar Entitas dapat melibatkan antar Bagian Anggaran Bendahara Umum Negara.",
+        "Transaksi Antar Entitas dapat melibatkan antara Kementerian dan Lembaga.",
+        "Transaksi Antar Entitas dapat melibatkan antara Lembaga dan Bagian Anggaran Bendahara Umum Negara.",
+        "Transaksi Antar Entitas dapat melibatkan antara Kementerian dan Bendahara Umum Negara.",
+        "Pengendalian dalam pelaksanaan belanja program PC-PEN sebesar Rp10,20 triliun pada 10 (sepuluh) Kementerian/Lembaga tidak memadai.",
+        "Pengelolaan Penggantian Belanja Kementerian/Lembaga untuk kegiatan vaksinasi COVID-19 dan Pemberlakuan Pembatasan Kegiatan Masyarakat di daerah melalui pemotongan Dana Alokasi Umum/Dana Bagi Hasil Pemerintah Daerah tidak memadai.",
+        "Sisa Dana Investasi Pemerintah dalam rangka Program Pemulihan Ekonomi Nasional Tahun 2020 dan 2021 kepada PT Garuda Indonesia sebesar Rp7,5 triliun tidak dapat disalurkan.",
+        "Sisa Dana Investasi Pemerintah dalam rangka Program Pemulihan Ekonomi Nasional Tahun 2020 dan 2021 kepada PT Krakatau Steel sebesar Rp800 miliar berpotensi tidak dapat tersalurkan.",
+        "Pemerintah memiliki kewajiban memberikan Penyertaan Modal Negara kepada PT KAI (Persero).",
+        "Pemerintah wajib memberikan Penyertaan Modal Negara kepada PT KAI (Persero) sebesar Rp4,30 triliun untuk Proyek Kereta Cepat Jakarta Bandung China.",
+        "Saldo Kas terlambat disetor ke Kas Negara sebesar Rp25,76 miliar.",
+        "Pengelolaan Kas dan Rekening tidak tertib sebesar Rp18,87 miliar pada 34 (tiga puluh empat) Kementerian/Lembaga.",
+        "Piutang Pajak Macet sebesar Rp20,84 triliun belum dilakukan tindakan penagihan yang memadai.",
+        "Penatausahaan Piutang Pajak pada Direktorat Jenderal Pajak belum sepenuhnya memadai.",
+        "Sistem Pengendalian Intern dalam pelelangan dan pencairan barang sitaan belum memadai.",
+        "Pemerintah memiliki hak tagih atas Bank Dalam Likuidasi (BDL) sebesar Rp9,96 triliun.",
+        "Penyelesaian hak tagih Pemerintah atas Bank Dalam Likuidasi (BDL) sebesar Rp9,96 triliun belum jelas.",
+        "Aset Jaminan atas hak tagih Pemerintah atas Bank Dalam Likuidasi (BDL) sebesar Rp12,02 triliun belum dikelola dan dilaporkan secara memadai.",
+        "Sisa dana Bantuan Operasional Sekolah Reguler Tahun 2020 dan Tahun 2021 minimal sebesar Rp1,25 triliun belum dapat disajikan sebagai Piutang Transfer ke Daerah.",
+        "Penyajian Investasi Non Permanen pada laporan Keuangan Pemerintah Pusat Laporan Keuangan Bendahara Umum Negara Tahun 2021 berupa kepemilikan saham pada PT Karabha Digdaya belum sepenuhnya sesuai ketentuan.",
+        "Realisasi pemanfaatan insentif Pajak Ditanggung Pemerintah belum dapat disahkan dan dipertanggungjawabkan.",
+        "Neraca Pemerintah Pusat belum menyajikan Kewajiban Jangka Panjang atas Program Pensiun.",
+        "Pemerintah belum sepenuhnya mempertimbangkan profil jatuh tempo Surat Utang Negara seri variable rate.",
+        "Keputusan Bersama II dan III terkait dengan pengelolaan Keuangan Pemerintah belum optimal.",
+        "Bank Indonesia dan Kementerian Keuangan belum optimal dalam permasalahan antara Pemerintah dengan Bank Indonesia.",
+        "Kementerian Perindustrian memiliki status WTP.",
+        "Kementerian Energi dan Sumber Daya Mineral memiliki status WTP.",
+        "Pemerintah akan menindaklanjuti rekomendasi Dewan Perwakilan Rakyat untuk meningkatkan kualitas pengelolaan keuangan Pemerintah.",
+        "Pemerintah akan meningkatkan kualitas pengelolaan dan jawaban Anggaran Pendapatan dan Belanja Negara.",
+        "Peningkatan kualitas pengelolaan Anggaran Pendapatan dan Belanja Negara dilakukan melalui perbaikan tata kelola.",
+        "Peningkatan kualitas pengelolaan Anggaran Pendapatan dan Belanja Negara dilakukan melalui peningkatan kompetensi sumber daya manusia pengelola Anggaran Pendapatan dan Belanja Negara.",
+        "Peningkatan kualitas pengelolaan Anggaran Pendapatan dan Belanja Negara dilakukan pada Kementerian Lembaga.",
+        "Pengusaha wajib melakukan pendampingan khususnya kepada Kementerian Lembaga yang laporan keuangannya belum mendapat opini audit Wajar Tanpa Pengecualian.",
+        "Pemerintah akan menyempurnakan regulasi yang diperlukan untuk standardisasi keluaran dari belanja negara.",
+        "Pemerintah akan menyempurnakan regulasi yang diperlukan untuk standardisasi hasil dari belanja negara.",
+        "Pemerintah akan memperjelas kriteria terkait output dalam proses perencanaan.",
+        "Pemerintah akan memperjelas kriteria terkait output dalam proses penganggaran.",
+        "Pemerintah akan memperjelas kriteria terkait output dalam proses peningkatan kualitas pelaksanaan Anggaran Pendapatan dan Belanja Negara.",
+        "Tujuan dari penyempurnaan regulasi adalah mewujudkan kinerja anggaran yang lebih tepat guna dan tepat sasaran.",
+        "Sistem informasi dan basis satu data Indonesia perlu disempurnakan.",
+        "Basis satu data Indonesia menjadi dasar pengambilan kebijakan dalam menganggarkan dan merealisasikan pengeluaran negara.",
+        "Pengeluaran negara difokuskan pada investasi pemerintah.",
+        "Gaji dan tunjangan pegawai negeri sipil dan pegawai pemerintah dengan perjanjian kerja dibebankan pada anggaran pendapatan dan belanja dari asal satuan kerja yang bersangkutan.",
+        "Barang milik daerah Provinsi Papua Barat meliputi barang bergerak dan tidak bergerak.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Kabupaten Sorong.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Kabupaten Sorong Selatan.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Kabupaten Raja Ampat.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Kabupaten Tambrauw.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Kabupaten Maybrat.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Kota Sorong.",
+        "Menteri Dalam Negeri menyampaikan perkembangan pengawasan dan evaluasi kepada Dewan Perwakilan Rakyat Republik Indonesia.",
+        "Provinsi Papua Barat Daya perlu melakukan berbagai upaya peningkatan kemampuan ekonomi.",
+        "Provinsi Papua Barat Daya perlu melakukan peningkatan sumber daya manusia."
+      ],
+      "index": 14
+    },
+    {
+      "id": "a2a6aec1-b826-46b8-9573-8f31ff3a4689",
+      "title": "Prinsip Penyelenggaraan Pemerintahan",
+      "summary": "Chunk ini berisi informasi tentang prinsip-prinsip penyelenggaraan pemerintahan yang meliputi pembagian wewenang, rentang kendali, pelaporan, dan akuntabilitas, dan harus mencakup ketentuan terkait tanggung jawab dan kewenangan dalam konteks pemerintahan serta prinsip tata kelola pemerintahan yang baik, khususnya terkait kewenangan dan tanggung jawab entitas dalam pemerintahan.",
+      "propositions": [
+        "Pos Luar Biasa berada di luar kendali atau pengaruh entitas bersangkutan.",
+        "Otonomi Khusus adalah kewenangan khusus.",
+        "Menteri Dalam Negeri menyampaikan perkembangan pengawasan dan evaluasi kepada Dewan Perwakilan Daerah Republik Indonesia.",
+        "Peraturan Menteri menyelenggarakan urusan pemerintahan di bidang aparatur negara.",
+        "Rentang kendali pemerintahan yang diperpendek akan menghasilkan pemerintahan yang lebih efisien.",
+        "Pemerintahan yang efisien akan menghasilkan pemerintahan yang lebih efektif.",
+        "Pemerintahan yang efisien dan efektif sejalan dengan prinsip tata kelola pemerintahan yang baik.",
+        "Tata kelola pemerintahan yang baik bertujuan untuk mempercepat terwujudnya kesejahteraan masyarakat.",
+        "Tata kelola pemerintahan yang baik bertujuan untuk memperkuat daya saing daerah."
+      ],
+      "index": 15
+    },
+    {
+      "id": "2b1606aa-4fbc-41d5-99a3-220176ce122c",
+      "title": "Tata Pemerintahan Daerah Papua & Papua Barat",
+      "summary": "Chunk ini berisi informasi tentang struktur pemerintahan, pejabat publik, wewenang, dan perlindungan hak masyarakat adat di wilayah Papua dan Papua Barat, dan harus mencakup informasi lebih lanjut tentang ketentuan mengenai wewenang dan tanggung jawab pejabat publik, serta ketentuan mengenai hak dan aspirasi masyarakat setempat, termasuk mekanisme pengambilan keputusan dan partisipasi masyarakat dalam pemerintahan daerah.",
+      "propositions": [
+        "PRESIDEN adalah BLIK INDONESIA.",
+        "Pemerintah Daerah Provinsi Papua Barat Daya adalah Gubernur.",
+        "Gubernur adalah unsur penyelenggara pemerintahan daerah.",
+        "Gubernur memimpin urusan pemerintahan yang menjadi kewenangan daerah Provinsi Papua Barat Daya.",
+        "Pemerintah Daerah Kabupaten/Kota adalah Bupati/Wali Kota.",
+        "Bupati/Wali Kota adalah unsur penyelenggara pemerintahan daerah.",
+        "Bupati/Wali Kota memimpin urusan pemerintahan yang menjadi kewenangan daerah kabupaten/kota.",
+        "Kewenangan khusus diakui dan diberikan kepada Provinsi Papua.",
+        "Kewenangan khusus diberikan kepada provinsi-provinsi yang berada di wilayah Papua.",
+        "Provinsi Papua dan provinsi-provinsi di wilayah Papua mengatur dan mengurus kepentingan masyarakat setempat.",
+        "Prakarsa dilakukan berdasarkan aspirasi masyarakat Papua.",
+        "Prakarsa dilakukan berdasarkan hak dasar masyarakat Papua.",
+        "Dewan Perwakilan Rakyat Papua Barat Daya adalah lembaga perwakilan daerah provinsi.",
+        "Dewan Perwakilan Rakyat Papua Barat Daya berkedudukan sebagai salah satu unsur penyelenggara pemerintahan daerah Provinsi Papua Barat Daya.",
+        "Majelis Rakyat Papua Provinsi Papua Barat Daya adalah representasi kultural Orang Asli Papua.",
+        "Majelis Rakyat Papua Provinsi Papua Barat Daya memiliki wewenang tertentu.",
+        "Wewenang tertentu dalam rangka pelindungan hak-hak Orang Asli Papua.",
+        "Pelindungan hak-hak Orang Asli Papua berlandaskan pada penghormatan terhadap adat dan budaya.",
+        "Pelindungan hak-hak Orang Asli Papua berlandaskan pada pemberdayaan perempuan.",
+        "Pelindungan hak-hak Orang Asli Papua berlandaskan pada pemantapan kerukunan hidup beragama.",
+        "Pelindungan hak-hak Orang Asli Papua diatur dalam peraturan perundang-undangan.",
+        "Provinsi Papua Barat adalah daerah otonom.",
+        "Daerah otonom sebagaimana dimaksud dalam Undang-Undang Nomor 45 Tahun 1999.",
+        "Orang Asli Papua, selanjutnya disingkat OAP, adalah orang yang berasal dari rumpun ras Melanesia.",
+        "Rumpun ras Melanesia terdiri atas suku-suku asli di Provinsi Papua.",
+        "Orang Asli Papua adalah orang yang diterima dan diakui sebagai OAP oleh Masyarakat Adat Papua.",
+        "Provinsi Papua Barat Daya diberi Otonomi Khusus.",
+        "Pegawai pemerintah dengan perjanjian kerja OAP paling banyak berjumlah 80 persen."
+      ],
+      "index": 16
+    },
+    {
+      "id": "3a967f81-97ed-47f6-b81b-989d86c6917d",
+      "title": "Kelemahan Pengelolaan Aset Negara & Kewajiban",
+      "summary": "Chunk ini berisi informasi tentang kelemahan dalam pengelolaan aset negara dan pemenuhan kewajiban hukum pemerintah, dan perlu ditambahkan informasi tentang penyebab, dampak, dan rekomendasi perbaikan terkait kelemahan tersebut.",
+      "propositions": [
+        "Pengelolaan persediaan dan sistem informasi pendukungnya belum sepenuhnya dapat mendukung pelaporan persediaan yang akurat.",
+        "Informasi atas aset tetap belum memadai berdampak adanya saldo Barang Milik Negara yang tidak akurat.",
+        "Sistem informasi pengelolaan Barang Milik Negara belum sepenuhnya mendukung pelaporan saldo Aset Lainnya secara akurat.",
+        "Pengendalian atas pengelolaan Aset Lainnya pada 25 Kementerian/Lembaga belum sepenuhnya memadai.",
+        "SK No l5612l A menunjukkan adanya kelemahan.",
+        "Kelemahan penatausahaan putusan hukum berkekuatan hukum tetap adalah tidak dapat diketahui potensi hak dan kewajiban Pemerintah secara keseluruhan.",
+        "Pengaturan dan pengurusan kepentingan masyarakat setempat dilakukan menurut prakarsa sendiri."
+      ],
+      "index": 17
+    },
+    {
+      "id": "ff2f6f13-aca2-4b54-91c9-16319321d758",
+      "title": "Daftar Lembaga Negara",
+      "summary": "Chunk ini berisi informasi tentang berbagai lembaga pemerintah, badan, komisi, dewan, dan lembaga lainnya, dan harus mencakup informasi lebih lanjut tentang kewenangan, fungsi, dan hubungan antar lembaga serta struktur organisasi, termasuk nomenklatur dan pembentukan lembaga.",
+      "propositions": [
+        "Kementerian Ketenagakerjaan memiliki status WDP.",
+        "Kementerian Perempuan dan Perlindungan Anak adalah lembaga.",
+        "Kementerian Pendayagunaan Aparatur Negara dan Reformasi Birokrasi adalah lembaga.",
+        "Badan Intelijen Negara adalah lembaga.",
+        "Badan Siber dan Sandi Negara adalah lembaga.",
+        "Dewan Ketahanan Nasional adalah lembaga.",
+        "Badan Pusat Statistik adalah lembaga.",
+        "Kementerian Perencanaan Pembangunan Nasional adalah lembaga.",
+        "Badan Perencanaan Pembangunan Nasional adalah lembaga.",
+        "Kementerian Agraria dan Tata Ruang adalah lembaga.",
+        "Badan Pertanahan Nasional adalah lembaga.",
+        "Perpustakaan Nasional RI adalah lembaga.",
+        "Kementerian Komunikasi dan Informatika adalah lembaga.",
+        "Kepolisian Negara Republik Indonesia adalah lembaga.",
+        "Badan Pengawasan Obat dan Makanan adalah lembaga.",
+        "Lembaga Ketahanan Nasional adalah lembaga.",
+        "Kementerian Investasi adalah lembaga.",
+        "Badan Koordinasi Penanaman Modal adalah lembaga.",
+        "Badan Narkotika Nasional adalah lembaga.",
+        "Kementerian Desa, Pembangunan Daerah Tertinggal, dan Transmigrasi adalah lembaga.",
+        "Badan Kependudukan dan Keluarga Berencana Nasional adalah lembaga.",
+        "Komisi adalah lembaga.",
+        "Komisi Nasional Hak Asasi Manusia adalah sebuah lembaga.",
+        "Badan Meteorologi, Klimatologi, dan Geofisika adalah sebuah badan.",
+        "Komisi Pemilihan Umum adalah sebuah komisi.",
+        "Mahkamah Konstitusi adalah sebuah lembaga.",
+        "Badan Pelaporan dan Analisis Transaksi Keuangan adalah sebuah badan.",
+        "Lembaga Ilmu Indonesia adalah sebuah lembaga.",
+        "Badan Tenaga Nuklir Nasional adalah sebuah badan.",
+        "Badan Pengkajian dan Penerapan Teknologi adalah sebuah badan.",
+        "Lembaga Penerbangan dan Antariksa Nasional adalah sebuah lembaga.",
+        "Badan Informasi Geospasial adalah sebuah badan.",
+        "Badan Standardisasi Nasional adalah sebuah badan.",
+        "Badan Pengawas Tenaga Nuklir adalah sebuah badan.",
+        "Lembaga Administrasi Negara adalah sebuah lembaga.",
+        "Arsip Nasional Republik Indonesia adalah sebuah lembaga.",
+        "Badan Kepegawaian Negara adalah sebuah badan.",
+        "Badan Pengawasan Keuangan dan Pembangunan adalah sebuah badan.",
+        "Kementerian Perdagangan adalah sebuah kementerian.",
+        "Kementerian Pemuda dan Olahraga adalah sebuah kementerian.",
+        "Komisi Pemberantasan Korupsi adalah sebuah komisi.",
+        "Dewan Perwakilan Daerah adalah sebuah dewan.",
+        "Komisi Yudisial adalah sebuah komisi.",
+        "Badan Nasional Penanggulangan Bencana adalah sebuah badan.",
+        "Badan Pelindungan Pekerja Migran Indonesia adalah sebuah badan.",
+        "Lembaga Kebijakan Pengadaan BarangJasa Pemerintah adalah sebuah lembaga.",
+        "Badan Nasional Pencarian dan Penyelamatan adalah sebuah badan.",
+        "Komisi Pengawas Persaingan Usaha adalah sebuah komisi.",
+        "Badan Pengembangan Wilayah Suramadu adalah sebuah badan.",
+        "Ombudsman Republik Indonesia adalah sebuah badan.",
+        "Badan Nasional Pengelola Perbatasan adalah sebuah badan.",
+        "Badan Pengusahaan Kawasan Perdagangan Bebas dan Pelabuhan Bebas Batam adalah sebuah badan.",
+        "Badan Nasional Penanggulangan Terorisme adalah sebuah badan.",
+        "Sekretariat Kabinet adalah sebuah sekretariat.",
+        "Badan Pengawas Pemilihan Umum adalah sebuah badan.",
+        "Lembaga Penyiaran Publik Radio Republik Indonesia adalah sebuah lembaga.",
+        "Lembaga Penyiaran Publik Televisi Republik Indonesia adalah sebuah lembaga.",
+        "Badan Pengusahaan Kawasan Perdagangan Bebas dan Pelabuhan Bebas Sabang adalah sebuah badan.",
+        "Kementerian Koordinator Bidang Kemaritiman dan Investasi adalah sebuah kementerian.",
+        "Badan Keamanan Laut adalah sebuah badan.",
+        "Lembaga Perlindungan Saksi dan Korban adalah sebuah lembaga.",
+        "Badan Pembinaan Ideologi Pancasila adalah sebuah badan.",
+        "Bendahara Umum Negara adalah sebuah jabatan.",
+        "Nomenklatur Kementerian lembaga baru berlaku mulai Tahun 2021.",
+        "Kementerian lembaga baru dibentuk Tahun 2021.",
+        "Menteri Dalam Negeri dalam melakukan pengawasan berkoordinasi dengan kementerian teknis terkait.",
+        "Menteri Dalam Negeri menyampaikan perkembangan pembinaan dan fasilitasi kepada Dewan Perwakilan Rakyat Republik Indonesia.",
+        "Bank Rakyat Indonesia adalah Bank Pemerintah.",
+        "Djuanda menjabat sebagai Menteri Perhubungan."
+      ],
+      "index": 18
+    },
+    {
+      "id": "38566e01-4e2a-4341-96c5-efda47047696",
+      "title": "Tujuan Regulasi",
+      "summary": "Chunk ini berisi informasi tentang tujuan regulasi dan alokasi anggaran negara untuk meningkatkan kesejahteraan masyarakat, dan perlu ditambahkan informasi tentang kebijakan spesifik terkait hak dan kewajiban warga negara.",
+      "propositions": [
+        "Tujuan dari penyempurnaan regulasi adalah meningkatkan kesejahteraan rakyat.",
+        "Pengeluaran negara difokuskan pada belanja bantuan sosial."
+      ],
+      "index": 19
+    },
+    {
+      "id": "1dec6a37-d9ae-425b-afe6-c7cd518ada37",
+      "title": "Prioritas Pengeluaran Pemerintah",
+      "summary": "Chunk ini berisi informasi tentang alokasi anggaran negara dan transfer ke daerah, dan perlu ditambahkan informasi tentang ketentuan peraturan terkait pengeluaran negara lainnya.",
+      "propositions": [
+        "Pengeluaran negara difokuskan pada bantuan pemerintah.",
+        "Alokasi transfer ke daerah dilaksanakan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Rancangan Peraturan Gubernur tentang Anggaran Pendapatan dan Belanja Daerah Provinsi Papua Barat Daya adalah untuk tahun anggaran berikutnya."
+      ],
+      "index": 20
+    },
+    {
+      "id": "544e5221-719c-4a2d-aaa4-ea5ddb8f5b0f",
+      "title": "Pembentukan Daerah di Papua & Papua Barat",
+      "summary": "Chunk ini berisi informasi tentang proses pembentukan daerah baru di wilayah Papua dan Papua Barat, termasuk undang-undang terkait, pendanaan, dan peran pemerintah serta Dewan Perwakilan Rakyat dalam pembentukan daerah otonom.",
+      "propositions": [
+        "Undang-Undang adalah tentang Pembentukan Provinsi Papua Barat Daya.",
+        "Undang-Undang Nomor 45 Tahun 1999 tentang Pembentukan Propinsi Irian Jaya Tengah, Propinsi Irian Jaya Barat, Kabupaten Paniai, Kabupaten Mimika, Kabupaten Puncak Jaya, dan Kota Sorong.",
+        "Undang-Undang Nomor 5 Tahun 2000 tentang Perubahan atas Undang-Undang Nomor 45 Tahun 1999 tentang Pembentukan Propinsi Irian Jaya Tengah, Propinsi Irian Jaya Barat, Kabupaten Paniai, Kabupaten Mimika, Kabupaten Puncak Jaya, dan Kota Sorong.",
+        "Dengan Undang-Undang ini dibentuk Provinsi Papua Barat Daya.",
+        "Pasal 10 membahas pendanaan pertama kali pelaksanaan fasilitasi pemilihan Gubernur dan Wakil Gubernur Papua Barat Daya.",
+        "Pelaksanaan fasilitasi pemilihan Gubernur dan Wakil Gubernur Papua Barat Daya sebagaimana dimaksud dalam Pasal 9 ayat (1) didanai dari Anggaran Pendapatan dan Belanja Negara.",
+        "Pembentukan daerah baru merupakan salah satu materi penting dalam Undang-Undang Nomor 2 Tahun 2021.",
+        "Undang-Undang Nomor 21 Tahun 2001 adalah tentang Otonomi Khusus bagi Provinsi Papua.",
+        "Pembentukan daerah baru dapat dilakukan oleh Pemerintah.",
+        "Pembentukan daerah baru dapat dilakukan oleh Dewan Perwakilan Rakyat Republik Indonesia.",
+        "Pembentukan daerah baru dapat dilakukan tanpa melalui daerah persiapan."
+      ],
+      "index": 21
+    },
+    {
+      "id": "e3f113ee-39e1-42ef-a756-248256f96e02",
+      "title": "Ketentuan & Proses Berlakunya Undang-Undang",
+      "summary": "Chunk ini berisi informasi mengenai dasar hukum, prosedur pelaksanaan, lampiran, perubahan ketentuan, persetujuan oleh Dewan Perwakilan Rakyat, dan proses berlakunya undang-undang, dan harus mencakup informasi lebih lanjut mengenai ketentuan pasal, peraturan perundang-undangan yang relevan, serta proses persetujuan oleh Dewan Perwakilan Rakyat.",
+      "propositions": [
+        "Terdapat pertimbangan hukum.",
+        "Pelaksanaan dilakukan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Undang-Undang Nomor 45 Tahun 1999 telah diubah dengan Undang-Undang Nomor 5 Tahun 2000.",
+        "Lampiran II merupakan bagian tidak terpisahkan dari Undang-Undang ini.",
+        "Lampiran I merupakan bagian tidak terpisahkan dari Undang-Undang ini.",
+        "Ketentuan mengenai pengisian jumlah kursi Dewan Perwakilan Rakyat Republik Indonesia diatur lebih lanjut dalam undang-undang mengenai pemilihan umum.",
+        "Ketentuan mengenai pengisian jumlah kursi Dewan Perwakilan Daerah Republik Indonesia diatur lebih lanjut dalam undang-undang mengenai pemilihan umum.",
+        "Ketentuan mengenai penetapan daerah pemilihan pada pemilihan umum tahun 2024 diatur lebih lanjut dalam undang-undang mengenai pemilihan umum.",
+        "Pembentukan Provinsi Papua Barat Daya mengakibatkan perubahan ketentuan mengenai pemilihan umum.",
+        "Undang-Undang Nomor 2 Tahun 2021 adalah tentang Perubahan Kedua atas Undang-Undang Nomor 21 Tahun 2001.",
+        "Dewan Perwakilan Rakyat menyetujui isi Undang-undang Darurat.",
+        "Dewan Perwakilan Rakyat menyetujui isi Undang-undang Darurat dengan beberapa perubahan dan tambahan.",
+        "Dewan Perwakilan Rakyat Republik Indonesia menyetujui.",
+        "Undang-undang ini mulai berlaku pada hari diundangkan.",
+        "Soekarno menjabat sebagai pihak yang menetapkan Undang-undang ini.",
+        "Undang-undang ini mulai berlaku pada tanggal 1 Januari 1951.",
+        "Dewan Perwakilan Rakyat menyetujui isi UNDANG-UNDANG DARURAT."
+      ],
+      "index": 22
+    },
+    {
+      "id": "f4ffe002-fe2b-484e-a908-2ca19a5d2cda",
+      "title": "Pembentukan & Tata Pemerintahan Papua Barat Daya",
+      "summary": "Chunk ini berisi informasi tentang pembentukan, batas wilayah, tata ruang, pemerintahan, administrasi, perangkat daerah, barang milik daerah, dan ketentuan terkait sumber daya alam Provinsi Papua Barat Daya; tambahkan informasi tentang ketentuan mengenai hak dan kewajiban pemerintah daerah serta ketentuan terkait pembentukan provinsi.",
+      "propositions": [
+        "Provinsi Papua Barat Daya berada dalam kerangka Negara Kesatuan Republik Indonesia.",
+        "Cakupan pulau di Provinsi Papua Barat Daya tercantum dalam Lampiran II.",
+        "Provinsi Papua Barat Daya mempunyai batas daerah.",
+        "Batas daerah sebelah utara Provinsi Papua Barat Daya berbatasan dengan Samudera Pasifik.",
+        "Batas daerah sebelah timur Provinsi Papua Barat Daya berbatasan dengan Kabupaten Manokwari.",
+        "Batas daerah sebelah timur Provinsi Papua Barat Daya berbatasan dengan Kabupaten Pegunungan Arfak.",
+        "Batas daerah sebelah timur Provinsi Papua Barat Daya berbatasan dengan Kabupaten Teluk Bintuni.",
+        "Kabupaten Manokwari, Kabupaten Pegunungan Arfak, dan Kabupaten Teluk Bintuni berada di Provinsi Papua Barat.",
+        "Batas daerah sebelah selatan Provinsi Papua Barat Daya berbatasan dengan Laut Seram.",
+        "Batas daerah sebelah selatan Provinsi Papua Barat Daya berbatasan dengan Teluk Berau.",
+        "Batas daerah sebelah barat Provinsi Papua Barat Daya berbatasan dengan Laut Halmahera.",
+        "Batas daerah sebelah barat Provinsi Papua Barat Daya berbatasan dengan Laut Seram.",
+        "Tata cara penarikan garis batas kewenangan pengelolaan sumber daya alam di laut provinsi sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Batas daerah sebagaimana dimaksud pada ayat (1) digambarkan dalam peta wilayah.",
+        "Batas kewenangan pengelolaan sumber daya alam di laut provinsi sebagaimana dimaksud pada ayat (2) digambarkan dalam peta wilayah.",
+        "Peta wilayah berkoordinat sebagaimana tercantum dalam Lampiran I.",
+        "Penegasan batas daerah Provinsi Papua Barat Daya secara pasti di lapangan ditetapkan dengan Peraturan Menteri Dalam Negeri.",
+        "Dengan terbentuknya Provinsi Papua Barat Daya, Pemerintah Provinsi Papua Barat Daya menetapkan Rencana Tata Ruang Wilayah Provinsi Papua Barat Daya.",
+        "Rencana Tata Ruang Wilayah Provinsi Papua Barat Daya ditetapkan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Pengaturan Rencana Tata Ruang Wilayah Provinsi Papua Barat Daya dilakukan sesuai dengan Rencana Tata Ruang Wilayah Nasional.",
+        "Pengaturan Rencana Tata Ruang Wilayah Provinsi Papua Barat Daya dilakukan dengan memperhatikan Rencana Tata Ruang Wilayah Provinsi di sekitarnya.",
+        "Pemerintah kabupaten/kota dalam cakupan wilayah Provinsi Papua Barat Daya wajib menyesuaikan Rencana Tata Ruang Wilayah.",
+        "Penyesuaian Rencana Tata Ruang Wilayah oleh Pemerintah kabupaten/kota dilakukan dengan mengacu pada Rencana Tata Ruang Wilayah Provinsi Papua Barat Daya.",
+        "Ibu Kota Provinsi Papua Barat Daya berkedudukan di Kota Sorong.",
+        "Urusan pemerintahan daerah yang menjadi kewenangan Provinsi Papua Barat Daya mencakup urusan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Peresmian Provinsi Papua Barat Daya dilakukan oleh Menteri Dalam Negeri.",
+        "Pasal 11 membahas pembentukan perangkat daerah untuk menyelenggarakan pemerintahan di Provinsi Papua Barat Daya.",
+        "Perangkat daerah Provinsi Papua Barat Daya meliputi sekretariat daerah.",
+        "Perangkat daerah Provinsi Papua Barat Daya meliputi sekretariat DPR Papua Barat Daya.",
+        "Perangkat daerah Provinsi Papua Barat Daya meliputi sekretariat MRP Provinsi Papua Barat Daya.",
+        "Perangkat daerah Provinsi Papua Barat Daya meliputi dinas daerah.",
+        "Perangkat daerah Provinsi Papua Barat Daya meliputi badan daerah.",
+        "Perangkat daerah Provinsi Papua Barat Daya meliputi unsur perangkat daerah lainnya.",
+        "Pembentukan perangkat daerah Provinsi Papua Barat Daya mempertimbangkan kekhususan.",
+        "Pembentukan perangkat daerah Provinsi Papua Barat Daya mempertimbangkan kebutuhan.",
+        "Pembentukan perangkat daerah Provinsi Papua Barat Daya mempertimbangkan kemampuan keuangan daerah.",
+        "Pembentukan perangkat daerah Provinsi Papua Barat Daya harus sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Penjabat Gubernur Papua Barat Daya wajib membentuk perangkat daerah sebagaimana dimaksud pada ayat (1).",
+        "Penjabat Gubernur Papua Barat Daya harus membentuk perangkat daerah paling lama 3 (tiga) bulan terhitung sejak tanggal pelantikan.",
+        "Pasal 12 membahas komposisi anggota DPR Papua Barat Daya.",
+        "Barang milik daerah Provinsi Papua Barat meliputi barang yang dikuasai atau dimanfaatkan oleh Pemerintah Provinsi Papua Barat Daya.",
+        "Barang milik daerah Provinsi Papua Barat berada dalam wilayah Provinsi Papua Barat Daya.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi barang milik daerah Kabupaten Sorong.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi barang milik daerah Kabupaten Sorong Selatan.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi barang milik daerah Kabupaten Raja Ampat.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi barang milik daerah Kabupaten Tambrauw.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi barang milik daerah Kota Sorong.",
+        "Barang milik daerah Kabupaten Sorong meliputi barang bergerak dan tidak bergerak.",
+        "Barang milik daerah Kabupaten Sorong Selatan meliputi barang bergerak dan tidak bergerak.",
+        "Barang milik daerah Kabupaten Raja Ampat meliputi barang bergerak dan tidak bergerak.",
+        "Barang milik daerah Kabupaten Tambrauw meliputi barang bergerak dan tidak bergerak.",
+        "Barang milik daerah Kabupaten Maybrat meliputi barang bergerak dan tidak bergerak.",
+        "Barang milik daerah Kota Sorong meliputi barang bergerak dan tidak bergerak.",
+        "Barang milik daerah Kabupaten Sorong, Kabupaten Sorong Selatan, Kabupaten Raja Ampat, Kabupaten Tambrauw, Kabupaten Maybrat, dan Kota Sorong telah diserahkan dan dimanfaatkan oleh Pemerintah Provinsi Papua Barat Daya.",
+        "Badan usaha milik daerah Provinsi Papua Barat memiliki kedudukan, kegiatan, dan lokasi di Provinsi Papua Barat Daya.",
+        "Dokumen dan arsip yang karena sifatnya diperlukan oleh Provinsi Papua Barat Daya.",
+        "Provinsi Papua Barat Daya berhak mendapatkan alokasi transfer ke daerah.",
+        "Pembagian penerimaan khusus dalam rangka pelaksanaan Otonomi Khusus kepada Provinsi Papua Barat Daya dan kabupatenkota di Provinsi Papua Barat Daya dilakukan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Pemerintah Kabupaten Sorong sesuai dengan besaran kebutuhan dan kesanggupannya dapat memberikan hibah untuk menunjang kegiatan penyelenggaraan pemerintahan Provinsi Papua Barat Daya.",
+        "Pemerintah Pusat melakukan pembinaan dan fasilitasi terhadap Provinsi Papua Barat Daya dalam waktu 3 (tiga) tahun sejak diresmikan.",
+        "Penjabat Gubernur Papua Barat Daya menyusun Rancangan Peraturan Gubernur tentang Anggaran Pendapatan dan Belanja Daerah Provinsi Papua Barat Daya.",
+        "Ketentuan mengenai tatacara pembentukan dan jumlah anggota MRP Provinsi Papua Barat Daya diatur dengan Peraturan Gubernur.",
+        "Peraturan Gubernur ditetapkan oleh Penjabat Gubernur Provinsi Papua Barat Daya.",
+        "Rancangan Peraturan Gubernur Papua Barat Daya sebagaimana dimaksud pada ayat (1) ditetapkan setelah mendapat persetujuan Menteri Dalam Negeri.",
+        "Rancangan Peraturan Gubernur Papua Barat Daya sebagaimana dimaksud pada ayat (2) ditetapkan setelah mendapat persetujuan Menteri Dalam Negeri.",
+        "Penetapan Peraturan Gubernur Papua Barat Daya dilaksanakan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Ketentuan mengenai pengisian jumlah kursi DPR Papua Barat Daya diatur lebih lanjut dalam undang-undang mengenai pemilihan umum.",
+        "Daerah persiapan diatur dalam ketentuan peraturan perundang-undangan.",
+        "Pembentukan Provinsi Papua Barat Daya merupakan salah satu upaya dalam menata daerah.",
+        "Provinsi Papua Barat Daya merupakan solusi dalam rangka mengoptimalkan pelayanan publik.",
+        "Provinsi Papua Barat Daya dapat memperpendek rentang kendali pemerintahan.",
+        "Provinsi Papua Barat Daya perlu melakukan penyiapan sarana dan prasarana pemerintahan.",
+        "Provinsi Papua Barat Daya perlu melakukan pemberdayaan.",
+        "Provinsi Papua Barat Daya perlu melakukan pengelolaan sumber daya alam."
+      ],
+      "index": 23
+    },
+    {
+      "id": "2c17e67a-7e80-442f-80ed-4373662416ab",
+      "title": "Transisi Pemerintahan & Aset",
+      "summary": "Chunk ini berisi informasi tentang proses transisi pemerintahan, manajemen aparatur sipil negara, penyerahan aset dan dokumen, pembentukan lembaga pemerintahan, serta pemberian hibah untuk Provinsi Papua Barat Daya, yang mencakup ketentuan mengenai kewajiban dan tanggung jawab berbagai pihak terkait.",
+      "propositions": [
+        "Gubernur dan Wakil Gubernur dipilih dan disahkan melalui tahapan pemilihan kepala daerah serentak.",
+        "Pendanaan pelaksanaan fasilitasi pemilihan Gubernur dan Wakil Gubernur Papua Barat Daya dapat didukung oleh Anggaran Pendapatan dan Belanja Daerah Provinsi Papua Barat.",
+        "Anggaran Pendapatan dan Belanja Daerah Provinsi Papua Barat mendukung pendanaan pelaksanaan fasilitasi pemilihan Gubernur dan Wakil Gubernur Papua Barat Daya sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Anggota DPR Papua Barat Daya dipilih dalam pemilihan umum sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Anggota DPR Papua Barat Daya diangkat dari unsur OAP sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Anggota DPR Papua Barat Daya sebagaimana dimaksud pada ayat (1) huruf a ditetapkan berdasarkan hasil pemilihan umum tahun 2024.",
+        "Penjabat Gubernur Papua Barat Daya menetapkan hasil seleksi anggota DPR Papua Barat Daya yang diangkat sebagaimana dimaksud pada ayat (1) huruf b.",
+        "Penetapan hasil seleksi anggota DPR Papua Barat Daya yang diangkat harus dilakukan paling lambat 3 (tiga) bulan sebelum Komisi Pemilihan Umum menetapkan anggota DPR Papua Barat Daya yang terpilih melalui pemilihan umum.",
+        "Penjabat Gubernur Papua Barat Daya mempersiapkan pembentukan MRP Provinsi Papua Barat Daya.",
+        "Penjabat Gubernur Papua Barat Daya bertanggung jawab memfasilitasi pembentukan MRP Provinsi Papua Barat Daya.",
+        "Pembentukan MRP Provinsi Papua Barat Daya harus sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Gubernur Papua Barat bersama Penjabat Gubernur Papua Barat Daya mengatur manajemen aparatur sipil negara.",
+        "Gubernur Papua Barat bersama Penjabat Gubernur Papua Barat Daya melaksanakan manajemen aparatur sipil negara.",
+        "Gubernur Papua Barat bersama Penjabat Gubernur Papua Barat Daya mengatur penyerahan aset kepada Pemerintah Provinsi Papua Barat Daya.",
+        "Gubernur Papua Barat bersama Penjabat Gubernur Papua Barat Daya melaksanakan penyerahan aset kepada Pemerintah Provinsi Papua Barat Daya.",
+        "Gubernur Papua Barat bersama Penjabat Gubernur Papua Barat Daya mengatur penyerahan dokumen kepada Pemerintah Provinsi Papua Barat Daya.",
+        "Gubernur Papua Barat bersama Penjabat Gubernur Papua Barat Daya melaksanakan penyerahan dokumen kepada Pemerintah Provinsi Papua Barat Daya.",
+        "Penyerahan aset dan dokumen harus sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Bupati Sorong bersama Penjabat Gubernur Papua Barat Daya mengatur manajemen aparatur sipil negara.",
+        "Bupati Sorong Selatan bersama Penjabat Gubernur Papua Barat Daya mengatur manajemen aparatur sipil negara.",
+        "Bupati Raja Ampat bersama Penjabat Gubernur Papua Barat Daya mengatur manajemen aparatur sipil negara.",
+        "Bupati Tambrauw bersama Penjabat Gubernur Papua Barat Daya mengatur manajemen aparatur sipil negara.",
+        "Bupati Maybrat bersama Penjabat Gubernur Papua Barat Daya mengatur manajemen aparatur sipil negara.",
+        "Wali Kota Sorong bersama Penjabat Gubernur Papua Barat Daya mengatur manajemen aparatur sipil negara.",
+        "Bupati Sorong, Bupati Sorong Selatan, Bupati Raja Ampat, Bupati Tambrauw, Bupati Maybrat, dan Wali Kota Sorong bersama Penjabat Gubernur Papua Barat Daya mengatur penyerahan aset kepada Pemerintah Provinsi Papua Barat Daya.",
+        "Bupati Sorong, Bupati Sorong Selatan, Bupati Raja Ampat, Bupati Tambrauw, Bupati Maybrat, dan Wali Kota Sorong bersama Penjabat Gubernur Papua Barat Daya mengatur penyerahan dokumen kepada Pemerintah Provinsi Papua Barat Daya.",
+        "Manajemen aparatur sipil negara harus dilakukan paling lama 6 (enam) bulan terhitung sejak pelantikan Penjabat Gubernur.",
+        "Manajemen aparatur sipil negara sebagaimana dimaksud pada ayat (1) harus dilakukan.",
+        "Manajemen aparatur sipil negara sebagaimana dimaksud pada ayat (2) harus dilakukan.",
+        "Aparatur sipil negara sebagaimana dimaksud pada ayat (1) dan ayat (2) diprioritaskan pada pegawai negeri sipil.",
+        "Aparatur sipil negara sebagaimana dimaksud pada ayat (1) dan ayat (2) diprioritaskan pada pegawai pemerintah dengan perjanjian kerja OAP.",
+        "Pegawai negeri sipil dan pegawai pemerintah dengan perjanjian kerja OAP diperlukan untuk mendukung penyelenggaraan pemerintahan Provinsi Papua Barat Daya.",
+        "Penyerahan aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) dilakukan paling lama 3 (tiga) tahun.",
+        "Periode penyerahan aset dan dokumen adalah terhitung sejak pelantikan Penjabat Gubernur.",
+        "Manajemen aparatur sipil negara sebagaimana dimaksud pada ayat (3) difasilitasi dan dikoordinasikan oleh Menteri Dalam Negeri.",
+        "Penyerahan aset dan dokumen sebagaimana dimaksud pada ayat (5) kepada Pemerintah Provinsi Papua Barat Daya difasilitasi dan dikoordinasikan oleh Menteri Dalam Negeri.",
+        "Pembayaran gaji dan tunjangan dilakukan selama belum ditetapkannya Anggaran Pendapatan dan Belanja Daerah Provinsi Papua Barat Daya.",
+        "Pembayaran gaji dan tunjangan sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi barang milik daerah Provinsi Papua Barat.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi barang milik daerah Kabupaten Maybrat.",
+        "Aset dan dokumen sebagaimana dimaksud pada ayat (1) dan ayat (2) meliputi badan usaha milik daerah Provinsi Papua Barat.",
+        "Utang piutang Provinsi Papua Barat memiliki kegunaan untuk Provinsi Papua Barat Daya.",
+        "Gubernur Papua Barat bertanggung jawab atas penyerahan aset dan dokumen.",
+        "Bupati Sorong bertanggung jawab atas penyerahan aset dan dokumen.",
+        "Bupati Sorong Selatan bertanggung jawab atas penyerahan aset dan dokumen.",
+        "Bupati Raja Ampat bertanggung jawab atas penyerahan aset dan dokumen.",
+        "Bupati Tambrauw bertanggung jawab atas penyerahan aset dan dokumen.",
+        "Bupati Maybrat bertanggung jawab atas penyerahan aset dan dokumen.",
+        "Wali Kota Sorong bertanggung jawab atas penyerahan aset dan dokumen.",
+        "Menteri Dalam Negeri wajib menyelesaikan penyerahan aset dan dokumen jika penyerahan tidak dilaksanakan atau belum selesai oleh Gubernur Papua Barat, Bupati Sorong, Bupati Sorong Selatan, Bupati Raja Ampat, Bupati Tambrauw, Bupati Maybrat, dan Wali Kota Sorong.",
+        "Pemerintah Kabupaten Sorong Selatan sesuai dengan besaran kebutuhan dan kesanggupannya dapat memberikan hibah untuk menunjang kegiatan penyelenggaraan pemerintahan Provinsi Papua Barat Daya.",
+        "Pemerintah Kabupaten Raja Ampat sesuai dengan besaran kebutuhan dan kesanggupannya dapat memberikan hibah untuk menunjang kegiatan penyelenggaraan pemerintahan Provinsi Papua Barat Daya.",
+        "Pemerintah Kabupaten Tambrauw sesuai dengan besaran kebutuhan dan kesanggupannya dapat memberikan hibah untuk menunjang kegiatan penyelenggaraan pemerintahan Provinsi Papua Barat Daya.",
+        "Pemerintah Kabupaten Maybrat sesuai dengan besaran kebutuhan dan kesanggupannya dapat memberikan hibah untuk menunjang kegiatan penyelenggaraan pemerintahan Provinsi Papua Barat Daya.",
+        "Pemerintah Kota Sorong sesuai dengan besaran kebutuhan dan kesanggupannya dapat memberikan hibah untuk menunjang kegiatan penyelenggaraan pemerintahan Provinsi Papua Barat Daya.",
+        "Pemerintah Provinsi Papua Barat dapat memberikan hibah untuk menunjang kegiatan penyelenggaraan pemerintahan sesuai kebutuhan Provinsi Papua Barat Daya.",
+        "Pemberian hibah oleh pemerintah kabupaten/kota dilaksanakan terhitung sejak pelantikan Penjabat Gubernur Papua Barat Daya.",
+        "Pemberian hibah oleh Pemerintah Provinsi Papua Barat dilaksanakan terhitung sejak pelantikan Penjabat Gubernur Papua Barat Daya.",
+        "Penjabat Gubernur Papua Barat Daya menyampaikan laporan pertanggungjawaban realisasi penggunaan dana hibah kepada pemberi hibah.",
+        "Laporan pertanggungjawaban realisasi penggunaan dana hibah dari Penjabat Gubernur Papua Barat Daya ditembuskan kepada Menteri Dalam Negeri.",
+        "Laporan pertanggungjawaban realisasi penggunaan dana hibah dari Penjabat Gubernur Papua Barat Daya ditembuskan kepada menteri yang menyelenggarakan urusan pemerintahan di bidang keuangan negara.",
+        "Penjabat Gubernur Papua Barat Daya berkewajiban melakukan pengelolaan keuangan daerah sesuai dengan ketentuan peraturan perundang-undangan.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Provinsi Papua Barat.",
+        "Menteri Dalam Negeri melakukan pengawasan terhadap pelaksanaan kewajiban Pemerintah Provinsi Papua Barat Daya.",
+        "Menteri Dalam Negeri menyampaikan perkembangan pembinaan dan fasilitasi kepada Dewan Perwakilan Daerah Republik Indonesia.",
+        "Pasal 2 ayat (1) mengatur ketentuan mengenai penataan aparatur sipil negara di Provinsi Papua Barat Daya.",
+        "Penataan aparatur sipil negara di Provinsi Papua Barat Daya diatur dengan Peraturan Menteri.",
+        "Ketentuan penataan aparatur sipil negara di Provinsi Papua Barat Daya merupakan bentuk afirmasi.",
+        "Pasal 2 ayat (2) mengatur pengisian aparatur sipil negara di Provinsi Papua Barat Daya untuk pertama kalinya.",
+        "Pengisian aparatur sipil negara di Provinsi Papua Barat Daya untuk pertama kalinya dapat dilakukan dengan penerimaan calon pegawai negeri sipil OAP.",
+        "Manajemen aparatur sipil negara mencakup penugasan.",
+        "Manajemen aparatur sipil negara mencakup pengalihan.",
+        "Manajemen aparatur sipil negara mencakup mutasi.",
+        "Manajemen aparatur sipil negara mencakup rekrutmen.",
+        "Manajemen aparatur sipil negara mencakup pengawasan sistem merit.",
+        "Kesanggupan memberikan hibah dinyatakan dengan nota kesepakatan hibah."
+      ],
+      "index": 24
+    },
+    {
+      "id": "07d1ad7c-13be-4e57-97a2-f6a412d2397e",
+      "title": "Batasan Usia Calon Pegawai",
+      "summary": "Chunk ini berisi informasi tentang batasan usia dan jumlah maksimal pegawai negeri sipil.",
+      "propositions": [
+        "Calon pegawai negeri sipil OAP memiliki usia paling tinggi 48 (empat puluh delapan) tahun.",
+        "Pegawai negeri sipil paling banyak berjumlah 80 persen."
+      ],
+      "index": 25
+    },
+    {
+      "id": "c61bf981-0965-4434-b65b-dbf101fc9c2f",
+      "title": "Verifikasi Salinan",
+      "summary": "Chunk ini berisi informasi tentang verifikasi dan kesesuaian salinan dengan dokumen asli.",
+      "propositions": [
+        "Salinan tersebut sesuai dengan aslinya."
+      ],
+      "index": 26
+    },
+    {
+      "id": "eb5dc0df-65b6-4f51-9802-c71a20b1a5d9",
+      "title": "Cita-cita dan Tujuan Negara",
+      "summary": "Chunk ini berisi informasi mengenai cita-cita dan tujuan negara Indonesia.",
+      "propositions": [
+        "Negara Kesatuan Republik Indonesia memiliki cita-cita dan tujuan untuk melindungi segenap bangsa Indonesia dan seluruh tumpah darah Indonesia."
+      ],
+      "index": 27
+    },
+    {
+      "id": "e9253b3e-a989-4d83-ada0-7ad3b06aaae1",
+      "title": "Ketentuan Pasal & Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang ketentuan pasal, undang-undang, dan peraturan terkait lembaga keuangan, penghapusan badan hukum, perubahan undang-undang, dan hak dan kewajiban tenaga kerja, dan perlu ditambahkan informasi lebih lanjut tentang substansi dari setiap ketentuan, konteks hukumnya, dan lembaga yang terlibat, terutama mengenai lembaga yang terlibat dan alasan di balik perubahan tersebut.",
+      "propositions": [
+        "SK No 145ll2 A ayat (2)...",
+        "SK No 145114 A adalah Pasal 15.",
+        "Pasal 16 memiliki ayat (2).",
+        "Pasal 16 memiliki ayat (3).",
+        "Pasal 16 memiliki ayat (a).",
+        "Undang-Undang Republik Indonesia adalah Nomor 12 Tahun 1951.",
+        "Undang-Undang Republik Indonesia Nomor 12 Tahun 1951 adalah tentang Penghapusan Badan Hukum Algemeene Volkscredietbank.",
+        "Peraturan Pemerintah Republik Indonesia tahun 1946 No. 1 didahului oleh Algemeene Volkscredietbank dan Syomin Ginko.",
+        "UNDANG-UNDANG adalah tentang Penghapusan Badan Hukum Algemeene Volkscredietbank.",
+        "Ordonansi yang terdapat dalam Staatsblad 1934 No. 82 dicabut.",
+        "UNDANG-UNDANG ini berlaku surut sampai tanggal 1 Januari 1951.",
+        "Undang-Undang Republik Indonesia adalah Nomor 13 Tahun 1951.",
+        "Undang-Undang Republik Indonesia Nomor 13 Tahun 1951 tentang menetapkan Undang-undang Darurat tentang menaikkan jumlah maksimum porto dan bea sebagai Undang-undang.",
+        "Undang-undang Darurat tentang menaikkan jumlah maksimum porto dan bea adalah Undang-undang Darurat No. 2 Tahun 1951.",
+        "Pasal 97 ayat 4 jo pasal 89 Undang-undang Dasar Sementara berlaku.",
+        "Peraturan-peraturan yang termaktub dalam Undang-undang Darurat tentang menaikkan jumlah maksimum porto dan bea ditetapkan sebagai Undang-undang.",
+        "Undang-undang Darurat tentang menaikkan jumlah maksimum porto dan bea adalah Undang-undang Darurat No. 2 Tahun 1951.",
+        "Undang-undang ini ditetapkan pada tanggal 1 September 1951.",
+        "Soekarno adalah pihak yang menetapkan Undang-undang ini.",
+        "Undang-Undang Republik Indonesia adalah Nomor 14 Tahun 1951.",
+        "Undang-Undang Nomor 14 Tahun 1951 adalah tentang Penggantian Pajak Bumi dengan Pajak Peralihan 1944.",
+        "Pasal 3 mengatur tentang Peraturan Peralihan.",
+        "Undang-undang ini diundangkan pada tanggal 17 September 1951.",
+        "UNDANG-UNDANG REPUBLIK INDONESIA adalah Nomor 15 Tahun 1951.",
+        "UNDANG-UNDANG REPUBLIK INDONESIA Nomor 15 Tahun 1951 adalah tentang PENETAPAN UNDANG-UNDANG DARURAT.",
+        "UNDANG-UNDANG DARURAT adalah Nomor 37 Tahun 1950.",
+        "UNDANG-UNDANG DASAR SEMENTARA REPUBLIK INDONESIA memiliki pasal 96 ayat 1.",
+        "UNDANG-UNDANG DASAR SEMENTARA REPUBLIK INDONESIA memiliki pasal 97.",
+        "UNDANG-UNDANG DASAR SEMENTARA REPUBLIK INDONESIA memiliki pasal 89.",
+        "UNDANG-UNDANG DARURAT Nomor 37 Tahun 1950, seperti ditambah dengan UNDANG-UNDANG DARURAT Nomor 5 Tahun 1951, ditetapkan sebagai UNDANG-UNDANG.",
+        "Bagian baru yang ditambahkan pada penutup pasal 5, ayat pertama, berbunyi 'f. biaya dari surat-surat keterangan alat-alat pembayaran luar negeri yang diperlukan untuk pengiriman-pengiriman sosial oleh kaum buruh, jika dan sepanjang biaya itu dipikul oleh majikan'."
+      ],
+      "index": 28
+    },
+    {
+      "id": "6906f42b-4a0b-4f71-a249-fb72c68f8b05",
+      "title": "Perubahan Ketentuan Pasal",
+      "summary": "Chunk ini berisi informasi tentang perubahan dan tambahan pada berbagai ketentuan pasal dan ayat dalam peraturan perundang-undangan, termasuk perubahan nama tempat dan pejabat.",
+      "propositions": [
+        "Ayat (2) cukup jelas.",
+        "Pasal 15 cukup jelas.",
+        "Ayat (2) dari Pasal 16 cukup jelas.",
+        "Ayat (3) dari Pasal 16 cukup jelas.",
+        "Ayat (a) dari Pasal 16 cukup jelas.",
+        "Pasal 17 cukup jelas.",
+        "Pasal 18 cukup jelas.",
+        "Pasal 19 cukup jelas.",
+        "Pasal 20 cukup jelas.",
+        "Pasal 21 cukup jelas.",
+        "Pasal 22 cukup jelas.",
+        "Pasal 23 cukup jelas.",
+        "Pasal 19 ayat (2) ordonansi tersebut tidak berlaku lagi.",
+        "Pemerintah telah menetapkan Undang-undang Darurat tentang menaikkan jumlah maksimum porto dan bea.",
+        "Perubahan dan tambahan diajukan oleh Pemerintah.",
+        "Perubahan dan tambahan diajukan oleh Dewan Perwakilan Rakyat.",
+        "Dalam Pasal 4, ayat (2), titik di belakang yang tertulis setelah huruf c diubah menjadi titik koma.",
+        "Pada Pasal 17, ayat (1), huruf a, angka 25 diubah menjadi 40.",
+        "Pada Pasal 17, ayat (1), huruf b, angka 1, 20 diubah menjadi 40.",
+        "Pada Pasal 17, ayat (1), huruf b II, angka 25 diubah menjadi 40.",
+        "Pada Pasal 17, ayat (1), huruf c, angka 15 diubah menjadi 25.",
+        "Pada Pasal 21, ayat (2), angka 1212 diubah menjadi 25.",
+        "Pada Pasal 21, ayat (2), angka 25 cent diubah menjadi 50 sen.",
+        "Perintah tersebut adalah agar Undang-undang ini diundangkan.",
+        "Undang-undang ini diundangkan pada tanggal 10 September 1951.",
+        "M. A. PELLAUPESSY menandatangani Undang-undang ini sebagai Menteri Kehakiman a. i.",
+        "Rijksblad van Yogyakarta 1920 No. 11 telah beberapa kali diubah.",
+        "Barru, Tanette dan Soppengriaja memiliki surat keputusan tanggal 101939 No. 47Z.B.",
+        "Suppa dan Malusetasi memiliki surat keputusan tanggal 131939 No. 97Z.B.",
+        "Sawito, Batulappa dan Kassa memiliki surat keputusan tanggal 191939 No. 59Z.B.",
+        "Wajo memiliki surat keputusan tanggal 231939 No. 100H.2.",
+        "Bone memiliki surat keputusan tanggal 241939 No. 149H.2.",
+        "Pengundangan Undang-undang ini diperintahkan dengan penempatan dalam Lembaran Negara Republik Indonesia.",
+        "Soekarno adalah penanda tangan Undang-undang ini.",
+        "Jusuf Wibisono adalah Menteri Keuangan yang menandatangani Undang-undang ini.",
+        "M.A. Pellaupassy adalah Menteri Kehakiman a.i. yang mengundangkan Undang-undang ini.",
+        "UNDANG-UNDANG DARURAT Nomor 37 Tahun 1950 telah ditambah dengan UNDANG-UNDANG DARURAT Nomor 5 Tahun 1951.",
+        "UNDANG-UNDANG DARURAT Nomor 5 Tahun 1951 telah ditambah dengan UNDANG-UNDANG DARURAT Nomor 37 Tahun 1950.",
+        "Dalam pasal 1, ayat kedua, kata-kata 'of Nederland' dihapuskan.",
+        "Pasal 2 diubah.",
+        "Dalam pasal 2, ayat kedua, kata-kata 'of Nederland' dihapuskan.",
+        "Dalam pasal 2, ayat kedua, kata-kata 'het belastinggebied' diganti dengan 'Indonesia'.",
+        "Dalam pasal 2, ayat 2a, ke-1, kata-kata 'Nederlandse of' dihapuskan.",
+        "Dalam pasal 2, ayat 2a, ke-1, kata-kata 'Nederlandse vlag' diganti dengan 'bendera Indonesia'.",
+        "Dalam pasal 2, ayat 2a, ke-2, kata-kata 'Nederlandse of' dihapuskan.",
+        "Dalam pasal 2, ayat 2a, ke-2, kata-kata 'of Nederland' dihapuskan.",
+        "Ayat 3 dari pasal 2 dihapuskan.",
+        "Pasal 3 diubah.",
+        "Dalam pasal 3, bagian c, kata-kata 'Gouverneur-Generaal' diganti dengan yang sesuai.",
+        "Dalam pasal 3, bagian c, kata-kata 'Batavia' diganti dengan 'Jakarta'.",
+        "Dalam pasal 3, bagian g, kata-kata 'land-en zeemacht' diganti dengan 'angkatan darat, laut dan udara'.",
+        "Dalam pasal 3, bagian 1, kata-kata 'twaalf honderd' diganti dengan 'vierentwintig honderd'.",
+        "Pada penutup pasal 5, ayat pertama, titik diganti dengan titik koma.",
+        "Sesudah titik koma pada penutup pasal 5, ayat pertama, ditambahkan bagian baru.",
+        "Dalam pasal 8, ayat kedua dan ketiga, frasa 'het tarief B' diganti dengan 'de tarieven B'.",
+        "Dalam pasal 8, ayat keempat, frasa 'leden 1 dan 2' diganti dengan 'leden 1, 1a en 2'.",
+        "Skala yang mengenai pasal 8, ayat keempat, diubah.",
+        "Pasal 10 diubah.",
+        "Dalam Pasal 10, ayat pertama, kata-kata 'het belastinggebied' diganti dengan 'Indonesia' dua kali.",
+        "Dalam Pasal 10, ayat pertama, kata 'directeur van financien' diganti dengan 'Menteri Keuangan'.",
+        "Dalam Pasal 10, ayat ketiga, kata-kata 'waar de Nederiandsch-Indische Regering hare taak als zodanig uitoefent' diganti dengan 'bepaald oleh Menteri Keuangan'.",
+        "Dalam Pasal 10, ayat keempat, kata 'directeur van financien' diganti dengan 'Menteri Keuangan'.",
+        "Pasal 11 diubah.",
+        "Dalam Pasal 11, ayat ketiga, f. 1.200 diganti dengan vierentwinting honderd gulden.",
+        "Dalam Pasal 11, ayat keempat, kata-kata 'de hoofdinspecteur van financien' diganti dengan 'kepala jawatan pajak'.",
+        "Dalam Pasal 14c, ayat kelima, kata-kata 'De hoofdinspecteur van financien' diganti dengan 'kepala jawatan pajak'.",
+        "Dalam Pasal 16, ayat kedua, kata-kata 'het belastinggebied' diubah menjadi 'Indonesia'.",
+        "Pasal 17 diubah.",
+        "Dalam Pasal 17, ayat 4, bagian ke - 4, kata-kata 'belastinggebied' diganti dengan 'Indonesia'.",
+        "Dalam Pasal 17, ayat kelima, kata 'Gouverneur-Generaal' diganti dengan 'Menteri Keuangan'.",
+        "Pasal 29, ayat kedua, dibaca seperti berikut: (2)ketetapan-ketetapan pajak yang tidak betul dapat dikurangkan atau dibatalkan oleh kepala jawatan pajak karena jabatan.",
+        "Pasal 29a dihapuskan.",
+        "Suatu pasal baru disisipkan sebagai Pasal 29a.",
+        "Pasal 30, ayat ketiga, dihapuskan.",
+        "Dalam Ordonansi pajak kekayaan 1932, pasal 2, ayat pertama, kata-kata 'of Nederland' dihapuskan.",
+        "Dalam pasal 9A, ayat pertama, bagian-bagian a, b, c, d, e, dan f diganti."
+      ],
+      "index": 29
+    },
+    {
+      "id": "06dc0666-786a-4536-a32a-d13e0bc4d331",
+      "title": "Ketentuan Pendirian & Likuidasi Lembaga Keuangan",
+      "summary": "Chunk ini berisi informasi tentang pendirian, likuidasi, dan transisi aset lembaga keuangan negara, serta perubahan peraturan terkait perpajakan yang memengaruhi lembaga tersebut, dan harus mencakup informasi lebih lanjut tentang ketentuan hukum terkait perpajakan dan perubahan peraturan lainnya.",
+      "propositions": [
+        "Bank Rakyat Indonesia didirikan sebagai Bank Pemerintah.",
+        "Algemeene Volkscredietbank didirikan dengan ordonansi tersebut.",
+        "Algemeene Volkscredietbank dihapuskan.",
+        "Algemeene Volkscredietbank dan peraturan-peraturan ordonansi tersebut sementara masih berlaku untuk masa dan seberapa jauh diperlukan untuk likuidasi Algemeene Volkscredietbank.",
+        "Bank Rakyat Indonesia menjalankan likuidasi.",
+        "Bank Pemerintah didirikan dengan Peraturan Pemerintah Republik Indonesia tahun 1946 No. 1.",
+        "Milik-milik Algemeene Volkscredietbank menjadi milik Bank Rakyat Indonesia.",
+        "Hutang-hutang Algemeene Volkscredietbank dioper oleh Bank Rakyat Indonesia.",
+        "Pemerintah menutup jumlah hutang-hutang yang melebihi jumlah harga sebenarnya dari piutang-piutang, uang -kas, saldo pada bank -bank lain dan effect -effect.",
+        "Pegawai Algemeene Volkscredietbank menjadi pegawai Bank Rakyat Indonesia.",
+        "Peraturan gaji dan syarat -syarat bekerja yang berlaku hingga sekarang tetap berlaku hingga ada peraturan-peraturan baru oleh Bank Rakyat Indonesia.",
+        "Bank Rakyat Indonesia adalah badan hukum.",
+        "Daerah pekerjaan Bank Rakyat Indonesia meliputi seluruh Indonesia.",
+        "UNDANG-UNDANG TENTANG MENETAPKAN UNDANG -UNDANG DARURAT TENTANG MENAIKKAN JUMLAH MAKSIMUM PORTO DAN BEA ditetapkan sebagai Undang-undang.",
+        "UNDANG-UNDANG DARURAT adalah tentang PERUBAHAN ORDONANSI PAJAK PERALIHAN 1944.",
+        "Pemerintah telah menetapkan UNDANG-UNDANG DARURAT tentang PERUBAHAN ORDONANSI PAJAK PERALIHAN 1944, ORDONANSI PAJAK UPAH dan ORDONANSI PAJAK KEKAYAAN 1932.",
+        "UNDANG-UNDANG menetapkan PENETAPAN UNDANG-UNDANG DARURAT tentang PERUBAHAN ORDONANSI PAJAK PERALIHAN 1944, ORDONANSI PAJAK UPAH dan ORDONANSI PAJAK KEKAYAAN 1932.",
+        "Pengiriman-pengiriman sosial yang dimaksud adalah pengiriman valuta luar negeri yang dibeli dengan izin Lembaga Alat-alat Pembayaran Luar Negeri.",
+        "Menteri Keuangan berhak untuk mengeluarkan peraturan-peraturan yang diperlukan untuk menambah dan menjalankan ordonansi ini."
+      ],
+      "index": 30
+    },
+    {
+      "id": "833920f5-ba59-4875-9fa0-fdd6a9121ced",
+      "title": "Kewajiban Pengetahuan",
+      "summary": "Chunk ini berisi informasi tentang kewajiban untuk mengetahui suatu hal, dan harus mencakup informasi lebih lanjut tentang subjek yang harus diketahui.",
+      "propositions": [
+        "Setiap orang harus mengetahuinya.",
+        "Terdapat perintah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 31
+    },
+    {
+      "id": "82a8f3b4-b950-4fb0-924b-d83a89f8589a",
+      "title": "Ketentuan Tarif & Peraturan",
+      "summary": "Chunk ini berisi informasi tentang berbagai ketentuan tarif pos, landrente, dan peraturan terkait lainnya di Hindia Belanda, dan harus dilengkapi dengan informasi lebih lanjut tentang peraturan pos, ketentuan landrente, dan peraturan terkait lainnya, khususnya mengenai detail tarif untuk berbagai jenis kiriman dan peraturan terkait pajak.",
+      "propositions": [
+        "Reglement voor de Brieven -en Pakketpost ditetapkan dengan ordonansi tanggal 20 Desember 1934.",
+        "Surat kabar dan lampiran-lampirannya dikenakan tarif 2 sen untuk tiap-tiap 25 gram atau bagian dari 25 gram.",
+        "Tarif surat kabar dan lampiran-lampirannya hanya berlaku apabila berperangko berlangganan.",
+        "Syarat dan ketentuan untuk surat kabar berlangganan akan ditetapkan oleh Kepala Jawatan.",
+        "Tarif surat kabar dan lampiran-lampirannya yang harus dibayar di muka sama dengan tarif barang-barang cetakan.",
+        "Barang-barang cetakan dan dokumen-dokumen dikenakan tarif 5 sen untuk tiap-tiap 50 gram atau bagian dari 50 gram.",
+        "Minimum tarif untuk tiap-tiap kiriman dokumen adalah setinggi-tingginya 30 sen.",
+        "Barang cetakan Braille dikenakan tarif 2 sen untuk tiap-tiap 1000 gram atau bagian dari 1000 gram.",
+        "Bungkusan dikenakan tarif 6 sen untuk tiap-tiap 50 gram atau bagian dari 50 gram.",
+        "Minimum tarif untuk tiap-tiap kiriman bungkusan adalah setinggi-tingginya 25 sen.",
+        "Pospaket dikenakan tarif R. 6- untuk tiap-tiap pospaket.",
+        "Tiap-tiap kiriman fonopos yang beratnya tidak lebih dari 20 gram dikenakan tarif 15 sen.",
+        "Tiap-tiap 20 gram berikutnya atau bagian dari 20 gram fonopos dikenakan tarif 10 sen.",
+        "Setelah titik koma pada Pasal 4, ayat (2), dimuat huruf d mengenai penyerahan bungkusan-bungkusan.",
+        "Kalimat kedua dari Kepala Pasal 7 harus dibaca mengenai upah simpan dan bea untuk membungkus lagi pospaket-pospaket.",
+        "Untuk pospaket-pospaket dapat dipungut upah simpan dan bea untuk membungkus lagi dalam hal-hal yang ditunjuk oleh Kepala Jawatan.",
+        "Upah simpan dan bea untuk membungkus lagi pospaket-pospaket harus ditetapkan dengan atau menurut Peraturan Pemerintah.",
+        "Rijksblad van Yogyakarta 1920 No. 11 diubah terakhir dengan Rijksblad van Yogyakarta 1932 No. 24.",
+        "Zelfbestuurs-landrente-verordening Celebes 1939 ditetapkan oleh Kepala-kepala Swapraja-swapraja.",
+        "Peraturan Zelfbestuur tentang Landrente di Bali tahun 1939 memiliki surat keputusan No. 41938.",
+        "Sumbawa Landrente-regeling berlaku sejak tahun 1942.",
+        "Valuta luar negeri yang dikirim untuk pengiriman setiap bulan kepada anggota keluarga yang berada di luar negeri.",
+        "Pada keterangan dalam ruangan pertama, sesudah kata 'inkomen' ditambahkan kata-kata 'c.q. belastbare som'.",
+        "Bagian a dari pasal 9A, ayat pertama, adalah berjumlah kurang dari R. 1.500:3.",
+        "Bagian b dari pasal 9A, ayat pertama, adalah R. 1.500 hingga R. 2.400:4."
+      ],
+      "index": 32
+    },
+    {
+      "id": "b2ce2fd3-4145-4801-a396-d84626397462",
+      "title": "Ketentuan Pajak Kekayaan",
+      "summary": "Chunk ini berisi informasi tentang peraturan dan objek pajak kekayaan di Daerah Lombok, dan perlu ditambahkan informasi lebih lanjut tentang ketentuan pajak, dasar hukum, dan perubahan peraturan terkait, khususnya mengenai ketentuan pajak, dasar hukum, dan perubahan peraturan terkait.",
+      "propositions": [
+        "Hingga saat ini, penghasilan yang diperoleh dari sawah dikenakan pajak bumi.",
+        "Peraturan pajak bumi Daerah Lombok memiliki Peraturan 1948 No. 4.",
+        "Gebruiksgrondbelastingordonnantie terdapat dalam Staatsblad 1927 No. 225.",
+        "Peraturan pemungutan dan peraturan pemungutan dengan paksa tetap berlaku untuk pajak bumi dari tahun-tahun yang telah lalu.",
+        "Peraturan pemungutan dan peraturan pemungutan dengan paksa yang berlaku ditetapkan dalam ordonansi-ordonansi yang disebut dalam pasal 2.",
+        "UNDANG-UNDANG DARURAT adalah tentang PERUBAHAN ORDONANSI PAJAK UPAH.",
+        "UNDANG-UNDANG DARURAT adalah tentang PERUBAHAN ORDONANSI PAJAK KEKAYAAN 1932.",
+        "Ordonansi pajak peralihan 1944 telah diubah terakhir dengan ordonansi 23 September 1949.",
+        "Ordonansi pajak peralihan 1944 diubah lagi.",
+        "Jumlah yang harus dikenakan pajak diperoleh dengan cara tertentu.",
+        "Jumlah yang diperoleh selanjutnya dikenakan pajak menurut tarif yang berlaku.",
+        "Ordonansi pajak kekayaan 1932, seperti telah diubah, terakhir dengan ordonansi 23 September 1949 (Staatsblad 1949 No. 261), diubah lagi.",
+        "Ordonansi pajak upah (1934), seperti telah diubah, terakhir dengan ordonansi 30 Desember 1948 (Staatsblad 1948 No. 342), diubah lagi."
+      ],
+      "index": 33
+    },
+    {
+      "id": "057ae9fc-b5af-486d-a99c-316e2561f54f",
+      "title": "Sumber Informasi Relevan",
+      "summary": "Chunk ini berisi informasi tentang sumber-sumber informasi yang relevan.",
+      "propositions": [
+        "http:www.bphn.go.id adalah sumber informasi."
+      ],
+      "index": 34
+    },
+    {
+      "id": "05e2c4ba-411f-4e58-9a1b-0bce41ce0ad9",
+      "title": "Transaksi Kewajiban Keuangan",
+      "summary": "Chunk ini berisi informasi tentang transaksi valuta asing yang terkait dengan kewajiban finansial, dan harus mencakup ketentuan terkait jenis kewajiban dan penerima pembayaran.",
+      "propositions": [
+        "Valuta luar negeri yang dikirim untuk alimentasi.",
+        "Jumlah biaya selama tahun takwim atau masa-pajak terpikul oleh wajib pajak."
+      ],
+      "index": 35
+    },
+    {
+      "id": "a961a470-77d5-483e-968a-f0edf5744382",
+      "title": "Penghapusan dari Dokumen",
+      "summary": "Chunk ini berisi informasi tentang penghapusan elemen-elemen tertentu dari suatu dokumen atau daftar.",
+      "propositions": [
+        "Deretan-angka horizontal yang pertama, kedua dan ketiga dihapuskan."
+      ],
+      "index": 36
+    },
+    {
+      "id": "c6283340-231d-4e8f-8bad-f25d5d7681e4",
+      "title": "Nilai Moneter Peraturan",
+      "summary": "Chunk ini berisi informasi tentang besaran nilai moneter dalam suatu peraturan.",
+      "propositions": [
+        "Bagian c dari pasal 9A, ayat pertama, adalah R. 2.400 hingga R. 4.800:5."
+      ],
+      "index": 37
+    },
+    {
+      "id": "b4bbd440-dc6f-41ca-a933-425811d2d350",
+      "title": "Tanggal & Waktu Pemberlakuan",
+      "summary": "Chunk ini berisi informasi tentang tanggal dan waktu berlakunya undang-undang.",
+      "propositions": [
+        "Undang-undang ini berlaku pada hari diundangkan."
+      ],
+      "index": 38
+    },
+    {
+      "id": "9ed28feb-c187-4dda-a88d-1477c8cc1f9a",
+      "title": "Proses Pembentukan Hukum",
+      "summary": "Chunk ini berisi informasi tentang proses perubahan peraturan menjadi undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 16 Tahun 1951 adalah tentang penetapan Undang-Undang Darurat Nomor 22 Tahun 1950 tentang penurunan cukai tembakau sebagai undang-undang."
+      ],
+      "index": 39
+    },
+    {
+      "id": "35982ddd-bf97-44bc-bc8f-ed31ef9f7a87",
+      "title": "Peraturan Cukai",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait cukai.",
+      "propositions": [
+        "Pasal 10 mengatur tentang cukai."
+      ],
+      "index": 40
+    },
+    {
+      "id": "f018753c-4300-4886-a18b-3e3ca3f619de",
+      "title": "Kesalahan Dokumen Resmi",
+      "summary": "Chunk ini berisi informasi tentang kesalahan atau ketidakakuratan dalam dokumen resmi pemerintah.",
+      "propositions": [
+        "Lembaran-Negara Nr 92 tahun 1951 memiliki kesalahan cetak."
+      ],
+      "index": 41
+    },
+    {
+      "id": "4216b104-49c7-407f-b550-12775e855b46",
+      "title": "Mata Uang & Status Hukum",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur tentang pengeluaran uang kertas dan status hukumnya.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 17 Tahun 1951 adalah tentang menetapkan Undang-undang Darurat tentang pengeluaran uang kertas atas tanggungan Republik Indonesia Serikat sebagai Undang-undang."
+      ],
+      "index": 42
+    },
+    {
+      "id": "23f18f6c-b2cb-4d36-89fd-b2ef4e8a0699",
+      "title": "Uang Kertas",
+      "summary": "Chunk ini berisi informasi tentang karakteristik atau ketentuan terkait uang kertas.",
+      "propositions": [
+        "Pasal 3 membahas tentang uang kertas."
+      ],
+      "index": 43
+    },
+    {
+      "id": "255b7593-ea3e-4251-b169-2569a0ec8107",
+      "title": "Identifikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penomoran undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 19 Tahun 1951."
+      ],
+      "index": 44
+    },
+    {
+      "id": "96cee04c-9c73-4c65-a8d5-98a17d5b05f0",
+      "title": "Amandemen Peraturan",
+      "summary": "Chunk ini berisi informasi tentang perubahan atau penghapusan bagian dari suatu peraturan, dengan pengecualian tertentu.",
+      "propositions": [
+        "Bagian Ten Tweede : I. ayat le dihapuskan dengan pengecualian pulau We."
+      ],
+      "index": 45
+    },
+    {
+      "id": "a13a42ec-2bea-4957-bdbe-8a5a13a28ffc",
+      "title": "Pembebasan Bea Cukai Diplomatik",
+      "summary": "Chunk ini berisi informasi tentang peraturan yang mengatur pembebasan cukai untuk pegawai diplomatik atau konsuler asing.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 20 Tahun 2019 adalah tentang Pembebasan Cukai Guna Pegawai-Pegawai Diplomatik atau Konsuler dari Negeri-Negeri Asing."
+      ],
+      "index": 46
+    },
+    {
+      "id": "97c3efae-575f-4b07-915d-df53f977363f",
+      "title": "Persyaratan Publikasi",
+      "summary": "Chunk ini berisi informasi tentang persyaratan publikasi atau pemberitahuan terkait suatu ketentuan.",
+      "propositions": [
+        "Terdapat perintah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 47
+    },
+    {
+      "id": "e86aa6a0-139c-49ad-8ace-560a9437ee5f",
+      "title": "Jenis & Nomor Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang nomor dan jenis undang-undang.",
+      "propositions": [
+        "UNDANG-UNDANG REPUBLIK INDONESIA adalah Nomor 21 Tahun 1951."
+      ],
+      "index": 48
+    },
+    {
+      "id": "c9c4b0ee-eb10-4553-8db9-16ec1615021e",
+      "title": "Pihak yang Terlibat",
+      "summary": "Chunk ini berisi informasi tentang pihak-pihak yang terlibat dalam proses atau regulasi tertentu.",
+      "propositions": [
+        "Terdapat seorang wakil dari Kementrian Perekonomian."
+      ],
+      "index": 49
+    },
+    {
+      "id": "65ec2761-672e-4703-b520-74fdc771de4f",
+      "title": "Nomor & Tanggal Publikasi",
+      "summary": "Chunk ini berisi informasi tentang peraturan perundang-undangan yang terkait dengan nomor dan tanggal publikasi.",
+      "propositions": [
+        "Ordonnantie Centrale Verkooporganisatie van Ondernemingslandbouw producten Java, Madu ra en Sumatra 1947 adalah Staatsblad No. 140 tertanggal 4 Agustus 1947."
+      ],
+      "index": 50
+    },
+    {
+      "id": "ca0c0fa1-7476-459e-a897-55cbd2c21481",
+      "title": "Penunjukan Pejabat Bertanggung Jawab",
+      "summary": "Chunk ini berisi informasi tentang penunjukan pejabat yang bertanggung jawab atas suatu proses atau perhitungan.",
+      "propositions": [
+        "Perhitungan dan pertanggungjawaban diberikan kepada Menteri Perekonomian."
+      ],
+      "index": 51
+    },
+    {
+      "id": "d8c99b17-cb6a-4cea-a2f3-571fd9b59a6a",
+      "title": "Undang-Undang Keadaan Darurat",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang ditetapkan sebagai undang-undang darurat.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 22 Tahun 1951 adalah tentang menetapkan Undang-undang Darurat."
+      ],
+      "index": 52
+    },
+    {
+      "id": "91c80420-cac0-4f79-8a99-0f9f63820925",
+      "title": "Penjabatan & Definisi",
+      "summary": "Chunk ini berisi informasi tentang definisi dan pengaturan terkait dengan para penjabat.",
+      "propositions": [
+        "Pasal tunggal adalah pasal yang mengatur tentang para penjabat."
+      ],
+      "index": 53
+    },
+    {
+      "id": "415140d9-30df-47f9-81d6-f420d0968b9f",
+      "title": "Jenis & Nomor Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang nomor dan jenis undang-undang.",
+      "propositions": [
+        "UNDANG-UNDANG REPUBLIK INDONESIA adalah Nomor 23 Tahun 1951."
+      ],
+      "index": 54
+    },
+    {
+      "id": "497d7dcb-265c-4372-9ede-89105132a2cf",
+      "title": "Kewajiban Informasi Publik",
+      "summary": "Chunk ini berisi informasi tentang kewajiban publik untuk mengetahui suatu hal.",
+      "propositions": [
+        "Setiap orang harus mengetahuinya."
+      ],
+      "index": 55
+    },
+    {
+      "id": "82ea79fd-6db6-4fcb-bfea-e18bcc97ac81",
+      "title": "Amandemen Peraturan Perundang-undangan",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang bertujuan untuk mengubah peraturan perundang-undangan yang ada.",
+      "propositions": [
+        "Undang-Undang Darurat Nomor 6 Tahun 1951 tentang Mengubah Grondhuur Ordonnantie (S-1918 NO. 20) bertujuan untuk mengubah Grondhuur Ordonnantie (S-1918 NO. 20)."
+      ],
+      "index": 56
+    },
+    {
+      "id": "612b7f0c-557c-4a0d-b496-7a31f1b72954",
+      "title": "Prinsip Dasar Negara",
+      "summary": "Chunk ini berisi informasi tentang prinsip dasar negara Indonesia.",
+      "propositions": [
+        "Republik Indonesia adalah negara yang merdeka dan berdaulat."
+      ],
+      "index": 57
+    },
+    {
+      "id": "f9445602-59f3-4723-a81a-fc1e09b799b8",
+      "title": "Ganti Kerugian",
+      "summary": "Chunk ini berisi informasi tentang ketentuan mengenai penggantian kerugian.",
+      "propositions": [
+        "Pasal 3 mengatur tentang pengganti kerugian."
+      ],
+      "index": 58
+    },
+    {
+      "id": "2482341b-50aa-452b-8ecd-c59d408d528a",
+      "title": "Kewenangan Menteri Keuangan",
+      "summary": "Chunk ini berisi informasi tentang peran dan kewenangan Menteri Keuangan.",
+      "propositions": [
+        "Pasal 7 membahas tentang Menteri Keuangan."
+      ],
+      "index": 59
+    },
+    {
+      "id": "dd77fb27-237c-464a-946f-8f7b05063443",
+      "title": "Nasionalisasi Lembaga Keuangan",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur nasionalisasi lembaga keuangan.",
+      "propositions": [
+        "Undang-Undang Nomor 24 Tahun 1951 adalah tentang Nasionalisasi De Javasche Bank N. V."
+      ],
+      "index": 60
+    },
+    {
+      "id": "04da0cf6-7b05-4bf0-8344-51058aa9caa8",
+      "title": "Penjelasan Ketentuan Hukum",
+      "summary": "Chunk ini berisi informasi tentang mekanisme penjelasan atau ilustrasi ketentuan hukum oleh pemerintah.",
+      "propositions": [
+        "Pemerintah dapat menjelaskan ketentuan sebelumnya dengan sebuah contoh praktis."
+      ],
+      "index": 61
+    },
+    {
+      "id": "6939fc9e-6797-43b6-9a8f-b46cec42decd",
+      "title": "Kepemilikan Bank",
+      "summary": "Chunk ini membahas tentang status dan kendala dalam penguasaan penuh Republik Indonesia atas sistem perbankan.",
+      "propositions": [
+        "Republik Indonesia belum dapat kuasa penuh atas bank sirkulasinya karena keadaan yang pincang."
+      ],
+      "index": 62
+    },
+    {
+      "id": "d4477c26-b670-4335-8f1e-6d2806553395",
+      "title": "Kepemilikan Properti",
+      "summary": "Chunk ini berisi informasi tentang dasar hukum yang mengatur kepemilikan properti.",
+      "propositions": [
+        "Selain Onteigeningsordonnantie 1920, berlaku Persetujuan Keuangan dan Perekonomian pada Konperensi Meja Bundar."
+      ],
+      "index": 63
+    },
+    {
+      "id": "6ba0f18a-0cfb-4b9d-b71d-557ed0dd2ae4",
+      "title": "Opini Publik Terhadap Tawaran",
+      "summary": "Chunk ini berisi informasi tentang penerimaan publik terhadap suatu tawaran dari Pemerintah Republik Indonesia, yang tercermin dalam publikasi media.",
+      "propositions": [
+        "Komentar yang diterbitkan dalam harian atau surat kabar di Nederland menunjukkan pengakuan publik terhadap kelayakan tawaran Pemerintah Republik Indonesia."
+      ],
+      "index": 64
+    },
+    {
+      "id": "260467dd-fd44-48d4-af4a-23a4add8e8ef",
+      "title": "Prosedur Hukum",
+      "summary": "Chunk ini berisi informasi tentang ketidakberlakuan prosedur hukum tertentu.",
+      "propositions": [
+        "Prosedur yang diatur dalam Onteigenningsordonnantie 1920 tidak dapat dijalankan."
+      ],
+      "index": 65
+    },
+    {
+      "id": "8d2a1bda-a549-4343-a20d-aed023203a2d",
+      "title": "Prosedur Penyelesaian Pengaduan",
+      "summary": "Chunk ini berisi informasi tentang prosedur penyelesaian pengaduan dalam proses hukum.",
+      "propositions": [
+        "Penyelesaian pengaduan dalam pasal 4 harus didahulukan oleh Hakim."
+      ],
+      "index": 66
+    },
+    {
+      "id": "6be23d20-d5a3-4901-9e7f-21f7f223fd03",
+      "title": "Nasionalisasi Perusahaan",
+      "summary": "Chunk ini berisi informasi tentang rancangan undang-undang yang berkaitan dengan nasionalisasi perusahaan.",
+      "propositions": [
+        "Rancangan Undang-Undang ini adalah tentang Nasionalisasi De Javasche Bank N.V."
+      ],
+      "index": 67
+    },
+    {
+      "id": "521e4a42-6757-49c2-bddf-77157782e6c9",
+      "title": "Biaya Penyerahan",
+      "summary": "Chunk ini berisi informasi tentang biaya-biaya yang terkait dengan proses penyerahan.",
+      "propositions": [
+        "Semua biaya yang bersangkutan dengan penyerahan adalah provisi dan bea materai."
+      ],
+      "index": 68
+    },
+    {
+      "id": "9a7a70cc-76c4-4852-a43f-6fa723894d8b",
+      "title": "Bea Masuk dan Pajak",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur tentang bea masuk dan pajak.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 11 Tahun 1952 adalah tentang penetapan Undang-undang Darurat tentang tambahan pokok bea (opsenten) atas bea-bea masuk selama tahun 1952."
+      ],
+      "index": 69
+    },
+    {
+      "id": "644fcd27-5b1a-4f79-9aff-7f67e09fac44",
+      "title": "Persyaratan Publikasi",
+      "summary": "Chunk ini berisi informasi tentang persyaratan publikasi atau pemberitahuan terkait suatu ketentuan.",
+      "propositions": [
+        "Terdapat perintah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 70
+    },
+    {
+      "id": "77c7c697-4b28-428b-bd03-7e3e92a950e0",
+      "title": "Peraturan Pajak",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur jenis dan struktur pajak.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 12 Tahun 1952 adalah tentang pembaharuan bea-bea spesifik dan penggantiannya dengan bea-bea ad valorem."
+      ],
+      "index": 71
+    },
+    {
+      "id": "e07a77b2-9387-4d1a-81c6-8dfac9e7808b",
+      "title": "Struktur Dokumen Hukum",
+      "summary": "Chunk ini berisi informasi tentang struktur dan bagian dari dokumen hukum.",
+      "propositions": [
+        "Pasal 2 adalah bagian dari dokumen hukum."
+      ],
+      "index": 72
+    },
+    {
+      "id": "de647e87-1d1b-4ce3-89c4-f4aa542162aa",
+      "title": "Bea Masuk",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur jenis dan struktur bea masuk.",
+      "propositions": [
+        "Undang-Undang No. 12 Tahun 1952 adalah tentang pembaruan bea-bea spesifik dan penggantiannya dengan bea ad valorem."
+      ],
+      "index": 73
+    },
+    {
+      "id": "b1cbfa23-0eed-4e85-aa47-d3fd4591c584",
+      "title": "Pajak & Harga Barang",
+      "summary": "Chunk ini membahas ketidakselarasan antara tarif pajak dan harga barang yang dikenakan bea.",
+      "propositions": [
+        "Pajak yang rendah tidak seimbang dengan harga barang-barang yang dikenakan bea."
+      ],
+      "index": 74
+    },
+    {
+      "id": "48f79794-c6dd-48af-9fd4-18c0d45409eb",
+      "title": "Penilaian Objek",
+      "summary": "Chunk ini berisi informasi tentang kesulitan atau ketidakmungkinan dalam menentukan nilai atau harga suatu objek.",
+      "propositions": [
+        "Tidak mungkin untuk mengambil dasar guna penetapan harga dari kuda-kuda semacam ini."
+      ],
+      "index": 75
+    },
+    {
+      "id": "f526dda5-081d-4252-9f01-b353ce2c2020",
+      "title": "Definisi Hewan Ternak",
+      "summary": "Chunk ini berisi informasi tentang jenis-jenis hewan ternak yang termasuk dalam peraturan.",
+      "propositions": [
+        "Ayam, itik, dan burung dara yang disebutkan dalam bagian I biasanya dimasukkan untuk peternakan."
+      ],
+      "index": 76
+    },
+    {
+      "id": "4be467f2-e6d4-45c0-bfd9-32d0e76dab89",
+      "title": "Pos Tarif",
+      "summary": "Chunk ini berisi informasi tentang penyederhanaan atau perubahan dalam uraian atau klasifikasi pos tarif.",
+      "propositions": [
+        "Dihapusnya perbedaan antara I dan II menyebabkan uraian tentang pos tarif dapat dipermudahkan."
+      ],
+      "index": 77
+    },
+    {
+      "id": "ec571c81-3ed0-4187-9a70-682e90d09e4a",
+      "title": "Tarif Air Belanda",
+      "summary": "Chunk ini berisi informasi tentang tarif bea untuk berbagai jenis air di Belanda.",
+      "propositions": [
+        "Bea pada dewasa ini adalah untuk air Belanda lainnya dengan H.L.f. 9.- dan 200 bea tambahan."
+      ],
+      "index": 78
+    },
+    {
+      "id": "cdac35f2-7bee-4d54-b996-f3caccd6c7ae",
+      "title": "Perjanjian Perdagangan Internasional",
+      "summary": "Chunk ini berisi informasi tentang isu-isu yang dinegosiasikan dalam perjanjian perdagangan internasional.",
+      "propositions": [
+        "Tembakau untuk pembikinan sigaret merupakan suatu soal perundingan pada Konferensi Internasional tentang Tarif dan Perdagangan (G.A.T.T.) pada tahun 1947 di Geneve."
+      ],
+      "index": 79
+    },
+    {
+      "id": "f8bbfc58-1303-41c0-bde8-fbbec19c9123",
+      "title": "Prinsip Kesetaraan Bea",
+      "summary": "Chunk ini berisi informasi tentang prinsip kesetaraan dalam pengenaan bea.",
+      "propositions": [
+        "Tidak ada alasan untuk pengenaan bea yang berlainan."
+      ],
+      "index": 80
+    },
+    {
+      "id": "42de9b20-bd14-4343-94fb-a28187ed9f61",
+      "title": "Tarif Bea Khusus",
+      "summary": "Chunk ini berisi informasi tentang tarif bea khusus untuk berbagai produk.",
+      "propositions": [
+        "Bea istimewa dewasa ini pada minyak wangi, air kumur, dan lain-lain adalah f. 30 per hektoliter dengan bea tambahan 250."
+      ],
+      "index": 81
+    },
+    {
+      "id": "e184d2e3-375a-4908-b43d-73f67af89792",
+      "title": "Bea Ekspor",
+      "summary": "Chunk ini berisi informasi tentang jenis barang yang dikenakan bea.",
+      "propositions": [
+        "Bea dikenakan pada kartu-judi berwarna empat."
+      ],
+      "index": 82
+    },
+    {
+      "id": "94e9995b-bb32-4191-b607-c270055d5928",
+      "title": "Jenis & Nomor Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang nomor dan jenis undang-undang.",
+      "propositions": [
+        "UNDANG-UNDANG REPUBLIK INDONESIA adalah Nomor 13 Tahun 1952."
+      ],
+      "index": 83
+    },
+    {
+      "id": "1eefae5f-8764-424f-8963-468198fbe101",
+      "title": "Persyaratan Publikasi",
+      "summary": "Chunk ini berisi informasi tentang persyaratan publikasi atau pemberitahuan terkait suatu ketentuan.",
+      "propositions": [
+        "Terdapat perintah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 84
+    },
+    {
+      "id": "d574f6c5-9cef-4054-a1d6-b35812c211eb",
+      "title": "Interpretasi UU 1952",
+      "summary": "Chunk ini berisi informasi mengenai penjelasan atau interpretasi Undang-Undang No. 13 Tahun 1952.",
+      "propositions": [
+        "Penjelasan ini adalah penjelasan atas Undang-Undang No. 13 Tahun 1952."
+      ],
+      "index": 85
+    },
+    {
+      "id": "a9f209eb-77c7-4426-9718-89b97b6ad05f",
+      "title": "Tarif Bea Masuk",
+      "summary": "Chunk ini berisi informasi tentang perubahan tarif bea masuk.",
+      "propositions": [
+        "Penggantian beberapa bea spesifik dengan bea ad valorem dan penaikan besarnya bea spesifik dari barang-barang dilakukan."
+      ],
+      "index": 86
+    },
+    {
+      "id": "365b38c6-d5a2-4e80-84cd-e3650255930f",
+      "title": "Jenis & Nomor Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang nomor dan jenis undang-undang.",
+      "propositions": [
+        "UNDANG-UNDANG REPUBLIK INDONESIA adalah Nomor 14 Tahun 1952."
+      ],
+      "index": 87
+    },
+    {
+      "id": "018a737a-ec41-4361-957d-ec514fdf1452",
+      "title": "Kepemilikan BUMN",
+      "summary": "Chunk ini berisi informasi tentang penghapusan kewajiban tertentu terkait properti milik badan usaha negara.",
+      "propositions": [
+        "Pasal 5 mengatur penghapusan harga (a fschrijving) pada milik Perusahaan Garam dan Soda Negeri."
+      ],
+      "index": 88
+    },
+    {
+      "id": "47c8eb0a-14de-4c82-af68-401f30c89080",
+      "title": "Tanggal & Waktu Larangan",
+      "summary": "Chunk ini berisi informasi tentang tanggal dan waktu berlakunya larangan suatu tindakan oleh pemerintah.",
+      "propositions": [
+        "Pemerintah tidak melakukan penjualan candu isap lagi mulai tanggal 27 Desember 194."
+      ],
+      "index": 89
+    },
+    {
+      "id": "f89e4878-ca62-4892-914e-7a98e3b0bf58",
+      "title": "Identifikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penomoran undang-undang.",
+      "propositions": [
+        "UNDANG-UNDANG REPUBLIK INDONESIA adalah Nomor 15 tahun 1952."
+      ],
+      "index": 90
+    },
+    {
+      "id": "d246fb90-489c-41d1-8285-604dc55bae20",
+      "title": "Wewenang Pejabat Pemerintah",
+      "summary": "Chunk ini berisi informasi tentang wewenang dan kekuasaan yang diberikan kepada pejabat pemerintah.",
+      "propositions": [
+        "Menteri Keuangan diberi kuasa mengambil tindakan-tindakan yang dipandangnya perlu."
+      ],
+      "index": 91
+    },
+    {
+      "id": "f74d098d-d27f-40f2-8f74-1fbf3deda15c",
+      "title": "Kewajiban Informasi Publik",
+      "summary": "Chunk ini berisi informasi tentang kewajiban publik untuk mengetahui suatu hal.",
+      "propositions": [
+        "Setiap orang harus mengetahuinya."
+      ],
+      "index": 92
+    },
+    {
+      "id": "2e927832-70b4-464d-8dcc-58df9021ce2e",
+      "title": "Identifikasi Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penunjukan undang-undang.",
+      "propositions": [
+        "Undang-Undang ini adalah Undang-Undang Republik Indonesia Nomor 16 Tahun 1952."
+      ],
+      "index": 93
+    },
+    {
+      "id": "8c430861-dbb4-4e42-9812-0f0e4d98fc48",
+      "title": "Persyaratan Publikasi",
+      "summary": "Chunk ini berisi informasi tentang persyaratan publikasi atau pemberitahuan terkait suatu ketentuan.",
+      "propositions": [
+        "Terdapat perintah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 94
+    },
+    {
+      "id": "baf0744d-7c84-464a-87cf-eaffa89ecc25",
+      "title": "Identifikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penomoran undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 17 Tahun 1952."
+      ],
+      "index": 95
+    },
+    {
+      "id": "fa022b82-e299-499f-be0b-8b6db62a18d5",
+      "title": "Perjanjian Internasional Indonesia",
+      "summary": "Chunk ini berisi informasi tentang perjanjian internasional yang disetujui oleh Indonesia.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 18 Tahun 1952 adalah tentang Persetujuan Perjanjian Persahabatan antara Negara Republik Indonesia dan Negara Uni Birma."
+      ],
+      "index": 96
+    },
+    {
+      "id": "da478889-367e-4eb3-9068-17bd7a2239d1",
+      "title": "Perjanjian Kerjasama Internasional",
+      "summary": "Chunk ini berisi informasi tentang perjanjian kerjasama internasional yang telah disetujui oleh Indonesia.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 19 Tahun 1952 adalah tentang Persetujuan Perjanjian Persahabatan antara Negara Republik Indonesia dan Negara Republik Philipina."
+      ],
+      "index": 97
+    },
+    {
+      "id": "683a308d-506a-4ed3-a86c-a058621e418c",
+      "title": "Identifikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penomoran undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 21 Tahun 1952."
+      ],
+      "index": 98
+    },
+    {
+      "id": "e071a5fa-4299-4651-a2fb-8f1173134c70",
+      "title": "Pegawai Negeri Sipil",
+      "summary": "Chunk ini berisi informasi tentang definisi dan lingkup penerapan terhadap pegawai negeri sipil Republik Indonesia.",
+      "propositions": [
+        "Pasal 1 mengatur tentang pegawai negeri sipil Republik Indonesia."
+      ],
+      "index": 99
+    },
+    {
+      "id": "babc9409-bcf0-4df7-aa2c-6c903dded9fb",
+      "title": "Pekerjaan Sementara",
+      "summary": "Chunk ini berisi informasi mengenai pengaturan terkait pekerjaan sementara.",
+      "propositions": [
+        "Pasal 2 membahas hal-hal terkait dengan pekerjaan sementara."
+      ],
+      "index": 100
+    },
+    {
+      "id": "24fac417-50c2-4c89-b900-cb3c160a7c8b",
+      "title": "Persyaratan Publikasi",
+      "summary": "Chunk ini berisi informasi tentang persyaratan publikasi atau pemberitahuan terkait suatu ketentuan.",
+      "propositions": [
+        "Terdapat perintah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 101
+    },
+    {
+      "id": "1455a441-11d8-49f8-b6a3-06eea53959a4",
+      "title": "Publikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang publikasi dan penomoran undang-undang dalam Lembaran-Negara.",
+      "propositions": [
+        "Undang-undang Nr 21 tahun 1952 dimuat dalam Lembaran-Negara Nr 78 tahun 1952."
+      ],
+      "index": 102
+    },
+    {
+      "id": "e7fb7316-3771-4c02-a6a2-c9f8aadc5395",
+      "title": "Identifikasi Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang nomor identifikasi undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 23 Tahun."
+      ],
+      "index": 103
+    },
+    {
+      "id": "9290aeb2-d163-4373-96fd-0dac67819297",
+      "title": "Tanggal & Waktu Pemberlakuan",
+      "summary": "Chunk ini berisi informasi tentang tanggal dan waktu berlakunya undang-undang.",
+      "propositions": [
+        "Undang-undang ini mulai berlaku pada hari diundangkan."
+      ],
+      "index": 104
+    },
+    {
+      "id": "9f499e6d-b820-4ff6-b83f-34950b68508f",
+      "title": "Hierarki Hukum",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang menetapkan undang-undang lain.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 23 Tahun 1952 adalah tentang Penetapan Undang-Undang Darurat Nomor 3 Tahun 1950."
+      ],
+      "index": 105
+    },
+    {
+      "id": "47a0cf5f-0228-43cc-a03f-88088404e490",
+      "title": "Identifikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penomoran undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 24 Tahun 1952."
+      ],
+      "index": 106
+    },
+    {
+      "id": "e460f565-d67e-4853-93ed-86a78c7fd36a",
+      "title": "Tanggal & Waktu Pemberlakuan",
+      "summary": "Chunk ini berisi informasi tentang tanggal dan waktu berlakunya undang-undang.",
+      "propositions": [
+        "Undang-undang ini mulai berlaku pada hari diundangkan."
+      ],
+      "index": 107
+    },
+    {
+      "id": "445b326a-2691-4fe1-9f1c-b8da237b8d3a",
+      "title": "Undang-Undang Pajak & Berlakunya",
+      "summary": "Chunk ini berisi informasi tentang undang-undang terkait pajak dan waktu berlakunya.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 24 Tahun 1952 adalah tentang Penetapan Undang-Undang Darurat tentang Pungutan Tambahan Pokok Pajak Mengenai Pajak Kekayaan dan Pajak Perseroan Tahun 1951."
+      ],
+      "index": 108
+    },
+    {
+      "id": "97a240a7-48af-4ae2-b550-a2e8dd512a7a",
+      "title": "Identifikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penomoran undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 2 Tahun 1959."
+      ],
+      "index": 109
+    },
+    {
+      "id": "22f8aa0b-6b09-4cb2-b59b-9b07064913fe",
+      "title": "Nomor & Tahun Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang nomor dan tahun penerbitan undang-undang.",
+      "propositions": [
+        "Undang-undang Darurat No. 6 tahun 1954 adalah Lembaran-Negara tahun 1954 No. 50."
+      ],
+      "index": 110
+    },
+    {
+      "id": "30ee9a42-10fe-4891-9569-9ec5746d89f1",
+      "title": "Peraturan Pensiun & Bantuan",
+      "summary": "Chunk ini berisi informasi tentang peraturan terkait pensiun dan bantuan yang diatur dalam Undang-undang Darurat.",
+      "propositions": [
+        "Undang-undang Darurat No. 19 tahun 1950 adalah tentang peraturan pemberian pensiun dan onderstand."
+      ],
+      "index": 111
+    },
+    {
+      "id": "afa2af85-136a-4a61-bfdb-9d03638470f3",
+      "title": "Kesehatan Personel Militer",
+      "summary": "Chunk ini berisi informasi tentang kondisi fisik dan mental yang dialami personel militer selama dinas.",
+      "propositions": [
+        "Cacad ingatan dan cacad badan didapat di dalam dinas."
+      ],
+      "index": 112
+    },
+    {
+      "id": "6ff891fe-882e-4b48-b0a8-a5eb0b09325f",
+      "title": "Durasi Waktu Kerja",
+      "summary": "Chunk ini berisi informasi tentang persyaratan terkait durasi atau periode waktu bekerja.",
+      "propositions": [
+        "Pasal 4 membahas tentang tahun bekerja."
+      ],
+      "index": 113
+    },
+    {
+      "id": "cb5602fd-8bbc-411c-a183-bd18d0aac4df",
+      "title": "Istirahat Kerja",
+      "summary": "Chunk ini berisi informasi tentang hak-hak dan ketentuan waktu istirahat.",
+      "propositions": [
+        "Milisen berhak mendapatkan waktu istirahat besar."
+      ],
+      "index": 114
+    },
+    {
+      "id": "7ac9d62b-9292-4318-a32a-89700c5a8f99",
+      "title": "Ketentuan Pensiun",
+      "summary": "Chunk ini berisi informasi tentang ketentuan pensiun untuk kategori anggota tertentu.",
+      "propositions": [
+        "Anggota tentara yang dimaksud dalam pasal 1 ayat 1 sub b diberi pensiun."
+      ],
+      "index": 115
+    },
+    {
+      "id": "357a955e-aac3-4454-b4f2-a2a8fb06a23e",
+      "title": "Hak Pensiun",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait hak-hak pensiun.",
+      "propositions": [
+        "Tambahan uang pensiun tidak diberikan."
+      ],
+      "index": 116
+    },
+    {
+      "id": "f0f10f16-f4f4-484c-93cb-7183bd6a1690",
+      "title": "Pensiun & Waktu Pemberian",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait waktu pemberian pensiun.",
+      "propositions": [
+        "Pensiun seperti yang dimaksud dalam sub c ayat 3 pasal 9 diberikan dalam tempo yang terbatas."
+      ],
+      "index": 117
+    },
+    {
+      "id": "6429f3e4-43bc-43ef-b0ec-2a198135e06d",
+      "title": "Kewajiban Finansial",
+      "summary": "Chunk ini berisi informasi tentang kewajiban finansial yang harus dipenuhi oleh kelompok individu tertentu.",
+      "propositions": [
+        "Pasal 13 mengatur tentang kewajiban pembayaran iuran pensiun oleh para anggota tentara."
+      ],
+      "index": 118
+    },
+    {
+      "id": "9ae6a9f4-b31e-432e-ace1-45a3cdc44870",
+      "title": "Pemeriksaan Kesehatan Militer",
+      "summary": "Chunk ini berisi informasi tentang prosedur pemeriksaan kesehatan wajib yang harus dilakukan oleh personel militer.",
+      "propositions": [
+        "Anggota tentara harus diperiksa oleh dokter sebelum melakukan dinas."
+      ],
+      "index": 119
+    },
+    {
+      "id": "ea2655fe-e181-4996-baf9-4c80b75b1cc1",
+      "title": "Pengangkatan Jabatan",
+      "summary": "Chunk ini berisi informasi tentang prosedur dan persyaratan administratif terkait pengangkatan dalam jabatan di pemerintah asing.",
+      "propositions": [
+        "Surat permohonan untuk mendapat izin harus diajukan sebelum menjabat pekerjaan pada Pemerintah Asing."
+      ],
+      "index": 120
+    },
+    {
+      "id": "2baadc76-40ae-40e4-9c93-213ff7a2e241",
+      "title": "Prosedur Pensiun",
+      "summary": "Chunk ini berisi informasi tentang prosedur dan badan yang bertanggung jawab untuk pengajuan pensiun.",
+      "propositions": [
+        "Permohonan untuk mendapat pensiun diajukan kepada Menteri Pertahanan."
+      ],
+      "index": 121
+    },
+    {
+      "id": "6ca5ae17-fa4b-482e-8682-6962dc6d7810",
+      "title": "Onderstand",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait onderstand.",
+      "propositions": [
+        "Pasal 20 membahas tentang onderstand."
+      ],
+      "index": 122
+    },
+    {
+      "id": "23e5db73-5df2-418c-821c-69c0727867c0",
+      "title": "Ketentuan Peralihan Pensiun & Militer",
+      "summary": "Chunk ini berisi informasi tentang ketentuan peralihan terkait peraturan pensiun dan bantuan untuk anggota Angkatan Perang.",
+      "propositions": [
+        "Pasal 23 mengatur tentang peraturan peralihan pada peraturan pensiun dan onderstand untuk para anggota Angkatan Perang."
+      ],
+      "index": 123
+    },
+    {
+      "id": "6797c6ea-d352-4582-b101-be88ca933b01",
+      "title": "Pengakuan Masa Kerja",
+      "summary": "Chunk ini berisi informasi tentang pengakuan masa kerja bagi anggota tentara yang pernah bekerja di sektor swasta.",
+      "propositions": [
+        "Kepada para anggota tentara yang pada waktu penyerahan kedaulatan telah mempunyai tahun-bekerja pada perusahaan-perusahaan partikelir di zaman Belanda, Jepang dan Republik Indonesia, dapat diberikan tahun-bekerja untuk mendapat pensiun."
+      ],
+      "index": 124
+    },
+    {
+      "id": "afbc3a1f-2f52-4b67-bc52-16738e9d495a",
+      "title": "Kualifikasi Mantan Militer",
+      "summary": "Chunk ini berisi informasi tentang kualifikasi para mantan anggota militer yang terkait dengan pemerintahan Hindia Belanda.",
+      "propositions": [
+        "Para anggota tentara bekas anggota Angkatan Perang yang disusun oleh atau di bawah kekuasaan Pemerintah Hindia Belanda memenuhi syarat tertentu."
+      ],
+      "index": 125
+    },
+    {
+      "id": "83bb332a-c16e-47fc-8bd8-64c1cc214e61",
+      "title": "Persyaratan Pensiun",
+      "summary": "Chunk ini berisi informasi tentang persyaratan masa kerja untuk pensiun.",
+      "propositions": [
+        "Pasal 7 huruf b mengatur tentang pensiun genap 20 tahun atau lebih."
+      ],
+      "index": 126
+    },
+    {
+      "id": "abdd5cde-9d47-4fbc-b4fa-735226c6e2c1",
+      "title": "Tujuan dan Maksud",
+      "summary": "Chunk ini berisi informasi tentang tujuan dan maksud dari suatu perintah atau ketentuan.",
+      "propositions": [
+        "Tujuan dari perintah ini adalah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 127
+    },
+    {
+      "id": "e8b6bdcc-aa50-4986-9902-f0a243995ab5",
+      "title": "Undang-Undang Republik Indonesia",
+      "summary": "Chunk ini berisi informasi tentang nomor dan jenis undang-undang Republik Indonesia.",
+      "propositions": [
+        "UNDANG-UNDANG REPUBLIK INDONESIA adalah Nomor 7 Tahun 1961."
+      ],
+      "index": 128
+    },
+    {
+      "id": "022dea21-4b80-40c2-93ca-ab0663bcc0f1",
+      "title": "Ketentuan Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang ketentuan-ketentuan dalam undang-undang.",
+      "propositions": [
+        "Undang-undang ini berisi ketentuan-ketentuan."
+      ],
+      "index": 129
+    },
+    {
+      "id": "0f7e9813-3691-46b3-889b-578fb1b65327",
+      "title": "Pembentukan Lembaga Pemerintahan",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur pembentukan lembaga pemerintahan.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia Nomor 16 Tahun 1961 adalah tentang Pembentukan Kejaksaan Tinggi."
+      ],
+      "index": 130
+    },
+    {
+      "id": "80ccdfce-cf3e-4941-8b97-41c084353ea4",
+      "title": "Tanggung Jawab Kejaksaan",
+      "summary": "Chunk ini berisi informasi tentang pembagian tugas dan tanggung jawab di tingkat Kejaksaan Tinggi.",
+      "propositions": [
+        "Pasal 3 mengatur pembagian pekerjaan antara para Jaksa Tinggi Pengganti pada suatu Kejaksaan Tinggi."
+      ],
+      "index": 131
+    },
+    {
+      "id": "8e3a8f4c-c5f0-412d-9821-71ce28a6ddfa",
+      "title": "Pengawasan Jaksa",
+      "summary": "Chunk ini berisi informasi tentang pengawasan terhadap Jaksa oleh Jaksa Tinggi Jaksa Tinggi Pengganti.",
+      "propositions": [
+        "Jaksa TinggiJaksa Tinggi Pengganti melakukan pengawasan terhadap para Jaksa."
+      ],
+      "index": 132
+    },
+    {
+      "id": "586de40c-54c9-453c-926a-76fbb9a2710a",
+      "title": "Pembentukan Lembaga Pemerintahan",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur pembentukan lembaga pemerintahan.",
+      "propositions": [
+        "Undang-Undang Nomor 16 Tahun 1961 adalah tentang Pembentukan Kejaksaan Tinggi."
+      ],
+      "index": 133
+    },
+    {
+      "id": "7fa00e58-4a03-4c32-bdee-7b3a69a7ce2a",
+      "title": "Perubahan Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang perubahan undang-undang dan peraturan terkait.",
+      "propositions": [
+        "Undang-Undang No. 1 Tahun 1964 adalah tentang Penetapan Peraturan Pemerintah Pengganti Undang-Undang No. 6 Tahun 1962."
+      ],
+      "index": 134
+    },
+    {
+      "id": "3ccec94e-3228-4a03-9d07-2084e2672953",
+      "title": "Dasar Hukum Peraturan",
+      "summary": "Chunk ini berisi informasi tentang dasar hukum yang menjadi landasan suatu peraturan.",
+      "propositions": [
+        "Pasal 5, 20 dan 22 Undang-undang Dasar menjadi dasar hukum."
+      ],
+      "index": 135
+    },
+    {
+      "id": "1c166961-4e59-450c-bc8f-2c3babbffe2a",
+      "title": "Pembangunan Perumahan",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait pembangunan perumahan.",
+      "propositions": [
+        "Pasal 2 membahas tentang pembangunan perumahan."
+      ],
+      "index": 136
+    },
+    {
+      "id": "cf1b26f2-9f34-4e31-a3ab-713e467a99e1",
+      "title": "Badan Pelaksana Perumahan",
+      "summary": "Chunk ini berisi informasi mengenai badan-badan yang bertanggung jawab dalam pelaksanaan tugas terkait perumahan.",
+      "propositions": [
+        "Pemerintah Daerah dibantu oleh Panitia Perumahan dalam melaksanakan tugasnya."
+      ],
+      "index": 137
+    },
+    {
+      "id": "83f91813-44b5-49c9-b9ec-dfdbda24f829",
+      "title": "Hak Penggunaan Properti",
+      "summary": "Chunk ini berisi informasi tentang hak dan izin terkait penggunaan properti perumahan.",
+      "propositions": [
+        "Pemakaian atau penggunaan perumahan adalah sah."
+      ],
+      "index": 138
+    },
+    {
+      "id": "263071cb-322f-4f62-80f3-b15b494a6348",
+      "title": "Tanggal & Waktu Pemberlakuan",
+      "summary": "Chunk ini berisi informasi tentang tanggal dan waktu berlakunya undang-undang.",
+      "propositions": [
+        "Undang-Undang ini mulai berlaku pada hari diundangkan."
+      ],
+      "index": 139
+    },
+    {
+      "id": "0d677f79-cbfa-4120-892b-1887bc21ad86",
+      "title": "Perumahan Tidak Layak",
+      "summary": "Chunk ini berisi definisi dan karakteristik perumahan yang tidak memenuhi syarat.",
+      "propositions": [
+        "Perumahan yang tidak memenuhi syarat adalah perumahan yang tidak sehat."
+      ],
+      "index": 140
+    },
+    {
+      "id": "ad55ba37-aab1-4347-8905-5545142df3a2",
+      "title": "Peraturan Perumahan",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait perumahan.",
+      "propositions": [
+        "Pasal 1 membahas tentang perumahan."
+      ],
+      "index": 141
+    },
+    {
+      "id": "d086427f-3325-475f-91e5-4fec8ea3b966",
+      "title": "Pembangunan Infrastruktur",
+      "summary": "Chunk ini berisi informasi tentang kebutuhan dan pelaksanaan pembangunan infrastruktur.",
+      "propositions": [
+        "Pembangunan jalan-jalan diperlukan."
+      ],
+      "index": 142
+    },
+    {
+      "id": "a2898e75-9368-46ef-b29d-3f4f97d443da",
+      "title": "Kewajiban Pembangunan Perumahan",
+      "summary": "Chunk ini berisi informasi tentang kewajiban pembangunan perumahan yang terkait dengan kegiatan usaha.",
+      "propositions": [
+        "Buruh pantas diwajibkan membangun perumahan untuk usahanya."
+      ],
+      "index": 143
+    },
+    {
+      "id": "618223ff-e092-4894-907d-ef6a62b1a17a",
+      "title": "Peraturan Pelaksana",
+      "summary": "Chunk ini berisi informasi tentang kebutuhan akan peraturan pelaksana lebih lanjut.",
+      "propositions": [
+        "Undang-undang ini menyebabkan kebutuhan akan peraturan tersendiri."
+      ],
+      "index": 144
+    },
+    {
+      "id": "aa157e3b-0f50-4379-974c-1e70ec4f21d5",
+      "title": "Identifikasi & Penomoran Undang-Undang",
+      "summary": "Chunk ini berisi informasi tentang identifikasi dan penomoran undang-undang.",
+      "propositions": [
+        "Undang-Undang Republik Indonesia adalah Nomor 11 Tahun 1966."
+      ],
+      "index": 145
+    },
+    {
+      "id": "8c809060-f665-4137-b185-0328457d3262",
+      "title": "Pasal-Pasal UUD 1945",
+      "summary": "Chunk ini berisi informasi tentang pasal-pasal dalam Undang-Undang Dasar 1945.",
+      "propositions": [
+        "Undang-Undang Dasar 1945 memiliki pasal-pasal 28 dan 33."
+      ],
+      "index": 146
+    },
+    {
+      "id": "173b92ea-2e20-41c9-8619-d4a1d1baa77a",
+      "title": "Regulasi Pers",
+      "summary": "Chunk ini berisi informasi tentang pengaturan dan regulasi terkait Pers.",
+      "propositions": [
+        "Undang-undang ini mengatur tentang Pers."
+      ],
+      "index": 147
+    },
+    {
+      "id": "d2d82135-0dfc-45eb-a11b-8a24488cdb6a",
+      "title": "Jenis & Frekuensi Publikasi",
+      "summary": "Chunk ini berisi informasi tentang frekuensi dan jenis publikasi.",
+      "propositions": [
+        "Surat kabar Harian adalah penerbitan setiap hari."
+      ],
+      "index": 148
+    },
+    {
+      "id": "f982df5f-9155-495e-b26b-3399b82b7dfa",
+      "title": "Tindakan dan Tujuan Organisasi",
+      "summary": "Chunk ini berisi informasi tentang tindakan dan tujuan organisasi.",
+      "propositions": [
+        "Organisasi membina persatuan dan kekuatan progresif revolusioner."
+      ],
+      "index": 149
+    },
+    {
+      "id": "fec68c1e-8870-4fe3-8553-6913838885e2",
+      "title": "Dewan Pers",
+      "summary": "Chunk ini berisi informasi tentang struktur, fungsi, dan kewenangan Dewan Pers.",
+      "propositions": [
+        "BAB III membahas Dewan Pers."
+      ],
+      "index": 150
+    },
+    {
+      "id": "41d79adb-aaed-4eba-93bc-794392d723c8",
+      "title": "Hak Warga Negara",
+      "summary": "Chunk ini berisi informasi tentang hak-hak dasar warga negara.",
+      "propositions": [
+        "Setiap warga negara mempunyai hak penerbitan pers."
+      ],
+      "index": 151
+    },
+    {
+      "id": "9b4e465d-cdde-495c-9ec2-10a98dc1826a",
+      "title": "Bantuan Pemerintah Pers Nasional",
+      "summary": "Chunk ini berisi informasi tentang ketentuan bantuan pemerintah kepada pers nasional.",
+      "propositions": [
+        "Pasal 12 mengatur tentang bantuan Pemerintah kepada Pers Nasional."
+      ],
+      "index": 152
+    },
+    {
+      "id": "f9e60647-46c0-4ba3-923e-0d1d13fe07aa",
+      "title": "Kualifikasi Pimpinan Pers",
+      "summary": "Chunk ini berisi informasi tentang kualifikasi dan persyaratan bagi pimpinan penerbitan Pers.",
+      "propositions": [
+        "Orang yang dapat memegang pimpinan penerbitan Pers adalah orang-orang yang tidak pernah tersangkut dalam aksi-aksi kontra revolusi."
+      ],
+      "index": 153
+    },
+    {
+      "id": "99874be5-03c2-4958-8c76-d99091625b12",
+      "title": "Pertanggungjawaban Hukum Tulisan",
+      "summary": "Chunk ini berisi informasi tentang hak dan kewajiban terkait pertanggungjawaban hukum atas suatu tulisan.",
+      "propositions": [
+        "Dalam mempertanggungjawabkan sesuatu tulisan terhadap hukum, Pemimpin Umum memiliki hak tolak."
+      ],
+      "index": 154
+    },
+    {
+      "id": "aa6d8070-a4da-44e3-aac9-612f7a82a026",
+      "title": "Pembatasan Akses & Kegiatan",
+      "summary": "Chunk ini berisi informasi tentang pembatasan akses atau kegiatan tertentu yang dilakukan oleh pihak luar.",
+      "propositions": [
+        "Pemerintah melarang masuk pers asing."
+      ],
+      "index": 155
+    },
+    {
+      "id": "b3c8a39b-aeb8-41a5-a6e7-383a244b72c7",
+      "title": "Struktur Ketentuan Pidana",
+      "summary": "Chunk ini berisi informasi tentang struktur dan organisasi dari ketentuan pidana dalam peraturan.",
+      "propositions": [
+        "BAB VIII adalah tentang Ketentuan Pidana."
+      ],
+      "index": 156
+    },
+    {
+      "id": "ad60ef9f-0115-4d44-937c-70f60b71398b",
+      "title": "Persyaratan Perusahaan Media",
+      "summary": "Chunk ini berisi informasi tentang persyaratan penyesuaian bagi perusahaan pers yang sudah ada.",
+      "propositions": [
+        "Perusahaan Pers yang sudah ada pada saat mulai berlakunya Undang-undang ini harus menyesuaikan bentuk pimpinan dan susunan perusahaannya."
+      ],
+      "index": 157
+    },
+    {
+      "id": "8149357e-d132-4cd4-bd4d-717dd7416acb",
+      "title": "Persyaratan Publikasi",
+      "summary": "Chunk ini berisi informasi tentang persyaratan publikasi atau pemberitahuan terkait suatu ketentuan.",
+      "propositions": [
+        "Terdapat perintah agar setiap orang dapat mengetahuinya."
+      ],
+      "index": 158
+    },
+    {
+      "id": "dd0411be-c0e3-48f4-884b-6c44bafa95e1",
+      "title": "Peraturan Perundang-undangan",
+      "summary": "Chunk ini berisi informasi tentang undang-undang yang mengatur bidang tertentu.",
+      "propositions": [
+        "Undang-Undang No. 11 Tahun 1966 adalah tentang Ketentuan-ketentuan Pokok Pers."
+      ],
+      "index": 159
+    },
+    {
+      "id": "5d48c2d4-326e-4238-bff8-376718a60562",
+      "title": "Lembaga Pers",
+      "summary": "Chunk ini berisi informasi tentang peran dan fungsi lembaga pers dalam pembinaan pers.",
+      "propositions": [
+        "Fungsi Dewan Pers penting dalam pembinaan Pers."
+      ],
+      "index": 160
+    },
+    {
+      "id": "f252924b-b64c-4e23-b6ff-893ec592de4d",
+      "title": "Pasal 6 & 7",
+      "summary": "Chunk ini berisi informasi tentang struktur dan konten dari Pasal 6 dan 7.",
+      "propositions": [
+        "BAB III membahas Pasal 6 dan 7."
+      ],
+      "index": 161
+    },
+    {
+      "id": "44e7e893-0719-4a53-8b17-855aa958d413",
+      "title": "Pers Nasional",
+      "summary": "Chunk ini berisi informasi tentang definisi dan pengaturan Pers Nasional.",
+      "propositions": [
+        "Pasal 12 membahas Pers Nasional."
+      ],
+      "index": 162
+    },
+    {
+      "id": "284ace06-6b40-4423-8720-03ce17ffab4d",
+      "title": "Wartawan Asing",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait kegiatan wartawan asing di Indonesia.",
+      "propositions": [
+        "Pasal 18 bertujuan untuk menertibkan kegiatan wartawan asing di Indonesia."
+      ],
+      "index": 163
+    },
+    {
+      "id": "a2bbafc9-3909-490f-a617-fd9e544cc7af",
+      "title": "Dokumen Pembangunan",
+      "summary": "Chunk ini berisi informasi tentang dokumen resmi yang berkaitan dengan pembangunan.",
+      "propositions": [
+        "Lembar Negara Nomor 11 Tahun 2017 membahas pembangunan."
+      ],
+      "index": 164
+    },
+    {
+      "id": "dc786f62-540b-4b82-bb04-7d8376d61de8",
+      "title": "Dasar Hukum Peraturan",
+      "summary": "Chunk ini berisi informasi tentang dasar hukum atau landasan konstitusional dari suatu peraturan.",
+      "propositions": [
+        "Undang-Undang ini didasarkan pada Pasal 20 Undang-Undang Dasar Negara Republik Indonesia Tahun 1945."
+      ],
+      "index": 165
+    },
+    {
+      "id": "17cb8236-01f8-40f0-afd7-f9d1827d1438",
+      "title": "Definisi Pihak Konstruksi",
+      "summary": "Chunk ini berisi definisi mengenai pihak-pihak yang terlibat dalam penyediaan jasa konstruksi.",
+      "propositions": [
+        "Subpenyedia Jasa adalah pemberi layanan Jasa Konstruksi kepada Penyedia Jasa."
+      ],
+      "index": 166
+    },
+    {
+      "id": "35e83919-a601-44d8-931e-ac3eccc6d333",
+      "title": "Peraturan Jasa Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang peraturan yang mengatur sektor jasa konstruksi.",
+      "propositions": [
+        "Peraturan Tahun 2017, Nomor 11 mengatur tentang Jasa Konstruksi."
+      ],
+      "index": 167
+    },
+    {
+      "id": "e0abaf4b-a869-42ba-94c8-fb2683f27be6",
+      "title": "Tujuan dan Sasaran Peraturan",
+      "summary": "Chunk ini berisi informasi tentang tujuan dan sasaran yang ingin dicapai dalam peraturan perundang-undangan.",
+      "propositions": [
+        "Tujuan adalah meningkatkan kepatuhan sesuai dengan ketentuan peraturan perundang-undangan."
+      ],
+      "index": 168
+    },
+    {
+      "id": "4a38ab54-f78b-4326-88be-645d2dece0a1",
+      "title": "Keterlibatan Masyarakat Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang peningkatan keterlibatan masyarakat dalam sektor jasa konstruksi.",
+      "propositions": [
+        "Partisipasi masyarakat Jasa Konstruksi meningkat."
+      ],
+      "index": 169
+    },
+    {
+      "id": "5f8ff1bd-df92-4bd5-853f-ef871cf97f47",
+      "title": "Izin Usaha Asing",
+      "summary": "Chunk ini berisi informasi tentang kewenangan pemerintah dalam penerbitan izin badan usaha asing dan izin usaha dalam penanaman modal asing.",
+      "propositions": [
+        "Pemerintah memiliki kewenangan menyelenggarakan penerbitan izin perwaki lan badan usaha asing dan Izin Usaha dalam rangka penanaman modal asing."
+      ],
+      "index": 170
+    },
+    {
+      "id": "a9356c83-6dbb-4c81-b6b7-84c071f1cb28",
+      "title": "Kewenangan Pemerintah Pusat",
+      "summary": "Chunk ini berisi informasi tentang kewenangan Pemerintah Pusat.",
+      "propositions": [
+        "Pemerintah Pusat memiliki kewenangan sebagaimana dimaksud dalam Pasal 4 ayat (1) huruf c."
+      ],
+      "index": 171
+    },
+    {
+      "id": "2f9c54db-91df-4b72-8f1b-78495a90286b",
+      "title": "Tenaga Kerja Asing: Kewenangan Pemerintah",
+      "summary": "Chunk ini berisi informasi tentang kewenangan dan tanggung jawab pemerintah dalam hal tenaga kerja asing.",
+      "propositions": [
+        "Pemerintah Pusat memiliki kewenangan menyelenggarakan penyetaraan tenaga kerja konstruksi asing."
+      ],
+      "index": 172
+    },
+    {
+      "id": "a553d083-f2ba-4576-937b-4828633e9c58",
+      "title": "Forum Jasa Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang fungsi dan tujuan Forum Jasa Konstruksi.",
+      "propositions": [
+        "Forum Jasa Konstruksi berfungsi sebagai media aspirasi masyarakat Jasa Konstruksi."
+      ],
+      "index": 173
+    },
+    {
+      "id": "2b6fd9a4-baf3-4c0d-b655-ed14e852e002",
+      "title": "Pengawasan Jasa Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang peraturan yang mengatur penyelenggaraan pengawasan pemilihan Penyedia Jasa dalam penyelenggaraan Jasa Konstruksi.",
+      "propositions": [
+        "Peraturan tahun 2017, Nomor 11 mengatur penyelenggaraan pengawasan pemilihan Penyedia Jasa dalam penyelenggaraan Jasa Konstruksi."
+      ],
+      "index": 174
+    },
+    {
+      "id": "0adccc9f-abc0-49cc-aa77-543952cff615",
+      "title": "Kewenangan Gubernur",
+      "summary": "Chunk ini berisi informasi tentang kewenangan yang dimiliki oleh Gubernur.",
+      "propositions": [
+        "Gubernur memiliki kewenangan untuk mencapai tujuan sebagaimana dimaksud dalam Pasal 4 ayat (1) huruf f."
+      ],
+      "index": 175
+    },
+    {
+      "id": "f94f3cb2-9785-48b7-ba5a-39bd1703a55b",
+      "title": "Perizinan Usaha Skala Kecil",
+      "summary": "Chunk ini berisi informasi tentang prosedur dan persyaratan perizinan usaha skala kecil.",
+      "propositions": [
+        "Penerbitan Izin Usaha Nasional kualifikasi kecil diatur."
+      ],
+      "index": 176
+    },
+    {
+      "id": "e2dbdc78-5410-460f-945d-353113dc4fe3",
+      "title": "Jenis Usaha",
+      "summary": "Chunk ini berisi definisi dan klasifikasi jenis usaha.",
+      "propositions": [
+        "Usaha Pekerjaan Konstruksi terintegrasi adalah usaha."
+      ],
+      "index": 177
+    },
+    {
+      "id": "2f5a5db2-0bd4-411f-bab5-f3044cf5f27a",
+      "title": "Peraturan Pekerjaan Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang peraturan yang mengatur pekerjaan konstruksi.",
+      "propositions": [
+        "Peraturan Tahun 2017, Nomor 11 mengatur tentang Pekerjaan Konstruksi."
+      ],
+      "index": 178
+    },
+    {
+      "id": "b6959f2c-bbc3-4a98-8e72-29ffcd27dc1b",
+      "title": "Layanan Pekerjaan Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang jenis layanan yang dapat diberikan oleh Pekerjaan Konstruksi terintegrasi.",
+      "propositions": [
+        "Pekerjaan Konstruksi terintegrasi dapat memberikan layanan usaha."
+      ],
+      "index": 179
+    },
+    {
+      "id": "68805563-d776-4b10-b719-fdb0f3a398a9",
+      "title": "Kualifikasi Badan Usaha",
+      "summary": "Chunk ini berisi informasi tentang persyaratan kualifikasi badan usaha.",
+      "propositions": [
+        "Pasal 20 mengatur tentang kualifikasi usaha bagi badan usaha."
+      ],
+      "index": 180
+    },
+    {
+      "id": "c811cd23-7a69-496f-85fb-cf0c1b30449e",
+      "title": "Kualifikasi Usaha Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang kualifikasi badan usaha jasa konstruksi.",
+      "propositions": [
+        "Pasal 22 mengatur tentang Badan usaha Jasa Konstruksi kualifikasi menengah."
+      ],
+      "index": 181
+    },
+    {
+      "id": "3e58da00-6910-47f4-bfe2-37b2e96e6d33",
+      "title": "Peraturan Usaha Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang peraturan yang mengatur persyaratan usaha jasa konstruksi.",
+      "propositions": [
+        "Peraturan tahun 2017, Nomor 11 mengatur tentang Persyaratan Usaha Jasa Konstruksi."
+      ],
+      "index": 182
+    },
+    {
+      "id": "837da9b4-94c4-4246-bbad-0047fc194aac",
+      "title": "Perizinan Usaha Perseorangan",
+      "summary": "Chunk ini berisi informasi tentang persyaratan perizinan usaha untuk usaha perseorangan.",
+      "propositions": [
+        "Peraturan Daerah Nomor 11 Tahun 2017 mengatur tentang Izin Usaha dan Tanda Daftar Usaha Perseorangan."
+      ],
+      "index": 183
+    },
+    {
+      "id": "defacde2-d989-49e3-be63-db3b625672ad",
+      "title": "Sertifikasi Badan Usaha",
+      "summary": "Chunk ini berisi informasi tentang detail peraturan terkait sertifikasi badan usaha.",
+      "propositions": [
+        "Ketentuan lebih lanjut mengenai sertifikasi badan usaha sebagaimana dimaksud pada ayat (2) diatur dalam Peraturan Menteri."
+      ],
+      "index": 184
+    },
+    {
+      "id": "ac5d0be5-d92e-448b-a752-57d7916aa0c8",
+      "title": "Penyedia Jasa Konstruksi Asing",
+      "summary": "Chunk ini berisi informasi tentang izin dan persyaratan bagi penyedia jasa konstruksi asing yang beroperasi di Indonesia.",
+      "propositions": [
+        "Badan usaha Jasa Konstruksi asing atau usaha perseorangan Jasa Konstruksi asing akan melakukan usaha Jasa Konstruksi di wilayah Indonesia."
+      ],
+      "index": 185
+    },
+    {
+      "id": "159dde36-70c8-4560-b3fb-318ef0451023",
+      "title": "Kewenangan Menteri",
+      "summary": "Chunk ini berisi informasi tentang kewenangan dan pemberian izin oleh Menteri.",
+      "propositions": [
+        "Izin perwakilan sebagaimana dimaksud pada ayat (1) huruf b diberikan oleh Menteri."
+      ],
+      "index": 186
+    },
+    {
+      "id": "e08cb5f8-2c88-4dc0-933d-a53723fa7de0",
+      "title": "Pengembangan Usaha Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang ketentuan terkait pengembangan usaha jasa konstruksi.",
+      "propositions": [
+        "Pasal 36 mengatur pengembangan usaha Jasa Konstruksi."
+      ],
+      "index": 187
+    },
+    {
+      "id": "153e6f17-979a-4af1-8122-9552a9390744",
+      "title": "Asosiasi Konstruksi",
+      "summary": "Chunk ini berisi informasi tentang inisiatif dan kegiatan yang dilakukan oleh asosiasi terkait sektor konstruksi.",
+      "propositions": [
+        "Asosiasi badan usaha Jasa Konstruksi menyelenggarakan pengembangan usaha berkelanjutan."
+      ],
+      "index": 188
+    },
+    {
+      "id": "b5b73a1d-39ed-4056-bbff-610ca25772e9",
+      "title": "Cakupan Substansi Hukum",
+      "summary": "Chunk ini berisi informasi tentang cakupan substansi hukum yang diatur dalam peraturan.",
+      "propositions": [
+        "Undang-Undang Nomor 11 Tahun 2017 membahas Pengikatan Jasa Konstruksi."
+      ],
+      "index": 189
+    },
+    {
+      "id": "172f62fe-7f6a-4413-9520-4e34f3c74425",
+      "title": "Prosedur Pemilihan Penyedia Jasa",
+      "summary": "Chunk ini berisi informasi tentang prosedur dan ketentuan terkait pemilihan penyedia jasa.",
+      "propositions": [
+        "Peraturan Tahun 2017, Nomor 11 mengatur pemilihan Penyedia Jasa."
+      ],
+      "index": 190
+    },
+    {
+      "id": "ae4fe287-cbeb-429e-92fd-b62158021302",
+      "title": "Ruang Lingkup Pekerjaan",
+      "summary": "Chunk ini berisi informasi tentang persyaratan dan batasan terkait ruang lingkup pekerjaan.",
+      "propositions": [
+        "Bidang usaha harus sesuai dengan ruang lingkup pekerjaan."
+      ],
+      "index": 191
+    },
+    {
+      "id": "63cd164d-8e31-4207-8a95-209fe6519dd5",
+      "title": "Peraturan Tahun 2017 Nomor 11",
+      "summary": "Chunk ini berisi informasi tentang ketentuan dalam Peraturan Tahun 2017 Nomor 11.",
+      "propositions": [
+        "Peraturan Tahun 2017 Nomor 11 mengatur Pasal 47."
+      ],
+      "index": 192
+    },
+    {
+      "id": "a2bc6cb7-d180-4725-a242-54f7b2fd4bfa",
+      "title": "Kontrak Konstruksi: Tanggung Jawab",
+      "summary": "Chunk ini berisi informasi tentang ketentuan mengenai tanggung jawab para pihak dalam kontrak konstruksi.",
+      "propositions": [
+        "Kontrak Kerja Konstruksi memuat ketentuan tentang kemampuan para pihak yang menimbulkan kerugian bagi salah satu pihak."
+      ],
+      "index": 193
+    },
+    {
+      "id": "e8317746-461f-4c70-b616-f0d3bc53ac47",
+      "title": "Kontrak Konstruksi: Alih Teknologi",
+      "summary": "Chunk ini berisi informasi tentang persyaratan khusus dalam kontrak kerja konstruksi, khususnya terkait alih teknologi.",
+      "propositions": [
+        "Kontrak kerja konstruksi yang dilakukan dengan pihak asing memuat kewajiban alih teknologi."
+      ],
+      "index": 194
+    }
+  ]
+}
