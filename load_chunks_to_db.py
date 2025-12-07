@@ -65,7 +65,9 @@ def load_chunks_from_json(json_file: str, chunker_type: str = None) -> tuple:
                 source=chunk_data.get('source'),
                 page=chunk_data.get('page'),
                 total_pages=chunk_data.get('total_pages'),
-                page_label=chunk_data.get('page_label')
+                page_label=chunk_data.get('page_label'),
+                semantic_score=chunk_data.get('semantic_score', 0.0),
+                boundary_type=chunk_data.get('boundary_type', 'semantic')
             )
         elif chunker_type == 'agentic':
             chunk = AgenticChunk(

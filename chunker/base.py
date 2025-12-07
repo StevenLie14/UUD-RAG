@@ -1,15 +1,17 @@
 from langchain_core.documents import Document
 from model import BaseChunk
-from typing import Dict, List
+from typing import Dict, List, Set
 import hashlib
 import json
 import os
+from datetime import datetime
 
 class BaseChunker:
-    def __init__(self, cache_dir: str = "./chunk_cache"):
+    def __init__(self, cache_dir: str = "./chunk_cache", chunker_name: str = "base"):
         self.chunks : Dict[str, BaseChunk] = {}
         self.cache_dir = cache_dir
-        self.document_chunks: Dict[str, List[str]] = {}  # Maps doc hash -> chunk IDs
+        self.chunker_name = chunker_name
+        self.processed_doc_hashes: Set[str] = set()  # Track processed documents
         os.makedirs(cache_dir, exist_ok=True)
     
     def _get_document_hash(self, page: Document) -> str:
@@ -20,86 +22,84 @@ class BaseChunker:
         hash_input = f"{source}:{page_num}:{content}"
         return hashlib.sha256(hash_input.encode()).hexdigest()
     
-    def _get_cache_path(self, doc_hash: str) -> str:
-        """Get cache file path for a document"""
-        return os.path.join(self.cache_dir, f"{doc_hash}.json")
+    def _get_consolidated_cache_path(self) -> str:
+        """Get path for consolidated cache file"""
+        return os.path.join(self.cache_dir, f"{self.chunker_name}_cache.json")
     
-    def _load_cached_chunks(self, doc_hash: str) -> bool:
-        """Load chunks from cache for a document. Returns True if loaded."""
-        cache_path = self._get_cache_path(doc_hash)
+    def _load_consolidated_cache(self) -> bool:
+        """Load all chunks from consolidated cache file"""
+        cache_path = self._get_consolidated_cache_path()
         if os.path.exists(cache_path):
             try:
                 with open(cache_path, 'r', encoding='utf-8') as f:
                     cached_data = json.load(f)
-                    chunk_ids = cached_data.get('chunk_ids', [])
-                    chunks_data = cached_data.get('chunks', {})
+                    
+                    chunks_data = cached_data.get('chunks', [])
+                    self.processed_doc_hashes = set(cached_data.get('processed_docs', []))
                     chunk_type = cached_data.get('chunk_type', 'base')
                     
                     # Reconstruct chunk objects from JSON
-                    chunks = self._reconstruct_chunks(chunks_data, chunk_type)
+                    for chunk_dict in chunks_data:
+                        chunk = self._reconstruct_chunk(chunk_dict, chunk_type)
+                        if chunk:
+                            self.chunks[chunk.id] = chunk
                     
-                    # Add chunks to main collection
-                    for chunk_id, chunk in chunks.items():
-                        self.chunks[chunk_id] = chunk
-                    
-                    # Track document-to-chunks mapping
-                    self.document_chunks[doc_hash] = chunk_ids
                     return True
-            except Exception:
-                pass
+            except Exception as e:
+                print(f"Failed to load cache: {e}")
         return False
     
-    def _save_chunks_to_cache(self, doc_hash: str, chunk_ids: List[str]):
-        """Save chunks to cache for a document"""
-        cache_path = self._get_cache_path(doc_hash)
+    def _save_consolidated_cache(self):
+        """Save all chunks to consolidated cache file"""
+        from logger import Logger
+        cache_path = self._get_consolidated_cache_path()
+        
         try:
-            chunks_to_cache = {}
-            for cid in chunk_ids:
-                if cid in self.chunks:
-                    # Convert Pydantic model to dict
-                    chunks_to_cache[cid] = self.chunks[cid].model_dump()
+            chunks_data = []
+            for chunk in self.chunks.values():
+                chunks_data.append(chunk.model_dump())
             
-            chunk_type = self._get_chunk_type()
+            cache_data = {
+                'chunk_type': self._get_chunk_type(),
+                'chunker_name': self.chunker_name,
+                'total_chunks': len(chunks_data),
+                'processed_docs': list(self.processed_doc_hashes),
+                'last_updated': datetime.now().isoformat(),
+                'chunks': chunks_data
+            }
             
             with open(cache_path, 'w', encoding='utf-8') as f:
-                json.dump({
-                    'chunk_ids': chunk_ids,
-                    'chunks': chunks_to_cache,
-                    'chunk_type': chunk_type
-                }, f, ensure_ascii=False, indent=2)
-        except Exception:
-            pass
+                json.dump(cache_data, f, ensure_ascii=False, indent=2)
+            
+            Logger.log(f"✓ Saved {len(chunks_data)} chunks to {cache_path}")
+        except Exception as e:
+            Logger.log(f"Failed to save cache: {e}")
     
     def _get_chunk_type(self) -> str:
         """Get the chunk type for this chunker (to be overridden by subclasses)"""
         return 'base'
     
-    def _reconstruct_chunks(self, chunks_data: Dict[str, dict], chunk_type: str) -> Dict[str, BaseChunk]:
-        """Reconstruct chunk objects from JSON data (to be overridden by subclasses)"""
-        return {}
+    def _reconstruct_chunk(self, chunk_dict: dict, chunk_type: str) -> BaseChunk:
+        """Reconstruct a single chunk object from dict (to be overridden by subclasses)"""
+        return None
     
     def get_uncached_documents(self, pages: List[Document]) -> List[Document]:
-        """Filter out documents that are already cached"""
+        """Filter out documents that are already processed"""
         uncached = []
         for page in pages:
             doc_hash = self._get_document_hash(page)
-            if not self._load_cached_chunks(doc_hash):
+            if doc_hash not in self.processed_doc_hashes:
                 uncached.append(page)
         return uncached
+    
+    def mark_document_processed(self, page: Document):
+        """Mark a document as processed"""
+        doc_hash = self._get_document_hash(page)
+        self.processed_doc_hashes.add(doc_hash)
     
     def get_chunks_for_database(self) -> List[BaseChunk]:
         """Get all chunks ready for database storage"""
         return list(self.chunks.values())
-    
-    def export_all_chunks_to_cache(self):
-        """Export all chunks to cache after processing is complete"""
-        from logger import Logger
-        Logger.log(f"Exporting {len(self.document_chunks)} documents to cache...")
-        
-        for doc_hash, chunk_ids in self.document_chunks.items():
-            self._save_chunks_to_cache(doc_hash, chunk_ids)
-        
-        Logger.log(f"✓ All chunks exported to {self.cache_dir}")
 
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
         raise NotImplementedError
