@@ -9,25 +9,21 @@ class BaseLoader:
         self.source = source
         self.pages = []
 
-    def _clean_text(self,text: str) -> str:
-        # Remove common headers/footers and artifacts
-        text = re.sub(r'PRESIDEN\s+REPUBLIK\s+INDONESIA', '', text, flags=re.IGNORECASE)
-        text = re.sub(r'SK\s+No\s+\d+\s*[A-Z]*', '', text)
-        # Remove page number patterns like "- 12 -" or "(12)"
-        text = re.sub(r'(?:^|\n)\s*[-–—]?\s*\(?\d+\)?\s*[-–—]?\s*(?:$|\n)', '\n', text)
-        # Remove dot/bullet-only lines (leaders)
-        text = '\n'.join(
-            ln for ln in text.splitlines()
-            if not re.match(r"^\s*(?:[\.·•]+\s*)+$", ln)
-        )
-        # Remove leading dot leaders at start of lines
-        text = re.sub(r"(^|\n)\s*[\.·•]{2,}\s*", "\n", text)
-        # Normalize whitespace: collapse multiple spaces and excessive newlines
-        text = re.sub(r"[ \t]{2,}", " ", text)
-        text = re.sub(r"\n{3,}", "\n\n", text)
-        # Remove stray non-word artifacts but keep basic punctuation
-        text = re.sub(r"[^\w\s.,;:()'\-]", "", text)
-        # Trim
+    def _clean_text(self, text: str) -> str:
+        """Minimal text cleaning - avoid regex patterns that can hang"""
+        # Only do essential cleaning, skip problematic regex
+        
+        # Remove common headers/footers (simple string replace)
+        text = text.replace('PRESIDEN REPUBLIK INDONESIA', '')
+        
+        # Normalize excessive whitespace
+        text = '\n'.join(line.rstrip() for line in text.split('\n'))
+        text = '\n'.join(line for line in text.split('\n') if line.strip())
+        
+        # Collapse multiple newlines
+        while '\n\n\n' in text:
+            text = text.replace('\n\n\n', '\n\n')
+        
         return text.strip()
     
     def load_data(self):
@@ -45,12 +41,17 @@ class BaseLoader:
             
             loader = PyPDFLoader(file_path)
             pages_loaded = []
+            page_count = 0
             
             try:
                 async for page in loader.alazy_load():
+                    page_count += 1
+                    Logger.log(f"  Page {page_count} loaded, cleaning text...")
                     page.page_content = self._clean_text(page.page_content)
+                    Logger.log(f"  Page {page_count} cleaned")
                     pages_loaded.append(page)
                 self.pages.extend(pages_loaded)
+                Logger.log(f"✓ Loaded {len(pages_loaded)} pages from {file_name}")
                 
             except Exception as async_error:
                 Logger.log(f"Async loading failed for {file_name}: {async_error}")
