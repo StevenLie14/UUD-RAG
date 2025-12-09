@@ -1,0 +1,15 @@
+{
+  "test_date": "2025-12-10T02:50:11.305791",
+  "testset": "./test_set\\uud_rag_sample_testset_2.json",
+  "num_questions": 1,
+  "results": [
+    {
+      "configuration": "recursive_faiss_dense",
+      "error": "'RAGASEvaluator' object has no attribute 'logger'",
+      "timestamp": "2025-12-10T02:50:11.302485",
+      "chunker": "recursive",
+      "database": "faiss",
+      "search_strategy": "dense"
+    }
+  ]
+}

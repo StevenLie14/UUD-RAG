@@ -85,9 +85,6 @@ class RecursiveChunker(BaseChunker):
         # Final save
         self._save_consolidated_cache()
         Logger.log(f"Created {len(self.chunks)} total chunks")
-        
-        # Final export of all chunks
-        self.export_all_chunks_to_cache()
     
     def _get_chunk_type(self) -> str:
         return 'recursive'

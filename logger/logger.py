@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Logger:
     enabled: bool = True
     
@@ -12,4 +14,5 @@ class Logger:
     @staticmethod
     def log(message: str) -> None:
         if Logger.enabled:
-            print(f"[LOG]: {message}")
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            print(f"[{timestamp}] {message}")
