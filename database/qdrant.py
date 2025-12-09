@@ -8,6 +8,8 @@ from sentence_transformers import SentenceTransformer
 from model import BaseChunk
 from typing import Dict
 from database.base import VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, ColbertSearchable, CrossEncoderSearchable
+import json
+import os
 
 class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, ColbertSearchable, CrossEncoderSearchable):
     def __init__(self, qdrant_url : str = "http://localhost:6333", qdrant_api_key: str = None, collection_name: str = "documents", late_interaction_model_name: str = "jinaai/jina-colbert-v2", sparse_model_name: str = "Qdrant/bm25", dense_model_name: str = "LazarusNLP/all-indo-e5-small-v4", reranker_model_name: str = "jinaai/jina-reranker-v2-base-multilingual"):
@@ -198,31 +200,79 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
             return []
         
         
-    def store_chunks(self, chunks: Dict[str, BaseChunk]):
-        points = []
-        dense_embeddings = list(self.dense_model.encode([chunk.get_context() for chunk in chunks.values()]))
-        sparse_embeddings = list(self.sparse_model.embed([chunk.get_context() for chunk in chunks.values()]))
-        late_interaction_embeddings = list(self.late_interaction_model.embed([chunk.get_context() for chunk in chunks.values()]))
+    def store_chunks(self, chunks: Dict[str, BaseChunk], batch_size: int = 8, resume: bool = True):
         keys = list(chunks.keys())
-        values = list(chunks.values())
+        total = len(keys)
+        progress_file = f".qdrant_progress_{self.collection_name}.json"
         
-        for dense_vec, sparse_vec, late_interaction_vec, key, value in zip(dense_embeddings, sparse_embeddings, late_interaction_embeddings, keys, values):
-            point = PointStruct(
-                id = str(key),
-                vector={
-                    "dense" : dense_vec,
-                    "sparse" : sparse_vec.as_object(),
-                    "late_interaction" : late_interaction_vec
-                },
-                payload=value.get_payload()
-            )
-            points.append(point)
+        completed_batches = set()
+        if resume and os.path.exists(progress_file):
+            try:
+                with open(progress_file, 'r') as f:
+                    progress = json.load(f)
+                    completed_batches = set(progress.get('completed_batches', []))
+                    if completed_batches:
+                        Logger.log(f"Resuming: {len(completed_batches)} batches already completed")
+            except Exception as e:
+                Logger.log(f"Could not load progress file, starting fresh: {e}")
+        
+        Logger.log(f"Storing {total} chunks to Qdrant in batches of {batch_size}")
+        
+        batch_num = 0
+        for start in range(0, total, batch_size):
+            if batch_num in completed_batches:
+                batch_num += 1
+                continue
+            
+            end = min(start + batch_size, total)
+            batch_keys = keys[start:end]
+            batch_values = [chunks[k] for k in batch_keys]
+            contexts = [chunk.get_context() for chunk in batch_values]
 
-        try:
-            self.add_documents(points)
-        except Exception as e:
-            Logger.log(f"Error adding documents: {e}")
-            raise
+            # Create embeddings per batch to reduce peak memory
+            dense_embeddings = list(self.dense_model.encode(contexts, batch_size=min(batch_size, len(contexts))))
+            sparse_embeddings = list(self.sparse_model.embed(contexts))
+            late_interaction_embeddings = list(self.late_interaction_model.embed(contexts))
+
+            points = []
+            for dense_vec, sparse_vec, late_interaction_vec, key, value in zip(
+                dense_embeddings, sparse_embeddings, late_interaction_embeddings, batch_keys, batch_values
+            ):
+                point = PointStruct(
+                    id=str(key),
+                    vector={
+                        "dense": dense_vec,
+                        "sparse": sparse_vec.as_object(),
+                        "late_interaction": late_interaction_vec
+                    },
+                    payload=value.get_payload()
+                )
+                points.append(point)
+
+            try:
+                self.client.upsert(
+                    collection_name=self.collection_name,
+                    points=points,
+                    wait=True
+                )
+                completed_batches.add(batch_num)
+                
+                # Save progress
+                with open(progress_file, 'w') as f:
+                    json.dump({'completed_batches': list(completed_batches)}, f)
+                
+                Logger.log(f"✓ Stored batch {batch_num} ({start}-{end}, {len(points)} chunks)")
+            except Exception as e:
+                Logger.log(f"Error adding documents for batch {batch_num} ({start}-{end}): {e}")
+                Logger.log(f"Progress saved to {progress_file}. Run again to resume.")
+                raise
+            
+            batch_num += 1
+        
+        # Cleanup progress file on success
+        if os.path.exists(progress_file):
+            os.remove(progress_file)
+        Logger.log(f"✓ All chunks stored successfully!")
         
             
         

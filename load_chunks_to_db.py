@@ -252,6 +252,8 @@ def main():
             if clear_db:
                 Logger.log("Clearing existing Qdrant collection...")
                 qdrant_db.delete_collection()
+                # Recreate collection after deletion
+                qdrant_db._create_collection_if_not_exists()
             
             qdrant_db.store_chunks(chunks_dict)
             qdrant_db.close()
