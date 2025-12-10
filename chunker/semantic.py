@@ -25,7 +25,6 @@ class SemanticChunker(BaseChunker):
             def __init__(self, model):
                 self.model = model
             
-                
             def embed_documents(self, texts):
                 return self.model.encode(texts).tolist()
             
@@ -41,40 +40,22 @@ class SemanticChunker(BaseChunker):
             number_of_chunks=number_of_chunks
         )
         
-        # Heuristics for filtering and cleaning
-        self.min_chunk_chars = 20  # skip overly short chunks
-        self.min_alnum_ratio = 0.15  # require some alphanumeric density
-        self.dot_line_regex = re.compile(r"^\s*(?:[\.·•]+\s*)+$")
-        self.leading_dots_regex = re.compile(r"(^|\n)\s*[\.·•]{2,}\s*")
-        self.multi_space_regex = re.compile(r"[ \t]{2,}")
-        self.multi_newline_regex = re.compile(r"\n{3,}")
-        
         Logger.log(f"Semantic chunker initialized with {breakpoint_threshold_type} threshold: {breakpoint_threshold_amount}")
-
-    def _clean_text(self, text: str) -> str:
-        # Remove lines that are only dots/bullets
-        lines = text.splitlines()
-        cleaned_lines = [ln for ln in lines if not self.dot_line_regex.match(ln)]
-        cleaned = "\n".join(cleaned_lines)
-        # Remove leading dot leaders and normalize spacing/newlines
-        cleaned = self.leading_dots_regex.sub("\n", cleaned)
-        cleaned = self.multi_space_regex.sub(" ", cleaned)
-        cleaned = self.multi_newline_regex.sub("\n\n", cleaned)
-        # Trim
-        return cleaned.strip()
+        
+        # Heuristics for filtering chunks
+        self.min_chunk_chars = 20
+        self.min_alnum_ratio = 0.15
 
     def _is_meaningful_chunk(self, text: str) -> bool:
-        if not text:
+        """Check if chunk has meaningful content"""
+        if not text or len(text) < self.min_chunk_chars:
             return False
-        # basic length check
-        if len(text) < self.min_chunk_chars:
-            return False
-        # count alphanumeric characters (Unicode aware for Indo text)
+        # Count alphanumeric characters
         alnum = sum(ch.isalnum() for ch in text)
         ratio = alnum / max(len(text), 1)
         if ratio < self.min_alnum_ratio:
             return False
-        # avoid chunks that are mostly punctuation or single symbols
+        # Avoid chunks that are only punctuation
         if re.fullmatch(r"\W+", text):
             return False
         return True
@@ -96,106 +77,61 @@ class SemanticChunker(BaseChunker):
                 Logger.log("All documents already processed")
                 return
             
-            total_pages = len(uncached_pages)
-            Logger.log(f"Processing {total_pages} new documents with semantic chunking...")
+            Logger.log(f"Processing {len(uncached_pages)} new documents with semantic chunking...")
             
-            checkpoint_interval = 100  # Save every 100 documents
-            processed_count = 0
+            # Process all uncached documents at once (simpler, faster)
+            docs = self.text_splitter.split_documents(uncached_pages)
             
-            # Process each document separately
-            for idx, page in enumerate(uncached_pages, 1):
-                try:
-                    
-                    # Pre-clean page content to reduce OCR artifacts
-                    if isinstance(page, Document):
-                        page.page_content = self._clean_text(page.page_content or "")
-                    
-                    # Split this specific page
-                    split_docs = self.text_splitter.split_documents([page])
-                    
-                    # Merge small adjacent fragments to avoid micro-chunks
-                    merged_contents: List[Document] = []
-                    buffer_text = ""
-                    buffer_meta = None
-                    for doc in split_docs:
-                        content = self._clean_text(doc.page_content or "")
-                        if not content:
-                            continue
-                        if len(buffer_text) == 0:
-                            buffer_meta = doc.metadata or {}
-                        # Accumulate until meaningful size
-                        candidate = (buffer_text + ("\n\n" if buffer_text else "") + content).strip()
-                        if self._is_meaningful_chunk(candidate):
-                            # finalize chunk
-                            merged_doc = Document(page_content=candidate, metadata=buffer_meta or doc.metadata or {})
-                            merged_contents.append(merged_doc)
-                            buffer_text = ""
-                            buffer_meta = None
-                        else:
-                            buffer_text = candidate
-                            buffer_meta = buffer_meta or (doc.metadata or {})
-                    # Flush remaining buffer if meaningful
-                    if buffer_text and self._is_meaningful_chunk(buffer_text):
-                        merged_contents.append(Document(page_content=buffer_text, metadata=buffer_meta or {}))
-                    
-                    skipped_count = 0
-                    for doc in merged_contents:
-                        cleaned = self._clean_text(doc.page_content)
-                        if not self._is_meaningful_chunk(cleaned):
-                            skipped_count += 1
-                            continue
-                        id = str(uuid.uuid4())
-                        metadata = doc.metadata or {}
-
-                        chunk_obj = SemanticChunk(
-                            id=id,
-                            content=cleaned,
-                            source=metadata.get("source"),
-                            page=metadata.get("page"),
-                            total_pages=metadata.get("total_pages"),
-                            page_label=metadata.get("page_label"),
-                            semantic_score=0.0,  # Default score
-                            boundary_type="semantic"  # Semantic boundary type
-                        )
-
-                        self.chunks[id] = chunk_obj
-                    
-                    # Mark document as processed
-                    self.mark_document_processed(page)
-                    processed_count += 1
-                    
-                    if skipped_count:
-                        Logger.log(f"Doc {idx}/{total_pages}: skipped {skipped_count} non-meaningful chunks")
-                    
-                    # Checkpoint save every N documents
-                    if idx % checkpoint_interval == 0:
-                        Logger.log(f"Checkpoint: Saving progress ({idx}/{total_pages} documents)...")
-                        self._save_consolidated_cache()
-                    
-                    # Show progress every 100 pages
-                    if idx % 100 == 0 or idx == total_pages:
-                        Logger.log(f"Progress: {idx}/{total_pages} pages processed ({idx*100//total_pages}%)")
-                
-                except Exception as e:
-                    Logger.log(f"Error processing document {idx}/{total_pages}: {e}")
-                    Logger.log(f"Saving progress before continuing...")
-                    self._save_consolidated_cache()
-                    Logger.log(f"Progress saved. Skipping problematic document.")
+            Logger.log(f"Semantic chunker created {len(docs)} chunks from {len(uncached_pages)} documents")
+            
+            # Filter out non-meaningful chunks
+            meaningful_count = 0
+            skipped_count = 0
+            
+            for doc in docs:
+                # Check if chunk is meaningful
+                if not self._is_meaningful_chunk(doc.page_content):
+                    skipped_count += 1
                     continue
+                
+                chunk_id = str(uuid.uuid4())
+                metadata = doc.metadata or {}
+                semantic_score = metadata.get("semantic_similarity", 0.95)
+                boundary_type = "semantic_boundary"
+                
+                chunk_obj = SemanticChunk(
+                    id=chunk_id,
+                    content=doc.page_content,
+                    source=metadata.get("source", "Unknown"),
+                    page=metadata.get("page", 0),
+                    total_pages=metadata.get("total_pages", 0),
+                    page_label=metadata.get("page_label", ""),
+                    semantic_score=semantic_score,
+                    boundary_type=boundary_type
+                )
+                
+                self.chunks[chunk_id] = chunk_obj
+                meaningful_count += 1
             
-            Logger.log(f"Total chunks: {len(self.chunks)} (added {processed_count} documents)")
+            if skipped_count > 0:
+                Logger.log(f"Skipped {skipped_count} non-meaningful chunks")
             
-            # Final save
+            # Mark all processed documents
+            for page in uncached_pages:
+                self.mark_document_processed(page)
+            
+            Logger.log(f"Successfully created {len(self.chunks)} total semantic chunks ({meaningful_count} added)")
+            
+            # Save cache
             self._save_consolidated_cache()
             
         except KeyboardInterrupt:
             Logger.log(f"\nInterrupted by user. Saving progress...")
             self._save_consolidated_cache()
-            Logger.log(f"Progress saved: {processed_count}/{total_pages} documents processed")
+            Logger.log(f"Progress saved")
             raise
         except Exception as e:
             Logger.log(f"Error in semantic chunking: {e}")
-            Logger.log(f"Saving progress before exit...")
             self._save_consolidated_cache()
             raise
     
