@@ -3,197 +3,239 @@ import uuid
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import SystemMessage, HumanMessage
 from pydantic import BaseModel
-from typing import Optional, List
+from typing import Optional, List, Dict
 from langchain_core.documents import Document
 import os
+
 from llm.base import BaseLLM
 from .base import BaseChunker
-from typing import Dict
 from model.chunk.simple_chunk import SimpleChunk
 
 
 class AgenticChunkerV2(BaseChunker):
+    """
+    Option B: Document-level agentic chunking.
+    - Combine all pages per document.
+    - Run LLM chunking only once.
+    - Map chunk text back to page numbers.
+    """
+
     def __init__(self, llm: BaseLLM, cache_dir: str = "./chunk_cache"):
         super().__init__(cache_dir=cache_dir, chunker_name="agentic_v2")
         self.llm = llm
-        self.current_page = None
-        self.current_doc_chunk_ids = None
-    
+
+    # -------------------------------------------------------------------------
+    # MAIN ENTRY
+    # -------------------------------------------------------------------------
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
-        # Load existing cache
+        """Group pages by source → chunk per document → store results."""
+        
         if use_cache:
             self._load_consolidated_cache()
-            if len(self.chunks) > 0:
-                Logger.log(f"Loaded {len(self.chunks)} chunks from cache")
+
+        # ───────────────────────────────────────────────────────────────
+        # GROUP PAGES BY DOCUMENT SOURCE
+        # ───────────────────────────────────────────────────────────────
+        documents_by_source: Dict[str, List[Document]] = {}
+        for page in pages:
+            src = page.metadata.get("source")
+            if src not in documents_by_source:
+                documents_by_source[src] = []
+            documents_by_source[src].append(page)
+
+        # Filter out already processed documents
+        documents_to_process = {src: pages for src, pages in documents_by_source.items() 
+                               if not self.is_document_processed_by_source(src)}
         
-        # Filter uncached documents
-        uncached_pages = self.get_uncached_documents(pages)
-        if len(uncached_pages) < len(pages):
-            Logger.log(f"Skipping {len(pages) - len(uncached_pages)} already processed documents")
+        total_docs = len(documents_to_process)
+        cached_docs = len(documents_by_source) - total_docs
         
-        if not uncached_pages:
+        if cached_docs > 0:
+            Logger.log(f"Loaded {len(self.chunks)} chunks from cache")
+            Logger.log(f"Skipping {cached_docs} already processed documents")
+        
+        if total_docs == 0:
             Logger.log("All documents already processed")
             return
         
-        Logger.log(f"Processing {len(uncached_pages)} new documents with agentic chunking v2...")
-        
-        checkpoint_interval = 25  # Save every 25 documents
-        processed_count = 0
-        
-        try:
-            for idx, page in enumerate(uncached_pages, 1):
-                try:
-                    self.current_doc_chunk_ids = []
-                    self.current_page = page
-                    
-                    # Use the new agentic chunking method
-                    self._agentic_chunking(page)
-                    
-                    # Mark document as processed
-                    self.mark_document_processed(page)
-                    self.current_doc_chunk_ids = None
-                    processed_count += 1
-                    
-                    # Checkpoint save every N documents
-                    if idx % checkpoint_interval == 0:
-                        Logger.log(f"Checkpoint: Saving progress ({idx}/{len(uncached_pages)} documents)...")
-                        self._save_consolidated_cache()
-                        Logger.log(f"Checkpoint saved. Total chunks so far: {len(self.chunks)}")
-                    
-                except Exception as e:
-                    Logger.log(f"Error processing document {idx}/{len(uncached_pages)}: {e}")
-                    Logger.log(f"Saving progress before continuing...")
-                    self._save_consolidated_cache()
-                    Logger.log(f"Progress saved. Skipping problematic document.")
-                    continue
-        
-        except KeyboardInterrupt:
-            Logger.log(f"\nInterrupted by user. Saving progress...")
-            self._save_consolidated_cache()
-            Logger.log(f"Progress saved: {processed_count}/{len(uncached_pages)} documents processed")
-            raise
-        
-        Logger.log(f"Total chunks: {len(self.chunks)} (added {processed_count} documents)")
-        
-        # Final save
+        Logger.log(f"Processing {total_docs} new documents with agentic v2 chunking...")
+
+        for idx, (source, doc_pages) in enumerate(documents_to_process.items(), 1):
+            source_name = source.split('/')[-1] if '/' in source else source.split('\\')[-1] if '\\' in source else source
+            Logger.log(f"\n[{idx}/{total_docs}] Processing: {source_name} ({len(doc_pages)} pages)")
+
+            # Combine all pages
+            Logger.log(f"  - Merging {len(doc_pages)} pages...")
+            full_text, page_ranges = self._merge_pages(doc_pages)
+            Logger.log(f"  - Full document length: {len(full_text)} characters")
+
+            # Run agentic chunking for full document
+            try:
+                Logger.log(f"  - Sending to LLM for chunking...")
+                chunks_text = self._agentic_chunk_document(full_text)
+                Logger.log(f"  - LLM generated {len(chunks_text)} chunks")
+            except Exception as e:
+                Logger.log(f"  - ERROR during chunking: {e}")
+                continue
+
+            # Map chunks → metadata + page number
+            Logger.log(f"  - Mapping chunks to page numbers...")
+            chunks_created = 0
+            for chunk_text in chunks_text:
+                self._create_chunk_with_page_mapping(
+                    chunk_text,
+                    source,
+                    page_ranges
+                )
+                chunks_created += 1
+            
+            Logger.log(f"  - Created {chunks_created} chunks")
+
+            self.mark_document_processed_by_source(source)
+            
+            # Save progress every 5 documents
+            if idx % 5 == 0:
+                Logger.log(f"\n[CHECKPOINT] Saving progress ({idx}/{total_docs} documents)...")
+                self._save_consolidated_cache()
+                Logger.log(f"[CHECKPOINT] Total chunks so far: {len(self.chunks)}")
+            
+            # Show overall progress
+            Logger.log(f"\nProgress: {idx}/{total_docs} documents ({idx*100//total_docs}%)")
+
+        Logger.log(f"\n{'='*70}")
+        Logger.log(f"COMPLETED: Processed {total_docs} documents")
+        Logger.log(f"Total chunks created: {len(self.chunks)}")
+        Logger.log(f"{'='*70}")
         self._save_consolidated_cache()
-    
-    def _agentic_chunking(self, page: Document) -> List[str]:
+
+    # -------------------------------------------------------------------------
+    # MERGE PAGES INTO A SINGLE DOCUMENT
+    # -------------------------------------------------------------------------
+    def _merge_pages(self, pages: List[Document]):
         """
-        Dynamically splits text into meaningful chunks using LLM.
-        This is a simpler approach - just split text into semantic chunks.
+        Combine pages in correct order and track their character ranges.
+        Returns:
+            full_text: str
+            page_ranges: list of (page_num, start_char, end_char)
         """
-        text = page.page_content
+        pages = sorted(pages, key=lambda p: p.metadata.get("page", 0))
 
-        # Get response from LLM
-        response = self.llm.answer(ChatPromptTemplate.from_messages([
-            ("system", """Anda adalah asisten AI yang sangat teliti yang membantu membagi teks dokumen hukum Indonesia (Undang-Undang, Peraturan, dll.) menjadi potongan (chunk) yang bermakna berdasarkan struktur dan topik, BUKAN per kalimat.
+        full_text = ""
+        page_ranges = []
 
-TUJUAN UTAMA:
-- Setiap chunk mewakili satu unit makna yang utuh: bisa berupa satu atau beberapa pasal, ayat, atau bagian yang membahas satu topik/subtopik yang saling berkaitan.
-- SEBISA MUNGKIN, satu chunk berisi SATU PASAL utuh beserta seluruh ayatnya.
-- Hanya jika pasal tersebut sangat panjang atau jelas terbagi menjadi beberapa sub-topik berbeda, Anda boleh memecahnya menjadi 2–3 chunk.
-- Chunk TIDAK BOLEH terlalu pendek seperti hanya satu kalimat jika kalimat itu masih terkait kuat dengan kalimat-kalimat setelah/sebelumnya.
-- Utamakan koherensi dan kelengkapan konteks ketimbang pemotongan terlalu sering.
+        cursor = 0
+        for page in pages:
+            txt = page.page_content
+            start = cursor
+            end = start + len(txt)
 
-PEDOMAN PEMBAGIAN:
-1. Perhatikan struktur hukum:
-   - Usahakan membagi berdasarkan BAGIAN/BAB/PARAGRAF/PASAL bila terlihat jelas.
-   - Satu chunk boleh berisi beberapa ayat dalam satu pasal jika masih satu topik.
-   - Jika satu pasal/ayat terlalu panjang tapi jelas terbagi menjadi beberapa sub-topik, boleh dipecah menjadi 2–3 chunk yang tetap utuh secara makna.
+            page_ranges.append({
+                "page": page.metadata.get("page"),
+                "start": start,
+                "end": end
+            })
 
-2. JANGAN memotong per kalimat:
-   - SATU chunk boleh berisi beberapa kalimat yang saling mendukung.
-   - Jangan buat chunk hanya 1–2 kalimat kecuali benar-benar berdiri sendiri dan tidak butuh kalimat lain untuk dipahami.
+            full_text += txt + "\n"
+            cursor = end + 1
 
-3. Jaga koherensi dan konteks:
-   - Jika ada definisi yang dijelaskan di beberapa kalimat berurutan, satukan dalam satu chunk.
-   - Pastikan setiap chunk cukup konteks: sertakan teks "Pasal X." beserta ayat-ayat di bawahnya bila ada di teks.
+        return full_text, page_ranges
 
-4. Panjang chunk (kira-kira):
-   - Usahakan panjang chunk di kisaran 300–1500 karakter (bukan batas keras, hanya panduan).
-   - Jika sebuah bagian sangat penting dan panjang, lebih baik dipecah menjadi 2–3 chunk besar yang sama-sama koheren daripada banyak chunk kecil.
+    # -------------------------------------------------------------------------
+    # LLM AGENTIC CHUNKING FOR A FULL DOCUMENT
+    # -------------------------------------------------------------------------
+    def _agentic_chunk_document(self, text: str) -> List[str]:
 
-FORMAT OUTPUT:
-- Kembalikan setiap chunk yang dipisahkan dengan string khusus: ---SPLIT--- (tanpa spasi di kiri/kanan).
-- Setiap chunk harus berupa teks murni tanpa penomoran, bullet points, heading, atau label tambahan.
-- JANGAN menambahkan penjelasan di luar isi teks asli.
-- JANGAN menambahkan judul baru atau ringkasan; cukup gunakan teks asli yang telah dikelompokkan.
+        system_prompt = """
+Anda adalah asisten AI yang sangat teliti yang bertugas melakukan chunking dokumen hukum Indonesia (UU, PP, Perpres, Permen, Perda, dan dokumen hukum lainnya) dengan menjaga struktur asli secara utuh tanpa modifikasi apa pun.
 
-CONTOH FORMAT YANG DIINGINKAN:
-Pasal 3.\n(1) Milik-milik Algemcene Volkscredietbank menjadi milik Bank Rakyat Indonesia.\n(2) Hutang-hutang Algemeene Volkscredietbank dioper oleh Bank Rakyat Indonesia.\n(3) Jumlah hutang-hutang yang melebihi jumlah harga sebenarnya dari piutang-piutang, uang kas, saldo pada bank-bank lain dan efek-efek ditutup oleh Pemerintah.
+PRINSIP MUTLAK:
+1. JANGAN menghapus, mengubah, menambah, memperbaiki, atau menafsirkan teks dalam bentuk apa pun.
+2. JANGAN memperbaiki struktur, format, kesalahan ketik, tanda baca, atau penomoran.
+3. Pertahankan seluruh format asli seperti "BAB I", "Bagian Kedua", "Pasal 12", "Ayat (3)", termasuk seluruh baris, spasi, dan jeda.
+4. Output harus dapat digunakan untuk merekonstruksi bagian asli dari dokumen tanpa kehilangan konteks.
 
+TUJUAN CHUNKING:
+- Setiap chunk mewakili satu unit makna utuh.
+- Usahakan 1 chunk = 1 PASAL lengkap (termasuk semua ayat di bawahnya).
+- Jika satu pasal sangat panjang dan memiliki subtopik yang jelas, Anda boleh memecahnya menjadi 2–3 chunk besar.
+- JANGAN memotong per kalimat.
+- JANGAN pernah menggabungkan dua pasal berbeda dalam satu chunk.
+- Sertakan BAB / Bagian / Paragraf yang berada di atas pasal tersebut jika muncul dalam teks.
+
+PEDOMAN KHUSUS:
+1. Gunakan struktur hukum sebagai dasar pembagian: BAB → Bagian → Paragraf → Pasal → Ayat.
+2. Jika BAB/BAGIAN/PARAGRAF muncul tepat sebelum pasal, satukan ke dalam chunk pasal tersebut.
+3. Setiap chunk harus utuh secara makna dan mengandung konteks yang cukup.
+4. Panjang chunk ideal: 300–1500 karakter (panduan fleksibel, bukan batas keras).
+5. Jika teks rusak, tidak lengkap, tidak rapi, memiliki format kacau, atau hilang sebagian:
+   - JANGAN memperbaiki.
+   - JANGAN menebak.
+   - JANGAN mengisi bagian yang hilang.
+   - Cukup lakukan chunking berdasarkan potongan teks yang ada secara apa adanya.
+
+KEBERSIHAN OUTPUT:
+- Setiap chunk dipisahkan dengan string: ---SPLIT---
+- HANYA keluarkan isi chunk; tidak boleh ada penjelasan, komentar, heading tambahan, reasoning, atau catatan apa pun.
+- Jangan menambahkan nomor chunk.
+- Jangan menambahkan penutup atau pembuka.
+
+FORMAT OUTPUT (WAJIB):
+<isi chunk 1 apa adanya>
 ---SPLIT---
-
-[Pasal lain atau kelompok ayat lain yang membahas topik berbeda, juga terdiri dari beberapa kalimat yang saling berkaitan, menjadi chunk berikutnya]"""),
-            ("user", f"Silakan bagi teks dokumen hukum berikut menjadi chunk yang terpisah secara semantik dan bermakna. Usahakan setiap chunk mengikuti format seperti contoh Pasal 3 (satu pasal utuh beserta ayat-ayatnya bila memungkinkan):\n\n{text}")
-        ]), {})
-
-        # Split based on the delimiter
-        chunks_text = response.split("---SPLIT---")
-
-        # Filter out empty chunks
-        chunks_text = [chunk.strip() for chunk in chunks_text if chunk.strip()]
-
-        Logger.log(f"Generated {len(chunks_text)} chunks from document")
-
-        # Handle page metadata
-        if isinstance(page, tuple):
-            page_document = page[1]
-        else:
-            page_document = page
-
-        # Create SimpleChunk objects for each chunk
-        for chunk_text in chunks_text:
-            self._create_chunk_from_text(chunk_text, page_document)
-
-        return chunks_text
-    
-    def _create_chunk_from_text(self, text: str, page: Document) -> str:
+<isi chunk 2 apa adanya>
+---SPLIT---
+<isi chunk 3 apa adanya>
+(dan seterusnya)
         """
-        Create a simple chunk from the provided text.
-        No title or summary generation - just store the text directly.
-        Extracts source and page information from metadata.
+
+        prompt = ChatPromptTemplate.from_messages([
+            ("system", system_prompt),
+            ("user", "Chunk dokumen hukum berikut menjadi bagian semantik:\n\n{text}")
+        ])
+
+        response = self.llm.answer(prompt, {"text": text})
+
+        chunks = [c.strip() for c in response.split("---SPLIT---") if c.strip()]
+        Logger.log(f"Generated {len(chunks)} chunks")
+
+        return chunks
+
+    # -------------------------------------------------------------------------
+    # MAP CHUNK BACK TO PAGE RANGE
+    # -------------------------------------------------------------------------
+    def _create_chunk_with_page_mapping(self, chunk_text: str, source: str, page_ranges: list):
         """
+        Estimate page number of chunk by matching its first occurrence in the full text.
+        """
+        # Find page by approximate position
+        first_line = chunk_text[:50]  # first part of chunk
+        possible_pages = []
+
+        # Very simple but effective fuzzy page locating
+        for page in page_ranges:
+            # if any substring intersection exists, mark candidate
+            if first_line in page.get("full_page_text", ""):
+                possible_pages.append(page["page"])
+
+        # Fallback: choose earliest possible page by length heuristics
+        page_num = possible_pages[0] if possible_pages else page_ranges[0]["page"]
+
+        # Create chunk
         chunk_id = str(uuid.uuid4())
-        
-        # Extract source and page from metadata
-        metadata = page.metadata
-        source = metadata.get('source', None)
-        page_number = metadata.get('page', None)
-        
-        # Create SimpleChunk object
         new_chunk = SimpleChunk(
             id=chunk_id,
-            content=text,
+            content=chunk_text,
             index=len(self.chunks),
-            metadata=metadata,
+            metadata={"source": source, "page": page_num},
             source=source,
-            page=page_number
+            page=page_num
         )
-        
+
         self.chunks[chunk_id] = new_chunk
-        
-        # Track this chunk for current document
-        if self.current_doc_chunk_ids is not None:
-            self.current_doc_chunk_ids.append(chunk_id)
-        
-        Logger.log(f"Created chunk with ID: {chunk_id}, source: {source}, page: {page_number}, length: {len(text)} chars")
-        return chunk_id
-    
-    def print_chunks(self):
-        """Print all chunks for debugging"""
-        for chunk in self.chunks.values():
-            print(f"Chunk ID: {chunk.id}")
-            print(f"Index: {chunk.index}")
-            print(f"Source: {chunk.source}")
-            print(f"Page: {chunk.page}")
-            print(f"Content: {chunk.content[:200]}...")  # Show first 200 chars
-            print("")
-    
+
+    # -------------------------------------------------------------------------
     def _get_chunk_type(self) -> str:
-        return 'agentic_v2'
-    
+        return "agentic_v2"
+
     def _reconstruct_chunk(self, chunk_dict: dict, chunk_type: str) -> SimpleChunk:
-        """Reconstruct SimpleChunk object from dict"""
         return SimpleChunk(**chunk_dict)

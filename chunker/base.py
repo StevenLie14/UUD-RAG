@@ -97,6 +97,17 @@ class BaseChunker:
         doc_hash = self._get_document_hash(page)
         self.processed_doc_hashes.add(doc_hash)
     
+    def is_document_processed_by_source(self, source: str) -> bool:
+        """Check if a document source has been processed (for document-level chunking)"""
+        # For document-level chunking, we use the source as the hash
+        source_hash = hashlib.sha256(source.encode()).hexdigest()
+        return source_hash in self.processed_doc_hashes
+    
+    def mark_document_processed_by_source(self, source: str):
+        """Mark a document source as processed (for document-level chunking)"""
+        source_hash = hashlib.sha256(source.encode()).hexdigest()
+        self.processed_doc_hashes.add(source_hash)
+    
     def get_chunks_for_database(self) -> List[BaseChunk]:
         """Get all chunks ready for database storage"""
         return list(self.chunks.values())

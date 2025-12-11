@@ -147,6 +147,10 @@ class RAGASEvaluator:
     
     def _clean_scores(self, scores: Dict[str, Any]) -> Dict[str, Optional[float]]:
         """Clean scores by removing NaN values and handling list/dict values"""
+        # Known metric names we want to keep
+        metric_names = {'context_recall', 'faithfulness', 'answer_correctness', 'context_precision', 
+                       'answer_relevancy', 'answer_similarity', 'context_entity_recall'}
+        
         clean_scores = {}
         for key, value in scores.items():
             try:
@@ -155,6 +159,17 @@ class RAGASEvaluator:
                 
                 # Handle dict values (RAGAS sometimes returns nested structures)
                 if isinstance(value, dict):
+                    # Special handling for _repr_dict and _scores_dict - these contain the actual metrics
+                    if key in ['_repr_dict', '_scores_dict']:
+                        # Extract the individual metrics from the dict
+                        for metric_name, metric_value in value.items():
+                            # Handle list values within the dict
+                            if isinstance(metric_value, list) and len(metric_value) > 0:
+                                metric_value = metric_value[0] if len(metric_value) == 1 else sum(metric_value) / len(metric_value)
+                            if metric_value is not None:
+                                clean_scores[metric_name] = float(metric_value)
+                        continue
+                    
                     # Try common keys that might contain the actual score
                     if 'score' in value:
                         value = value['score']
@@ -165,9 +180,8 @@ class RAGASEvaluator:
                     elif 'average' in value:
                         value = value['average']
                     else:
-                        # If no known key, log and skip
+                        # If no known key, skip this entry
                         Logger.log(f"Dict score '{key}' has unknown structure: {value}")
-                        clean_scores[key] = None
                         continue
                 
                 # Handle list values (RAGAS sometimes returns scores as lists)
@@ -179,13 +193,17 @@ class RAGASEvaluator:
                         else:
                             value = sum(float(v) for v in value if v is not None) / len([v for v in value if v is not None])
                     else:
-                        value = None
+                        continue
                 
-                # Check for valid numeric value
-                if value is not None and not (isinstance(value, float) and str(value) == 'nan'):
-                    clean_scores[key] = float(value)
-                else:
-                    clean_scores[key] = None
+                # Only keep known metric names or valid numeric values
+                if key in metric_names:
+                    if value is not None and not (isinstance(value, float) and str(value) == 'nan'):
+                        clean_scores[key] = float(value)
+                elif value is not None and not (isinstance(value, float) and str(value) == 'nan'):
+                    # Skip metadata fields (scores, dataset, binary_columns, etc.)
+                    if key not in ['scores', 'dataset', 'binary_columns', 'cost_cb', 'traces', 
+                                   'ragas_traces', 'run_id', '_repr_dict', '_scores_dict']:
+                        clean_scores[key] = float(value)
                     
             except (ValueError, TypeError) as e:
                 Logger.log(f"Error processing score '{key}': {e}")
