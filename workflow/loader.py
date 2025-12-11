@@ -42,6 +42,20 @@ class DatabaseLoader:
         # Load chunks
         chunks_dict, chunker_type = self._load_chunks(json_file)
         
+        # Ask for batch processing
+        total_chunks = len(chunks_dict)
+        chunks_to_load = chunks_dict
+        
+        if total_chunks > 1000:
+            if self.ui.confirm(f"Load all {total_chunks} chunks? (No to select batch)", default=True):
+                chunks_to_load = chunks_dict
+            else:
+                chunks_to_load = self._select_batch(chunks_dict)
+        
+        if not chunks_to_load:
+            Logger.log("❌ No chunks selected!")
+            return
+        
         # Select database
         db_choice = self.ui.get_choice(
             "Select database:",
@@ -57,11 +71,11 @@ class DatabaseLoader:
         clear_db = self.ui.confirm("Clear existing collection?", default=False)
         
         # Store in databases
-        self._store_in_databases(chunks_dict, collection_name, db_choice, clear_db)
+        self._store_in_databases(chunks_to_load, collection_name, db_choice, clear_db)
         
         # Summary
         self.ui.print_subheader("Completed")
-        print(f"✓ Chunks stored: {len(chunks_dict)}")
+        print(f"✓ Chunks stored: {len(chunks_to_load)} / {total_chunks}")
         print(f"✓ Collection: {collection_name}")
         print(f"✓ Database: {['FAISS', 'Qdrant', 'FAISS + Qdrant'][int(db_choice)-1]}")
     
@@ -85,6 +99,46 @@ class DatabaseLoader:
             return choice
         else:
             return input("\nEnter JSON file path: ").strip()
+    
+    def _select_batch(self, chunks_dict: Dict) -> Dict:
+        """Select batch of chunks to load"""
+        total = len(chunks_dict)
+        chunk_ids = list(chunks_dict.keys())
+        
+        print(f"\nTotal chunks: {total}")
+        print("\nBatch options:")
+        print("1. First N chunks")
+        print("2. Last N chunks")
+        print("3. Range (start-end)")
+        print("4. Every Nth chunk (sample)")
+        
+        choice = input("\nChoose option (1-4): ").strip()
+        
+        try:
+            if choice == "1":
+                n = int(input(f"Load first N chunks (max {total}): ").strip())
+                selected_ids = chunk_ids[:min(n, total)]
+            elif choice == "2":
+                n = int(input(f"Load last N chunks (max {total}): ").strip())
+                selected_ids = chunk_ids[-min(n, total):]
+            elif choice == "3":
+                start = int(input(f"Start index (0-{total-1}): ").strip())
+                end = int(input(f"End index ({start+1}-{total}): ").strip())
+                selected_ids = chunk_ids[start:end]
+            elif choice == "4":
+                step = int(input(f"Load every Nth chunk (e.g., 10 = every 10th): ").strip())
+                selected_ids = chunk_ids[::step]
+            else:
+                Logger.log("Invalid choice, loading all chunks")
+                return chunks_dict
+            
+            selected = {cid: chunks_dict[cid] for cid in selected_ids}
+            Logger.log(f"✓ Selected {len(selected)} chunks")
+            return selected
+            
+        except (ValueError, IndexError) as e:
+            Logger.log(f"Error: {e}. Loading all chunks.")
+            return chunks_dict
     
     def _load_chunks(self, json_file: str) -> Tuple[Dict, str]:
         """Load chunks from JSON"""
