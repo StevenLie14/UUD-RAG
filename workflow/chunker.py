@@ -94,14 +94,14 @@ class DocumentChunker:
     def _select_llm(self):
         """Select LLM for agentic chunking"""
         options = [
+            "ChatGPT (gpt-4o-mini) - Recommended",
             "Gemini (gemini-2.0-flash-lite)",
-            "ChatGPT (gpt-4o-mini)",
             "Ollama (gemma3:12b)"
         ]
         
         choice = self.ui.get_choice("Choose LLM:", options)
         return LLMFactory.create_llm(
-            {"1": "gemini", "2": "chatgpt", "3": "ollama"}.get(choice, "gemini"),
+            {"1": "chatgpt", "2": "gemini", "3": "ollama"}.get(choice, "chatgpt"),
             self.config
         )
     
