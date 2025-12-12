@@ -62,7 +62,7 @@ class RAGComponentTester:
         """Create primary LLM for answer generation"""
         llm_configs = {
             "ollama": ("Ollama", lambda: Ollama("qwen3:8b", base_url="https://b84f92e0aabb.ngrok-free.app")),
-            "chatgpt": ("ChatGPT", lambda: ChatGPT("gpt-4o-mini", self.config.OPENAI_API_KEY)),
+            "chatgpt": ("ChatGPT", lambda: ChatGPT("gpt-5-nano", self.config.OPENAI_API_KEY)),
             "gemini": ("Gemini", lambda: Gemini("gemini-2.0-flash-lite", self.config.GOOGLE_API_KEY))
         }
         
@@ -128,7 +128,9 @@ class RAGComponentTester:
         search_strategy_name: str,
         database: Any,
         search_strategy: Any,
-        generator_class: Any
+        generator_class: Any,
+        use_cache: bool = True,
+        skip_generation: bool = False
     ) -> Dict[str, Any]:
         """Test a specific configuration and evaluate with RAGAS"""
         config_name = f"{chunker_name}_{db_name}_{search_strategy_name}"
@@ -146,7 +148,12 @@ class RAGComponentTester:
             )
             
             # Use RAGAS evaluator to evaluate the pipeline
-            result_data = self.evaluator.evaluate_pipeline(pipeline, config_name)
+            result_data = self.evaluator.evaluate_pipeline(
+                pipeline, 
+                config_name,
+                use_cache=use_cache,
+                skip_generation=skip_generation
+            )
             
             # Add additional metadata
             result_data["chunker"] = chunker_name
@@ -248,11 +255,13 @@ class RAGComponentTester:
             Logger.log(f"⚠ Error storing in Qdrant: {e}")
             Logger.log("Continuing with FAISS only...")
     
-    async def test_all_components(self, skip_ingestion: bool = True, clear_db: bool = False):
+    async def test_all_components(self, skip_ingestion: bool = True, clear_db: bool = False, use_cache: bool = True, skip_generation: bool = False):
         """Test all component combinations"""
         Logger.log("\n" + "="*60)
         Logger.log("STARTING COMPREHENSIVE RAG COMPONENT TESTING")
         Logger.log("="*60)
+        Logger.log(f"Use cache: {use_cache}")
+        Logger.log(f"Skip generation: {skip_generation}")
         
         chunker_configs = self._get_chunker_configs()
         
@@ -262,7 +271,7 @@ class RAGComponentTester:
         if not skip_ingestion:
             await self._ingest_documents(chunker_configs)
         
-        await self._run_all_tests(chunker_configs)
+        await self._run_all_tests(chunker_configs, use_cache, skip_generation)
         
         Logger.log("\n" + "="*60)
         Logger.log("ALL TESTS COMPLETED")
@@ -276,7 +285,9 @@ class RAGComponentTester:
         databases: List[str], 
         strategies: List[str],
         skip_ingestion: bool = True, 
-        clear_db: bool = False
+        clear_db: bool = False,
+        use_cache: bool = True,
+        skip_generation: bool = False
     ):
         """Test selected component combinations"""
         Logger.log("\n" + "="*60)
@@ -285,6 +296,8 @@ class RAGComponentTester:
         Logger.log(f"Chunkers: {', '.join(chunkers)}")
         Logger.log(f"Databases: {', '.join(databases)}")
         Logger.log(f"Strategies: {', '.join(strategies)}")
+        Logger.log(f"Use cache: {use_cache}")
+        Logger.log(f"Skip generation: {skip_generation}")
         
         # Filter chunker configs
         all_chunker_configs = self._get_chunker_configs()
@@ -296,7 +309,7 @@ class RAGComponentTester:
         if not skip_ingestion:
             await self._ingest_documents(chunker_configs)
         
-        await self._run_selected_tests(chunker_configs, databases, strategies)
+        await self._run_selected_tests(chunker_configs, databases, strategies, use_cache, skip_generation)
         
         Logger.log("\n" + "="*60)
         Logger.log("INDIVIDUAL TESTS COMPLETED")
@@ -308,7 +321,9 @@ class RAGComponentTester:
         self, 
         chunker_configs: List[Tuple[str, Any]], 
         selected_databases: List[str],
-        selected_strategies: List[str]
+        selected_strategies: List[str],
+        use_cache: bool = True,
+        skip_generation: bool = False
     ):
         """Run tests on selected configurations"""
         database_cache = {}
@@ -360,13 +375,15 @@ class RAGComponentTester:
                         search_strategy_name=strategy_name,
                         database=database,
                         search_strategy=search_strategy,
-                        generator_class=generator_class
+                        generator_class=generator_class,
+                        use_cache=use_cache,
+                        skip_generation=skip_generation
                     )
                     
                     self.all_results.append(result)
                     self._save_results()
     
-    async def _run_all_tests(self, chunker_configs: List[Tuple[str, Any]]):
+    async def _run_all_tests(self, chunker_configs: List[Tuple[str, Any]], use_cache: bool = True, skip_generation: bool = False):
         """Run tests on all configurations"""
         database_cache = {}
         
@@ -396,7 +413,9 @@ class RAGComponentTester:
                         search_strategy_name=strategy_name,
                         database=database,
                         search_strategy=search_strategy,
-                        generator_class=generator_class
+                        generator_class=generator_class,
+                        use_cache=use_cache,
+                        skip_generation=skip_generation
                     )
                     
                     self.all_results.append(result)
@@ -492,7 +511,7 @@ class ComponentTester:
         llm_choice = input("\nEnter choice (1-3): ").strip()
         llm_type = {"1": "gemini", "2": "chatgpt", "3": "ollama"}.get(llm_choice, "gemini")
         
-        Logger.log("ℹ️ Evaluation will use ChatGPT (gpt-4o-mini) by default")
+        Logger.log("ℹ️ Evaluation will use ChatGPT (gpt-5-nano) by default")
         
         # Ingestion options
         skip_ingestion_input = input("\nLoad and store documents first? (y/N): ").strip().lower()

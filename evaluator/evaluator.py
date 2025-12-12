@@ -21,19 +21,25 @@ from rag.pipeline import RAGPipeline
 class RAGASEvaluator:
     """Evaluate RAG systems using RAGAS metrics"""
     
-    def __init__(self, testset_path: str, timeout: int = 300):
+    def __init__(self, testset_path: str, timeout: int = 300, cache_dir: str = "./evaluation_cache"):
         """
         Initialize RAGAS evaluator
         
         Args:
             testset_path: Path to testset JSON file
             timeout: Timeout for evaluation in seconds
+            cache_dir: Directory to cache generation payloads
         """
         self.config = Config()
         self.testset_path = testset_path
         self.timeout = timeout
+        self.cache_dir = cache_dir
         self.questions: List[str] = []
         self.ground_truths: List[str] = []
+        
+        # Create cache directory if it doesn't exist
+        import os
+        os.makedirs(cache_dir, exist_ok=True)
         
         # Initialize evaluation LLM and embeddings (always ChatGPT)
         self.evaluator_llm = self._create_evaluation_llm()
@@ -50,12 +56,12 @@ class RAGASEvaluator:
     def _create_evaluation_llm(self):
         """Create LLM for RAGAS evaluation - Always uses ChatGPT"""
         llm = ChatOpenAI(
-            model="gpt-4o-mini",
+            model="gpt-5-nano",
             api_key=self.config.OPENAI_API_KEY,
             temperature=0.1,
         )
         
-        Logger.log("Using ChatGPT (gpt-4o-mini) for RAGAS evaluation")
+        Logger.log("Using ChatGPT (gpt-5-nano) for RAGAS evaluation")
         return LangchainLLMWrapper(llm)
     
     def _create_evaluation_embeddings(self):
@@ -145,6 +151,35 @@ class RAGASEvaluator:
                     contexts.append(context_text)
         return contexts
     
+    def _get_cache_path(self, config_name: str) -> str:
+        """Get cache file path for a configuration"""
+        import os
+        return os.path.join(self.cache_dir, f"{config_name}_payload.json")
+    
+    def _load_cached_payload(self, config_name: str) -> Optional[List[Dict[str, Any]]]:
+        """Load cached generation payload for a configuration"""
+        import os
+        cache_path = self._get_cache_path(config_name)
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path, 'r', encoding='utf-8') as f:
+                    cached_data = json.load(f)
+                Logger.log(f"✓ Loaded cached payload from {cache_path}")
+                return cached_data
+            except Exception as e:
+                Logger.log(f"Error loading cache: {e}")
+        return None
+    
+    def _save_payload_cache(self, config_name: str, evaluation_data: List[Dict[str, Any]]):
+        """Save generation payload to cache"""
+        cache_path = self._get_cache_path(config_name)
+        try:
+            with open(cache_path, 'w', encoding='utf-8') as f:
+                json.dump(evaluation_data, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved payload cache to {cache_path}")
+        except Exception as e:
+            Logger.log(f"Error saving cache: {e}")
+    
     def _clean_scores(self, scores: Dict[str, Any]) -> Dict[str, Optional[float]]:
         """Clean scores by removing NaN values and handling list/dict values"""
         # Known metric names we want to keep
@@ -214,7 +249,9 @@ class RAGASEvaluator:
     def evaluate_pipeline(
         self,
         pipeline: RAGPipeline,
-        config_name: str
+        config_name: str,
+        use_cache: bool = True,
+        skip_generation: bool = False
     ) -> Dict[str, Any]:
         """
         Evaluate a RAG pipeline using RAGAS metrics
@@ -222,6 +259,8 @@ class RAGASEvaluator:
         Args:
             pipeline: RAG pipeline to evaluate
             config_name: Name of the configuration being tested
+            use_cache: Whether to use cached payloads if available
+            skip_generation: If True and cache exists, skip generation and only evaluate
             
         Returns:
             Dictionary with evaluation results
@@ -231,11 +270,36 @@ class RAGASEvaluator:
         Logger.log(f"{'='*60}")
         
         try:
-            # Collect evaluation data
-            evaluation_data = [
-                self._process_single_question(pipeline, q, gt, i+1, len(self.questions))
-                for i, (q, gt) in enumerate(zip(self.questions, self.ground_truths))
-            ]
+            # Try to load cached payload
+            evaluation_data = None
+            if use_cache or skip_generation:
+                evaluation_data = self._load_cached_payload(config_name)
+                if evaluation_data:
+                    if skip_generation:
+                        Logger.log("✓ Using cached payload, skipping generation phase")
+                    else:
+                        Logger.log("Cached payload found but regenerating (use skip_generation=True to skip)")
+                        evaluation_data = None
+            
+            # Generate new data if not using cache or cache not found
+            if evaluation_data is None:
+                if skip_generation:
+                    Logger.log(f"⚠ Cache not found for {config_name} but skip_generation=True")
+                    return {
+                        "configuration": config_name,
+                        "error": "Cache not found and skip_generation enabled",
+                        "timestamp": datetime.now().isoformat()
+                    }
+                
+                Logger.log("Generating responses...")
+                evaluation_data = [
+                    self._process_single_question(pipeline, q, gt, i+1, len(self.questions))
+                    for i, (q, gt) in enumerate(zip(self.questions, self.ground_truths))
+                ]
+                
+                # Save to cache
+                if use_cache:
+                    self._save_payload_cache(config_name, evaluation_data)
             
             # Run RAGAS evaluation
             Logger.log(f"Running RAGAS evaluation for {config_name}...")
