@@ -202,22 +202,59 @@ class RAGASEvaluator:
         except Exception as e:
             Logger.log(f"⚠ Failed to save selected questions: {e}")
     
-    def _save_to_last_test_set(self, evaluation_data: List[Dict[str, Any]]):
-        """Save the full evaluation testset (questions, contexts, responses) to last_test_set folder"""
+    def _save_to_last_test_set(self, config_name: str, questions: List[str], ground_truths: List[str], evaluation_data: List[Dict[str, Any]]):
+        """Save evaluation testset to last_test_set/technique_name/ with 3 files"""
         import os
-        last_test_set_dir = "./last_test_set"
-        os.makedirs(last_test_set_dir, exist_ok=True)
         
-        # Save with timestamp for traceability
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = os.path.join(last_test_set_dir, f"last_evaluation_testset_{timestamp}.json")
+        technique_dir = os.path.join("./last_test_set", config_name)
+        os.makedirs(technique_dir, exist_ok=True)
         
+        # File 1: Questions and ground truths
+        questions_payload = [
+            {"question": q, "ground_truth": gt}
+            for q, gt in zip(questions, ground_truths)
+        ]
+        questions_file = os.path.join(technique_dir, "questions_payload.json")
         try:
-            with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(evaluation_data, f, indent=2, ensure_ascii=False)
-            Logger.log(f"✓ Saved evaluation testset with {len(evaluation_data)} entries to {filename}")
+            with open(questions_file, 'w', encoding='utf-8') as f:
+                json.dump(questions_payload, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved questions to {questions_file}")
         except Exception as e:
-            Logger.log(f"⚠ Failed to save evaluation testset: {e}")
+            Logger.log(f"⚠ Failed to save questions: {e}")
+        
+        # File 2: Full evaluation payload with contexts and responses
+        eval_payload = [
+            {
+                "question": item.get('user_input', ''),
+                "retrieved_contexts": item.get('retrieved_contexts', []),
+                "response": item.get('response', ''),
+                "ground_truth": item.get('reference', '')
+            }
+            for item in evaluation_data
+        ]
+        eval_file = os.path.join(technique_dir, "evaluation_payload.json")
+        try:
+            with open(eval_file, 'w', encoding='utf-8') as f:
+                json.dump(eval_payload, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved evaluation payload to {eval_file}")
+        except Exception as e:
+            Logger.log(f"⚠ Failed to save evaluation payload: {e}")
+    
+    def _save_evaluation_results(self, config_name: str, result_data: Dict[str, Any]):
+        """Save evaluation results to last_test_set/technique_name/"""
+        import os
+        
+        technique_dir = os.path.join("./last_test_set", config_name)
+        os.makedirs(technique_dir, exist_ok=True)
+        
+        # File 3: Evaluation results
+        results_file = os.path.join(technique_dir, "evaluation_results.json")
+        try:
+            with open(results_file, 'w', encoding='utf-8') as f:
+                json.dump(result_data, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved evaluation results to {results_file}")
+        except Exception as e:
+            Logger.log(f"⚠ Failed to save evaluation results: {e}")
     
     def _process_single_question(
         self, 
@@ -606,8 +643,8 @@ class RAGASEvaluator:
                 if use_cache:
                     self._save_payload_cache(config_name, evaluation_data)
             
-            # Save the complete evaluation data (with contexts and responses) to last_test_set
-            self._save_to_last_test_set(evaluation_data)
+            # Save the complete evaluation data to last_test_set folder
+            self._save_to_last_test_set(config_name, selected_questions, selected_ground_truths, evaluation_data)
             
             # Run RAGAS evaluation
             Logger.log(f"Running RAGAS evaluation for {config_name}...")
@@ -668,6 +705,9 @@ class RAGASEvaluator:
                 
                 Logger.log(f"Configuration {config_name} completed!")
                 Logger.log(f"Clean scores: {clean_scores}")
+                
+                # Save evaluation results to last_test_set
+                self._save_evaluation_results(config_name, result_data)
                 
                 return result_data
                 
