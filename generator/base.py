@@ -21,7 +21,8 @@ class BaseGenerator:
                 2. Jika informasi tidak ada dalam konteks, katakan dengan jelas
                 3. Gunakan bahasa formal dan profesional
                 4. Sebutkan pasal, undang-undang, atau referensi hukum yang spesifik jika ada
-                5. Jika ada interpretasi, jelaskan dengan jelas bahwa itu adalah interpretasi
+                5. **HINDARI penggunaan frasa eksplisit seperti 'Menurut teks,' 'Berdasarkan konteks,' atau 'Dalam dokumen yang diberikan,' kecuali jika Anda secara spesifik menyoroti ketidakpastian sumber.**
+                6. Jika ada interpretasi, jelaskan dengan jelas bahwa itu adalah interpretasi
                 
                 Format jawaban:
                 - Mulai dengan jawaban langsung
