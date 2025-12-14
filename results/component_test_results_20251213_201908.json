@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-13T20:19:08.748450",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "semantic_qdrant_hybrid_colbert",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": NaN,
+        "faithfulness": NaN,
+        "answer_correctness": NaN
+      },
+      "timestamp": "2025-12-13T20:19:08.748450",
+      "num_questions": 508,
+      "chunker": "semantic",
+      "database": "qdrant",
+      "search_strategy": "hybrid_colbert"
+    }
+  ]
+}
