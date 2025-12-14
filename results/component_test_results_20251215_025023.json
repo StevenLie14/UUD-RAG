@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-15T02:50:23.316336",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "semantic_qdrant_hybrid_crossencoder",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": 0.1784285714285714,
+        "faithfulness": 0.671080526167391,
+        "answer_correctness": 0.32255039020713416
+      },
+      "timestamp": "2025-12-15T02:50:23.316336",
+      "num_questions": 100,
+      "chunker": "semantic",
+      "database": "qdrant",
+      "search_strategy": "hybrid_crossencoder"
+    }
+  ]
+}
