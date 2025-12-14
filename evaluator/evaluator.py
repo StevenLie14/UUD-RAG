@@ -202,16 +202,11 @@ class RAGASEvaluator:
         except Exception as e:
             Logger.log(f"⚠ Failed to save selected questions: {e}")
     
-    def _save_to_last_test_set(self, questions: List[str], ground_truths: List[str]):
-        """Save the evaluation testset to last_test_set folder"""
+    def _save_to_last_test_set(self, evaluation_data: List[Dict[str, Any]]):
+        """Save the full evaluation testset (questions, contexts, responses) to last_test_set folder"""
         import os
         last_test_set_dir = "./last_test_set"
         os.makedirs(last_test_set_dir, exist_ok=True)
-        
-        payload = [
-            {"question": q, "ground_truth": gt}
-            for q, gt in zip(questions, ground_truths)
-        ]
         
         # Save with timestamp for traceability
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -219,8 +214,8 @@ class RAGASEvaluator:
         
         try:
             with open(filename, 'w', encoding='utf-8') as f:
-                json.dump(payload, f, indent=2, ensure_ascii=False)
-            Logger.log(f"✓ Saved evaluation testset to {filename}")
+                json.dump(evaluation_data, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved evaluation testset with {len(evaluation_data)} entries to {filename}")
         except Exception as e:
             Logger.log(f"⚠ Failed to save evaluation testset: {e}")
     
@@ -488,8 +483,6 @@ class RAGASEvaluator:
             Logger.log(f"Using {total_selected} questions for evaluation")
             # Persist the selected subset for traceability
             self._save_selected_questions(config_name, selected_questions, selected_ground_truths)
-            # Save to last_test_set folder
-            self._save_to_last_test_set(selected_questions, selected_ground_truths)
 
             # Try to load cached payload
             evaluation_data = None
@@ -612,6 +605,9 @@ class RAGASEvaluator:
                 # Save to cache
                 if use_cache:
                     self._save_payload_cache(config_name, evaluation_data)
+            
+            # Save the complete evaluation data (with contexts and responses) to last_test_set
+            self._save_to_last_test_set(evaluation_data)
             
             # Run RAGAS evaluation
             Logger.log(f"Running RAGAS evaluation for {config_name}...")
