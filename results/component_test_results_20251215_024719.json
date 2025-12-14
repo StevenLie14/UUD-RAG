@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-15T02:47:19.427935",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "semantic_qdrant_hybrid_colbert",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": 0.1955952380952381,
+        "faithfulness": 0.708652357492317,
+        "answer_correctness": 0.3184357263287623
+      },
+      "timestamp": "2025-12-15T02:47:19.427935",
+      "num_questions": 100,
+      "chunker": "semantic",
+      "database": "qdrant",
+      "search_strategy": "hybrid_colbert"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-13T20:23:50.244619",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "recursive_qdrant_hybrid",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": NaN,
+        "faithfulness": NaN,
+        "answer_correctness": NaN
+      },
+      "timestamp": "2025-12-13T20:23:50.244619",
+      "num_questions": 508,
+      "chunker": "recursive",
+      "database": "qdrant",
+      "search_strategy": "hybrid"
+    }
+  ]
+}
