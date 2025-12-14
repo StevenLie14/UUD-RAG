@@ -100,6 +100,33 @@ class RAGASEvaluator:
             Logger.log(f"Error loading testset: {e}")
             raise
 
+    def _load_questions_from_reference(self, reference_name: str) -> Optional[Tuple[List[str], List[str]]]:
+        """Load questions and ground truths from a reference cache file"""
+        import os
+        reference_path = self._get_cache_path(f"{reference_name}_questions")
+        
+        if not os.path.exists(reference_path):
+            Logger.log(f"⚠ Reference questions file not found: {reference_path}")
+            return None
+        
+        try:
+            with open(reference_path, 'r', encoding='utf-8') as f:
+                reference_data = json.load(f)
+            
+            if not isinstance(reference_data, list):
+                Logger.log(f"⚠ Invalid reference questions format in {reference_path}")
+                return None
+            
+            questions = [item['question'] for item in reference_data]
+            ground_truths = [item['ground_truth'] for item in reference_data]
+            
+            Logger.log(f"✓ Loaded {len(questions)} questions from reference: {reference_name}")
+            return questions, ground_truths
+            
+        except Exception as e:
+            Logger.log(f"⚠ Error loading reference questions: {e}")
+            return None
+    
     def _select_questions(self, max_questions: Optional[int], random_seed: Optional[int]) -> Tuple[List[str], List[str]]:
         """Return a (optionally randomized) subset of questions and ground truths limited by max_questions"""
         if max_questions is None or max_questions >= len(self.questions):
@@ -349,7 +376,8 @@ class RAGASEvaluator:
         use_cache: bool = True,
         skip_generation: bool = False,
         max_questions: Optional[int] = 250,
-        random_seed: Optional[int] = None
+        random_seed: Optional[int] = None,
+        use_reference_questions: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         Evaluate a RAG pipeline using RAGAS metrics
@@ -361,6 +389,8 @@ class RAGASEvaluator:
             skip_generation: If True and cache exists, skip generation and only evaluate
             max_questions: Maximum number of questions to evaluate (None for all)
             random_seed: Seed for randomized question selection (None for non-deterministic)
+            use_reference_questions: Config name to load questions from (e.g., 'recursive_faiss_dense')
+                                    When set, uses those questions but generates fresh contexts/answers
             
         Returns:
             Dictionary with evaluation results
@@ -371,16 +401,27 @@ class RAGASEvaluator:
         
         try:
             # Select subset of questions to evaluate
-            selected_questions, selected_ground_truths = self._select_questions(max_questions, random_seed)
+            if use_reference_questions:
+                # Load questions from reference cache
+                ref_result = self._load_questions_from_reference(use_reference_questions)
+                if ref_result:
+                    selected_questions, selected_ground_truths = ref_result
+                    Logger.log(f"✓ Using {len(selected_questions)} questions from reference: {use_reference_questions}")
+                else:
+                    Logger.log(f"⚠ Failed to load reference questions, falling back to normal selection")
+                    selected_questions, selected_ground_truths = self._select_questions(max_questions, random_seed)
+            else:
+                selected_questions, selected_ground_truths = self._select_questions(max_questions, random_seed)
+            
             total_selected = len(selected_questions)
             Logger.log(f"Using {total_selected} questions for evaluation")
             # Persist the selected subset for traceability
             self._save_selected_questions(config_name, selected_questions, selected_ground_truths)
 
-            # Try to load cached payload
+            # Try to load cached payload (skip if using reference questions to ensure fresh generation)
             evaluation_data = None
             
-            if use_cache or skip_generation:
+            if (use_cache or skip_generation) and not use_reference_questions:
                 import os
                 cache_path = self._get_cache_path(config_name)
                 selection_cache_path = self._get_cache_path(f"{config_name}_questions")
