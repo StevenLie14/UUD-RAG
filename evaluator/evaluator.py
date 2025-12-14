@@ -57,12 +57,12 @@ class RAGASEvaluator:
     def _create_evaluation_llm(self):
         """Create LLM for RAGAS evaluation - Always uses ChatGPT"""
         llm = ChatOpenAI(
-            model="gpt-4.1-mini",
+            model="gpt-4o-mini",
             api_key=self.config.OPENAI_API_KEY,
             temperature=0.1,
         )
         
-        Logger.log("Using ChatGPT (gpt-4.1-mini) for RAGAS evaluation")
+        Logger.log("Using ChatGPT (gpt-4o-mini) for RAGAS evaluation")
         return LangchainLLMWrapper(llm)
     
     def _create_evaluation_embeddings(self):

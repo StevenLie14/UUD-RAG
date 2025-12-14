@@ -62,7 +62,7 @@ class RAGComponentTester:
         """Create primary LLM for answer generation"""
         llm_configs = {
             "ollama": ("Ollama", lambda: Ollama("qwen3:8b", base_url="https://b84f92e0aabb.ngrok-free.app")),
-            "chatgpt": ("ChatGPT", lambda: ChatGPT("gpt-4.1-mini", self.config.OPENAI_API_KEY)),
+            "chatgpt": ("ChatGPT", lambda: ChatGPT("gpt-4o-mini", self.config.OPENAI_API_KEY)),
             "gemini": ("Gemini", lambda: Gemini("gemini-2.0-flash-lite", self.config.GOOGLE_API_KEY))
         }
         
@@ -511,7 +511,7 @@ class ComponentTester:
         llm_choice = input("\nEnter choice (1-3): ").strip()
         llm_type = {"1": "gemini", "2": "chatgpt", "3": "ollama"}.get(llm_choice, "gemini")
         
-        Logger.log("ℹ️ Evaluation will use ChatGPT (gpt-4.1-mini) by default")
+        Logger.log("ℹ️ Evaluation will use ChatGPT (gpt-4o-mini) by default")
         
         # Ingestion options
         skip_ingestion_input = input("\nLoad and store documents first? (y/N): ").strip().lower()
