@@ -376,7 +376,8 @@ class RAGASEvaluator:
         use_cache: bool = True,
         skip_generation: bool = False,
         max_questions: Optional[int] = 100,
-        random_seed: Optional[int] = None
+        random_seed: Optional[int] = None,
+        use_reference_questions: bool = True
     ) -> Dict[str, Any]:
         """
         Evaluate a RAG pipeline using RAGAS metrics
