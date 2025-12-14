@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-15T00:08:41.474259",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "recursive_faiss_dense",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": 0.11861904761904762,
+        "faithfulness": 0.6272751641436356,
+        "answer_correctness": 0.358566623050361
+      },
+      "timestamp": "2025-12-15T00:08:41.474259",
+      "num_questions": 100,
+      "chunker": "recursive",
+      "database": "faiss",
+      "search_strategy": "dense"
+    }
+  ]
+}
