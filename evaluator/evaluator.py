@@ -183,14 +183,57 @@ class RAGASEvaluator:
         import os
         return os.path.join(self.cache_dir, f"{config_name}_payload.json")
     
+    def _is_error_response(self, response: str) -> bool:
+        """Check if a response contains an error message"""
+        if not response or not isinstance(response, str):
+            return False
+        
+        error_indicators = [
+            'rate_limit_exceeded',
+            'rate limit reached',
+            'error code: 429',
+            'error code: 500',
+            'error code: 503',
+            'maaf, terjadi error',
+            'error:',
+            'exception:',
+            'failed to',
+            'cannot process',
+            'please try again'
+        ]
+        
+        response_lower = response.lower()
+        return any(indicator in response_lower for indicator in error_indicators)
+    
     def _load_cached_payload(self, config_name: str) -> Optional[List[Dict[str, Any]]]:
-        """Load cached generation payload for a configuration"""
+        """Load cached generation payload for a configuration, filtering out error responses"""
         import os
         cache_path = self._get_cache_path(config_name)
         if os.path.exists(cache_path):
             try:
                 with open(cache_path, 'r', encoding='utf-8') as f:
                     cached_data = json.load(f)
+                
+                # Check for error responses in cached data
+                error_count = 0
+                valid_items = []
+                error_questions = []
+                
+                for item in cached_data:
+                    response = item.get('response', '')
+                    if self._is_error_response(response):
+                        error_count += 1
+                        error_questions.append(item.get('user_input', 'Unknown question'))
+                        Logger.log(f"⚠ Found error response in cache: {response[:100]}...")
+                    else:
+                        valid_items.append(item)
+                
+                if error_count > 0:
+                    Logger.log(f"⚠ Found {error_count} error responses in cache. These will be regenerated.")
+                    # Return None to trigger regeneration of error items
+                    # Store the valid items and error questions for partial regeneration
+                    return None
+                
                 Logger.log(f"✓ Loaded cached payload from {cache_path}")
                 return cached_data
             except Exception as e:
@@ -299,10 +342,57 @@ class RAGASEvaluator:
         try:
             # Try to load cached payload
             evaluation_data = None
+            needs_regeneration = False
+            
             if use_cache or skip_generation:
-                evaluation_data = self._load_cached_payload(config_name)
-                if evaluation_data:
-                    Logger.log("✓ Using cached payload for generation phase")
+                import os
+                cache_path = self._get_cache_path(config_name)
+                if os.path.exists(cache_path):
+                    with open(cache_path, 'r', encoding='utf-8') as f:
+                        cached_data = json.load(f)
+                    
+                    # Check for error responses
+                    valid_items = []
+                    items_to_regenerate = []
+                    
+                    for idx, item in enumerate(cached_data):
+                        response = item.get('response', '')
+                        if self._is_error_response(response):
+                            items_to_regenerate.append(idx)
+                            Logger.log(f"⚠ Question {idx+1} has error response, will regenerate")
+                        else:
+                            valid_items.append(item)
+                    
+                    if items_to_regenerate:
+                        needs_regeneration = True
+                        Logger.log(f"✓ Loaded {len(valid_items)} valid cached responses")
+                        Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions with errors")
+                        
+                        # Regenerate only the questions with errors
+                        if not skip_generation:
+                            Logger.log("Regenerating error responses...")
+                            regenerated_items = []
+                            for idx in items_to_regenerate:
+                                question = self.questions[idx]
+                                ground_truth = self.ground_truths[idx]
+                                regenerated = self._process_single_question(
+                                    pipeline, question, ground_truth, idx+1, len(self.questions)
+                                )
+                                regenerated_items.append((idx, regenerated))
+                            
+                            # Merge valid cached items with regenerated items
+                            evaluation_data = cached_data.copy()
+                            for idx, regenerated in regenerated_items:
+                                evaluation_data[idx] = regenerated
+                            
+                            Logger.log("✓ Successfully regenerated error responses")
+                            # Save updated cache
+                            self._save_payload_cache(config_name, evaluation_data)
+                        else:
+                            evaluation_data = cached_data
+                    else:
+                        evaluation_data = cached_data
+                        Logger.log("✓ Using cached payload for generation phase")
             
             # Generate new data if not using cache or cache not found
             if evaluation_data is None:
