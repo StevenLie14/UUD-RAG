@@ -56,10 +56,10 @@ class RAGASEvaluator:
     
     def _create_evaluation_llm(self):
         """Create LLM for RAGAS evaluation - Always uses ChatGPT"""
+        # Note: gpt-5-nano only supports default temperature=1, does not support custom temperature
         llm = ChatOpenAI(
             model="gpt-5-nano",
             api_key=self.config.OPENAI_API_KEY,
-            temperature=0.1,
         )
         
         Logger.log("Using ChatGPT (gpt-5-nano) for RAGAS evaluation")
