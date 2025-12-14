@@ -377,7 +377,7 @@ class RAGASEvaluator:
         skip_generation: bool = False,
         max_questions: Optional[int] = 100,
         random_seed: Optional[int] = None,
-        use_reference_questions: bool = True
+        use_reference_questions: str = "recursive_faiss_dense"
     ) -> Dict[str, Any]:
         """
         Evaluate a RAG pipeline using RAGAS metrics
