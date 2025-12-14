@@ -6,6 +6,7 @@ Handles evaluation of RAG systems using RAGAS metrics
 import json
 from typing import List, Dict, Any, Optional
 from datetime import datetime
+import time
 
 from ragas import evaluate, EvaluationDataset, RunConfig
 from ragas.llms import LangchainLLMWrapper
@@ -123,13 +124,39 @@ class RAGASEvaluator:
         Logger.log(f"Processing question {question_num}/{total_questions}: {question[:50]}...")
         
         try:
-            result = pipeline.query(question)
-            contexts = self._extract_contexts(result.get('sources', []))
-            
+            # Try querying with simple retry on rate-limit errors
+            max_retries = 5
+            for attempt in range(max_retries):
+                result = pipeline.query(question)
+
+                # Detect rate limit error either in explicit error or answer text
+                err_text = result.get('error') or result.get('answer', '')
+                is_rate_limit = isinstance(err_text, str) and (
+                    'rate_limit_exceeded' in err_text.lower() or
+                    'rate limit reached' in err_text.lower() or
+                    'error code: 429' in err_text.lower()
+                )
+
+                if not is_rate_limit:
+                    contexts = self._extract_contexts(result.get('sources', []))
+                    return {
+                        "user_input": question,
+                        "retrieved_contexts": contexts if contexts else ["No relevant context retrieved"],
+                        "response": result['answer'],
+                        "reference": ground_truth
+                    }
+
+                # Backoff and retry on rate-limit
+                wait_time = min(2 ** attempt, 30)
+                Logger.log(f"Rate limit encountered, retrying in {wait_time}s (attempt {attempt+1}/{max_retries})")
+                time.sleep(wait_time)
+
+            # If all retries exhausted, return the last error response
+            contexts = self._extract_contexts(result.get('sources', [])) if 'result' in locals() else []
             return {
                 "user_input": question,
-                "retrieved_contexts": contexts if contexts else ["No relevant context retrieved"],
-                "response": result['answer'],
+                "retrieved_contexts": contexts if contexts else ["Error retrieving context"],
+                "response": result.get('answer', 'Error: Rate limit and retries exhausted') if 'result' in locals() else 'Error: Rate limit and retries exhausted',
                 "reference": ground_truth
             }
         except Exception as e:
@@ -275,11 +302,7 @@ class RAGASEvaluator:
             if use_cache or skip_generation:
                 evaluation_data = self._load_cached_payload(config_name)
                 if evaluation_data:
-                    if skip_generation:
-                        Logger.log("✓ Using cached payload, skipping generation phase")
-                    else:
-                        Logger.log("Cached payload found but regenerating (use skip_generation=True to skip)")
-                        evaluation_data = None
+                    Logger.log("✓ Using cached payload for generation phase")
             
             # Generate new data if not using cache or cache not found
             if evaluation_data is None:
@@ -306,16 +329,35 @@ class RAGASEvaluator:
             evaluation_dataset = EvaluationDataset.from_list(evaluation_data)
             run_config = RunConfig(max_workers=1, timeout=self.timeout)
             
-            ragas_result = evaluate(
-                dataset=evaluation_dataset,
-                metrics=[
-                    self.context_recall_metric,
-                    self.faithfulness_metric,
-                    self.answer_correctness_metric
-                ],
-                llm=self.evaluator_llm,
-                run_config=run_config
-            )
+            # Retry loop for rate-limit errors during RAGAS evaluation
+            max_retries = 5
+            last_error: Optional[Exception] = None
+            for attempt in range(max_retries):
+                try:
+                    ragas_result = evaluate(
+                        dataset=evaluation_dataset,
+                        metrics=[
+                            self.context_recall_metric,
+                            self.faithfulness_metric,
+                            self.answer_correctness_metric
+                        ],
+                        llm=self.evaluator_llm,
+                        run_config=run_config
+                    )
+                    last_error = None
+                    break
+                except Exception as e_eval:
+                    last_error = e_eval
+                    msg = str(e_eval)
+                    is_rate_limit = ('rate_limit_exceeded' in msg.lower() or
+                                     'rate limit reached' in msg.lower() or
+                                     'error code: 429' in msg.lower())
+                    if not is_rate_limit or attempt >= max_retries - 1:
+                        Logger.log(f"RAGAS evaluation error: {e_eval}")
+                        raise e_eval
+                    wait_time = min(2 ** attempt, 30)
+                    Logger.log(f"RAGAS rate limit, retrying in {wait_time}s (attempt {attempt+1}/{max_retries})")
+                    time.sleep(wait_time)
             
             # Extract and clean scores
             try:
