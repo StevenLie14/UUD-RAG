@@ -1,0 +1,402 @@
+[
+  {
+    "question": "Apakah Tas Mewah Kena PPnBM?",
+    "ground_truth": "Pada tahun 2013, pemerintah mengenakan pajak penjualan atas barang mewah (“PPnBM”). Tas yang dikenai PPnBM adalah tas mewah yang memiliki nilai impor atau harga jual senilai Rp5 juta atau lebih dengan tarif PPnBM sebesar 40%. Akan tetapi, ketentuan pengenaan PPnBM pada tas mewah sudah dihapus pada 2015.\nLantas, apa dasar hukumnya? Bagaimana klasifikasi barang PPnBM?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Aturan Penetapan Bencana Nasional",
+    "ground_truth": "Apa yang dimaksud dengan bencana nasional? Bencana nasional adalah bencana yang terjadi hampir seluruh daerah di suatu negara secara serentak dan menyebabkan banyak korban. Penetapan bencana nasional ini merupakan kewenangan dari pemerintah dan memuat indikator yang meliputi jumlah korban, kerugian harta benda, kerusakan prasarana dan sarana, cakupan luas wilayah yang terkena bencana dan dampak sosial ekonomi yang ditimbulkan.\nLantas, bagaimana prosedur penetapan bencana nasional?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apa Bedanya Buku Tanah dengan Sertipikat Tanah?",
+    "ground_truth": "Buku tanah adalah dokumen resmi yang berisi catatan terkait data fisik dan data yuridis bidang tanah yang sudah memiliki hak atas tanah tersebut. Intinya dalam buku tanah selain tersimpan informasi lengkap mengenai hak atas tanah, juga memuat data kepemilikan (identitas pemilik), luas, lokasi tanah serta memuat status hukum serta riwayat peralihan hak.  Buku atnah ini merupakan arsip utama sbagai dasar penerbita sertipikat tanah yang disimpan oleh Badan Pertanahan Nasional (BPN).\nSedangkan yang dimaksud dengan sertipikat tanah adalah surat tanda bukti hak atas tanah yang diberikan baik kepada perserorangan ataupun badan hukum yang diterbitkan berdasarkan data yang terdapat di dalam buku tanah.\nSehingga dapat disimpulkan bahwa perbedaan keduanya yaitu buku tanah merupakan dokumen yang memuat data yuridis dan data fisik tanah yang sudah terdapat kepemilikan hak atas tanah, sedangkan sertipikat tanah adalah surat kepemilikah hak atas tanah yang sudah dibukukan dan tercantum dalam daftar buku tanah.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perbedaan Penyertaan dan Bersekutu dalam KUHP",
+    "ground_truth": "Perbedaan antara konsep penyertaan dalam Pasal 55\nKUHP\natau Pasal 20\nUU 1/2023\n, dengan unsur bekerja sama atau bersekutu dalam Pasal 365 KUHP atau Pasal 479 UU 1/2023 adalah\nPasal 55 KUHP atau Pasal 20 UU 1/2023 merupakan aturan yang bersifat umum (\nlegi generali\n)\nuntuk tindakan penyertaan (\ndeelneming\n) dalam suatu tindak pidana, di mana terhadap pelaku turut serta dihukum sebagai orang yang melakukan suatu tindak pidana.\nDi lain sisi,\nPasal 365 KUHP atau Pasal 479 UU 1/2023 merupakan aturan yang bersifat khusus (\nlex specialis\n)\n, yakni ada pemberatan pidana bagi pencurian dengan pemberatan yang dilakukan secara bersama-sama (bersekutu).\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Syarat Nikah Siri Terpenuhi, Tetap Berpotensi Dipidana",
+    "ground_truth": "Peraturan perundang-undangan di Indonesia tidak mengenal istilah nikah siri. Adapun yang dimaksud dengan nikah siri adalah pernikahan yang hanya disaksikan oleh seorang modin dan saksi, tidak melalui kantor urusan agama, menurut agama Islam sudah sah. Kemudian, dalam masyarakat, nikah siri sering diartikan sebagai pernikahan tanpa wali, pernikahan yang dirahasiakan, atau pernikahan yang sah secara agama.\nPerihal pelaksanaan nikah siri yang sudah sesuai syarat atau rukun nikah, namun masih terikat hubungan perkawinan dengan istri sahnya, maka berpotensi dijerat pidana bagi suami maupun istri siri berdasarkan\nKUHP\nlama atau\nUU 1/2023\ntentang KUHP baru.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Kapan Cuti Tahunan Bisa Diambil?",
+    "ground_truth": "Pada dasarnya, pengusaha wajib memberikan cuti tahunan kepada pekerja setelah pekerja yang bersangkutan bekerja selama 12 bulan secara terus menerus. Pelaksanaan cuti tahunan tersebut diatur dalam perjanjian kerja, peraturan perusahaan (“PP”), atau perjanjian kerja bersama (“PKB”).\nLalu, kapan pekerja mulai dapat cuti tahunan atau dapat menggunakan hak cuti tahunan tersebut?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Jika Orang yang Direkomendasikan Terlibat Pasal Penipuan",
+    "ground_truth": "Dalam perkara pidana, orang yang melakukan sebuah tindak pidana adalah yang harus bertanggung jawab atas perbuatannya. Dalam kasus ini, orang yang merekomendasikan orang lain tidak dapat diminta pertanggungjawaban jika ia tidak turut serta dalam suatu perbuatan (dalam konteks ini perihal pasal penipuan) tersebut.\nLantas, apa hukumnya jika orang yang merekomendasikan tersebut turut serta, atau bersekongkol dan memenuhi unsur dari tindak pidana penipuan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perbedaan Gugatan dan Perlawanan dalam Perkara Perdata",
+    "ground_truth": "Perlu diketahui bahwa gugatan bisa diajukan oleh seseorang terhadap hak-haknya yang dilanggar atau belum terpenuhi namun\nbelum adanya putusan pengadilan\nyang memutuskan sengketa tersebut. Adapun perlawanan pada prakteknya diajukan oleh pihak ketiga yang merasa dirugikan oleh suatu putusan pengadilan.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Pemilik Tanah Lama Tak Pernah Bayar PBB, Apakah Pemilik Baru yang Bayar?",
+    "ground_truth": "Pajak bumi dan bangunan perdesaan dan perkotaan (“PBB-P2”) adalah pajak atas bumi dan/atau bangunan yang dimiliki, dikuasai, dan/atau dimanfaatkan oleh orang pribadi atau badan. Subjek dan wajib pajak PBB-P2 adalah orang pribadi atau badan yang secara nyata mempunyai suatu hak atas bumi dan/atau memperoleh manfaat atas bumi, dan/atau memiliki, menguasai, dan/atau memperoleh manfaat atas bangunan.\nOleh karena itu, dalam hal pemilik tanah sebelum Anda tidak membayar/kurang membayar/tidak menyetor PBB-P2, maka yang wajib membayar tunggakan tersebut adalah pemilik tanah sebelumnya, bukan Anda sebagai pemilik baru.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Jika Putusan Sengketa Tanah Melanggar Asas Ne Bis In Idem",
+    "ground_truth": "Permasalahan utama dalam kasus Anda adalah munculnya putusan baru atas sengketa tanah yang sama, padahal sudah ada putusan sebelumnya yang berkekuatan hukum tetap (\ninkracht\n) dan telah dieksekusi.\nHal ini menimbulkan konflik hukum atau kontradiksi putusan yang seharusnya tidak terjadi karena melanggar asas\nne bis in idem\n. Dalam kondisi tersebut, langkah hukum yang dapat ditempuh dibedakan menjadi tiga upaya sesuai dengan tingkatan dari putusan yang kedua tersebut.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Kompetensi Absolut Penyelesaian Sengketa via Arbitrase",
+    "ground_truth": "Perlu diketahui, dalam perjanjian memang dapat dipilih domisili untuk penyelesaian melalui pengadilan negeri. Namun, jika dalam perjanjian tersebut terdapat klausul arbitrase secara bersamaan, maka kompetensi absolut penyelesaian sengketa yang terjadi akibat perjanjian tersebut harus dilakukan melalui arbitrase. Apa dasar hukumnya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hukumnya Mengingkari Perjanjian Penyelesaian Sengketa via Arbitrase",
+    "ground_truth": "Perjanjian yang telah mengatur jika terjadi sengketa antara para pihak maka akan diselesaikan melalui arbitrase, menghilangkan kewenangan pengadilan negeri untuk mengadili sengketa tersebut. Jika salah satu pihak mengingkari ketentuan tersebut dan menggugat pihak lain ke pengadilan, maka pihak yang digugat dapat mengajukan eksepsi kompetensi absolut  atau eksepsi kewenangan mengadili. Bagaimana ketentuannya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bolehkah Perumahan Menerapkan Hukum Syariah?",
+    "ground_truth": "Terkait perumahan syariah,\nUU 1/2011\ndan perubahannya tidak mengenal istilah perumahan syariah atau perumahan berlabel syariah. Label syariah hanya berkaitan dengan sistem pembiayaan perumahan.\nAdapun berdasarkan Pasal 7 ayat (1)\nUU 12/2011\n, jenis dan hierarki peraturan perundang-undangan terdiri atas:\nUUD 1945;\nKetetapan Majelis Permusyawaratan Rakyat;\nUndang-Undang/Peraturan Pemerintah Pengganti Undang-Undang;\nPeraturan Pemerintah;\nPeraturan Presiden;\nPeraturan Daerah Provinsi; dan\nPeraturan Daerah Kabupaten/Kota.\nKetentuan ini menunjukan bahwa peraturan perumahan tidak dikenal dalam sistem peraturan perundang-undangan Indonesia. Peraturan tersebut pun tidak memiliki kekuatan hukum mengikat, karena tidak diperintahkan peraturan perundang-undangan yang lebih tinggi atau tidak dibentuk berdasarkan kewenangan. Jadi, peraturan perumahan tidak berwenang menciptakan dan menerapkan aturan sendiri yang berlandaskan hukum Islam.\nWalau demikian, penerapan hukum syariah dalam hukum positif dimungkinkan di wilayah Aceh.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Ketentuan Bagi Waris Jika Ibu Menikah Lagi",
+    "ground_truth": "Meskipun ibu Anda menikah lagi, Anda dan saudara Anda merupakan ahli waris dari almarhum bapak kandung Anda, sehingga berhak untuk mendapatkan harta warisnya. Namun demikian, jika tidak ada perjanjian perkawinan antara bapak dan ibu Anda, maka yang menjadi harta waris adalah harta bawaan bapak Anda dan setengah dari harta bersama. Lantas, berapa bagian warisan masing-masing ahli waris?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Legalitas Mengoleksi Replika Senjata Historis",
+    "ground_truth": "Menurut\nUU 2/1951\natau undang-undang darurat sajam (senjata tajam), siapapun yang tanpa hak memasukkan ke Indonesia, membuat, menerima, mencoba, memperolehnya, menyerahkan atau mencoba menyerahkan, menguasai, membawa, mempunyai persediaan padanya atau mempunyai dalam miliknya, menyimpan, mengangkut, menyembunyikan, mempergunakan atau mengeluarkan dari Indonesia\nsenjata tajam\n, maka dapat dihukum dengan hukuman penjara setinggi-tingginya 10 tahun. Adapun yang dimaksud dengan tanpa hak di sini adalah tanpa izin pejabat yang berwenang.\nLantas, siapa pejabat berwenang yang memiliki kewenangan memberikan izin senjata tajam?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apakah Istri Siri Bisa Menggugat Cerai Suaminya?",
+    "ground_truth": "Perlu Anda pahami bahwa perkawinan siri yang tidak dicatatkan secara negara tidak mempunyai kekuatan hukum. Di sisi lain, Anda menyebutkan bahwa suami Anda masih terikat perkawinan dengan istri sahnya, artinya perkawinan siri Anda merupakan poligami.\nLantas, apakah dimungkinkan istri siri mengajukan cerai ke Pengadilan Agama, padahal perkawinan siri sekaligus poligami itu belum mendapat izin dari istri sah suami?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Tata Cara Pemeriksaan Pelanggaran Kode Perilaku Jaksa",
+    "ground_truth": "Kode etik jaksa diatur dalam\nPerja Kode Perilaku Jaksa\n, akan tetapi perlu diketahui bahwa istilah yang digunakan bukanlah “kode etik jaksa” akan tetapi “kode perilaku jaksa”. Seorang jaksa wajib untuk menghormati dan mematuhi kode perilaku jaksa. Jika seorang jaksa terbukti melakukan pelanggaran, maka dapat dijatuhkan tindakan administratif.\nLantas, bagaimana tata cara pemeriksaan dan penjatuhan tindakan administratif bagi jaksa yang melanggar kode perilaku jaksa?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bisakah Force Majeure Menjadi Alasan PHK?",
+    "ground_truth": "Keadaan memaksa (\nforce majeure\n) adalah keadaan tidak dipenuhinya prestasi oleh debitur karena terjadi peristiwa yang tidak dapat diketahui atau tidak dapat diduga akan terjadi ketika membuat perikatan. Dalam keadaan memaksa, debitur tidak dapat disalahkan karena keadaan ini timbul di luar kemauan dan kemampuan debitur.\nLantas, bisakah perusahaan PHK pekerja karena\nforce majeure\n?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Objek Praperadilan Menurut KUHAP",
+    "ground_truth": "Tujuan dari praperadilan adalah untuk mengawasi tindakan upaya paksa yang dilakukan oleh penyidik atau penuntut umum terhadap tersangka, supaya tindakan itu benar-benar dilaksanakan sesuai dengan ketentuan undang-undang, dan benar-benar proporsional dengan ketentuan hukum serta tidak merupakan tindakan yang bertentangan dengan hukum.\nLantas, apa saja objek praperadilan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Jika Peserta Bela Negara Disuruh Makan Bekas Orang",
+    "ground_truth": "Mendapatkan makanan yang bersih dan layak merupakan hak setiap warga negara. Sehingga, menurut kami, memberikan makanan sisa orang lain dalam kondisi tidak layak dan tidak higienis merupakan suatu pelanggaran hak asasi manusia.\nTerlebih, jika peserta bela negara di sekolah dikategorikan sebagai anak, sudah seharusnya setiap pihak memberikan perlindungan kepada anak dari segala bentuk kekerasan dan mendukung tumbuh kembangnya secara optimal, termasuk dalam hal ini memberikan makanan secara layak.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Izin Usaha Jasa Editing Video",
+    "ground_truth": "Usaha\nediting\nvideo dapat menggunakan Kode klasifikasi baku lapangan usaha Indonesia (KBLI) 59122 tentang aktivitas pascaproduksi film, video dan program televisi oleh swasta.\nLantas, perizinan berusaha apa sajakah yang harus dipenuhi?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apa Itu Pro Justitia?",
+    "ground_truth": "Istilah “\npro justitia\n” memiliki arti demi hukum, untuk hukum atau undang-undang. Salah satu penerapan\npro justitia\ndapat ditemukan dalam putusan pengadilan, secara khusus pada bagian irah-irah atau kepala putusan.\nSelain putusan pengadilan,\npro justitia\njuga menjadi syarat formal berbagai dokumen hukum. Dokumen apa sajakah itu?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Cara Mendapatkan NIB dan Mengecek NIB",
+    "ground_truth": "Nomor Induk Berusaha atau NIB adalah bukti registrasi/pendaftaran pelaku usaha untuk melakukan kegiatan usaha dan sebagai identitas bagi pelaku usaha dalam pelaksanaan kegiatan usahanya.\nUntuk mendapatkan NIB, Anda dapat melakukannya dengan mengunjungi laman\nOnline Single Submission\n.\nPembuatan NIB dapat dilakukan juga melalui aplikasi\nOSS Indonesia\n. Lantas, bagaimana cara cek NIB?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Membuat Meme dari Wajah Orang, Bisakah Dipidana?",
+    "ground_truth": "Meme adalah cuplikan gambar dari acara televisi, film, dan sebagainya atau gambar-gambar buatan sendiri yang dimodifikasi dengan menambahkan kata-kata atau tulisan-tulisan untuk tujuan melucu dan menghibur.\nTerhadap meme yang terdapat mengandung penghinaan tapi tidak terdapat unsur menuduhkan suatu perbuatan berpotensi dikenai sanksi pidana berdasarkan Pasal 315\nKUHP\nlama dan Pasal 436\nUU 1/2023\ntentang KUHP baru. Bagaimana sanksinya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bolehkah Non-advokat Beracara di Lembaga Arbitrase?",
+    "ground_truth": "Non-advokat diperbolehkan untuk mewakili para pihak dalam proses beracara di lembaga arbitrase, baik nasional maupun internasional. Hal ini sesuai dengan ketentuan\nUU 30/1999\n, dan\nPeraturan dan Prosedur Arbitrase 2025\n, yang tidak mewajibkan perwakilan oleh advokat, serta memberi keleluasaan kepada para pihak untuk menunjuk sendiri wakilnya, termasuk untuk beracara sendiri.\nKetentuan serupa juga diterapkan di berbagai lembaga arbitrase internasional seperti HKIAC (Hong Kong), LCIA (London), dan SIAC (Singapura), yang memberikan fleksibilitas penuh dalam penunjukan perwakilan, dengan syarat pihak yang diwakilkan memiliki kuasa yang sah.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Tugas dan Fungsi Balai Harta Peninggalan",
+    "ground_truth": "Balai harta peninggalan adalah unit pelaksana teknis yang berada di bawah Direktorat Jenderal Administrasi Hukum Umum (“Dirjen AHU”). Adapun tugas balai harta peninggalan adalah mewakili dan melaksanakan kepentingan subjek hukum dalam rangka menjalankan putusan dan/atau penetapan pengadilan atau kepentingan demi hukum di bidang harta peninggalan dan berdasarkan ketentuan peraturan perundang-undangan.\nDalam menjalankan tugasnya, balai harta peninggalan menyelenggarakan beberapa fungsi. Apa saja fungsi balai harta peninggalan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perlindungan Hukum Driver Ojol dalam Perjanjian Kemitraan",
+    "ground_truth": "Sebelumnya, perlu diketahui bahwa\nhubungan hukum antara perusahaan penyedia aplikasi dengan\ndriver\nojek\nonline adalah\nhubungan kemitraan yang berdasarkan perjanjian kemitraan. Oleh karena itu, perlindungan hukum terhadap\ndriver\nbukanlah perlindungan bagi pekerja seperti halnya perjanjian kerja, melainkan perlindungan sebagai pihak dalam sebuah perjanjian kemitraan.\nPada dasarnya, suatu perjanjian harus disepakati oleh para pihak, termasuk jika ada perubahan juga harus dengan kata sepakat.\nApabila salah satu pihak (perusahaan penyedia aplikasi) mengubah isi perjanjian kemitraan, maka tentu harus ada persetujuan dari pihak lainnya.\nLantas apakah para\ndriver\nojek\nonline\nbisa mendapat perlindungan hukum atas perubahan perjanjian yang dilakukan secara sepihak?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hukumnya Nikah Siri dengan Wanita Bersuami",
+    "ground_truth": "Menikah siri dengan wanita bersuami dianggap ilegal menurut\nUU Perkawinan\ndan\nKHI\n. Selain itu, juga berpotensi untuk dipidana dengan pasal perzinaan.\nOleh karena itu, Anda harus mempertimbangkan konsekuensi hukum dan sosial serta dampaknya terhadap keluarga jika Anda akan menikah siri dengan wanita yang sudah bersuami.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Pembinaan Narapidana Seumur Hidup",
+    "ground_truth": "Sepanjang penelusuran kami, pola pembinaan tidak membedakan antara narapidana pemidanaan waktu tertentu dengan narapidana seumur hidup secara tegas, kecuali narapidana seumur hidup tersebut dikategorikan sebagai pembinaan bagi narapidana risiko tinggi serta pembinaan khusus bagi narapidana yang tidak dimungkinkan memperoleh kesempatan asimilasi dan atau integrasi.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Kewajiban Lapor LKPM bagi Pelaku Usaha",
+    "ground_truth": "Laporan kegiatan penanam modal atau LKPM adalah laporan mengenai perkembangan realisasi penanaman modal dan permasalahan yang dihadapi pelaku usaha yang wajib dibuat dan disampaikan secara berkala.\nPada dasarnya setiap pelaku usaha wajib lapor LKPM melalui sistem OSS, yaitu sistem elektronik terintegrasi yang dikelola dan diselenggarakan oleh lembaga OSS untuk penyelenggara perizinan berusaha berbasis risiko.\nLantas, bagaimana periode penyampaian LKPM dan apa sanksi jika tidak lapor LKPM?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Kewajiban Perusahaan Asuransi Menurut PP PMSE",
+    "ground_truth": "Kegiatan perusahaan asuransi yang melakukan penawaran dan penutupan polis (transaksi) melalui sistem elektronik milik sendiri dan/atau pihak ketiga termasuk lingkup perdagangan melalui sistem elektronik (“PMSE”). Oleh karena itu, perusahaan asuransi tersebut harus patuh pada ketentuan yang terdapat dalam\nPP PMSE\n.\nLantas, apa saja kewajiban pelaku usaha dan penyelenggara PMSE?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Ini Tarif SIM, STNK dan BPKB Tebaru",
+    "ground_truth": "Penerbitan surat izin mengemudi (“SIM”), surat tanda nomor kendaraan bermotor (“STNK”) dan buku pemilik kendaraan bermotor (“BPKB”) merupakan jenis penerimaan negara bukan pajak yang berlaku pada Kepolisian Negara Republik Indonesia.\nBerkaitan dengan tarif SIM, STNK, dan BPKB terbaru berpedoman pada ketentuan yang terdapat pada Lampiran\nPP 76/2020\n.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Izin Usaha untuk Kegiatan Jual Beli BBM",
+    "ground_truth": "Kegiatan niaga (jual beli) bahan bakar minyak (BBM) seperti solar dalam bentuk perdagangan besar harus mendapatkan perizinan berusaha berbasis risiko berdasarkan KBLI\n46610\nberupa nomor induk berusaha (“NIB”) dan izin usaha niaga minyak dan gas bumi (UINMG). Hal ini karena KBLI tersebut memiliki tingkat risiko tinggi.\nLalu, izin usaha apa yang harus dipenuhi jika pelaku usaha ingin menjual BBM secara eceran?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Ini Cara Menghitung Masa Kerja yang Benar",
+    "ground_truth": "Cara menghitung masa kerja penting untuk diketahui. Pasalnya, perhitungan masa kerja memegang peranan penting, di antaranya dalam hal perhitungan uang pesangon, uang penghargaan masa kerja (UPMK), besaran tunjangan hari raya (THR), serta kapan cuti tahunan berhak diperoleh pekerja, mengingat perolehan hak tersebut bergantung pada lama masa kerja.\nLantas secara hukum, mulai kapan masa kerja dihitung?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "5 Perbedaan Gugatan dan Permohonan",
+    "ground_truth": "Salah satu perbedaan gugatan dan permohonan yaitu dalam gugatan ada suatu sengketa atau konflik yang harus diselesaikan dan diputus oleh pengadilan. Sedangkan, dalam permohonan tidak ada sengketa sehingga hakim mengeluarkan suatu penetapan. Selain itu, apa perbedaan antara gugatan dan permohonan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hak atas Uang Pisah Jika Tidak Ada dalam PP dan PKB",
+    "ground_truth": "Dalam peraturan perundang-undangan, karyawan yang mengundurkan diri atas kemauan sendiri dan telah memenuhi syarat, berhak atas uang penggantian hak dan uang pisah yang besarannya diatur dalam perjanjian kerja, peraturan perusahaan (“PP”), atau perjanjian kerja bersama (“PKB”).\nMeskipun perusahaan yang bersangkutan tidak memiliki PP dan PKB, namun tetap wajib membayar uang pisah kepada karyawan yang mengundurkan diri\n(resign).\nLantas, bagaimana cara menghitung besaran uang pisah jika perusahaan tidak memiliki PP maupun PKB, dan hal tersebut juga tidak diatur dalam perjanjian kerja?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Dapatkah Anak Asuh Menolak Kembali ke Ortu Kandung?",
+    "ground_truth": "Setiap anak memiliki hak untuk hidup, tumbuh, dan berkembang secara layak sesuai\nUUD 1945\ndan\nUU Perlindungan Anak\n. Sehingga, sebagai orang tua asuh, Anda dapat memperjuangkan hak anak asuh Anda agar terhindar dari penelantaran orang tua kandungnya melalui jalur hukum. Lantas, apakah anak asuh dapat menolak kembali ke orang tua kandungnya? Dan apakah orang tua asuh memiliki hak untuk mempertahankan anak tersebut?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Suami Hadiahkan Rumah kepada Istri, Termasuk Harta Bersama?",
+    "ground_truth": "Rumah yang dihadiahkan atau dihibahkan suami kepada istri bukan bagian dari harta bersama, melainkan milik pribadi istri, sebagaimana diatur dalam Pasal 35 ayat (2)\nUU Perkawinan\n.\nNamun, perlu dipastikan terlebih dahulu apakah hibah tersebut telah dibuat dalam bentuk akta hibah atau tidak dan apakah nilai hibahnya melebihi 1/3 dari total harta suami atau tidak. Mengapa demikian?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Dapatkah Surat Bermaterai Menghilangkan Pertanggungjawaban Pidana?",
+    "ground_truth": "Keberadaan materai pada surat tidak menjadi alasan menghilangkan pertanggungjawaban pidana terhadap tindak pidana yang terbukti dilakukan oleh seseorang. Materai memiliki fungsi administrasi dan pembuktian, bukan sebagai alat penghapus tanggung jawab pidana.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apakah Daluwarsa Berlaku untuk Pelanggaran HAM Berat di Masa Lalu?",
+    "ground_truth": "Daluwarsa kewenangan penuntutan diatur dalam Pasal 78\nKUHP\nlama dan Pasal 136\nUU 1/2023\ntentang KUHP baru. Tujuan diaturnya daluwarsa adalah untuk kepastian hukum terhadap suatu tindak pidana yang dilakukan karena dengan lewatnya jangka waktu tersebut pada umumnya sulit untuk menentukan alat-alat bukti. Dengan lampaunya masa daluwarsa, berarti telah hilang kewenangan untuk menuntut seseorang yang diduga melakukan suatu tindak pidana.\nNamun, bagaimana dengan kasus pelanggaran Hak Asasi Manusia (“HAM“) berat di masa lalu? Apakah ketentuan daluwarsa tetap berlaku?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Cara Menghitung BPHTB dalam Jual Beli Tanah",
+    "ground_truth": "Bea Perolehan Hak atas Tanah dan Bangunan atau disingkat BPHTB adalah pajak atas perolehan hak atas tanah dan/atau bangunan. Objek pajak dari BPHTB adalah perolehan hak atas tanah dan/atau bangunan, termasuk pemindahan hak karena jual beli. Adapun besaran pokok BPHTB yang terutang dihitung dengan cara mengalikan dasar pengenaan BPHTB setelah dikurangi nilai perolehan objek pajak tidak kena pajak (NPOPTKP) dengan tarif BPHTB. Lantas, BPHTB yang bayar siapa?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bolehkah Surat Pengakuan Utang Dibuat di Bawah Tangan?",
+    "ground_truth": "Surat pengakuan utang merupakan salah satu bentuk dari grosse akta. Menurut Pasal 1 angka 11\nUU 2/2014\n, grosse akta adalah salah satu salinan akta untuk pengakuan utang dengan kepala akta “DEMI KEADILAN BERDASARKAN KETUHANAN YANG MAHA ESA”, yang mempunyai kekuatan eksekutorial.\nUntuk mempunyai kekuatan eksekutorial, grosse akta pengakuan utang harus dibuat di hadapan notaris atau berbentuk akta autentik/notariil.\nLantas, bolehkah surat pengakuan utang dibuat di bawah tangan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perlindungan HAM Bagi Saksi dan Korban Penyandang Disabilitas",
+    "ground_truth": "Selain\nUU 39/1999\n, ketentuan lain yang mengatur perlindungan saksi dan korban penyandang disabilitas mengacu pada\nUU 19/2011\ntentang pengesahan ratifikasi\nUN Convention on the Rights of Persons with Disabilities\n(UNCRPD),\nUU 8/2016\ntentang penyandang disabilitas, dan\nPP 39/2020\ntentang akomodasi yang layak bagi penyandang disabilitas dalam proses peradilan.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Pembagian Waris Menurut Islam dalam Keadaan Kalalah",
+    "ground_truth": "Sebagai ahli waris pengganti dari Bapak A dan Bapak B, anak-anak mereka tidak berhak atas warisan karena hak warisnya terhalang oleh ahli waris langsung yaitu Ibu C, Ibu E, dan Ibu F yang memiliki kedudukan lebih tinggi. Selain itu, Bapak D, meskipun meninggal setelah adik nenek Anda, tetap berhak atas warisan berdasarkan prinsip\nmunasakhah\n, karena meninggal sebelum pembagian waris menurut islam dilakukan.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Cara Menghitung Biaya Pajak Restoran",
+    "ground_truth": "Pajak yang dikenakan saat makan di restoran yang Anda maksud kini disebut dengan istilah pajak barang dan jasa tertentu (“PBJT”). Namun, tidak semua tempat makan atau minum dikenakan PBJT, sebab terdapat pengecualian objek PBJT menurut peraturan perundang-undangan.\nLantas, bagaimana cara hitung pajak restoran atau PBJT?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hak Waris Istri Kedua Jika Suaminya Meninggal",
+    "ground_truth": "Jika istri meninggal, maka suami berhak atas separuh harta bersama sebagai bagian miliknya, sedangkan sisanya menjadi harta yang diwariskan kepada ahli waris istri. Sehingga, dalam hal istri sebagai pewaris meninggalkan anak, maka suami\ntidak dibenarkan\nmenguasai 100% harta yang ditinggalkan oleh istrinya.\nMenjawab hak waris istri kedua, jika di kemudian hari suami meninggal terlebih dahulu daripada istri kedua, maka harta yang sebelumnya telah diwariskan kepada suami atas kematian istri pertama akan dibagikan kepada para ahli waris sebagai harta warisan dari suami, termasuk kepada istri kedua. Namun, terdapat batasan jumlah warisan yang bisa didapatkan oleh istri kedua jika suaminya meninggalkan anak. Lalu, bagaimana dengan tanggung jawab suami terhadap utang istri kedua?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hukum Menikah saat Hamil Apakah Sah?",
+    "ground_truth": "Pada dasarnya suatu perkawinan adalah sah ketika dilakukan menurut hukum agama dan kepercayaan masing-masing, yang kemudian dicatatkan di Kantor Catatan Sipil atau Kantor Urusan Agama. Terkait menikah saat hamil duluan dalam hukum Islam diatur dalam Pasal 53\nKHI\n. Bagaimana bunyi ketentuannya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Sahkah Perjanjian Rahasiakan Keracunan Makanan?",
+    "ground_truth": "Walaupun terdapat asas kebebasan berkontrak, suatu perjanjian tetap harus taat pada syarat sah perjanjian yang terdapat dalam Pasal 1320\nKUH Perdata\n. Salah satu syarat sah perjanjian adalah suatu sebab yang tidak terlarang. Adapun yang dimaksud dengan sebab yang terlarang adalah jika sebab itu dilarang oleh undang-undang atau bila sebab itu bertentangan dengan kesusilaan atau dengan ketertiban umum.\nApabila dikaitan dengan kasus Anda, khususnya terhadap ketentuan mengenai kausa halal sebagai syarat sah perjanjian, maka, dapat disimpulkan bahwa perjanjian mengenai merahasiakan informasi keracunan makanan batal demi hukum karena tidak memenuhi syarat objektif perjanjian.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Kapan Adendum Perjanjian Mulai Berlaku?",
+    "ground_truth": "Adendum diartikan sebagai tambahan atau lampiran pada perjanjian pokok yang merupakan satu kesatuan dengan perjanjian pokoknya. Sehingga, adendum tidak bisa lepas dari perjanjian pokok.\nMeskipun jangka waktu perjanjian tersebut belum berakhir, para pihak dapat menambahkan adendum sepanjang disepakati oleh kedua belah pihak. Lalu berdasarkan kronologis yang Anda ceritakan, kapan sebaiknya adendum itu berlaku?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Penyelesaian Sengketa Pajak",
+    "ground_truth": "Pada dasarnya,\nUU 14/2002\ndan perubahannya mendefinisikan sengketa pajak sebagai sengketa yang timbul dalam bidang perpajakan antara wajib pajak atau penanggung pajak dengan pejabat yang berwenang sebagai akibat dikeluarkannya keputusan yang dapat diajukan banding atau gugatan kepada pengadilan pajak berdasarkan peraturan perundang-undangan perpajakan, termasuk gugatan atas pelaksanaan penagihan berdasarkan UU 14/2002 dengan surat paksa.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apakah Suami Berhak Atas Uang Pesangon Istri?",
+    "ground_truth": "Pada dasarnya, menurut\nPasal 81 angka 16\nPerppu Cipta Kerja\nyang mengubah Pasal 61 ayat (5)\nUU Ketenagakerjaan\n,\njika pekerja meninggal dunia, perusahaan wajib memberikan hak-hak yang dimiliki oleh ahli waris pekerja sesuai dengan ketentuan peraturan perundang-undangan atau hak-hak yang telah diatur dalam Perjanjian Kerja, Peraturan Perusahaan, atau Perjanjian Kerja Bersama.\nTetapi, pasal tersebut tidak menjelaskan lebih rinci mengenai siapa ahli waris yang dimaksud dan bagaimana mekanisme pemberian uang-uang itu kepada si ahli waris.\nLantas, apakah suami dari pekerja Anda yang meninggal dunia berhak atas uang pesangon istrinya? Apakah pihak suami termasuk ahli waris?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hukumnya Menagih Utang Pinjol Melalui Penjamin Utang",
+    "ground_truth": "Perlu kami tekankan bahwa dalam penyelenggaraan pinjaman\nonline\n(“pinjol”) tidak dikenal istilah penjamin utang oleh pihak ketiga. Terlebih, jaminan perorangan tersebut dilakukan tanpa persetujuan pihak ketiga yang bersangkutan, karena melanggar ketentuan dalam\nKUH Perdata\n.\nLantas, bagaimana hukumnya jika penyelenggara pinjol menagih utang debitur melalui “penjamin utang”?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Syarat Warisan Bebas Pajak",
+    "ground_truth": "Pada prinsipnya, warisan dikecualikan dari objek pajak. Namun sebelumnya ahli waris harus mendapatkan Surat Keterangan Bebas Pajak Penghasilan (“SKB PPh”), yang hanya diberikan jika objek warisan telah dilaporkan dalam Surat Pemberitahuan (“SPT”) Tahunan PPh pewaris.\nSelain itu, perlu diperhatikan pula tarif Bea Perolehan Hak atas Tanah dan Bangunan (“BPHTB”) atas perolehan hak karena waris. Bagaimana cara hitungnya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apakah Pasangan Keguguran Bisa Dipidana?",
+    "ground_truth": "Keguguran adalah keluarnya janin dengan tidak disengaja sebelum waktunya lahir. Menurut hemat kami, orang tua atau pasangan yang mengalami keguguran secara alami (tanpa adanya tindakan sengaja) dan/atau karena faktor genetik, hormonal, dan faktor lingkungan, tidak dapat dikenai sanksi pidana berdasarkan pasal kelalaian yang menyebabkan kematian.\nJika keguguran tidak disebabkan secara alami dan terbukti hal itu diakibatkan karena kealpaan seseorang, maka atas dasar pertimbangan hakim, berpotensi dikenai sanksi pidana. Jadi, terkait dengan keguguran dan Pasal 359\nKUHP\natau Pasal 474 ayat (3)\nUU 1/2023\ntentang kelalaian yang menyebabkan kematian, harus dilihat masing-masing kasusnya dan unsur perbuatannya. Sehingga, tidak dapat digeneralisir bahwa keguguran sudah pasti dapat dijerat dengan pasal tersebut.\nNamun, lain hukumnya jika gugurnya kandungan tersebut diakibatkan karena aborsi, sebab pelaku aborsi dapat dipidana berdasarkan Pasal 346 KUHP, Pasal 463 UU 1/2023, atau Pasal 427\nUU Kesehatan\n.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "SIUP dan TDP Tak Berlaku Lagi, Benarkah?",
+    "ground_truth": "Status keberlakuan Surat Izin Usaha Perdagangan (“SIUP”) dan Tanda Daftar Perusahaan (“TDP”) saat ini sudah tidak berlaku. Hal ini karena peraturan yang mengatur mengenai SIUP dan TDP sudah dicabut.\nBerkaitan dengan perizinan berusaha pasca berlakunya\nUU Cipta Kerja\n, diterapkan perizinan berusaha berbasis risiko untuk menunjang perbaikan iklim investasi dan kegiatan berusaha. Jadi, jika seseorang ingin melakukan usaha berjualan mebel atau\nfurniture\nwajib memiliki dokumen legalitas usaha berupa Nomor Induk Berusaha (NIB), karena jenis usaha tersebut memiliki risiko rendah.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apakah Dosen Swasta Tunduk pada UU Ketenagakerjaan?",
+    "ground_truth": "Dosen adalah pendidik profesional dan ilmuwan dengan tugas utama mentransformasikan, mengembangkan, dan menyebarluaskan ilmu pengetahuan, teknologi, dan seni melalui pendidikan, penelitian, dan pengabdian kepada masyarakat.\nTerkait dengan hubungan kerja antara badan penyelenggara perguruan tinggi swasta dengan dosen swasta, kami berpendapat bahwa hubungan tersebut dapat tunduk pada ketentuan dalam\nUU Ketenagakerjaan\ndan peraturan pelaksananya.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Berapa Jumlah UU yang Dikeluarkan Per Tahun?",
+    "ground_truth": "Jumlah undang-undang (“UU”) yang dibentuk setiap tahun bervariasi dan tidak selalu sama. Secara ketentuan normatif, UU dan peraturan lainnya tidak memiliki ketentuan pembatasan jumlah. Setiap pembentuk peraturan dapat membentuk peraturan sesuai dengan kebutuhan mengikuti rencana atau program kerja yang hendak dicapainya.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Sanksi Perusahaan Tidak Bayar BPJS Karyawan",
+    "ground_truth": "BPJS adalah singkatan dari Badan Penyelenggara Jaminan Sosial, yang terdiri dari BPJS kesehatan dan BPJS ketenagakerjaan. Pada dasarnya, pemberi kerja secara bertahap wajib mendaftarkan dirinya dan pekerjanya sebagai peserta kepada BPJS, sesuai dengan program jaminan sosial yang diikuti. Setelah mendaftarkan, pemberi kerja wajib memungut iuran yang menjadi beban peserta dari pekerjanya dan menyetorkannya kepada BPJS.\nApabila perusahaan yang sudah memungut iuran dari pekerjanya tidak menyetorkan kepada BPJS, apakah dapat dianggap sebagai penggelapan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Peraturan Drop Out Mahasiswa yang Melebihi Masa Studi",
+    "ground_truth": "Berdasarkan Pasal 18 ayat (1)\nPermendiktisaintek 39/2025\n, beban belajar dan masa tempuh kurikulum pada program sarjana atau sarjana terapan paling sedikit 144 satuan kredit semester yang dirancang selama 8 semester\n.\nNamun, walaupun idealnya 4 tahun (8 semester), masa studi S1 dapat berbeda dari masa tempuh kurikulum. Jadi, dapat lebih lama atau lebih sebentar.\nAdapun benar bahwa mahasiswa dapat dihentikan dari studinya atau\ndrop out\napabila tidak memenuhi ketentuan akademik yang ditetapkan oleh masing-masing perguruan tinggi. Oleh karena itu, Anda perlu mengacu pada peraturan akademik masing-masing perguruan tinggi.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apakah Tabungan Suami Istri Merupakan Harta Gono-Gini?",
+    "ground_truth": "Harta gono-gini setelah bercerai wajib dibagi sama rata antara suami istri, baik yang sifatnya piutang maupun utang. Namun, ketentuan harta gono-gini ini tidak berlaku dalam hal suami dan istri telah memperjanjikan pisah harta dalam sebuah perjanjian perkawinan.\nApa dasar hukumnya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Dipidanakah Menjual Emas Tidak Sesuai Timbangan Sebenarnya?",
+    "ground_truth": "Jika pedagang emas menjual emas yang beratnya tidak sesuai dengan timbangan sebenarnya, maka ia melanggar ketentuan mengenai hal-hal yang dilarang bagi pelaku usaha, yaitu memproduksi dan/atau memperdagangkan barang dan/atau jasa yang\ntidak sesuai dengan ukuran, takaran, timbangan dan jumlah dalam hitungan menurut ukuran yang sebenarnya.\nLantas, bagaimana jerat hukuman bagi pelaku usaha yang memperdagangkan barang tidak sesuai ukuran?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Cara Mengajukan Bantuan Hukum ke Posbakum Pengadilan",
+    "ground_truth": "Orang yang berperkara di pengadilan namun tidak mampu secara ekonomi dan/atau tidak memiliki akses pada informasi dan konsultasi hukum dapat menerima layanan bantuan hukum dari Pos Bantuan Hukum (“posbakum”) pengadilan.\nPosbakum pengadilan berada di lingkungan peradilan umum, agama, dan tata usaha negara dan diperuntukkan memberikan bantuan hukum secara cuma-cuma pada semua tingkat peradilan sampai putusan memperoleh kekuatan hukum tetap.\nLalu, bagaimana cara mengajukan permohonan bantuan hukum ke posbakum pengadilan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Cara Mendapatkan Naskah Akademik Undang-undang",
+    "ground_truth": "Naskah akademik merupakan dasar argumentasi dari pembentukan suatu undang-undang (“UU”). Sebagai dasar kajian, naskah akademik merupakan salah satu dokumen yang harus disertakan dalam penyusunan peraturan perundangan-undangan. Jika hendak mendapatkan naskah akademik dari suatu UU, maka Anda dapat mencari di laman kementerian atau lembaga pemrakarsa dan laman Dewan Perwakilan Rakyat.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Pernah Tertangkap Razia, Bisakah Memperoleh SKCK?",
+    "ground_truth": "Surat Keterangan Catatan Kepolisian (“SKCK”) adalah surat keterangan resmi yang dikeluarkan oleh Kepolisian Negara Republik Indonesia terkait ada atau tidak adanya catatan kepolisian. Perlu diketahui bahwa pernah atau tidaknya melakukan tindak pidana bukanlah persyaratan pembuatan SKCK sebagaimana diatur dalam\nPerpol 6/2023\n.\nLantas, apa saja persyaratan untuk memperoleh SKCK? Apakah tertangkap razia termasuk catatan kepolisian yang akan dicatat dalam SKCK?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Dasar Hukum Keadaan Darurat Militer",
+    "ground_truth": "Keadaan bahaya dalam konstitusi diatur dalam Pasal 12\nUUD 1945\n. Sebagai turunan dari pasal tersebut, terdapat\nPerppu 23/1959\ndan perubahannya yang secara khusus mengatur mengenai keadaan bahaya. Pada dasarnya, terdapat 3 keadaan bahaya, yaitu darurat sipil, darurat militer dan darurat perang. Penafsiran keadaan bahaya dalam Perppu 23/1959 ini menjadi subjektivitas presiden yang ditafsirkan sebagai kewenangan khusus berdasarkan Pasal 12 UUD 1945.\nAdapun keadaan darurat militer adalah keadaan yang tingkatan bahayanya lebih besar daripada keadaan darurat sipil dan penanganan atau penanggulangannya dianggap tidak cukup dilakukan dengan operasi yang dikendalikan oleh pejabat sipil.\nLantas, apa saja kewenangan pemerintah saat darurat militer?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Fungsi Penangkapan dan Penahanan dalam Penyidikan",
+    "ground_truth": "Penangkapan adalah\nsuatu tindakan penyidik\nberupa pengekangan sementara waktu kebebasan tersangka atau terdakwa apabila terdapat cukup bukti guna kepentingan penyidikan atau penuntutan dan atau peradilan dalam hal serta menurut cara yang diatur dalam\nKUHAP\n. Sedangkan penahanan adalah penempatan tersangka atau terdakwa di tempat tertentu oleh\npenyidik\n, atau penuntut umum atau hakim dengan penetapannya, dalam hal serta menurut cara yang diatur dalam KUHAP.\nLantas, apa fungsi penangkapan dan penahanan dalam proses penyidikan?\nPenjelasan lebih lanjut dapat baca ulasan di bawah ini."
+  },
+  {
+    "question": "Anggota DPR Diberhentikan, Siapa yang Menjadi Pengganti?",
+    "ground_truth": "UU MD3\npada dasarnya tidak mengenal istilah “menonaktifkan” anggota Dewan Perwakilan Rakyat (“DPR”). Namun, terdapat ketentuan yang mengatur mengenai pemberhentian sementara dan pemberhentian antarwaktu anggota DPR.\nNamun, jika dihubungkan dengan peristiwa anggota DPR dinonaktifkan oleh partai politik akibat gelombang demo, kami mengasumsikan bahwa hal tersebut merupakan pemberhentian antarwaktu yang dapat dilakukan apabila anggota DPR tersebut meninggal dunia, mengundurkan diri, atau diberhentikan.\nLantas, siapa yang menggantikan anggota DPR yang diberhentikan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hukumnya Mengambil Barang yang Jatuh di Jalan",
+    "ground_truth": "Apa hukumnya mengambil barang di jalan? Pada dasarnya mengambil barang yang jatuh di jalan dapat dihukumi dari dua perspektif, yaitu dari hukum perdata dan hukum pidana.\nDalam konteks hukum perdata, orang yang menguasai benda (\nbezitter\n) dapat dianggap sebagai pemiliknya, namun hal ini tidak berlaku bagi barang-barang yang hilang. Sehingga, pemilik barang yang hilang dalam jangka waktu 3 tahun berhak meminta kembali barang yang hilang dari pemegangnya.\nLantas, dalam konteks hukum pidana, mengambil barang yang jatuh di jalan dianggap sebagai pencurian atau penggelapan?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apa itu Legal Due Diligence?",
+    "ground_truth": "Legal due diligence\nadalah suatu kegiatan yang dilakukan untuk menilai risiko hukum yang mungkin timbul terkait transaksi yang akan dilakukan oleh para pihak. Selain menilai risiko hukum, kegiatan\nlegal due diligence\njuga dimaksudkan untuk menilai potensi aset maupun potensi ekonomi dari transaksi yang akan dilakukan oleh para pihak.\nSetidaknya terdapat 4 tahapan\nlegal due diligence\nantara lain tanda tangan\nconfidentiality agreement\n(dalam hal akuisisi), pembentukan tim, persiapan\ndue diligence request list\n, dan pemeriksaan dokumen.\nLantas, apa saja dokumen yang perlu diperiksa?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Dapatkah Kasus KDRT Berakhir Damai?",
+    "ground_truth": "Pada dasarnya, terhadap kasus kekerasan dalam rumah tangga (“KDRT”) dimungkinkan dilakukan perdamaian dengan cara mencabut aduan dari pihak berwenang oleh korban. Dengan syarat, kekerasan tersebut tidak menimbulkan penyakit atau halangan untuk menjalankan pekerjaan jabatan atau mata pencaharian atau kegiatan sehari-hari sebagaimana diatur dalam Pasal 44 ayat (4)\nUU PKDRT\n.\nTerhadap KDRT dengan kekerasan yang menimbulkan akibat selain itu, tidak dapat dilakukan perdamaian dalam arti mencabut aduan kepada dari pihak berwenang. Namun demikian, saat ini penyelesaian perkara pidana dapat dilakukan dengan prinsip keadilan restoratif. Lantas, apa itu keadilan restoratif?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Mengenal Tugas Legal Officer",
+    "ground_truth": "Tugas\nlegal officer\natau staf hukum perusahaan bergantung pada kebijakan masing-masing perusahaan dan akan disesuaikan dengan keadaan dan kebutuhan perusahaan tersebut.\nTugas seorang\nlegal officer\nuntuk perusahaan yang berskala besar dapat dibagi menjadi beberapa bagian, seperti\nlegal officer\nyang bertugas menangani dokumen dan perizinan atau\nlegal officer\nyang bertugas menangani permasalahan hukum, baik untuk masalah perdata maupun pidana. Namun, di perusahaan skala menengah,\nlegal officer\nmenangani semua hal termasuk dokumen dan permasalahan hukum.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Cara Mengurus Akta Kelahiran yang Hilang",
+    "ground_truth": "Jika kutipan akta kelahiran hilang, maka dapat dilakukan pencetakan ulang atau duplikat sesuai prosedur yang berlaku di masing-masing daerah. Sebagai contoh, untuk di wilayah DKI Jakarta, ketentuannya diatur dalam\nPergub DKI Jakarta 93/2012\n.\nDuplikat kutipan akta pencatatan sipil diberikan apabila kutipan yang dimiliki oleh yang bersangkutan rusak, hilang atau atas permintaan yang bersangkutan, kuasa hukumnya, instansi pemerintah dan perwakilan negara asing kepada dinas atau suku dinas.\nLantas bagaimana cara mengurus akta kelahiran yang hilang? Apa saja yang harus disiapkan?\nPenjelasan lebih lanjut dapat Anda baca  ulasan di bawah ini."
+  },
+  {
+    "question": "Aturan Pendirian CV dan Dampaknya Jika Tidak Didaftarkan",
+    "ground_truth": "Permohonan pendaftaran pendirian\ncommanditaire vennootschap\n(“CV”) atau dikenal juga dengan persekutuan komanditer diajukan oleh pemohon kepada Menteri Hukum melalui Sistem Administrasi Badan Usaha (SABU). Permohonan tersebut harus didahului dengan pengajuan nama CV.\nJika CV tidak didaftarkan, salah satu dampaknya adalah Anda tidak bisa mengurus dokumen legalitas lainnya seperti dokumen perizinan berusaha. Jika tidak ada dokumen legalitas, akan sulit untuk mengembangkan bisnis Anda. Misalnya, hambatan untuk membuka rekening bank atas nama CV Anda serta hambatan untuk bermitra dengan perusahaan lain.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apa yang Dimaksud dengan Putusan Verstek?",
+    "ground_truth": "Verstek adalah pernyataan tidak hadirnya tergugat pada hari sidang pertama walaupun telah dipanggil secara patut. Jadi, yang dimaksud dengan putusan verstek adalah keputusan yang diberikan oleh hakim pada hari sidang pertama tanpa dihadiri tergugat walaupun dirinya telah dipanggil secara patut.\nInti dari putusan verstek yaitu bahwa pihak yang tidak hadir dalam persidangan atau tidak memberikan tanggapan biasanya dianggap setuju dengan klaim yang diajukan oleh pihak penggugat, kecuali jika klaim tersebut terbukti tidak berdasar atau melanggar hukum.\nTerhadap penerapan verstek, terdapat persyaratannya. Apa saja syarat verstek?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Jika UU Dibatalkan oleh MK, Apakah UU Sebelumnya Otomatis Berlaku?",
+    "ground_truth": "Pada dasarnya, Mahkamah Konstitusi (“MK”) berwenang untuk melakukan pengujian Undang-Undang (“UU”) terhadap\nUUD 1945\n(“PUU”). Pasal 1 angka 3\nPMK 7/2025\nmenegaskan bahwa PUU adalah perkara konstitusi yang menjadi kewenangan MK sebagaimana dimaksud UUD 1945 dan UU MK dan perubahannya, termasuk pengujian Peraturan Pemerintah Pengganti Undang-Undang (“Perppu”) sebagaimana dimaksud dalam putusan MK.\nKami mengasumsikan bahwa yang Anda maksud adalah UU “dibatalkan” karena bertentangan dengan UUD 1945 pada pengujian undang-undang di MK, bukan karena kehadiran atau keberlakuan UU lainnya.\nSepanjang penelusuran kami, tidak ada aturan bahwa jika suatu UU bertentangan dengan UUD 1945 dan tidak mempunyai kekuatan hukum mengikat, menyebabkan UU terdahulu/sebelumnya otomatis menjadi berlaku.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perhatikan Ini Bila Ingin Berlibur Menggunakan Jasa Travel Agent",
+    "ground_truth": "Anda selaku konsumen diberikan sejumlah hak dan perlindungan hukum dalam menggunakan jasa yang ditawarkan oleh biro perjalanan wisata (\ntravel agent\n), di antaranya hak mendapatkan kompensasi, ganti rugi dan/atau penggantian, apabila jasa yang diterima tidak sesuai dengan perjanjian atau tidak sebagaimana mestinya dan pelaku usaha wajib memberikannya.\nJika pelaku usaha menolak, Anda dapat mengajukan upaya penyelesaian melalui pengadilan dengan mengajukan ke badan peradilan di tempat kedudukan konsumen atau di luar pengadilan melalui Badan Penyelesaian Sengketa Konsumen (“BPSK”), berdasarkan pilihan sukarela para pihak yang bersengketa.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perbedaan Perikatan karena Perjanjian dan Undang-Undang",
+    "ground_truth": "Menurut Pasal 1233\nKUH Perdata\n, perikatan lahir baik karena perjanjian maupun karena undang-undang. Perbedaan mendasar antara keduanya terletak pada dasar lahirnya kewajiban itu sendiri.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Sanksi bagi Anggota DPR yang Tidak Masuk Kerja",
+    "ground_truth": "Anggota Dewan Perwakilan Rakyat (“DPR”) merupakan pejabat negara. Apabila anggota DPR tidak hadir selama 3 bulan berturut-turut tanpa keterangan yang sah, maka hal tersebut merupakan salah satu jenis\npelanggaran berat kode etik\n. Terhadap pelanggaran kode etik tersebut dilakukan upaya penindakan oleh Mahkamah Kehormatan Dewan (“MKD”) berdasarkan peraturan DPR yang mengatur mengenai tata beracara MKD. Bagaimana ketentuannya?\nPenjelasan selengkapnya dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Syarat Jadi Anggota DPR dan Cara Penetapan Anggota Komisinya",
+    "ground_truth": "Untuk dapat menjadi anggota Dewan Perwakilan Rakyat (“DPR”), seorang WNI harus memenuhi persyaratan tertentu dan diajukan sebagai bakal calon anggota DPR oleh partai politik yang telah ditetapkan sebagai peserta dalam pemilihan umum (pemilu).\nLantas, bagaimana syarat menjadi anggota DPR?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perbedaan Peradilan dengan Pengadilan",
+    "ground_truth": "Beda peradilan dan pengadilan yang paling mendasar adalah pengadilan merupakan lembaga subjek hukum mencari keadilan, sedangkan peradilan adalah sebuah proses rangka menegakkan hukum dan keadilan atau suatu proses mencari keadilan itu sendiri.\nLalu, badan peradilan yang berada di bawah Mahkamah Agung meliputi badan peradilan dalam lingkungan peradilan umum, peradilan agama, peradilan militer, peradilan tata usaha negara.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Berapa Uang Pensiun yang Diterima DPR Seumur Hidup?",
+    "ground_truth": "Pada dasarnya seorang anggota DPR yang berhenti dengan hormat mendapatkan uang pensiun seumur hidupnya. Besar uang pensiun tersebut didasarkan pada lamanya masa jabatan. Uang pensiun ini besarnya sekurang-kurangnya 6% dan sebanyak-banyaknya 75% dari gaji pokok.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Berminat Dirikan Usaha Jasa Kurir? Ini Caranya",
+    "ground_truth": "Usaha layanan/penyediaan jasa kurir yang hendak Anda dirikan dapat dikategorikan sebagai penyelenggara pos, yaitu layanan komunikasi tertulis dan/atau surat elektronik, layanan paket, layanan logistik, layanan transaksi keuangan, dan layanan keagenan pos untuk kepentingan umum.\nOleh karena itu, pelaku usaha harus memperhatikan ketentuan dalam KBLI nomor\n53201\ntentang aktivitas kurir, yang tergolong sebagai jenis usaha dengan tingkat risiko tinggi.\nApa saja perizinan berusaha untuk kegiatan dengan tingkat risiko tinggi?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Prosedur Pengesahan Badan Hukum Perkumpulan",
+    "ground_truth": "Pengesahan perkumpulan harus didahului dengan pengajuan pemakaian nama perkumpulan oleh pemohon kepada Menteri Hukum melalui Direktur Jenderal Administrasi Hukum Umum (“Dirjen AHU”) yang dilakukan secara elektronik dengan mengisi formulir pengajuan pemakaian nama melalui Sistem Administrasi Badan Hukum (“SABH”) melalui laman\nAHU\nOnline\n. Setelah mendapatkan pemberitahuan persetujuan pemakaian nama perkumpulan, pemohon mengajukan permohonan pengesahan perkumpulan.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Dapatkah Ahli Waris Menolak Warisan?",
+    "ground_truth": "Berdasarkan hukum perdata Barat, seseorang dapat menerima maupun menolak warisan yang jatuh kepadanya, sebagaimana ditegaskan dalam Pasal 1045\nKUH Perdata\n. Adapun hak untuk menolak warisan tidak dikenal di dalam hukum Islam atau\nKHI\n. Namun, terdapat pendapat bahwa penolakan warisan oleh ahli waris dapat dilakukan jika disetujui oleh para ahli waris dan memang pengunduran diri tersebut atas dasar kerelaan dan niat yang baik.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Alasan Pemberhentian Kepala Daerah menurut Undang-Undang",
+    "ground_truth": "Ketentuan mengenai sejumlah alasan yang dapat membuat kepala daerah dan atau wakilnya diberhentikan dari jabatannya diatur di dalam Pasal 78\nUU 23/2014\n.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Aturan Penagihan Utang Debt Collector",
+    "ground_truth": "Debt collector\npada prinsipnya bekerja berdasarkan kuasa yang diberikan oleh kreditur (lembaga keuangan/pembiayaan) untuk menagih utang kepada debiturnya.\nDalam penagihan,\ndebt collector\nharus sesuai dengan norma yang berlaku di masyarakat dan ketentuan peraturan perundang-undangan. Lantas, bagaimana aturan penagihan utang oleh\ndebt collector\n?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Sudah Terima Ganti Rugi, Masihkah Korban Gusur Berhak atas Sisa Material Bangunan?",
+    "ground_truth": "Tidak hanya tanah, dalam pengadaan tanah bagi pembangunan untuk kepentingan umum, penilaian besarnya ganti kerugian dilakukan bidang per bidang tanah yang juga meliputi bangunan dan benda yang berkaitan dengan tanah. Oleh karena itu, ganti kerugian yang diterima dari pengadaan tanah sudah meliputi bangunan dan benda yang berkaitan dengan tanah tersebut. Dalam hal ini, menurut hemat kami, penerima ganti kerugian sudah tidak berhak atas material bangunan rumah yang tergusur.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Tugas dan Prinsip Paspampres",
+    "ground_truth": "Perlu diketahui, kepanjangan paspampres yaitu pasukan pengamanan presiden. Paspampres adalah pasukan yang bertugas melaksanakan pengamanan fisik langsung jarak dekat setiap saat kepada presiden dan wakil presiden, mantan presiden dan mantan wakil presiden beserta keluarganya serta tamu negara setingkat kepala negara/kepala pemerintahan serta tugas protokoler kenegaraan dalam rangka mendukung tugas pokok Tentara Nasional Indonesia (“TNI”).\nDalam melaksanakan tugas pengamanan kepada presiden dan wakil presiden serta keluarganya, paspampres melakukan tugasnya baik di dalam negeri maupun di luar negeri.\nLantas, apakah paspampres di atas TNI?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Tes DNA sebagai Alat Bukti Sah",
+    "ground_truth": "Deoxyribonucleic acid\n(“DNA”) adalah senyawa dalam protein inti sel yang mewarisi sifat keturunan. Adapun tes DNA merupakan bagian dari\nVisum et Repertum\n(“VeR”), yang dapat dikategorikan sebagai alat bukti surat.\nBerkaitan dengan hasil tes DNA untuk menetapkan seseorang sebagai tersangka perzinahan, maka penetapan tersangka harus berdasarkan bukti permulaan patut diduga sebagai pelaku tindak pidana. Bukti permulaan tersebut harus dimaknai minimal dua alat bukti.\nOleh karena itu, untuk menetapkan seseorang sebagai tersangka perzinahan, hasil tes DNA harus disertai dengan alat bukti lainnya.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Perbedaan Cerai Talak dan Cerai Gugat",
+    "ground_truth": "Berdasarkan\nUU Perkawinan\ndan\nPP 9/1975\n,\narti cerai gugat atau gugatan cerai adalah gugatan yang diajukan oleh suami atau istri atau kuasanya ke pengadilan yang daerah hukumnya meliputi tempat kediaman tergugat.\nNamun, ketentuan dalam\nKHI\nmengartikannya berbeda. Pasal 132 ayat (1) KHI mengartikan cerai gugat adalah gugatan yang diajukan oleh istri atau kuasanya pada Pengadilan Agama yang daerah hukumnya mewilayahi tempat tinggal penggugat kecuali istri meninggalkan kediaman tanpa izin suami.\nLalu bagaimana dengan cerai talak?\nApa perbedaan cerai talak dan cerai gugat?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bisakah Kasus Penipuan Diproses Hukum Pidana dan Perdata Secara Bersamaan?",
+    "ground_truth": "Sejauh ini tidak ada larangan atau ketentuan hukum yang mengharuskan suatu kasus penipuan mendapat putusan pengadilan pidana yang berkekuatan hukum tetap (\ninkracht van gewijsde\n) terlebih dulu, baru kemudian dapat digugat secara perdata.\nAdapun penipuan tidak boleh sekedar dipersangkakan, melainkan harus dibuktikan. Pembuktian mengenai adanya rangkaian kebohongan atau tipu muslihat tentunya akan lebih maksimal dalam pengadilan pidana, ketimbang pengadilan perdata. Hal ini sejalan dengan salah satu asas pembuktian dalam hukum perdata yang berbunyi “siapa yang mendalilkan sesuatu wajib membuktikannya” (\naffirmanti incumbit probate\n).\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bolehkah Bank Meminta Informasi Kredit Karyawannya kepada OJK?",
+    "ground_truth": "Secara hukum, bank umum dapat meminta informasi debitur kepada Otoritas Jasa Keuangan melalui Sistem Layanan Informasi Keuangan (“SLIK”). Informasi tersebut dapat dipergunakan oleh bank umum di antaranya dalam rangka pengelolaan sumber daya manusia, misalnya untuk proses seleksi calon pegawai.\nLalu, apa syaratnya agar bank umum dapat meminta informasi tersebut? Apakah diperlukan persetujuan dari debitur? Dan bolehkah informasi tersebut dijadikan dasar bagi bank untuk meminta karyawan yang memiliki skor kredit kurang lancar untuk mengundurkan diri?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bisakah PPJB Dijadikan Jaminan Kredit?",
+    "ground_truth": "Perjanjian pengikatan jual beli (“PPJB”) merupakan perjanjian pendahuluan antara calon penjual dengan calon pembeli yang mengikat secara hukum sebelum dilaksanakannya transaksi jual beli tanah atau bangunan secara resmi.\nNamun, PPJB tidak dapat dijadikan jaminan kredit bank karena tidak menyebabkan peralihan hak atas tanah secara hukum dan tidak memenuhi syarat sebagai objek hak tanggungan.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Hukum Pemberian Nafkah Istri oleh Suami",
+    "ground_truth": "Terkait nafkah istri oleh suami, perlu diketahui bahwa ketentuan Pasal 34 ayat (1) UU Perkawinan menerangkan bahwa suami berkewajiban melindungi istrinya dan\nmemberikan\nsegala sesuatu keperluan hidup berumah tangga sesuai dengan kemampuannya.\nDengan demikian, dapat disimpulkan bahwa suami wajib memberikan segala sesuatu termasuk nafkah bagi istrinya untuk hidup berumah tangga sesuai dengan kemampuan suami.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Mobil Cicilan Hilang, Apakah Tetap Harus Bayar Angsuran?",
+    "ground_truth": "Debitur tidak bertanggung jawab dan tidak berkewajiban untuk mengganti kerugian terhadap mobil cicilan yang hilang karena peristiwa yang berada di luar kuasanya. Namun, debitur wajib untuk membuktikan bahwa kehilangan mobil dalam masa cicilan itu merupakan\nforce majeure.\nMisalnya dengan bukti laporan kepolisian. Apa dasar hukumnya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Apakah Undang-undang Darurat Masih Berlaku?",
+    "ground_truth": "Undang-undang (“UU”) darurat adalah peraturan perundang-undangan yang dibentuk saat keadaan mendesak yang memerlukan pengaturan segera. Kedudukan hukum atau kekuatan mengikatnya setara dengan kedudukan hukum UU. Namun, istilah UU darurat tidak lagi dikenal saat ini. Mengapa demikian?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Adakah Dasar Hukum Publikasi Uang Sitaan Korupsi?",
+    "ground_truth": "Penyitaan terhadap uang hasil korupsi dapat dilakukan untuk kepentingan pembuktian dalam penyidikan, penuntutan dan peradilan. Dalam praktiknya, hasil uang korupsi ini kerap kali dipamerkan atau dipublikasikan. Walaupun tidak ada dasar hukumnya, hal ini menurut hemat kami dilakukan untuk memberikan transparansi dan keterbukaan terhadap publik, mengenai kasus korupsi yang sedang ditangani.\nAdapun uang yang dipamerkan ini bersumber dari uang hasil sitaan perkara korupsi yang bersangkutan dan uang titipan untuk membayar ganti rugi terhadap keuangan negara yang ditimbulkan dalam perkara tersebut yang oleh kejaksaan diputuskan untuk disita.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Potensi Sanksi Hukum Sound Horeg",
+    "ground_truth": "Sound horeg\nadalah fenomena yang ditandai dengan penggunaan\nsound system\nberdaya tinggi yang memutar lagu-lagu popular dalam aransemen baru yang khas, seringkali disertai pertunjukan visual yang mencolok dan menarik perhatian. Terhadap penyelenggaraan\nsound horeg\n, terdapat beberapa potensi sanksi hukum yang dapat dikenakan baik secara pidana maupun perdata.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Aturan Kenaikan Gaji Karyawan Swasta Menurut UU Cipta Kerja",
+    "ground_truth": "Sepanjang penelusuran kami, tidak ada ketentuan yang mengatur mengenai persentase kenaikan upah secara eksplisit. Namun demikian, pengusaha wajib menyusun struktur dan skala upah serta meninjau upah secara berkala dengan memperhatikan kemampuan perusahaan dan produktivitas. Hal inilah yang menjadi acuan pengusaha mengenai aturan kenaikan gaji.\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  },
+  {
+    "question": "Bisakah Bercerai karena Suami Jarang Ibadah?",
+    "ground_truth": "Ibadah dalam kasus ini\nsholat\natau salat merupakan unsur yang penting dalam beragama. Bukan hanya sebagai kewajiban ritual, salat juga berfungsi sebagai sarana untuk mendekatkan diri kepada Allah Swt.\nNamun, dalam konteks perkawinan dan perceraian, terhadap orang yang ingin melakukan perceraian karena pasangannya tidak melakukan ibadah, dapat menggunakan alasan\nantara suami dan istri terus menerus terjadi perselisihan dan pertengkaran dan tidak ada harapan akan hidup rukun lagi dalam rumah tangga\nsebagaimana diatur baik dalam\nUU Perkawinan\n,\nPP 9/1975\n, dan\nKHI\n.\nLantas, bagaimana cara membuktikannya?\nPenjelasan lebih lanjut dapat Anda baca ulasan di bawah ini."
+  }
+]
