@@ -13,33 +13,10 @@ from ragas.llms import LangchainLLMWrapper
 from ragas.metrics import LLMContextRecall, Faithfulness, AnswerCorrectness
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from langchain_core.language_model import LanguageModel
 
 from config import Config
 from logger import Logger
 from rag.pipeline import RAGPipeline
-
-
-class TemperatureStrippingChatOpenAI(ChatOpenAI):
-    """ChatOpenAI wrapper that removes temperature parameter for gpt-5-nano compatibility"""
-    
-    def _generate(self, messages, stop=None, run_manager=None, **kwargs):
-        """Override _generate to remove temperature before API call"""
-        # Remove temperature from kwargs to prevent "Unsupported value" error
-        kwargs.pop('temperature', None)
-        # Also ensure model_kwargs doesn't have temperature
-        if 'model_kwargs' in kwargs:
-            kwargs['model_kwargs'].pop('temperature', None)
-        return super()._generate(messages, stop=stop, run_manager=run_manager, **kwargs)
-    
-    async def _agenerate(self, messages, stop=None, run_manager=None, **kwargs):
-        """Override _agenerate to remove temperature before async API call"""
-        # Remove temperature from kwargs to prevent "Unsupported value" error
-        kwargs.pop('temperature', None)
-        # Also ensure model_kwargs doesn't have temperature
-        if 'model_kwargs' in kwargs:
-            kwargs['model_kwargs'].pop('temperature', None)
-        return await super()._agenerate(messages, stop=stop, run_manager=run_manager, **kwargs)
 
 
 class RAGASEvaluator:
@@ -79,14 +56,13 @@ class RAGASEvaluator:
     
     def _create_evaluation_llm(self):
         """Create LLM for RAGAS evaluation - Always uses ChatGPT"""
-        # Use custom wrapper that removes temperature for gpt-5-nano compatibility
-        # gpt-5-nano only supports default temperature=1, does not support custom temperature
-        llm = TemperatureStrippingChatOpenAI(
-            model="gpt-5-nano",
+        llm = ChatOpenAI(
+            model="gpt-4.1-mini",
             api_key=self.config.OPENAI_API_KEY,
+            temperature=0.1,
         )
         
-        Logger.log("Using ChatGPT (gpt-5-nano) for RAGAS evaluation (temperature parameter removed)")
+        Logger.log("Using ChatGPT (gpt-4.1-mini) for RAGAS evaluation")
         return LangchainLLMWrapper(llm)
     
     def _create_evaluation_embeddings(self):
