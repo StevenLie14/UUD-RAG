@@ -57,12 +57,12 @@ class RAGASEvaluator:
     def _create_evaluation_llm(self):
         """Create LLM for RAGAS evaluation - Always uses ChatGPT"""
         llm = ChatOpenAI(
-            model="gpt-4.1-mini",
+            model="gpt-5-nano",
             api_key=self.config.OPENAI_API_KEY,
             temperature=0.1,
         )
         
-        Logger.log("Using ChatGPT (gpt-4.1-mini) for RAGAS evaluation")
+        Logger.log("Using ChatGPT (gpt-5-nano) for RAGAS evaluation")
         return LangchainLLMWrapper(llm)
     
     def _create_evaluation_embeddings(self):
@@ -348,7 +348,7 @@ class RAGASEvaluator:
         config_name: str,
         use_cache: bool = True,
         skip_generation: bool = False,
-        max_questions: Optional[int] = 250,
+        max_questions: Optional[int] = 100,
         random_seed: Optional[int] = None
     ) -> Dict[str, Any]:
         """
