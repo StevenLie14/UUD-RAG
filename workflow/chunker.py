@@ -94,7 +94,7 @@ class DocumentChunker:
     def _select_llm(self):
         """Select LLM for agentic chunking"""
         options = [
-            "ChatGPT (gpt-5-nano) - Recommended",
+            "ChatGPT (gpt-4o-mini) - Recommended",
             "Gemini (gemini-2.0-flash-lite)",
             "Ollama (gemma3:12b)"
         ]
