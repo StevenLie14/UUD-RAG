@@ -4,7 +4,7 @@ Handles evaluation of RAG systems using RAGAS metrics
 """
 
 import json
-from typing import List, Dict, Any, Optional
+from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime
 import time
 
@@ -99,6 +99,27 @@ class RAGASEvaluator:
         except Exception as e:
             Logger.log(f"Error loading testset: {e}")
             raise
+
+    def _select_questions(self, max_questions: Optional[int]) -> Tuple[List[str], List[str]]:
+        """Return a subset of questions and ground truths limited by max_questions"""
+        if max_questions is None:
+            return self.questions, self.ground_truths
+        limit = min(max_questions, len(self.questions))
+        return self.questions[:limit], self.ground_truths[:limit]
+
+    def _save_selected_questions(self, config_name: str, questions: List[str], ground_truths: List[str]):
+        """Persist the selected questions/ground truths used for evaluation"""
+        payload = [
+            {"question": q, "ground_truth": gt}
+            for q, gt in zip(questions, ground_truths)
+        ]
+        cache_path = self._get_cache_path(f"{config_name}_questions")
+        try:
+            with open(cache_path, 'w', encoding='utf-8') as f:
+                json.dump(payload, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved selected questions to {cache_path}")
+        except Exception as e:
+            Logger.log(f"⚠ Failed to save selected questions: {e}")
     
     def _process_single_question(
         self, 
@@ -321,7 +342,8 @@ class RAGASEvaluator:
         pipeline: RAGPipeline,
         config_name: str,
         use_cache: bool = True,
-        skip_generation: bool = False
+        skip_generation: bool = False,
+        max_questions: Optional[int] = 250
     ) -> Dict[str, Any]:
         """
         Evaluate a RAG pipeline using RAGAS metrics
@@ -331,6 +353,7 @@ class RAGASEvaluator:
             config_name: Name of the configuration being tested
             use_cache: Whether to use cached payloads if available
             skip_generation: If True and cache exists, skip generation and only evaluate
+            max_questions: Maximum number of questions to evaluate (None for all)
             
         Returns:
             Dictionary with evaluation results
@@ -340,9 +363,15 @@ class RAGASEvaluator:
         Logger.log(f"{'='*60}")
         
         try:
+            # Select subset of questions to evaluate
+            selected_questions, selected_ground_truths = self._select_questions(max_questions)
+            total_selected = len(selected_questions)
+            Logger.log(f"Using {total_selected} questions for evaluation")
+            # Persist the selected subset for traceability
+            self._save_selected_questions(config_name, selected_questions, selected_ground_truths)
+
             # Try to load cached payload
             evaluation_data = None
-            needs_regeneration = False
             
             if use_cache or skip_generation:
                 import os
@@ -351,48 +380,56 @@ class RAGASEvaluator:
                     with open(cache_path, 'r', encoding='utf-8') as f:
                         cached_data = json.load(f)
                     
-                    # Check for error responses
-                    valid_items = []
-                    items_to_regenerate = []
+                    # Ensure cache size matches requested subset
+                    if not isinstance(cached_data, list) or len(cached_data) != total_selected:
+                        Logger.log(
+                            f"⚠ Cache size ({len(cached_data) if isinstance(cached_data, list) else 'invalid'}) "
+                            f"does not match requested question count ({total_selected}); regenerating."
+                        )
+                        cached_data = None
                     
-                    for idx, item in enumerate(cached_data):
-                        response = item.get('response', '')
-                        if self._is_error_response(response):
-                            items_to_regenerate.append(idx)
-                            Logger.log(f"⚠ Question {idx+1} has error response, will regenerate")
-                        else:
-                            valid_items.append(item)
+                    if cached_data is not None:
+                        # Check for error responses
+                        valid_items = []
+                        items_to_regenerate = []
                     
-                    if items_to_regenerate:
-                        needs_regeneration = True
-                        Logger.log(f"✓ Loaded {len(valid_items)} valid cached responses")
-                        Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions with errors")
-                        
-                        # Regenerate only the questions with errors
-                        if not skip_generation:
-                            Logger.log("Regenerating error responses...")
-                            regenerated_items = []
-                            for idx in items_to_regenerate:
-                                question = self.questions[idx]
-                                ground_truth = self.ground_truths[idx]
-                                regenerated = self._process_single_question(
-                                    pipeline, question, ground_truth, idx+1, len(self.questions)
-                                )
-                                regenerated_items.append((idx, regenerated))
+                        for idx, item in enumerate(cached_data):
+                            response = item.get('response', '')
+                            if self._is_error_response(response):
+                                items_to_regenerate.append(idx)
+                                Logger.log(f"⚠ Question {idx+1} has error response, will regenerate")
+                            else:
+                                valid_items.append(item)
+
+                        if items_to_regenerate:
+                            Logger.log(f"✓ Loaded {len(valid_items)} valid cached responses")
+                            Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions with errors")
                             
-                            # Merge valid cached items with regenerated items
-                            evaluation_data = cached_data.copy()
-                            for idx, regenerated in regenerated_items:
-                                evaluation_data[idx] = regenerated
-                            
-                            Logger.log("✓ Successfully regenerated error responses")
-                            # Save updated cache
-                            self._save_payload_cache(config_name, evaluation_data)
+                            # Regenerate only the questions with errors
+                            if not skip_generation:
+                                Logger.log("Regenerating error responses...")
+                                regenerated_items = []
+                                for idx in items_to_regenerate:
+                                    question = selected_questions[idx]
+                                    ground_truth = selected_ground_truths[idx]
+                                    regenerated = self._process_single_question(
+                                        pipeline, question, ground_truth, idx+1, total_selected
+                                    )
+                                    regenerated_items.append((idx, regenerated))
+                                
+                                # Merge valid cached items with regenerated items
+                                evaluation_data = cached_data.copy()
+                                for idx, regenerated in regenerated_items:
+                                    evaluation_data[idx] = regenerated
+                                
+                                Logger.log("✓ Successfully regenerated error responses")
+                                # Save updated cache
+                                self._save_payload_cache(config_name, evaluation_data)
+                            else:
+                                evaluation_data = cached_data
                         else:
                             evaluation_data = cached_data
-                    else:
-                        evaluation_data = cached_data
-                        Logger.log("✓ Using cached payload for generation phase")
+                            Logger.log("✓ Using cached payload for generation phase")
             
             # Generate new data if not using cache or cache not found
             if evaluation_data is None:
@@ -406,8 +443,8 @@ class RAGASEvaluator:
                 
                 Logger.log("Generating responses...")
                 evaluation_data = [
-                    self._process_single_question(pipeline, q, gt, i+1, len(self.questions))
-                    for i, (q, gt) in enumerate(zip(self.questions, self.ground_truths))
+                    self._process_single_question(pipeline, q, gt, i+1, total_selected)
+                    for i, (q, gt) in enumerate(zip(selected_questions, selected_ground_truths))
                 ]
                 
                 # Save to cache
@@ -468,7 +505,7 @@ class RAGASEvaluator:
                     "configuration": config_name,
                     "scores": clean_scores,
                     "timestamp": datetime.now().isoformat(),
-                    "num_questions": len(self.questions)
+                    "num_questions": total_selected
                 }
                 
                 Logger.log(f"Configuration {config_name} completed!")
