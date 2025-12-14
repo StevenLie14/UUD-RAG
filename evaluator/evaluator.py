@@ -13,10 +13,33 @@ from ragas.llms import LangchainLLMWrapper
 from ragas.metrics import LLMContextRecall, Faithfulness, AnswerCorrectness
 from ragas.embeddings import LangchainEmbeddingsWrapper
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_core.language_model import LanguageModel
 
 from config import Config
 from logger import Logger
 from rag.pipeline import RAGPipeline
+
+
+class TemperatureStrippingChatOpenAI(ChatOpenAI):
+    """ChatOpenAI wrapper that removes temperature parameter for gpt-5-nano compatibility"""
+    
+    def _generate(self, messages, stop=None, run_manager=None, **kwargs):
+        """Override _generate to remove temperature before API call"""
+        # Remove temperature from kwargs to prevent "Unsupported value" error
+        kwargs.pop('temperature', None)
+        # Also ensure model_kwargs doesn't have temperature
+        if 'model_kwargs' in kwargs:
+            kwargs['model_kwargs'].pop('temperature', None)
+        return super()._generate(messages, stop=stop, run_manager=run_manager, **kwargs)
+    
+    async def _agenerate(self, messages, stop=None, run_manager=None, **kwargs):
+        """Override _agenerate to remove temperature before async API call"""
+        # Remove temperature from kwargs to prevent "Unsupported value" error
+        kwargs.pop('temperature', None)
+        # Also ensure model_kwargs doesn't have temperature
+        if 'model_kwargs' in kwargs:
+            kwargs['model_kwargs'].pop('temperature', None)
+        return await super()._agenerate(messages, stop=stop, run_manager=run_manager, **kwargs)
 
 
 class RAGASEvaluator:
@@ -56,24 +79,15 @@ class RAGASEvaluator:
     
     def _create_evaluation_llm(self):
         """Create LLM for RAGAS evaluation - Always uses ChatGPT"""
-        # Note: gpt-5-nano only supports default temperature=1, does not support custom temperature
-        llm = ChatOpenAI(
+        # Use custom wrapper that removes temperature for gpt-5-nano compatibility
+        # gpt-5-nano only supports default temperature=1, does not support custom temperature
+        llm = TemperatureStrippingChatOpenAI(
             model="gpt-5-nano",
             api_key=self.config.OPENAI_API_KEY,
         )
         
-        # Ensure temperature is not set to avoid "Unsupported value" errors
-        # gpt-5-nano only accepts default temperature value of 1
-        llm.temperature = None
-        
-        Logger.log("Using ChatGPT (gpt-5-nano) for RAGAS evaluation")
-        wrapped_llm = LangchainLLMWrapper(llm)
-        
-        # Also override the wrapped LLM's temperature to prevent RAGAS from setting it
-        if hasattr(wrapped_llm, 'llm'):
-            wrapped_llm.llm.temperature = None
-        
-        return wrapped_llm
+        Logger.log("Using ChatGPT (gpt-5-nano) for RAGAS evaluation (temperature parameter removed)")
+        return LangchainLLMWrapper(llm)
     
     def _create_evaluation_embeddings(self):
         """Create embeddings for evaluation - Always uses OpenAI"""
@@ -87,19 +101,12 @@ class RAGASEvaluator:
     
     def _initialize_metrics(self):
         """Initialize RAGAS evaluation metrics"""
-        # Create metrics with the evaluation LLM
-        # Note: gpt-5-nano doesn't support temperature parameter, so metrics should not override it
         self.faithfulness_metric = Faithfulness(llm=self.evaluator_llm)
         self.context_recall_metric = LLMContextRecall(llm=self.evaluator_llm)
         self.answer_correctness_metric = AnswerCorrectness(
             llm=self.evaluator_llm,
             embeddings=self.evaluator_embeddings
         )
-        
-        # Patch metrics to remove temperature if they set it
-        for metric in [self.faithfulness_metric, self.context_recall_metric, self.answer_correctness_metric]:
-            if hasattr(metric, 'llm') and hasattr(metric.llm, 'llm'):
-                metric.llm.llm.temperature = None
     
     def _load_testset(self):
         """Load test questions and ground truths"""
