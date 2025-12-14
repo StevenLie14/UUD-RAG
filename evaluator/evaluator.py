@@ -127,6 +127,55 @@ class RAGASEvaluator:
             Logger.log(f"⚠ Error loading reference questions: {e}")
             return None
     
+    def _match_reference_with_cache(self, config_name: str, reference_questions: List[str], reference_ground_truths: List[str]) -> Optional[List[Dict[str, Any]]]:
+        """Match reference questions with cached responses from technique's cache"""
+        import os
+        cache_path = self._get_cache_path(config_name)
+        
+        if not os.path.exists(cache_path):
+            Logger.log(f"⚠ Technique cache not found: {cache_path}")
+            return None
+        
+        try:
+            with open(cache_path, 'r', encoding='utf-8') as f:
+                cached_data = json.load(f)
+            
+            if not isinstance(cached_data, list):
+                Logger.log(f"⚠ Invalid cache format: {cache_path}")
+                return None
+            
+            # Create a mapping of questions to cached responses
+            cache_map = {}
+            for item in cached_data:
+                question = item.get('user_input', '')
+                if question:
+                    cache_map[question] = item
+            
+            # Match reference questions with cached data
+            matched_data = []
+            missing_count = 0
+            
+            for ref_q, ref_gt in zip(reference_questions, reference_ground_truths):
+                if ref_q in cache_map:
+                    # Use cached contexts and response, but ensure ground truth matches reference
+                    matched_item = cache_map[ref_q].copy()
+                    matched_item['reference'] = ref_gt  # Use reference ground truth
+                    matched_data.append(matched_item)
+                else:
+                    missing_count += 1
+                    Logger.log(f"⚠ Question not found in cache: {ref_q[:50]}...")
+            
+            if missing_count > 0:
+                Logger.log(f"⚠ {missing_count}/{len(reference_questions)} questions not found in technique cache")
+                return None
+            
+            Logger.log(f"✓ Successfully matched {len(matched_data)} questions with cached responses")
+            return matched_data
+            
+        except Exception as e:
+            Logger.log(f"⚠ Error matching reference with cache: {e}")
+            return None
+    
     def _select_questions(self, max_questions: Optional[int], random_seed: Optional[int]) -> Tuple[List[str], List[str]]:
         """Return a (optionally randomized) subset of questions and ground truths limited by max_questions"""
         if max_questions is None or max_questions >= len(self.questions):
@@ -152,6 +201,28 @@ class RAGASEvaluator:
             Logger.log(f"✓ Saved selected questions to {cache_path}")
         except Exception as e:
             Logger.log(f"⚠ Failed to save selected questions: {e}")
+    
+    def _save_to_last_test_set(self, questions: List[str], ground_truths: List[str]):
+        """Save the evaluation testset to last_test_set folder"""
+        import os
+        last_test_set_dir = "./last_test_set"
+        os.makedirs(last_test_set_dir, exist_ok=True)
+        
+        payload = [
+            {"question": q, "ground_truth": gt}
+            for q, gt in zip(questions, ground_truths)
+        ]
+        
+        # Save with timestamp for traceability
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = os.path.join(last_test_set_dir, f"last_evaluation_testset_{timestamp}.json")
+        
+        try:
+            with open(filename, 'w', encoding='utf-8') as f:
+                json.dump(payload, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved evaluation testset to {filename}")
+        except Exception as e:
+            Logger.log(f"⚠ Failed to save evaluation testset: {e}")
     
     def _process_single_question(
         self, 
@@ -417,11 +488,23 @@ class RAGASEvaluator:
             Logger.log(f"Using {total_selected} questions for evaluation")
             # Persist the selected subset for traceability
             self._save_selected_questions(config_name, selected_questions, selected_ground_truths)
+            # Save to last_test_set folder
+            self._save_to_last_test_set(selected_questions, selected_ground_truths)
 
-            # Try to load cached payload (skip if using reference questions to ensure fresh generation)
+            # Try to load cached payload
             evaluation_data = None
             
-            if (use_cache or skip_generation) and not use_reference_questions:
+            # If using reference questions, match them with technique's cached responses
+            if use_reference_questions and (use_cache or skip_generation):
+                Logger.log(f"Matching reference questions with {config_name} cached responses...")
+                evaluation_data = self._match_reference_with_cache(config_name, selected_questions, selected_ground_truths)
+                if evaluation_data:
+                    Logger.log("✓ Using reference questions with technique's cached contexts/responses")
+                else:
+                    Logger.log(f"⚠ Failed to match reference with cache, will generate fresh responses")
+            
+            # Normal cache loading (when not using reference questions)
+            if evaluation_data is None and use_cache and not use_reference_questions:
                 import os
                 cache_path = self._get_cache_path(config_name)
                 selection_cache_path = self._get_cache_path(f"{config_name}_questions")
