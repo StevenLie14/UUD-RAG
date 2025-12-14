@@ -100,12 +100,17 @@ class RAGASEvaluator:
             Logger.log(f"Error loading testset: {e}")
             raise
 
-    def _select_questions(self, max_questions: Optional[int]) -> Tuple[List[str], List[str]]:
-        """Return a subset of questions and ground truths limited by max_questions"""
-        if max_questions is None:
+    def _select_questions(self, max_questions: Optional[int], random_seed: Optional[int]) -> Tuple[List[str], List[str]]:
+        """Return a (optionally randomized) subset of questions and ground truths limited by max_questions"""
+        if max_questions is None or max_questions >= len(self.questions):
             return self.questions, self.ground_truths
-        limit = min(max_questions, len(self.questions))
-        return self.questions[:limit], self.ground_truths[:limit]
+
+        limit = max_questions
+        import random
+        rng = random.Random(random_seed)
+        indices = rng.sample(range(len(self.questions)), limit)
+        indices.sort()  # preserve original order for stability/logging
+        return [self.questions[i] for i in indices], [self.ground_truths[i] for i in indices]
 
     def _save_selected_questions(self, config_name: str, questions: List[str], ground_truths: List[str]):
         """Persist the selected questions/ground truths used for evaluation"""
@@ -343,7 +348,8 @@ class RAGASEvaluator:
         config_name: str,
         use_cache: bool = True,
         skip_generation: bool = False,
-        max_questions: Optional[int] = 250
+        max_questions: Optional[int] = 250,
+        random_seed: Optional[int] = None
     ) -> Dict[str, Any]:
         """
         Evaluate a RAG pipeline using RAGAS metrics
@@ -354,6 +360,7 @@ class RAGASEvaluator:
             use_cache: Whether to use cached payloads if available
             skip_generation: If True and cache exists, skip generation and only evaluate
             max_questions: Maximum number of questions to evaluate (None for all)
+            random_seed: Seed for randomized question selection (None for non-deterministic)
             
         Returns:
             Dictionary with evaluation results
@@ -364,7 +371,7 @@ class RAGASEvaluator:
         
         try:
             # Select subset of questions to evaluate
-            selected_questions, selected_ground_truths = self._select_questions(max_questions)
+            selected_questions, selected_ground_truths = self._select_questions(max_questions, random_seed)
             total_selected = len(selected_questions)
             Logger.log(f"Using {total_selected} questions for evaluation")
             # Persist the selected subset for traceability
@@ -376,21 +383,55 @@ class RAGASEvaluator:
             if use_cache or skip_generation:
                 import os
                 cache_path = self._get_cache_path(config_name)
+                selection_cache_path = self._get_cache_path(f"{config_name}_questions")
                 if os.path.exists(cache_path):
                     with open(cache_path, 'r', encoding='utf-8') as f:
                         cached_data = json.load(f)
+
+                    # Ensure question selection matches cache
+                    selection_matches = False
+                    if os.path.exists(selection_cache_path):
+                        try:
+                            with open(selection_cache_path, 'r', encoding='utf-8') as sf:
+                                cached_selection = json.load(sf)
+                            if isinstance(cached_selection, list):
+                                cached_pairs = [
+                                    (item.get('question'), item.get('ground_truth'))
+                                    for item in cached_selection
+                                ]
+                                current_pairs = list(zip(selected_questions, selected_ground_truths))
+                                if len(cached_pairs) >= total_selected and cached_pairs[:total_selected] == current_pairs:
+                                    selection_matches = True
+                                else:
+                                    Logger.log("⚠ Cached question subset differs from current selection; regenerating.")
+                            else:
+                                Logger.log("⚠ Cached question subset invalid; regenerating.")
+                        except Exception as sel_err:
+                            Logger.log(f"⚠ Failed to read cached question subset: {sel_err}; regenerating.")
+                    else:
+                        Logger.log("⚠ Cached question subset missing; regenerating.")
                     
-                    # Ensure cache size matches requested subset
-                    if not isinstance(cached_data, list) or len(cached_data) != total_selected:
+                    # Ensure cache size aligns with requested subset
+                    if not isinstance(cached_data, list):
+                        Logger.log("⚠ Cache is invalid; regenerating.")
+                        cached_data = None
+                    elif len(cached_data) < total_selected:
                         Logger.log(
-                            f"⚠ Cache size ({len(cached_data) if isinstance(cached_data, list) else 'invalid'}) "
-                            f"does not match requested question count ({total_selected}); regenerating."
+                            f"⚠ Cache has only {len(cached_data)} items (< {total_selected}); regenerating."
                         )
+                        cached_data = None
+                    elif len(cached_data) > total_selected:
+                        Logger.log(
+                            f"⚠ Cache has {len(cached_data)} items (> {total_selected}); using first {total_selected}."
+                        )
+                        cached_data = cached_data[:total_selected]
+
+                    # If selection does not match, force regeneration
+                    if cached_data is not None and not selection_matches:
                         cached_data = None
                     
                     if cached_data is not None:
                         # Check for error responses
-                        valid_items = []
                         items_to_regenerate = []
                     
                         for idx, item in enumerate(cached_data):
@@ -398,11 +439,8 @@ class RAGASEvaluator:
                             if self._is_error_response(response):
                                 items_to_regenerate.append(idx)
                                 Logger.log(f"⚠ Question {idx+1} has error response, will regenerate")
-                            else:
-                                valid_items.append(item)
-
+                            
                         if items_to_regenerate:
-                            Logger.log(f"✓ Loaded {len(valid_items)} valid cached responses")
                             Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions with errors")
                             
                             # Regenerate only the questions with errors
