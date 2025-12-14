@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-15T00:30:43.152691",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "semantic_qdrant_sparse",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": 0.14186904761904762,
+        "faithfulness": 0.6275395506329923,
+        "answer_correctness": 0.3232698201764416
+      },
+      "timestamp": "2025-12-15T00:30:43.152691",
+      "num_questions": 100,
+      "chunker": "semantic",
+      "database": "qdrant",
+      "search_strategy": "sparse"
+    }
+  ]
+}
