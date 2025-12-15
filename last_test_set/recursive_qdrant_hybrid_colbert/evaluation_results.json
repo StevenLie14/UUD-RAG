@@ -1,0 +1,12 @@
+{
+  "configuration": "recursive_qdrant_hybrid_colbert",
+  "scores": {
+    "scores": null,
+    "traces": null,
+    "context_recall": 0.3602619047619048,
+    "faithfulness": 0.7890773293425396,
+    "answer_correctness": 0.41312584453658785
+  },
+  "timestamp": "2025-12-15T09:24:11.082643",
+  "num_questions": 100
+}
