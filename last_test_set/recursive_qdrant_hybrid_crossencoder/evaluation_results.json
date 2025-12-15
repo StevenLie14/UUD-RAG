@@ -1,0 +1,12 @@
+{
+  "configuration": "recursive_qdrant_hybrid_crossencoder",
+  "scores": {
+    "scores": null,
+    "traces": null,
+    "context_recall": 0.40045238095238106,
+    "faithfulness": 0.0,
+    "answer_correctness": 0.028905694332784518
+  },
+  "timestamp": "2025-12-15T08:10:41.140505",
+  "num_questions": 100
+}
