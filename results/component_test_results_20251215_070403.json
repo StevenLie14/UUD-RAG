@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-15T07:04:03.571013",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "recursive_qdrant_dense",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": 0.30592857142857144,
+        "faithfulness": 0.6962978251407884,
+        "answer_correctness": 0.43364903102564056
+      },
+      "timestamp": "2025-12-15T07:04:03.571013",
+      "num_questions": 100,
+      "chunker": "recursive",
+      "database": "qdrant",
+      "search_strategy": "dense"
+    }
+  ]
+}
