@@ -294,16 +294,11 @@ class RAGASEvaluator:
                 )
 
                 if not is_rate_limit:
-                    answer_text = result.get('answer', '') if isinstance(result, dict) else ''
-                    if answer_text is None or (isinstance(answer_text, str) and answer_text.strip() == ""):
-                        Logger.log("⚠ Empty response received; retrying generation")
-                        continue
-
                     contexts = self._extract_contexts(result.get('sources', []))
                     return {
                         "user_input": question,
                         "retrieved_contexts": contexts if contexts else ["No relevant context retrieved"],
-                        "response": answer_text,
+                        "response": result['answer'],
                         "reference": ground_truth
                     }
 
@@ -345,13 +340,9 @@ class RAGASEvaluator:
         return os.path.join(self.cache_dir, f"{config_name}_payload.json")
     
     def _is_error_response(self, response: str) -> bool:
-        """Check if a response contains an error message or is empty"""
-        if response is None:
-            return True
-        if not isinstance(response, str):
-            return True
-        if response.strip() == "":
-            return True
+        """Check if a response contains an error message"""
+        if not response or not isinstance(response, str):
+            return False
         
         error_indicators = [
             'rate_limit_exceeded',
@@ -364,7 +355,8 @@ class RAGASEvaluator:
             'exception:',
             'failed to',
             'cannot process',
-            'please try again'
+            'please try again',
+            ""
         ]
         
         response_lower = response.lower()
@@ -427,7 +419,7 @@ class RAGASEvaluator:
                 # Log the value type for debugging
                 Logger.log(f"Processing score '{key}': type={type(value)}, value={value}")
                 
-                # Handle dict values (RAGAS sometimes returns nested structures)
+                # Handle dict values (RAGAS sometimes returns ested structures)
                 if isinstance(value, dict):
                     # Special handling for _repr_dict and _scores_dict - these contain the actual metrics
                     if key in ['_repr_dict', '_scores_dict']:
@@ -601,14 +593,14 @@ class RAGASEvaluator:
                             response = item.get('response', '')
                             if self._is_error_response(response):
                                 items_to_regenerate.append(idx)
-                                Logger.log(f"⚠ Question {idx+1} has error/empty response: '{str(response)[:50]}'")
+                                Logger.log(f"⚠ Question {idx+1} has error response, will regenerate")
                             
                         if items_to_regenerate:
-                            Logger.log(f"⚠ Found {len(items_to_regenerate)} questions with errors/empty responses, regenerating...")
+                            Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions with errors")
                             
                             # Regenerate only the questions with errors
                             if not skip_generation:
-                                Logger.log("Regenerating error/empty responses...")
+                                Logger.log("Regenerating error responses...")
                                 regenerated_items = []
                                 for idx in items_to_regenerate:
                                     question = selected_questions[idx]
@@ -617,7 +609,6 @@ class RAGASEvaluator:
                                         pipeline, question, ground_truth, idx+1, total_selected
                                     )
                                     regenerated_items.append((idx, regenerated))
-                                    Logger.log(f"✓ Regenerated Q{idx+1}: '{regenerated.get('response', '')[:50]}'")
                                 
                                 # Merge valid cached items with regenerated items
                                 evaluation_data = cached_data.copy()
@@ -643,15 +634,11 @@ class RAGASEvaluator:
                         "timestamp": datetime.now().isoformat()
                     }
                 
-                Logger.log("Generating fresh responses...")
-                evaluation_data = []
-                for i, (q, gt) in enumerate(zip(selected_questions, selected_ground_truths)):
-                    item = self._process_single_question(pipeline, q, gt, i+1, total_selected)
-                    # Ensure response is not empty before adding
-                    if self._is_error_response(item.get('response', '')):
-                        Logger.log(f"⚠ Q{i+1} generated empty/error response, retrying...")
-                        item = self._process_single_question(pipeline, q, gt, i+1, total_selected)
-                    evaluation_data.append(item)
+                Logger.log("Generating responses...")
+                evaluation_data = [
+                    self._process_single_question(pipeline, q, gt, i+1, total_selected)
+                    for i, (q, gt) in enumerate(zip(selected_questions, selected_ground_truths))
+                ]
                 
                 # Save to cache
                 if use_cache:
@@ -660,44 +647,8 @@ class RAGASEvaluator:
             # Save the complete evaluation data to last_test_set folder
             self._save_to_last_test_set(config_name, selected_questions, selected_ground_truths, evaluation_data)
             
-            # Validate all responses before evaluation
-            Logger.log(f"\nValidating {len(evaluation_data)} responses before RAGAS evaluation...")
-            empty_count = 0
-            for idx, item in enumerate(evaluation_data):
-                response = item.get('response', '')
-                if self._is_error_response(response):
-                    empty_count += 1
-                    if empty_count <= 5:  # Only log first 5 to avoid spam
-                        Logger.log(f"⚠ CRITICAL: Question {idx+1} has empty/error response!")
-            
-            if empty_count > 0:
-                empty_percentage = (empty_count / len(evaluation_data)) * 100
-                Logger.log(f"\n⚠⚠⚠ CRITICAL: Found {empty_count}/{len(evaluation_data)} empty/error responses ({empty_percentage:.1f}%)")
-                
-                # If more than 50% are empty, force regeneration
-                if empty_percentage >= 50:
-                    Logger.log(f"⚠ Forcing regeneration of responses (>50% empty)...")
-                    evaluation_data = [
-                        self._process_single_question(pipeline, q, gt, i+1, len(selected_questions))
-                        for i, (q, gt) in enumerate(zip(selected_questions, selected_ground_truths))
-                    ]
-                    # Validate after regeneration
-                    empty_after = sum(1 for item in evaluation_data if self._is_error_response(item.get('response', '')))
-                    Logger.log(f"✓ After regeneration: {empty_after}/{len(evaluation_data)} empty responses")
-                    
-                    if empty_after > 0:
-                        Logger.log(f"⚠ WARNING: Still have {empty_after} empty responses after regeneration")
-                    else:
-                        Logger.log(f"✓ All responses successfully regenerated!")
-                    
-                    self._save_payload_cache(config_name, evaluation_data)
-                else:
-                    Logger.log(f"⚠ Some responses are empty but not forcing regeneration (<50%)")
-            else:
-                Logger.log(f"✓ All {len(evaluation_data)} responses are valid (non-empty)")
-            
             # Run RAGAS evaluation
-            Logger.log(f"\nRunning RAGAS evaluation for {config_name}...")
+            Logger.log(f"Running RAGAS evaluation for {config_name}...")
             evaluation_dataset = EvaluationDataset.from_list(evaluation_data)
             run_config = RunConfig(max_workers=1, timeout=self.timeout)
             
