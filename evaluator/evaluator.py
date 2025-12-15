@@ -667,11 +667,32 @@ class RAGASEvaluator:
                 response = item.get('response', '')
                 if self._is_error_response(response):
                     empty_count += 1
-                    Logger.log(f"⚠ CRITICAL: Question {idx+1} has empty/error response!")
+                    if empty_count <= 5:  # Only log first 5 to avoid spam
+                        Logger.log(f"⚠ CRITICAL: Question {idx+1} has empty/error response!")
             
             if empty_count > 0:
-                Logger.log(f"\n⚠⚠⚠ CRITICAL: Found {empty_count}/{len(evaluation_data)} empty/error responses!")
-                Logger.log(f"This configuration likely failed during generation. Metrics will be unreliable.")
+                empty_percentage = (empty_count / len(evaluation_data)) * 100
+                Logger.log(f"\n⚠⚠⚠ CRITICAL: Found {empty_count}/{len(evaluation_data)} empty/error responses ({empty_percentage:.1f}%)")
+                
+                # If more than 50% are empty, force regeneration
+                if empty_percentage >= 50:
+                    Logger.log(f"⚠ Forcing regeneration of responses (>50% empty)...")
+                    evaluation_data = [
+                        self._process_single_question(pipeline, q, gt, i+1, len(selected_questions))
+                        for i, (q, gt) in enumerate(zip(selected_questions, selected_ground_truths))
+                    ]
+                    # Validate after regeneration
+                    empty_after = sum(1 for item in evaluation_data if self._is_error_response(item.get('response', '')))
+                    Logger.log(f"✓ After regeneration: {empty_after}/{len(evaluation_data)} empty responses")
+                    
+                    if empty_after > 0:
+                        Logger.log(f"⚠ WARNING: Still have {empty_after} empty responses after regeneration")
+                    else:
+                        Logger.log(f"✓ All responses successfully regenerated!")
+                    
+                    self._save_payload_cache(config_name, evaluation_data)
+                else:
+                    Logger.log(f"⚠ Some responses are empty but not forcing regeneration (<50%)")
             else:
                 Logger.log(f"✓ All {len(evaluation_data)} responses are valid (non-empty)")
             
