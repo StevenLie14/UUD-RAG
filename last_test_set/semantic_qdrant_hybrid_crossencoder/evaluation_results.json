@@ -1,0 +1,12 @@
+{
+  "configuration": "semantic_qdrant_hybrid_crossencoder",
+  "scores": {
+    "scores": null,
+    "traces": null,
+    "context_recall": 0.3408369408369408,
+    "faithfulness": 0.7536605350967056,
+    "answer_correctness": 0.41849688872733154
+  },
+  "timestamp": "2025-12-15T11:16:41.322046",
+  "num_questions": 100
+}
