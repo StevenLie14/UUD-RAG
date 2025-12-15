@@ -601,14 +601,14 @@ class RAGASEvaluator:
                             response = item.get('response', '')
                             if self._is_error_response(response):
                                 items_to_regenerate.append(idx)
-                                Logger.log(f"⚠ Question {idx+1} has error response, will regenerate")
+                                Logger.log(f"⚠ Question {idx+1} has error/empty response: '{str(response)[:50]}'")
                             
                         if items_to_regenerate:
-                            Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions with errors")
+                            Logger.log(f"⚠ Found {len(items_to_regenerate)} questions with errors/empty responses, regenerating...")
                             
                             # Regenerate only the questions with errors
                             if not skip_generation:
-                                Logger.log("Regenerating error responses...")
+                                Logger.log("Regenerating error/empty responses...")
                                 regenerated_items = []
                                 for idx in items_to_regenerate:
                                     question = selected_questions[idx]
@@ -617,6 +617,7 @@ class RAGASEvaluator:
                                         pipeline, question, ground_truth, idx+1, total_selected
                                     )
                                     regenerated_items.append((idx, regenerated))
+                                    Logger.log(f"✓ Regenerated Q{idx+1}: '{regenerated.get('response', '')[:50]}'")
                                 
                                 # Merge valid cached items with regenerated items
                                 evaluation_data = cached_data.copy()
@@ -642,11 +643,15 @@ class RAGASEvaluator:
                         "timestamp": datetime.now().isoformat()
                     }
                 
-                Logger.log("Generating responses...")
-                evaluation_data = [
-                    self._process_single_question(pipeline, q, gt, i+1, total_selected)
-                    for i, (q, gt) in enumerate(zip(selected_questions, selected_ground_truths))
-                ]
+                Logger.log("Generating fresh responses...")
+                evaluation_data = []
+                for i, (q, gt) in enumerate(zip(selected_questions, selected_ground_truths)):
+                    item = self._process_single_question(pipeline, q, gt, i+1, total_selected)
+                    # Ensure response is not empty before adding
+                    if self._is_error_response(item.get('response', '')):
+                        Logger.log(f"⚠ Q{i+1} generated empty/error response, retrying...")
+                        item = self._process_single_question(pipeline, q, gt, i+1, total_selected)
+                    evaluation_data.append(item)
                 
                 # Save to cache
                 if use_cache:
@@ -655,8 +660,23 @@ class RAGASEvaluator:
             # Save the complete evaluation data to last_test_set folder
             self._save_to_last_test_set(config_name, selected_questions, selected_ground_truths, evaluation_data)
             
+            # Validate all responses before evaluation
+            Logger.log(f"\nValidating {len(evaluation_data)} responses before RAGAS evaluation...")
+            empty_count = 0
+            for idx, item in enumerate(evaluation_data):
+                response = item.get('response', '')
+                if self._is_error_response(response):
+                    empty_count += 1
+                    Logger.log(f"⚠ CRITICAL: Question {idx+1} has empty/error response!")
+            
+            if empty_count > 0:
+                Logger.log(f"\n⚠⚠⚠ CRITICAL: Found {empty_count}/{len(evaluation_data)} empty/error responses!")
+                Logger.log(f"This configuration likely failed during generation. Metrics will be unreliable.")
+            else:
+                Logger.log(f"✓ All {len(evaluation_data)} responses are valid (non-empty)")
+            
             # Run RAGAS evaluation
-            Logger.log(f"Running RAGAS evaluation for {config_name}...")
+            Logger.log(f"\nRunning RAGAS evaluation for {config_name}...")
             evaluation_dataset = EvaluationDataset.from_list(evaluation_data)
             run_config = RunConfig(max_workers=1, timeout=self.timeout)
             
