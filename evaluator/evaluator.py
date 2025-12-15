@@ -294,11 +294,16 @@ class RAGASEvaluator:
                 )
 
                 if not is_rate_limit:
+                    answer_text = result.get('answer', '') if isinstance(result, dict) else ''
+                    if answer_text is None or (isinstance(answer_text, str) and answer_text.strip() == ""):
+                        Logger.log("⚠ Empty response received; retrying generation")
+                        continue
+
                     contexts = self._extract_contexts(result.get('sources', []))
                     return {
                         "user_input": question,
                         "retrieved_contexts": contexts if contexts else ["No relevant context retrieved"],
-                        "response": result['answer'],
+                        "response": answer_text,
                         "reference": ground_truth
                     }
 
@@ -340,9 +345,13 @@ class RAGASEvaluator:
         return os.path.join(self.cache_dir, f"{config_name}_payload.json")
     
     def _is_error_response(self, response: str) -> bool:
-        """Check if a response contains an error message"""
-        if not response or not isinstance(response, str):
-            return False
+        """Check if a response contains an error message or is empty"""
+        if response is None:
+            return True
+        if not isinstance(response, str):
+            return True
+        if response.strip() == "":
+            return True
         
         error_indicators = [
             'rate_limit_exceeded',
