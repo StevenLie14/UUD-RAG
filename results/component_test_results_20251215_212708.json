@@ -1,0 +1,22 @@
+{
+  "test_date": "2025-12-15T21:27:08.524029",
+  "testset": "./test_set\\short_answer.json",
+  "num_questions": 508,
+  "results": [
+    {
+      "configuration": "recursive_qdrant_hybrid_crossencoder",
+      "scores": {
+        "scores": null,
+        "traces": null,
+        "context_recall": 0.3701428571428571,
+        "faithfulness": 0.7458689809645692,
+        "answer_correctness": 0.4113538718126628
+      },
+      "timestamp": "2025-12-15T21:27:08.519177",
+      "num_questions": 100,
+      "chunker": "recursive",
+      "database": "qdrant",
+      "search_strategy": "hybrid_crossencoder"
+    }
+  ]
+}

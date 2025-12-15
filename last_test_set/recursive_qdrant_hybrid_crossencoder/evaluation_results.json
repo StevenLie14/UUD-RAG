@@ -3,10 +3,10 @@
   "scores": {
     "scores": null,
     "traces": null,
-    "context_recall": 0.40045238095238106,
-    "faithfulness": 0.0,
-    "answer_correctness": 0.028905694332784518
+    "context_recall": 0.3701428571428571,
+    "faithfulness": 0.7458689809645692,
+    "answer_correctness": 0.4113538718126628
   },
-  "timestamp": "2025-12-15T08:10:41.140505",
+  "timestamp": "2025-12-15T21:27:08.519177",
   "num_questions": 100
 }

@@ -473,6 +473,39 @@ class RAGASEvaluator:
                 
         return clean_scores
     
+    def _regenerate_empty_responses(self, pipeline: RAGPipeline, evaluation_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Regenerate empty responses using already retrieved contexts if available.
+        If the pipeline supports answering from provided contexts (e.g., answer_with_contexts(question, contexts)), use it.
+        Otherwise, fallback to a normal query.
+        """
+        updated = False
+        for idx, item in enumerate(evaluation_data):
+            try:
+                resp = item.get("response", None)
+                contexts = item.get("retrieved_contexts", []) or []
+                question = item.get("user_input", "")
+                if isinstance(resp, str) and resp.strip() == "":
+                    Logger.log(f"⚠ Empty response detected for question {idx+1}, regenerating using existing contexts...")
+                    # Prefer using a pipeline method that accepts contexts if available
+                    if hasattr(pipeline, "answer_with_contexts") and callable(getattr(pipeline, "answer_with_contexts")):
+                        new_answer = pipeline.answer_with_contexts(question, contexts)
+                    else:
+                        # Fallback to normal query
+                        result = pipeline.query(question)
+                        new_answer = result.get("answer", "")
+                        # If contexts are present in cache, keep them; otherwise extract
+                        if not contexts:
+                            contexts = self._extract_contexts(result.get("sources", []))
+                    # Update the item
+                    item["response"] = new_answer if isinstance(new_answer, str) else str(new_answer)
+                    item["retrieved_contexts"] = contexts if contexts else ["No relevant context retrieved"]
+                    updated = True
+            except Exception as regen_err:
+                Logger.log(f"⚠ Failed to regenerate empty response for item {idx+1}: {regen_err}")
+        if updated:
+            Logger.log("✓ Regenerated empty responses using existing contexts")
+        return evaluation_data
+
     def evaluate_pipeline(
         self,
         pipeline: RAGPipeline,
@@ -643,6 +676,12 @@ class RAGASEvaluator:
                 # Save to cache
                 if use_cache:
                     self._save_payload_cache(config_name, evaluation_data)
+            
+            # After evaluation_data is prepared, regenerate any empty responses using existing contexts
+            evaluation_data = self._regenerate_empty_responses(pipeline, evaluation_data)
+            # Persist possible updates back to cache
+            if use_cache:
+                self._save_payload_cache(config_name, evaluation_data)
             
             # Save the complete evaluation data to last_test_set folder
             self._save_to_last_test_set(config_name, selected_questions, selected_ground_truths, evaluation_data)
