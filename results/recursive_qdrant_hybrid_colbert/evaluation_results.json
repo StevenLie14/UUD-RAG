@@ -1,8 +1,6 @@
 {
   "configuration": "recursive_qdrant_hybrid_colbert",
   "scores": {
-    "scores": null,
-    "traces": null,
     "context_recall": 0.3602619047619048,
     "faithfulness": 0.7890773293425396,
     "answer_correctness": 0.41312584453658785

@@ -1,8 +1,6 @@
 {
   "configuration": "recursive_qdrant_hybrid_crossencoder",
   "scores": {
-    "scores": null,
-    "traces": null,
     "context_recall": 0.3701428571428571,
     "faithfulness": 0.7458689809645692,
     "answer_correctness": 0.4113538718126628

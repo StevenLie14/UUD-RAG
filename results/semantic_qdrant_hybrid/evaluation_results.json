@@ -1,8 +1,6 @@
 {
   "configuration": "semantic_qdrant_hybrid",
   "scores": {
-    "scores": null,
-    "traces": null,
     "context_recall": 0.35273809523809524,
     "faithfulness": 0.7018835149141488,
     "answer_correctness": 0.403756880330741

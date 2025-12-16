@@ -1,8 +1,6 @@
 {
   "configuration": "semantic_faiss_dense",
   "scores": {
-    "scores": null,
-    "traces": null,
     "context_recall": 0.36369047619047623,
     "faithfulness": 0.693602680919012,
     "answer_correctness": 0.3912364616956747

@@ -13,7 +13,6 @@ import os
 
 class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, ColbertSearchable, CrossEncoderSearchable):
     def __init__(self, qdrant_url : str = "http://localhost:6333", qdrant_api_key: str = None, collection_name: str = "documents", late_interaction_model_name: str = "jinaai/jina-colbert-v2", sparse_model_name: str = "Qdrant/bm25", dense_model_name: str = "LazarusNLP/all-indo-e5-small-v4", reranker_model_name: str = "jinaai/jina-reranker-v2-base-multilingual"):
-        Logger.log("qdrant url" + qdrant_url)
         self.client = QdrantClient(url=qdrant_url, api_key=qdrant_api_key)
         self.collection_name = collection_name
         

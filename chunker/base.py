@@ -70,7 +70,7 @@ class BaseChunker:
             with open(cache_path, 'w', encoding='utf-8') as f:
                 json.dump(cache_data, f, ensure_ascii=False, indent=2)
             
-            Logger.log(f"✓ Saved {len(chunks_data)} chunks to {cache_path}")
+            Logger.log(f"Saved {len(chunks_data)} chunks to {cache_path}")
         except Exception as e:
             Logger.log(f"Failed to save cache: {e}")
     

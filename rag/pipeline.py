@@ -36,12 +36,6 @@ class RAGPipeline:
             Logger.log(f"Loader: {loader.__class__.__name__}")
     
     async def ingest_documents(self) -> bool:
-        """
-        Load and process documents into the vector database
-        
-        Returns:
-            bool: True if successful, False otherwise
-        """
         if not self.loader:
             Logger.log("Error: No loader configured for document ingestion")
             return False
@@ -53,15 +47,12 @@ class RAGPipeline:
         try:
             Logger.log("Starting document ingestion...")
             
-            # Load documents
             await self.loader.load_data()
             Logger.log(f"Loaded {len(self.loader.pages)} pages")
             
-            # Chunk documents
             self.chunker.load_data_to_chunks(self.loader.pages)
             Logger.log(f"Created {len(self.chunker.chunks)} chunks")
             
-            # Store in database
             self.database.store_chunks(self.chunker.chunks)
             Logger.log(f"Stored chunks in {self.database.__class__.__name__}")
             

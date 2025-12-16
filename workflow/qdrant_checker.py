@@ -1,25 +1,17 @@
-"""
-Workflow wrapper for Qdrant collection checker
-Provides interactive UI for checking and fixing Qdrant collections
-"""
-import os
 from logger import Logger
 from check_qdrant import QdrantChecker
 from ui import UserInterface
 
 
 class QdrantCheckerWorkflow:
-    """Workflow for checking and maintaining Qdrant collections"""
     
     def __init__(self, config):
         self.config = config
         self.ui = UserInterface()
         
     async def run(self):
-        """Run the Qdrant checker workflow"""
         self.ui.print_header("QDRANT COLLECTION CHECKER")
         
-        # Get collection name
         print("\nAvailable collections:")
         print("1. documents (default)")
         print("2. Custom collection name")
@@ -31,7 +23,6 @@ class QdrantCheckerWorkflow:
         else:
             collection_name = "documents"
         
-        # Get Qdrant connection details
         qdrant_url = self.config.get("qdrant_url", "http://localhost:6333")
         qdrant_api_key = self.config.get("qdrant_api_key")
         
@@ -39,7 +30,6 @@ class QdrantCheckerWorkflow:
         if qdrant_api_key:
             print("API Key: [configured]")
         
-        # Get cache directory and files
         cache_dir = input("\nCache directory (default: ./chunk_cache): ").strip() or "./chunk_cache"
         
         print("\nSelect cache files to check:")
@@ -59,7 +49,6 @@ class QdrantCheckerWorkflow:
                     break
                 cache_files.append(cache_file)
         
-        # Get operation mode
         print("\nSelect operations to perform:")
         
         insert_missing = self.ui.get_yes_no("Insert missing chunks from cache into Qdrant?", default=False)
@@ -67,7 +56,6 @@ class QdrantCheckerWorkflow:
         delete_extra = self.ui.get_yes_no("Delete points not in cache from Qdrant?", default=False)
         save_report = self.ui.get_yes_no("Save report to JSON file?", default=True)
         
-        # Confirm before proceeding
         print("\n" + "="*70)
         print("OPERATION SUMMARY")
         print("="*70)
@@ -87,7 +75,6 @@ class QdrantCheckerWorkflow:
             print("Operation cancelled")
             return
         
-        # Create checker and run
         try:
             checker = QdrantChecker(
                 qdrant_url=qdrant_url,
@@ -104,13 +91,11 @@ class QdrantCheckerWorkflow:
                 delete_extra=delete_extra
             )
             
-            print("\n" + "="*70)
             print("CHECK COMPLETED")
-            print("="*70)
             
             if save_report:
                 print("\nReport saved to: qdrant_check_report.json")
             
         except Exception as e:
             Logger.log(f"Error during Qdrant check: {e}")
-            print(f"\n❌ Error: {e}")
+            print(f"\nError: {e}")

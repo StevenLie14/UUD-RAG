@@ -1,8 +1,6 @@
 {
   "configuration": "recursive_qdrant_dense",
   "scores": {
-    "scores": null,
-    "traces": null,
     "context_recall": 0.30592857142857144,
     "faithfulness": 0.6962978251407884,
     "answer_correctness": 0.43364903102564056

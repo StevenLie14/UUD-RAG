@@ -352,11 +352,11 @@ class ComponentTester:
         llm_choice = input("\nEnter choice (1-3): ").strip()
         llm_type = {"1": "gemini", "2": "chatgpt", "3": "ollama"}.get(llm_choice, "gemini")
         
-        Logger.log("ℹ️ Evaluation will use ChatGPT (gpt-4o-mini) by default")
+        Logger.log("Evaluation will use ChatGPT (gpt-4o-mini) by default")
         
         testset_path = self._select_testset_file()
         if not testset_path:
-            Logger.log("❌ No testset file selected!")
+            Logger.log("No testset file selected!")
             return
         
         tester = RAGComponentTester(
@@ -390,7 +390,6 @@ class ComponentTester:
             )
     
     def _select_testset_file(self) -> Optional[str]:
-        """Select testset file from test_set folder"""
         testset_dir = "./test_set"
         
         if not os.path.exists(testset_dir):
