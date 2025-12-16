@@ -163,37 +163,23 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
             return []
         
     def hybrid_search_with_crossencoder(self, query: str, limit: int = 5, initial_limit_multiplier: int = 5) -> list[ScoredPoint]:
-        """Performs hybrid search with cross-encoder reranking.
-        
-        Args:
-            query: Search query
-            limit: Final number of results to return
-            initial_limit_multiplier: Multiplier for initial retrieval (e.g., 3 means retrieve 3x limit results)
-        """
         try:
-            # Step 1: Retrieve more results than needed
             initial_limit = limit * initial_limit_multiplier
             initial_results = self.hybrid_search(query, limit=initial_limit)
             
             if not initial_results:
                 return []
             
-            # Step 2: Extract documents for reranking
             documents = [hit.payload.get('full_text', '') for hit in initial_results]
-            
-            # Step 3: Rerank with cross-encoder
             rerank_scores = list(self.reranker.rerank(query, documents))
             
-            # Step 4: Create ranking with original indices
             ranking = [(i, score) for i, score in enumerate(rerank_scores)]
             ranking.sort(key=lambda x: x[1], reverse=True)
             
-            # Step 5: Return top results with updated scores
             reranked_results = []
             for i in range(min(limit, len(ranking))):
                 idx, new_score = ranking[i]
                 result = initial_results[idx]
-                # Update the score with reranker score
                 result.score = float(new_score)
                 reranked_results.append(result)
             
@@ -234,7 +220,6 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
             batch_values = [chunks[k] for k in batch_keys]
             contexts = [chunk.get_context() for chunk in batch_values]
 
-            # Create embeddings per batch to reduce peak memory
             dense_embeddings = list(self.dense_model.encode(contexts, batch_size=min(batch_size, len(contexts))))
             sparse_embeddings = list(self.sparse_model.embed(contexts))
             late_interaction_embeddings = list(self.late_interaction_model.embed(contexts))
@@ -262,7 +247,6 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
                 )
                 completed_batches.add(batch_num)
                 
-                # Save progress
                 with open(progress_file, 'w') as f:
                     json.dump({'completed_batches': list(completed_batches)}, f)
                 
@@ -274,7 +258,6 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
             
             batch_num += 1
         
-        # Cleanup progress file on success
         if os.path.exists(progress_file):
             os.remove(progress_file)
         Logger.log(f"✓ All chunks stored successfully!")

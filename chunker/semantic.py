@@ -103,8 +103,6 @@ class SemanticChunker(BaseChunker):
                 
                 chunk_id = str(uuid.uuid4())
                 metadata = doc.metadata or {}
-                semantic_score = metadata.get("semantic_similarity", 0.95)
-                boundary_type = "semantic_boundary"
                 
                 chunk_obj = SemanticChunk(
                     id=chunk_id,
@@ -113,8 +111,6 @@ class SemanticChunker(BaseChunker):
                     page=metadata.get("page", 0),
                     total_pages=metadata.get("total_pages", 0),
                     page_label=metadata.get("page_label", ""),
-                    semantic_score=semantic_score,
-                    boundary_type=boundary_type
                 )
                 
                 self.chunks[chunk_id] = chunk_obj
@@ -154,6 +150,5 @@ class SemanticChunker(BaseChunker):
     def _get_chunk_type(self) -> str:
         return 'semantic'
     
-    def _reconstruct_chunk(self, chunk_dict: dict, chunk_type: str) -> SemanticChunk:
-        """Reconstruct SemanticChunk object from dict"""
+    def _reconstruct_chunk(self, chunk_dict: dict) -> SemanticChunk:
         return SemanticChunk(**chunk_dict)

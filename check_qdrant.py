@@ -116,7 +116,7 @@ class QdrantChecker:
                 cid = str(chunk_dict.get('id'))
                 if cid not in missing_ids:
                     continue
-                chunk_obj = self._reconstruct_chunk(chunk_dict, chunk_type)
+                chunk_obj = self._reconstruct_chunk(chunk_dict)
                 if chunk_obj:
                     loaded[cid] = chunk_obj
         except Exception as e:

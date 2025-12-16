@@ -1,8 +1,6 @@
-{
-  "questions": [
-    {
-      "question": "Apa yang menyebabkan terdapat dua macam perundang-undangan mengenai Bank Rakyat Indonesia setelah terbentuknya Negara Kesatuan Republik Indonesia?",
-      "ground_truth": "Menurut teks, terdapat dua macam perundang-undangan karena terdapat peraturan Pemerintah Republik Indonesia tahun 1946 No. 1 untuk daerah Jawa, Madura, Sumatera kecuali Sumatera Timur, dan Kalimantan kecuali Kalimantan Barat, serta ordonansi tersebut dalam Staatsblad 1934 No. 82 untuk daerah Sumatera Timur, Kalimantan Barat, dan Indonesia Timur."
-    }
-  ]
-}
+[
+  {
+    "question": "Apa yang menyebabkan terdapat dua macam perundang-undangan mengenai Bank Rakyat Indonesia setelah terbentuknya Negara Kesatuan Republik Indonesia?",
+    "ground_truth": "Menurut teks, terdapat dua macam perundang-undangan karena terdapat peraturan Pemerintah Republik Indonesia tahun 1946 No. 1 untuk daerah Jawa, Madura, Sumatera kecuali Sumatera Timur, dan Kalimantan kecuali Kalimantan Barat, serta ordonansi tersebut dalam Staatsblad 1934 No. 82 untuk daerah Sumatera Timur, Kalimantan Barat, dan Indonesia Timur."
+  }
+]

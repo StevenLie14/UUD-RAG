@@ -6,8 +6,6 @@ class SemanticChunk(BaseChunk):
     page: int
     total_pages: int
     page_label: str
-    semantic_score: float
-    boundary_type: str
     
     def get_context(self) -> str:
         return self.content
@@ -20,7 +18,5 @@ class SemanticChunk(BaseChunk):
             "page": self.page,
             "total_pages": self.total_pages,
             "page_label": self.page_label,
-            "semantic_score": self.semantic_score,
-            "boundary_type": self.boundary_type,
             "chunk_type": "semantic"
         }

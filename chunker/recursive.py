@@ -32,15 +32,12 @@ class RecursiveChunker(BaseChunker):
         
         Logger.log(f"Processing {len(uncached_pages)} new documents with recursive chunking...")
         
-        checkpoint_interval = 100  # Save every 100 documents
+        checkpoint_interval = 100
         processed_count = 0
         
-        # Process each document separately
         try:
             for idx, page in enumerate(uncached_pages, 1):
                 try:
-                    
-                    # Split this specific page
                     split_docs = self.text_splitter.split_documents([page])
                     
                     for doc in split_docs:
@@ -58,11 +55,9 @@ class RecursiveChunker(BaseChunker):
 
                         self.chunks[id] = chunk_obj
                     
-                    # Mark document as processed
                     self.mark_document_processed(page)
                     processed_count += 1
                     
-                    # Checkpoint save every N documents
                     if idx % checkpoint_interval == 0:
                         Logger.log(f"Checkpoint: Saving progress ({idx}/{len(uncached_pages)} documents)...")
                         self._save_consolidated_cache()
@@ -82,13 +77,11 @@ class RecursiveChunker(BaseChunker):
         
         Logger.log(f"Total chunks: {len(self.chunks)} (added {processed_count} documents)")
         
-        # Final save
         self._save_consolidated_cache()
         Logger.log(f"Created {len(self.chunks)} total chunks")
     
     def _get_chunk_type(self) -> str:
         return 'recursive'
     
-    def _reconstruct_chunk(self, chunk_dict: dict, chunk_type: str) -> RecursiveChunk:
-        """Reconstruct RecursiveChunk object from dict"""
+    def _reconstruct_chunk(self, chunk_dict: dict) -> RecursiveChunk:
         return RecursiveChunk(**chunk_dict)

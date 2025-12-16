@@ -13,14 +13,6 @@ class FAISS(VectorStore, DenseSearchable):
                  index_path: str = "./faiss_index", 
                  dense_model_name: str = "LazarusNLP/all-indo-e5-small-v4",
                  collection_name: str = "documents"):
-        """
-        Initialize FAISS database
-        
-        Args:
-            index_path: Path to store FAISS index files
-            dense_model_name: Name of the sentence transformer model
-            collection_name: Collection identifier for this database
-        """
         self.index_path = index_path
         self.collection_name = collection_name
         self.dense_model_name = dense_model_name
@@ -41,12 +33,10 @@ class FAISS(VectorStore, DenseSearchable):
         Logger.log(f"FAISS database initialized with collection: {collection_name}")
         
     def _create_index(self):
-        """Create a new FAISS index"""
         self.index = faiss.IndexFlatIP(self.embedding_dim)
         Logger.log(f"Created new FAISS index with dimension: {self.embedding_dim}")
         
     def _load_index(self):
-        """Load existing FAISS index from disk"""
         index_file = os.path.join(self.index_path, f"{self.collection_name}.index")
         metadata_file = os.path.join(self.index_path, f"{self.collection_name}_metadata.pkl")
         
@@ -68,7 +58,6 @@ class FAISS(VectorStore, DenseSearchable):
             self._create_index()
     
     def _save_index(self):
-        """Save FAISS index and metadata to disk"""
         try:
             index_file = os.path.join(self.index_path, f"{self.collection_name}.index")
             metadata_file = os.path.join(self.index_path, f"{self.collection_name}_metadata.pkl")
@@ -90,7 +79,6 @@ class FAISS(VectorStore, DenseSearchable):
             raise
     
     def add_documents(self, points: list[Point]):
-        """Add documents to FAISS index"""
         try:
             vectors = []
             for point in points:
@@ -142,13 +130,10 @@ class FAISS(VectorStore, DenseSearchable):
             return []
     
     def store_chunks(self, chunks: Dict[str, BaseChunk]):
-        """Store chunks in FAISS database"""
         try:
-            # Batch encode all texts at once (efficient)
             texts = [chunk.get_context() for chunk in chunks.values()]
             embeddings = self.dense_model.encode(texts)
             
-            # Create point objects with pre-computed embeddings
             points = [
                 Point(id=chunk_id, vector=embeddings[i], payload=chunk.get_payload())
                 for i, (chunk_id, chunk) in enumerate(chunks.items())
@@ -162,7 +147,6 @@ class FAISS(VectorStore, DenseSearchable):
             raise
     
     def delete_collection(self):
-        """Delete the FAISS index and metadata"""
         try:
             index_file = os.path.join(self.index_path, f"{self.collection_name}.index")
             metadata_file = os.path.join(self.index_path, f"{self.collection_name}_metadata.pkl")
@@ -184,7 +168,6 @@ class FAISS(VectorStore, DenseSearchable):
             raise
     
     def close(self):
-        """Clean up resources"""
         try:
             self._save_index()
             Logger.log("FAISS database closed successfully")

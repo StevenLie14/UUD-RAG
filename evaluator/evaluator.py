@@ -9,28 +9,20 @@ from datetime import datetime
 import time
 
 from ragas import evaluate, EvaluationDataset, RunConfig
-from ragas.llms import LangchainLLMWrapper
 from ragas.metrics import LLMContextRecall, Faithfulness, AnswerCorrectness
 from ragas.embeddings import LangchainEmbeddingsWrapper
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 
 from config import Config
 from logger import Logger
 from rag.pipeline import RAGPipeline
-
+from llm import ChatGPT
+from model import EvaluationItem
+import os 
 
 class RAGASEvaluator:
-    """Evaluate RAG systems using RAGAS metrics"""
     
     def __init__(self, testset_path: str, timeout: int = 300, cache_dir: str = "./evaluation_cache"):
-        """
-        Initialize RAGAS evaluator
-        
-        Args:
-            testset_path: Path to testset JSON file
-            timeout: Timeout for evaluation in seconds
-            cache_dir: Directory to cache generation payloads
-        """
         self.config = Config()
         self.testset_path = testset_path
         self.timeout = timeout
@@ -38,35 +30,27 @@ class RAGASEvaluator:
         self.questions: List[str] = []
         self.ground_truths: List[str] = []
         
-        # Create cache directory if it doesn't exist
         import os
         os.makedirs(cache_dir, exist_ok=True)
         
-        # Initialize evaluation LLM and embeddings (always ChatGPT)
         self.evaluator_llm = self._create_evaluation_llm()
         self.evaluator_embeddings = self._create_evaluation_embeddings()
         
-        # Initialize RAGAS metrics
         self._initialize_metrics()
         
-        # Load testset
         self._load_testset()
         
-        Logger.log("RAGASEvaluator initialized successfully")
     
     def _create_evaluation_llm(self):
-        """Create LLM for RAGAS evaluation - Always uses ChatGPT"""
-        llm = ChatOpenAI(
-            model="gpt-4o-mini",
-            api_key=self.config.OPENAI_API_KEY,
-            temperature=0.1,
+        chatgpt = ChatGPT(
+            model_name="gpt-4o-mini",
+            api_key=self.config.OPENAI_API_KEY
         )
         
         Logger.log("Using ChatGPT (gpt-4o-mini) for RAGAS evaluation")
-        return LangchainLLMWrapper(llm)
+        return chatgpt.get_ragas_llm()
     
     def _create_evaluation_embeddings(self):
-        """Create embeddings for evaluation - Always uses OpenAI"""
         embeddings = OpenAIEmbeddings(
             model="text-embedding-3-small",
             api_key=self.config.OPENAI_API_KEY
@@ -85,12 +69,11 @@ class RAGASEvaluator:
         )
     
     def _load_testset(self):
-        """Load test questions and ground truths"""
         try:
             with open(self.testset_path, 'r', encoding='utf-8') as f:
                 testset_data = json.load(f)
             
-            for item in testset_data["questions"]:
+            for item in testset_data:
                 self.questions.append(item["question"])
                 self.ground_truths.append(item["ground_truth"])
             
@@ -99,155 +82,11 @@ class RAGASEvaluator:
         except Exception as e:
             Logger.log(f"Error loading testset: {e}")
             raise
-
-    def _load_questions_from_reference(self, reference_name: str) -> Optional[Tuple[List[str], List[str]]]:
-        """Load questions and ground truths from a reference cache file"""
-        import os
-        reference_path = self._get_cache_path(f"{reference_name}_questions")
-        
-        if not os.path.exists(reference_path):
-            Logger.log(f"⚠ Reference questions file not found: {reference_path}")
-            return None
-        
-        try:
-            with open(reference_path, 'r', encoding='utf-8') as f:
-                reference_data = json.load(f)
-            
-            if not isinstance(reference_data, list):
-                Logger.log(f"⚠ Invalid reference questions format in {reference_path}")
-                return None
-            
-            questions = [item['question'] for item in reference_data]
-            ground_truths = [item['ground_truth'] for item in reference_data]
-            
-            Logger.log(f"✓ Loaded {len(questions)} questions from reference: {reference_name}")
-            return questions, ground_truths
-            
-        except Exception as e:
-            Logger.log(f"⚠ Error loading reference questions: {e}")
-            return None
-    
-    def _match_reference_with_cache(self, config_name: str, reference_questions: List[str], reference_ground_truths: List[str]) -> Optional[List[Dict[str, Any]]]:
-        """Match reference questions with cached responses from technique's cache"""
-        import os
-        cache_path = self._get_cache_path(config_name)
-        
-        if not os.path.exists(cache_path):
-            Logger.log(f"⚠ Technique cache not found: {cache_path}")
-            return None
-        
-        try:
-            with open(cache_path, 'r', encoding='utf-8') as f:
-                cached_data = json.load(f)
-            
-            if not isinstance(cached_data, list):
-                Logger.log(f"⚠ Invalid cache format: {cache_path}")
-                return None
-            
-            # Create a mapping of questions to cached responses
-            cache_map = {}
-            for item in cached_data:
-                question = item.get('user_input', '')
-                if question:
-                    cache_map[question] = item
-            
-            # Match reference questions with cached data
-            matched_data = []
-            missing_count = 0
-            
-            for ref_q, ref_gt in zip(reference_questions, reference_ground_truths):
-                if ref_q in cache_map:
-                    # Use cached contexts and response, but ensure ground truth matches reference
-                    matched_item = cache_map[ref_q].copy()
-                    matched_item['reference'] = ref_gt  # Use reference ground truth
-                    matched_data.append(matched_item)
-                else:
-                    missing_count += 1
-                    Logger.log(f"⚠ Question not found in cache: {ref_q[:50]}...")
-            
-            if missing_count > 0:
-                Logger.log(f"⚠ {missing_count}/{len(reference_questions)} questions not found in technique cache")
-                return None
-            
-            Logger.log(f"✓ Successfully matched {len(matched_data)} questions with cached responses")
-            return matched_data
-            
-        except Exception as e:
-            Logger.log(f"⚠ Error matching reference with cache: {e}")
-            return None
-    
-    def _select_questions(self, max_questions: Optional[int], random_seed: Optional[int]) -> Tuple[List[str], List[str]]:
-        """Return a (optionally randomized) subset of questions and ground truths limited by max_questions"""
-        if max_questions is None or max_questions >= len(self.questions):
-            return self.questions, self.ground_truths
-
-        limit = max_questions
-        import random
-        rng = random.Random(random_seed)
-        indices = rng.sample(range(len(self.questions)), limit)
-        indices.sort()  # preserve original order for stability/logging
-        return [self.questions[i] for i in indices], [self.ground_truths[i] for i in indices]
-
-    def _save_selected_questions(self, config_name: str, questions: List[str], ground_truths: List[str]):
-        """Persist the selected questions/ground truths used for evaluation"""
-        payload = [
-            {"question": q, "ground_truth": gt}
-            for q, gt in zip(questions, ground_truths)
-        ]
-        cache_path = self._get_cache_path(f"{config_name}_questions")
-        try:
-            with open(cache_path, 'w', encoding='utf-8') as f:
-                json.dump(payload, f, indent=2, ensure_ascii=False)
-            Logger.log(f"✓ Saved selected questions to {cache_path}")
-        except Exception as e:
-            Logger.log(f"⚠ Failed to save selected questions: {e}")
-    
-    def _save_to_last_test_set(self, config_name: str, questions: List[str], ground_truths: List[str], evaluation_data: List[Dict[str, Any]]):
-        """Save evaluation testset to last_test_set/technique_name/ with 3 files"""
-        import os
-        
-        technique_dir = os.path.join("./last_test_set", config_name)
-        os.makedirs(technique_dir, exist_ok=True)
-        
-        # File 1: Questions and ground truths
-        questions_payload = [
-            {"question": q, "ground_truth": gt}
-            for q, gt in zip(questions, ground_truths)
-        ]
-        questions_file = os.path.join(technique_dir, "questions_payload.json")
-        try:
-            with open(questions_file, 'w', encoding='utf-8') as f:
-                json.dump(questions_payload, f, indent=2, ensure_ascii=False)
-            Logger.log(f"✓ Saved questions to {questions_file}")
-        except Exception as e:
-            Logger.log(f"⚠ Failed to save questions: {e}")
-        
-        # File 2: Full evaluation payload with contexts and responses
-        eval_payload = [
-            {
-                "question": item.get('user_input', ''),
-                "retrieved_contexts": item.get('retrieved_contexts', []),
-                "response": item.get('response', ''),
-                "ground_truth": item.get('reference', '')
-            }
-            for item in evaluation_data
-        ]
-        eval_file = os.path.join(technique_dir, "evaluation_payload.json")
-        try:
-            with open(eval_file, 'w', encoding='utf-8') as f:
-                json.dump(eval_payload, f, indent=2, ensure_ascii=False)
-            Logger.log(f"✓ Saved evaluation payload to {eval_file}")
-        except Exception as e:
-            Logger.log(f"⚠ Failed to save evaluation payload: {e}")
     
     def _save_evaluation_results(self, config_name: str, result_data: Dict[str, Any]):
-        """Save evaluation results to last_test_set/technique_name/"""
-        import os
-        
-        technique_dir = os.path.join("./last_test_set", config_name)
+        technique_dir = os.path.join("./results", config_name)
         os.makedirs(technique_dir, exist_ok=True)
         
-        # File 3: Evaluation results
         results_file = os.path.join(technique_dir, "evaluation_results.json")
         try:
             with open(results_file, 'w', encoding='utf-8') as f:
@@ -263,29 +102,14 @@ class RAGASEvaluator:
         ground_truth: str,
         question_num: int,
         total_questions: int
-    ) -> Dict[str, Any]:
-        """
-        Process a single question and return evaluation data
-        
-        Args:
-            pipeline: RAG pipeline to use
-            question: Question to process
-            ground_truth: Ground truth answer
-            question_num: Current question number
-            total_questions: Total number of questions
-            
-        Returns:
-            Dictionary with evaluation data
-        """
+    ) -> EvaluationItem:
         Logger.log(f"Processing question {question_num}/{total_questions}: {question[:50]}...")
         
         try:
-            # Try querying with simple retry on rate-limit errors
             max_retries = 5
             for attempt in range(max_retries):
                 result = pipeline.query(question)
 
-                # Detect rate limit error either in explicit error or answer text
                 err_text = result.get('error') or result.get('answer', '')
                 is_rate_limit = isinstance(err_text, str) and (
                     'rate_limit_exceeded' in err_text.lower() or
@@ -295,34 +119,32 @@ class RAGASEvaluator:
 
                 if not is_rate_limit:
                     contexts = self._extract_contexts(result.get('sources', []))
-                    return {
-                        "user_input": question,
-                        "retrieved_contexts": contexts if contexts else ["No relevant context retrieved"],
-                        "response": result['answer'],
-                        "reference": ground_truth
-                    }
+                    return EvaluationItem(
+                        user_input=question,
+                        retrieved_contexts=contexts if contexts else ["No relevant context retrieved"],
+                        response=result['answer'],
+                        reference=ground_truth
+                    )
 
-                # Backoff and retry on rate-limit
                 wait_time = min(2 ** attempt, 30)
                 Logger.log(f"Rate limit encountered, retrying in {wait_time}s (attempt {attempt+1}/{max_retries})")
                 time.sleep(wait_time)
 
-            # If all retries exhausted, return the last error response
             contexts = self._extract_contexts(result.get('sources', [])) if 'result' in locals() else []
-            return {
-                "user_input": question,
-                "retrieved_contexts": contexts if contexts else ["Error retrieving context"],
-                "response": result.get('answer', 'Error: Rate limit and retries exhausted') if 'result' in locals() else 'Error: Rate limit and retries exhausted',
-                "reference": ground_truth
-            }
+            return EvaluationItem(
+                user_input=question,
+                retrieved_contexts=contexts if contexts else ["Error retrieving context"],
+                response=result.get('answer', 'Error: Rate limit and retries exhausted') if 'result' in locals() else 'Error: Rate limit and retries exhausted',
+                reference=ground_truth
+            )
         except Exception as e:
             Logger.log(f"Error processing question {question_num}: {e}")
-            return {
-                "user_input": question,
-                "retrieved_contexts": ["Error retrieving context"],
-                "response": f"Error: {str(e)}",
-                "reference": ground_truth
-            }
+            return EvaluationItem(
+                user_input=question,
+                retrieved_contexts=["Error retrieving context"],
+                response=f"Error: {str(e)}",
+                reference=ground_truth
+            )
     
     def _extract_contexts(self, sources: List[Any]) -> List[str]:
         """Extract context texts from sources"""
@@ -335,9 +157,8 @@ class RAGASEvaluator:
         return contexts
     
     def _get_cache_path(self, config_name: str) -> str:
-        """Get cache file path for a configuration"""
         import os
-        return os.path.join(self.cache_dir, f"{config_name}_payload.json")
+        return os.path.join("./results", config_name, "evaluation_payload.json")
     
     def _is_error_response(self, response: str) -> bool:
         """Check if a response contains an error message"""
@@ -355,57 +176,34 @@ class RAGASEvaluator:
             'exception:',
             'failed to',
             'cannot process',
-            'please try again',
-            ""
+            'please try again'
         ]
         
         response_lower = response.lower()
         return any(indicator in response_lower for indicator in error_indicators)
     
-    def _load_cached_payload(self, config_name: str) -> Optional[List[Dict[str, Any]]]:
-        """Load cached generation payload for a configuration, filtering out error responses"""
-        import os
-        cache_path = self._get_cache_path(config_name)
-        if os.path.exists(cache_path):
-            try:
-                with open(cache_path, 'r', encoding='utf-8') as f:
-                    cached_data = json.load(f)
-                
-                # Check for error responses in cached data
-                error_count = 0
-                valid_items = []
-                error_questions = []
-                
-                for item in cached_data:
-                    response = item.get('response', '')
-                    if self._is_error_response(response):
-                        error_count += 1
-                        error_questions.append(item.get('user_input', 'Unknown question'))
-                        Logger.log(f"⚠ Found error response in cache: {response[:100]}...")
-                    else:
-                        valid_items.append(item)
-                
-                if error_count > 0:
-                    Logger.log(f"⚠ Found {error_count} error responses in cache. These will be regenerated.")
-                    # Return None to trigger regeneration of error items
-                    # Store the valid items and error questions for partial regeneration
-                    return None
-                
-                Logger.log(f"✓ Loaded cached payload from {cache_path}")
-                return cached_data
-            except Exception as e:
-                Logger.log(f"Error loading cache: {e}")
-        return None
-    
-    def _save_payload_cache(self, config_name: str, evaluation_data: List[Dict[str, Any]]):
-        """Save generation payload to cache"""
+    def _save_payload_cache(self, config_name: str, evaluation_data: List[EvaluationItem]):
+        """Save generation payload to results folder"""
         cache_path = self._get_cache_path(config_name)
         try:
+            # Ensure directory exists
+            os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+            
+            # Transform to evaluation payload format
+            payload = [
+                {
+                    "question": item.user_input,
+                    "retrieved_contexts": item.retrieved_contexts,
+                    "response": item.response,
+                    "ground_truth": item.reference
+                }
+                for item in evaluation_data
+            ]
             with open(cache_path, 'w', encoding='utf-8') as f:
-                json.dump(evaluation_data, f, indent=2, ensure_ascii=False)
-            Logger.log(f"✓ Saved payload cache to {cache_path}")
+                json.dump(payload, f, indent=2, ensure_ascii=False)
+            Logger.log(f"✓ Saved payload to {cache_path}")
         except Exception as e:
-            Logger.log(f"Error saving cache: {e}")
+            Logger.log(f"Error saving payload: {e}")
     
     def _clean_scores(self, scores: Dict[str, Any]) -> Dict[str, Optional[float]]:
         """Clean scores by removing NaN values and handling list/dict values"""
@@ -473,7 +271,7 @@ class RAGASEvaluator:
                 
         return clean_scores
     
-    def _regenerate_empty_responses(self, pipeline: RAGPipeline, evaluation_data: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    def _regenerate_empty_responses(self, pipeline: RAGPipeline, evaluation_data: List[EvaluationItem]) -> List[EvaluationItem]:
         """Regenerate empty responses using already retrieved contexts if available.
         If the pipeline supports answering from provided contexts (e.g., answer_with_contexts(question, contexts)), use it.
         Otherwise, fallback to a normal query.
@@ -481,24 +279,23 @@ class RAGASEvaluator:
         updated = False
         for idx, item in enumerate(evaluation_data):
             try:
-                resp = item.get("response", None)
-                contexts = item.get("retrieved_contexts", []) or []
-                question = item.get("user_input", "")
-                if isinstance(resp, str) and resp.strip() == "":
+                if isinstance(item.response, str) and item.response.strip() == "":
                     Logger.log(f"⚠ Empty response detected for question {idx+1}, regenerating using existing contexts...")
                     # Prefer using a pipeline method that accepts contexts if available
                     if hasattr(pipeline, "answer_with_contexts") and callable(getattr(pipeline, "answer_with_contexts")):
-                        new_answer = pipeline.answer_with_contexts(question, contexts)
+                        new_answer = pipeline.answer_with_contexts(item.user_input, item.retrieved_contexts)
                     else:
                         # Fallback to normal query
-                        result = pipeline.query(question)
+                        result = pipeline.query(item.user_input)
                         new_answer = result.get("answer", "")
                         # If contexts are present in cache, keep them; otherwise extract
-                        if not contexts:
+                        if not item.retrieved_contexts:
                             contexts = self._extract_contexts(result.get("sources", []))
+                            item.retrieved_contexts = contexts
                     # Update the item
-                    item["response"] = new_answer if isinstance(new_answer, str) else str(new_answer)
-                    item["retrieved_contexts"] = contexts if contexts else ["No relevant context retrieved"]
+                    item.response = new_answer if isinstance(new_answer, str) else str(new_answer)
+                    if not item.retrieved_contexts:
+                        item.retrieved_contexts = ["No relevant context retrieved"]
                     updated = True
             except Exception as regen_err:
                 Logger.log(f"⚠ Failed to regenerate empty response for item {idx+1}: {regen_err}")
@@ -511,151 +308,79 @@ class RAGASEvaluator:
         pipeline: RAGPipeline,
         config_name: str,
         use_cache: bool = True,
-        skip_generation: bool = False,
-        max_questions: Optional[int] = 100,
-        random_seed: Optional[int] = None,
-        use_reference_questions: str = "recursive_faiss_dense"
+        skip_generation: bool = False
     ) -> Dict[str, Any]:
-        """
-        Evaluate a RAG pipeline using RAGAS metrics
-        
-        Args:
-            pipeline: RAG pipeline to evaluate
-            config_name: Name of the configuration being tested
-            use_cache: Whether to use cached payloads if available
-            skip_generation: If True and cache exists, skip generation and only evaluate
-            max_questions: Maximum number of questions to evaluate (None for all)
-            random_seed: Seed for randomized question selection (None for non-deterministic)
-            use_reference_questions: Config name to load questions from (e.g., 'recursive_faiss_dense')
-                                    When set, uses those questions but generates fresh contexts/answers
-            
-        Returns:
-            Dictionary with evaluation results
-        """
         Logger.log(f"\n{'='*60}")
         Logger.log(f"Evaluating Configuration: {config_name}")
         Logger.log(f"{'='*60}")
         
         try:
-            # Select subset of questions to evaluate
-            if use_reference_questions:
-                # Load questions from reference cache
-                ref_result = self._load_questions_from_reference(use_reference_questions)
-                if ref_result:
-                    selected_questions, selected_ground_truths = ref_result
-                    Logger.log(f"✓ Using {len(selected_questions)} questions from reference: {use_reference_questions}")
-                else:
-                    Logger.log(f"⚠ Failed to load reference questions, falling back to normal selection")
-                    selected_questions, selected_ground_truths = self._select_questions(max_questions, random_seed)
-            else:
-                selected_questions, selected_ground_truths = self._select_questions(max_questions, random_seed)
-            
+            # Use all questions from testset
+            selected_questions = self.questions
+            selected_ground_truths = self.ground_truths
             total_selected = len(selected_questions)
             Logger.log(f"Using {total_selected} questions for evaluation")
-            # Persist the selected subset for traceability
-            self._save_selected_questions(config_name, selected_questions, selected_ground_truths)
 
             # Try to load cached payload
             evaluation_data = None
             
-            # If using reference questions, match them with technique's cached responses
-            if use_reference_questions and (use_cache or skip_generation):
-                Logger.log(f"Matching reference questions with {config_name} cached responses...")
-                evaluation_data = self._match_reference_with_cache(config_name, selected_questions, selected_ground_truths)
-                if evaluation_data:
-                    Logger.log("✓ Using reference questions with technique's cached contexts/responses")
-                else:
-                    Logger.log(f"⚠ Failed to match reference with cache, will generate fresh responses")
-            
-            # Normal cache loading (when not using reference questions)
-            if evaluation_data is None and use_cache and not use_reference_questions:
+            # Load cache if available
+            if evaluation_data is None and use_cache:
                 import os
                 cache_path = self._get_cache_path(config_name)
-                selection_cache_path = self._get_cache_path(f"{config_name}_questions")
                 if os.path.exists(cache_path):
                     with open(cache_path, 'r', encoding='utf-8') as f:
                         cached_data = json.load(f)
 
-                    # Ensure question selection matches cache
-                    selection_matches = False
-                    if os.path.exists(selection_cache_path):
-                        try:
-                            with open(selection_cache_path, 'r', encoding='utf-8') as sf:
-                                cached_selection = json.load(sf)
-                            if isinstance(cached_selection, list):
-                                cached_pairs = [
-                                    (item.get('question'), item.get('ground_truth'))
-                                    for item in cached_selection
-                                ]
-                                current_pairs = list(zip(selected_questions, selected_ground_truths))
-                                if len(cached_pairs) >= total_selected and cached_pairs[:total_selected] == current_pairs:
-                                    selection_matches = True
-                                else:
-                                    Logger.log("⚠ Cached question subset differs from current selection; regenerating.")
-                            else:
-                                Logger.log("⚠ Cached question subset invalid; regenerating.")
-                        except Exception as sel_err:
-                            Logger.log(f"⚠ Failed to read cached question subset: {sel_err}; regenerating.")
-                    else:
-                        Logger.log("⚠ Cached question subset missing; regenerating.")
-                    
-                    # Ensure cache size aligns with requested subset
+                    # Validate cache
                     if not isinstance(cached_data, list):
                         Logger.log("⚠ Cache is invalid; regenerating.")
                         cached_data = None
-                    elif len(cached_data) < total_selected:
-                        Logger.log(
-                            f"⚠ Cache has only {len(cached_data)} items (< {total_selected}); regenerating."
-                        )
-                        cached_data = None
-                    elif len(cached_data) > total_selected:
-                        Logger.log(
-                            f"⚠ Cache has {len(cached_data)} items (> {total_selected}); using first {total_selected}."
-                        )
-                        cached_data = cached_data[:total_selected]
-
-                    # If selection does not match, force regeneration
-                    if cached_data is not None and not selection_matches:
+                    elif len(cached_data) != total_selected:
+                        Logger.log(f"⚠ Cache has {len(cached_data)} items but expected {total_selected}; regenerating.")
                         cached_data = None
                     
                     if cached_data is not None:
-                        # Check for error responses
+                        # Transform cached data to EvaluationItem objects
+                        evaluation_data = []
                         items_to_regenerate = []
-                    
-                        for idx, item in enumerate(cached_data):
-                            response = item.get('response', '')
-                            if self._is_error_response(response):
+                        
+                        for idx, cached_item in enumerate(cached_data):
+                            response = cached_item.get('response', '')
+                            
+                            # Check if response needs regeneration
+                            if self._is_error_response(response) or not response:
                                 items_to_regenerate.append(idx)
-                                Logger.log(f"⚠ Question {idx+1} has error response, will regenerate")
                             
+                            # Create EvaluationItem from cached data
+                            eval_item = EvaluationItem(
+                                user_input=cached_item.get('question', ''),
+                                retrieved_contexts=cached_item.get('retrieved_contexts', []),
+                                response=response,
+                                reference=cached_item.get('ground_truth', '')
+                            )
+                            evaluation_data.append(eval_item)
+                        
                         if items_to_regenerate:
-                            Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions with errors")
+                            Logger.log(f"⚠ Will regenerate {len(items_to_regenerate)} questions")
                             
-                            # Regenerate only the questions with errors
                             if not skip_generation:
-                                Logger.log("Regenerating error responses...")
-                                regenerated_items = []
+                                Logger.log("Regenerating responses from cached contexts...")
                                 for idx in items_to_regenerate:
                                     question = selected_questions[idx]
                                     ground_truth = selected_ground_truths[idx]
-                                    regenerated = self._process_single_question(
-                                        pipeline, question, ground_truth, idx+1, total_selected
-                                    )
-                                    regenerated_items.append((idx, regenerated))
+                                    
+                                    # Use cached contexts, generate new response
+                                    result = pipeline.query(question)
+                                    
+                                    # Update the evaluation item
+                                    evaluation_data[idx].response = result.get('answer', '')
                                 
-                                # Merge valid cached items with regenerated items
-                                evaluation_data = cached_data.copy()
-                                for idx, regenerated in regenerated_items:
-                                    evaluation_data[idx] = regenerated
-                                
-                                Logger.log("✓ Successfully regenerated error responses")
-                                # Save updated cache
-                                self._save_payload_cache(config_name, evaluation_data)
+                                Logger.log("✓ Successfully regenerated responses from cached contexts")
                             else:
-                                evaluation_data = cached_data
+                                Logger.log("⚠ Skip generation enabled but using cached data with errors")
                         else:
-                            evaluation_data = cached_data
-                            Logger.log("✓ Using cached payload for generation phase")
+                            Logger.log("✓ Using cached payload")
             
             # Generate new data if not using cache or cache not found
             if evaluation_data is None:
@@ -683,12 +408,11 @@ class RAGASEvaluator:
             if use_cache:
                 self._save_payload_cache(config_name, evaluation_data)
             
-            # Save the complete evaluation data to last_test_set folder
-            self._save_to_last_test_set(config_name, selected_questions, selected_ground_truths, evaluation_data)
-            
             # Run RAGAS evaluation
             Logger.log(f"Running RAGAS evaluation for {config_name}...")
-            evaluation_dataset = EvaluationDataset.from_list(evaluation_data)
+            # Convert EvaluationItem objects to dicts for RAGAS
+            evaluation_dict_list = [item.model_dump() for item in evaluation_data]
+            evaluation_dataset = EvaluationDataset.from_list(evaluation_dict_list)
             run_config = RunConfig(max_workers=1, timeout=self.timeout)
             
             # Retry loop for rate-limit errors during RAGAS evaluation

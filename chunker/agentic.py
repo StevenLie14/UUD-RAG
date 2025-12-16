@@ -16,18 +16,14 @@ class AgenticChunker(BaseChunker):
         super().__init__(cache_dir=cache_dir, chunker_name="agentic")
         self.llm = llm
         self.current_page = None
-        # Track chunk IDs created while processing a single document
-        # Initialized to None and set to a list at the start of processing each document
         self.current_doc_chunk_ids = None
     
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
-        # Load existing cache
         if use_cache:
             self._load_consolidated_cache()
             if len(self.chunks) > 0:
                 Logger.log(f"Loaded {len(self.chunks)} chunks from cache")
         
-        # Filter uncached documents
         uncached_pages = self.get_uncached_documents(pages)
         if len(uncached_pages) < len(pages):
             Logger.log(f"Skipping {len(pages) - len(uncached_pages)} already processed documents")
@@ -38,29 +34,25 @@ class AgenticChunker(BaseChunker):
         
         Logger.log(f"Processing {len(uncached_pages)} new documents with agentic chunking...")
         
-        checkpoint_interval = 25  # Save every 25 documents
+        checkpoint_interval = 25
         processed_count = 0
         
         try:
             for idx, page in enumerate(uncached_pages, 1):
                 try:
-                    # Prepare per-document tracking for newly created chunk IDs
                     self.current_doc_chunk_ids = []
                     self.current_page = page
                     
                     self._generate_propositions(page)
                     
-                    # Mark document as processed
                     self.mark_document_processed(page)
-                    # Clear per-document tracking after processing
                     self.current_doc_chunk_ids = None
                     processed_count += 1
                     
-                    # Checkpoint save every N documents
                     if idx % checkpoint_interval == 0:
-                        Logger.log(f"Checkpoint: Saving progress ({idx}/{len(uncached_pages)} documents)...")
+                        Logger.log(f"Saving progress ({idx}/{len(uncached_pages)} documents)...")
                         self._save_consolidated_cache()
-                        Logger.log(f"Checkpoint saved. Total chunks so far: {len(self.chunks)}")
+                        Logger.log(f"Total chunks so far: {len(self.chunks)}")
                     
                 except Exception as e:
                     Logger.log(f"Error processing document {idx}/{len(uncached_pages)}: {e}")
@@ -77,7 +69,6 @@ class AgenticChunker(BaseChunker):
         
         Logger.log(f"Total chunks: {len(self.chunks)} (added {processed_count} documents)")
         
-        # Final save
         self._save_consolidated_cache()
     
     def _generate_propositions(self, page: Document) -> list[str]:
@@ -147,22 +138,14 @@ class AgenticChunker(BaseChunker):
         if sentences is None:
             Logger.log("No propositions generated.")
             return []
-        
-        # `page` dalam konteks ini adalah (index, Document). Kita perlu mengambil Document
-        # Jika Anda memperbaiki `load_data_to_chunks` (seperti di atas), ini akan menjadi objek Document
-        if isinstance(page, tuple):
-            page_document = page[1]
-        else:
-            page_document = page
 
         for proposition in sentences.propositions:
-            self.add_proposition(proposition, page_document)
+            self.add_proposition(proposition, page)
             
         return sentences.propositions
 
     
-    def _update_chunk_summary(self, chunk: AgenticChunk) -> str: # Menerima AgenticChunk
-        """If you add a new proposition to a chunk, you may want to update the summary or else they could get stale"""
+    def _update_chunk_summary(self, chunk: AgenticChunk) -> str:
         PROMPT = ChatPromptTemplate.from_messages(
             [
                 (
@@ -201,8 +184,7 @@ class AgenticChunker(BaseChunker):
 
         return new_chunk_summary
     
-    def _update_chunk_title(self, chunk: AgenticChunk) -> str: # Menerima AgenticChunk
-        """If you add a new proposition to a chunk, you may want to update the title or else it can get stale"""
+    def _update_chunk_title(self, chunk: AgenticChunk) -> str:
         PROMPT = ChatPromptTemplate.from_messages(
             [
                 (
@@ -234,14 +216,13 @@ class AgenticChunker(BaseChunker):
         )
         
         new_chunk_title = self.llm.answer(PROMPT, {
-            "proposition": "\n".join(chunk.propositions), # Mengakses properti
-            "current_summary" : chunk.summary, # Mengakses properti
-            "current_title" : chunk.title # Mengakses properti
+            "proposition": "\n".join(chunk.propositions),
+            "current_summary" : chunk.summary,
+            "current_title" : chunk.title
         })
 
         return new_chunk_title
     
-    # ... Metode _get_new_chunk_summary (tidak berubah) ...
     def _get_new_chunk_summary(self, proposition: str) -> str:
         PROMPT = ChatPromptTemplate.from_messages(
             [
@@ -281,7 +262,6 @@ class AgenticChunker(BaseChunker):
 
         return new_chunk_summary
     
-    # ... Metode _get_new_chunk_title (tidak berubah) ...
     def _get_new_chunk_title(self, summary) -> str:
         PROMPT = ChatPromptTemplate.from_messages(
             [
@@ -323,7 +303,6 @@ class AgenticChunker(BaseChunker):
         summary = self._get_new_chunk_summary(proposition)
         title = self._get_new_chunk_title(summary)
         
-        # MEMBUAT OBJEK AgenticChunk BARU
         new_chunk = AgenticChunk(
             id=id,
             title=title,
@@ -335,15 +314,13 @@ class AgenticChunker(BaseChunker):
 
         self.chunks[id] = new_chunk
         
-        # Track this chunk for current document
         if self.current_doc_chunk_ids is not None:
             self.current_doc_chunk_ids.append(id)
         
         Logger.log(f"Created new chunk with ID: {id}, Title: {title}, Summary: {summary}")
-        return id # Mengembalikan ID untuk konsistensi
+        return id
     
     def get_chunks(self) -> str:
-        # Menggunakan properti dari objek AgenticChunk
         chunks = "\n".join([f"Chunk ID: {chunk.id}, Judul: {chunk.title}, Ringkasan: {chunk.summary}" for chunk in self.chunks.values()])
         return chunks
     
@@ -404,12 +381,10 @@ class AgenticChunker(BaseChunker):
         return chunk_found.chunk_id
     
     def add_proposition_to_chunk(self, chunk_id: str, proposition: str):
-        chunk = self.chunks[chunk_id] # Mengambil objek AgenticChunk
+        chunk = self.chunks[chunk_id]
         
-        # MEMANIPULASI OBJEK AgenticChunk
         chunk.propositions.append(proposition)
         
-        # MENGUPDATE properti objek AgenticChunk
         chunk.title = self._update_chunk_title(chunk)
         chunk.summary = self._update_chunk_summary(chunk)
         
@@ -420,7 +395,6 @@ class AgenticChunker(BaseChunker):
             self._create_chunk(proposition, page)
             return
         
-        # Find the most similar chunk
         most_similar_chunk_id = self._find_similar_chunk(proposition)
         if most_similar_chunk_id is None:
             self._create_chunk(proposition, page)
@@ -429,7 +403,6 @@ class AgenticChunker(BaseChunker):
         self.add_proposition_to_chunk(most_similar_chunk_id, proposition)
         
     def print_chunks(self):
-        # Menggunakan properti dari objek AgenticChunk
         for chunk in self.chunks.values():
             print(f"Chunk ID: {chunk.id}")
             print(f"Judul Chunk: {chunk.title}")
@@ -441,5 +414,4 @@ class AgenticChunker(BaseChunker):
         return 'agentic'
     
     def _reconstruct_chunk(self, chunk_dict: dict, chunk_type: str) -> AgenticChunk:
-        """Reconstruct AgenticChunk object from dict"""
         return AgenticChunk(**chunk_dict)

@@ -38,9 +38,8 @@ class BaseChunker:
                     self.processed_doc_hashes = set(cached_data.get('processed_docs', []))
                     chunk_type = cached_data.get('chunk_type', 'base')
                     
-                    # Reconstruct chunk objects from JSON
                     for chunk_dict in chunks_data:
-                        chunk = self._reconstruct_chunk(chunk_dict, chunk_type)
+                        chunk = self._reconstruct_chunk(chunk_dict)
                         if chunk:
                             self.chunks[chunk.id] = chunk
                     
