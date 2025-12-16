@@ -2,17 +2,12 @@ from .base_chunk import BaseChunk
 from typing import Optional
 
 class SimpleChunk(BaseChunk):
-    """
-    Simple chunk model that only stores the text content without title or summary.
-    Used for agentic chunking v2.
-    """
-    content: str           # The actual chunk text
-    index: int             # Index of the chunk in the document
-    source: Optional[str] = None  # Source file/document name
-    page: Optional[int] = None    # Page number in the document
+    content: str
+    index: int
+    source: Optional[str] = None
+    page: Optional[int] = None
     
     def get_context(self) -> str:
-        """Returns the chunk content with source and page info"""
         context = ""
         if self.source:
             context += f"Sumber: {self.source}\n"
@@ -24,7 +19,6 @@ class SimpleChunk(BaseChunk):
         return context
     
     def get_payload(self) -> dict:
-        """Returns the payload for storage/retrieval"""
         return {
             "chunk_id": self.id,
             "content": self.content,

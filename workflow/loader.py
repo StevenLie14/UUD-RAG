@@ -1,12 +1,6 @@
-"""
-Database Loader Workflow
-Handle loading chunks into databases
-"""
-
 import json
 import os
 from typing import Dict, Tuple, Optional
-
 from config import Config
 from logger import Logger
 from database import Qdrant, FAISS
@@ -16,33 +10,26 @@ from model.chunk.agentic_chunk import AgenticChunk
 from ui import UserInterface
 
 
-# Constants
 CACHE_DIR = "./chunk_cache"
 FAISS_INDEX_PATH = "./faiss_index"
 EMBEDDING_MODEL = "LazarusNLP/all-indo-e5-small-v4"
 
 
 class DatabaseLoader:
-    """Handle loading chunks into databases"""
-    
     def __init__(self, config: Config):
         self.config = config
         self.ui = UserInterface()
     
     async def run(self):
-        """Run database loading workflow"""
         self.ui.print_header("LOAD CHUNKS TO DATABASE")
         
-        # Select JSON file
         json_file = self._select_json_file()
         if not json_file or not os.path.exists(json_file):
-            Logger.log("❌ Invalid file path!")
+            Logger.log("Invalid file path!")
             return
         
-        # Load chunks
         chunks_dict, chunker_type = self._load_chunks(json_file)
         
-        # Ask for batch processing
         total_chunks = len(chunks_dict)
         chunks_to_load = chunks_dict
         
@@ -53,34 +40,28 @@ class DatabaseLoader:
                 chunks_to_load = self._select_batch(chunks_dict)
         
         if not chunks_to_load:
-            Logger.log("❌ No chunks selected!")
+            Logger.log("No chunks selected!")
             return
         
-        # Select database
         db_choice = self.ui.get_choice(
             "Select database:",
-            ["FAISS (local)", "Qdrant (cloud)", "Both"]
+            ["FAISS", "Qdrant", "Both"]
         )
         
-        # Collection name
         default_collection = f"{chunker_type}_chunks"
         collection_name = input(f"\nCollection name (default: {default_collection}): ").strip()
         collection_name = collection_name if collection_name else default_collection
         
-        # Clear existing
         clear_db = self.ui.confirm("Clear existing collection?", default=False)
         
-        # Store in databases
         self._store_in_databases(chunks_to_load, collection_name, db_choice, clear_db)
         
-        # Summary
         self.ui.print_subheader("Completed")
         print(f"✓ Chunks stored: {len(chunks_to_load)} / {total_chunks}")
         print(f"✓ Collection: {collection_name}")
         print(f"✓ Database: {['FAISS', 'Qdrant', 'FAISS + Qdrant'][int(db_choice)-1]}")
     
     def _select_json_file(self) -> Optional[str]:
-        """Select JSON file"""
         json_files = []
         
         if os.path.exists(CACHE_DIR):
@@ -101,7 +82,6 @@ class DatabaseLoader:
             return input("\nEnter JSON file path: ").strip()
     
     def _select_batch(self, chunks_dict: Dict) -> Dict:
-        """Select batch of chunks to load"""
         total = len(chunks_dict)
         chunk_ids = list(chunks_dict.keys())
         
@@ -133,7 +113,7 @@ class DatabaseLoader:
                 return chunks_dict
             
             selected = {cid: chunks_dict[cid] for cid in selected_ids}
-            Logger.log(f"✓ Selected {len(selected)} chunks")
+            Logger.log(f"Selected {len(selected)} chunks")
             return selected
             
         except (ValueError, IndexError) as e:
@@ -141,7 +121,6 @@ class DatabaseLoader:
             return chunks_dict
     
     def _load_chunks(self, json_file: str) -> Tuple[Dict, str]:
-        """Load chunks from JSON"""
         Logger.log(f"Loading chunks from {json_file}...")
         
         with open(json_file, 'r', encoding='utf-8') as f:
@@ -160,11 +139,10 @@ class DatabaseLoader:
             chunk = self._create_chunk(chunk_data, chunker_type)
             chunks_dict[chunk.id] = chunk
         
-        Logger.log(f"✓ Loaded {len(chunks_dict)} chunks")
+        Logger.log(f"Loaded {len(chunks_dict)} chunks")
         return chunks_dict, chunker_type
     
     def _create_chunk(self, chunk_data: Dict, chunker_type: str):
-        """Create chunk object from data"""
         chunk_id = chunk_data['id']
         
         if chunker_type == 'semantic':
@@ -175,8 +153,6 @@ class DatabaseLoader:
                 page=chunk_data.get('page'),
                 total_pages=chunk_data.get('total_pages'),
                 page_label=chunk_data.get('page_label'),
-                semantic_score=chunk_data.get('semantic_score', 0.0),
-                boundary_type=chunk_data.get('boundary_type', 'semantic')
             )
         elif chunker_type == 'agentic':
             return AgenticChunk(
@@ -199,7 +175,6 @@ class DatabaseLoader:
     
     def _store_in_databases(self, chunks_dict: Dict, collection_name: str, 
                            db_choice: str, clear_db: bool):
-        """Store chunks in selected databases"""
         if db_choice in ['1', '3']:
             self._store_in_faiss(chunks_dict, collection_name, clear_db)
         
@@ -207,9 +182,8 @@ class DatabaseLoader:
             self._store_in_qdrant(chunks_dict, collection_name, clear_db)
     
     def _store_in_faiss(self, chunks_dict: Dict, collection_name: str, clear_db: bool):
-        """Store in FAISS"""
         try:
-            Logger.log("📦 Storing in FAISS...")
+            Logger.log("Storing in FAISS...")
             faiss_db = FAISS(
                 index_path=FAISS_INDEX_PATH,
                 dense_model_name=EMBEDDING_MODEL,
@@ -221,14 +195,14 @@ class DatabaseLoader:
             
             faiss_db.store_chunks(chunks_dict)
             faiss_db.close()
-            Logger.log(f"✓ Stored {len(chunks_dict)} chunks in FAISS")
+            Logger.log(f"Stored {len(chunks_dict)} chunks in FAISS")
         except Exception as e:
-            Logger.log(f"❌ FAISS error: {e}")
+            Logger.log(f"FAISS error: {e}")
     
     def _store_in_qdrant(self, chunks_dict: Dict, collection_name: str, clear_db: bool):
         """Store in Qdrant"""
         try:
-            Logger.log("☁️ Storing in Qdrant...")
+            Logger.log("Storing in Qdrant...")
             qdrant_db = Qdrant(
                 self.config.QDRANT_HOST,
                 self.config.QDRANT_API_KEY,
@@ -241,6 +215,6 @@ class DatabaseLoader:
             
             qdrant_db.store_chunks(chunks_dict)
             qdrant_db.close()
-            Logger.log(f"✓ Stored {len(chunks_dict)} chunks in Qdrant")
+            Logger.log(f"Stored {len(chunks_dict)} chunks in Qdrant")
         except Exception as e:
-            Logger.log(f"❌ Qdrant error: {e}")
+            Logger.log(f"Qdrant error: {e}")

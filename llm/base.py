@@ -18,7 +18,7 @@ class BaseLLM:
                 return runnable.invoke(input).content
             except Exception as e:
                 if attempt < max_retries - 1:
-                    wait_time = 2 ** attempt  # Exponential backoff: 1s, 2s, 4s
+                    wait_time = 2 ** attempt
                     print(f"[WARNING] LLM request failed (attempt {attempt + 1}/{max_retries}): {str(e)[:100]}")
                     print(f"[WARNING] Retrying in {wait_time} seconds...")
                     time.sleep(wait_time)

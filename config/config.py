@@ -10,6 +10,7 @@ class Config:
         self.QDRANT_HOST = self.set_env("QDRANT_HOST")
         self.OPENAI_API_KEY = self.set_env("OPENAI_API_KEY")
         self.HF_TOKEN = self.set_env("HF_TOKEN", False)
+        self.OLLAMA_BASE_URL = self.set_env("OLLAMA_BASE_URL", False)
         
     
     def set_env(self, key, required: bool = True) -> str:

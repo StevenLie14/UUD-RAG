@@ -11,26 +11,20 @@ from .base import BaseLoader
 
 class HuggingFacePDFLoader(BaseLoader):
     def __init__(self, source: str, hf_token: str = None):
-        """
-        Args:
-            source: Hugging Face repo ID (for huggingface)
-            hf_token: Hugging Face token for private repositories (required for private repos)
-        """
         super().__init__(source)
         self.hf_token = hf_token
     
     async def load_data(self):
-        """Load PDFs from Hugging Face repository"""
-        Logger.log(f"[LOG] Loading PDFs from Hugging Face repo: {self.source}")
+        Logger.log(f"Loading PDFs from Hugging Face repo: {self.source}")
         
         repo_type_to_try = "dataset" 
 
         try:
-            Logger.log(f"[LOG] Attempting to list files from repo as type: '{repo_type_to_try}'")
+            Logger.log(f"Attempting to list files from repo as type: '{repo_type_to_try}'")
             files = list_repo_files(self.source, repo_type=repo_type_to_try, token=self.hf_token)
             
             pdf_files = [f for f in files if f.lower().endswith('.pdf')]
-            Logger.log(f"[LOG] Found {len(pdf_files)} PDF files in repository")
+            Logger.log(f"Found {len(pdf_files)} PDF files in repository")
             
             for pdf_file in pdf_files:
                 temp_path = None
@@ -65,7 +59,7 @@ class HuggingFacePDFLoader(BaseLoader):
                                 Logger.log(f"Warning: Could not clean up temp file {temp_path}: {cleanup_error}")
                     
         except Exception as e:
-            Logger.log(f"CRITICAL: Failed to access Hugging Face repository: {e}")
+            Logger.log(f"[ERROR]: Failed to access Hugging Face repository: {e}")
             if "404" in str(e):
                  Logger.log("Got a 404 error. Please check your `repo_id` and `repo_type`.")
             if self.hf_token is None and "private" in str(e).lower():

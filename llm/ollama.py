@@ -22,8 +22,6 @@ class Ollama(BaseLLM):
             base_url=self.base_url,
             temperature=0.1,
             num_predict=1000,
-            timeout=300,  # 5 minutes timeout
-            request_timeout=300.0  # 5 minutes request timeout
         )
     
     def get_ragas_llm(self):
@@ -32,6 +30,4 @@ class Ollama(BaseLLM):
             base_url=self.base_url,
             temperature=0.1,
             num_predict=1000,
-            timeout=300,  # 5 minutes timeout
-            request_timeout=300.0  # 5 minutes request timeout
         ))

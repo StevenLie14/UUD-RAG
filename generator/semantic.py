@@ -29,7 +29,6 @@ class SemanticGenerator(BaseGenerator):
                 payload = chunk.payload
                 context_parts.append(payload['full_text'])
                 
-                # Build source info with semantic-specific metadaxta
                 source_info = {
                     "source": payload.get('source', 'Unknown'),
                     "page": payload.get('page', 0),
@@ -40,11 +39,6 @@ class SemanticGenerator(BaseGenerator):
                     "chunk_type": payload.get('chunk_type', 'semantic'),
                     "content": payload['full_text']
                 }
-                
-                if 'semantic_score' in payload:
-                    source_info['semantic_score'] = payload['semantic_score']
-                if 'boundary_type' in payload:
-                    source_info['boundary_type'] = payload['boundary_type']
                 
                 sources.append(source_info)
             
@@ -58,8 +52,6 @@ class SemanticGenerator(BaseGenerator):
                 "answer": answer,
                 "sources": sources,
                 "query": query,
-                "retrieval_method": "semantic_hybrid_colbert",
-                "chunking_method": "semantic"
             }
             
             Logger.log(f"Successfully generated answer using semantic chunks")
@@ -71,14 +63,9 @@ class SemanticGenerator(BaseGenerator):
                 "answer": f"Maaf, terjadi error saat memproses pertanyaan: {str(e)}",
                 "sources": sources if 'sources' in locals() else [],
                 "query": query,
-                "retrieval_method": "semantic_hybrid_colbert",
-                "chunking_method": "semantic"
             }
     
     def _generate_semantic_prompt(self, context: str, question: str):
-        """
-        Generate enhanced prompt specifically for semantic chunks
-        """
         from langchain_core.prompts import ChatPromptTemplate
         
         prompt = ChatPromptTemplate.from_messages([

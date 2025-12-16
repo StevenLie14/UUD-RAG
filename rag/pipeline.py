@@ -9,14 +9,6 @@ from logger import Logger
 
 
 class RAGPipeline:
-    """
-    Complete RAG Pipeline that handles the entire RAG workflow:
-    - Document loading
-    - Chunking
-    - Storage in vector database
-    - Query processing and answer generation
-    """
-    
     def __init__(
         self,
         database: VectorStore,
@@ -26,17 +18,6 @@ class RAGPipeline:
         chunker: Optional[BaseChunker] = None,
         loader: Optional[BaseLoader] = None
     ):
-        """
-        Initialize RAG Pipeline
-        
-        Args:
-            database: Vector database instance (FAISS, Qdrant, etc.)
-            llm: Language model instance
-            search_strategy: Strategy for retrieving relevant chunks
-            generator: Generator instance for creating answers
-            chunker: Optional chunker for processing documents
-            loader: Optional loader for reading documents
-        """
         self.database = database
         self.llm = llm
         self.search_strategy = search_strategy
@@ -45,14 +26,14 @@ class RAGPipeline:
         self.loader = loader
         
         Logger.log(f"RAG Pipeline initialized with:")
-        Logger.log(f"  - Database: {database.__class__.__name__}")
-        Logger.log(f"  - LLM: {llm.__class__.__name__}")
-        Logger.log(f"  - Search Strategy: {search_strategy.__class__.__name__}")
-        Logger.log(f"  - Generator: {generator.__class__.__name__}")
+        Logger.log(f"Database: {database.__class__.__name__}")
+        Logger.log(f"LLM: {llm.__class__.__name__}")
+        Logger.log(f"Search Strategy: {search_strategy.__class__.__name__}")
+        Logger.log(f"Generator: {generator.__class__.__name__}")
         if chunker:
-            Logger.log(f"  - Chunker: {chunker.__class__.__name__}")
+            Logger.log(f"Chunker: {chunker.__class__.__name__}")
         if loader:
-            Logger.log(f"  - Loader: {loader.__class__.__name__}")
+            Logger.log(f"Loader: {loader.__class__.__name__}")
     
     async def ingest_documents(self) -> bool:
         """
@@ -92,16 +73,6 @@ class RAGPipeline:
             return False
     
     def query(self, question: str, limit: int = 5) -> Dict[str, Any]:
-        """
-        Process a query and generate an answer
-        
-        Args:
-            question: User's question
-            limit: Number of chunks to retrieve
-            
-        Returns:
-            Dict containing answer, sources, and metadata
-        """
         try:
             Logger.log(f"Processing query: {question}")
             result = self.generator.generate_answer(question, limit)
@@ -118,12 +89,6 @@ class RAGPipeline:
             }
     
     def get_database_info(self) -> Dict[str, Any]:
-        """
-        Get information about the database
-        
-        Returns:
-            Dict containing database information
-        """
         try:
             return self.database.get_info()
         except Exception as e:
@@ -131,7 +96,6 @@ class RAGPipeline:
             return {"error": str(e)}
     
     def close(self):
-        """Close database connection and cleanup resources"""
         try:
             self.database.close()
             Logger.log("RAG Pipeline closed successfully")
@@ -139,9 +103,7 @@ class RAGPipeline:
             Logger.log(f"Error closing RAG Pipeline: {e}")
     
     def __enter__(self):
-        """Context manager entry"""
         return self
     
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit"""
         self.close()

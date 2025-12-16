@@ -10,17 +10,11 @@ class BaseLoader:
         self.pages = []
 
     def _clean_text(self, text: str) -> str:
-        """Minimal text cleaning - avoid regex patterns that can hang"""
-        # Only do essential cleaning, skip problematic regex
-        
-        # Remove common headers/footers (simple string replace)
         text = text.replace('PRESIDEN REPUBLIK INDONESIA', '')
         
-        # Normalize excessive whitespace
         text = '\n'.join(line.rstrip() for line in text.split('\n'))
         text = '\n'.join(line for line in text.split('\n') if line.strip())
         
-        # Collapse multiple newlines
         while '\n\n\n' in text:
             text = text.replace('\n\n\n', '\n\n')
         
@@ -46,12 +40,12 @@ class BaseLoader:
             try:
                 async for page in loader.alazy_load():
                     page_count += 1
-                    Logger.log(f"  Page {page_count} loaded, cleaning text...")
+                    Logger.log(f"Page {page_count} loaded, cleaning text...")
                     page.page_content = self._clean_text(page.page_content)
-                    Logger.log(f"  Page {page_count} cleaned")
+                    Logger.log(f"Page {page_count} cleaned")
                     pages_loaded.append(page)
                 self.pages.extend(pages_loaded)
-                Logger.log(f"✓ Loaded {len(pages_loaded)} pages from {file_name}")
+                Logger.log(f"Loaded {len(pages_loaded)} pages from {file_name}")
                 
             except Exception as async_error:
                 Logger.log(f"Async loading failed for {file_name}: {async_error}")
@@ -59,7 +53,6 @@ class BaseLoader:
                 
         except PdfStreamError as pdf_error:
             Logger.log(f"PDF stream error for {file_name}: {pdf_error}")
-            self._try_pymupdf_fallback(file_path, file_name)
             
         except Exception as e:
             Logger.log(f"Unexpected error on {file_name}: {e}")

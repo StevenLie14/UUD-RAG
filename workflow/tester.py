@@ -1,14 +1,8 @@
-"""
-Unified Component Testing Workflow
-Combines testing logic and user interface for RAG component evaluation
-"""
-
 import asyncio
 import json
 import os
 from typing import List, Dict, Any, Tuple, Optional
 from datetime import datetime
-
 from chunker import AgenticChunker, RecursiveChunker, SemanticChunker
 from config import Config
 from logger import Logger
@@ -27,7 +21,6 @@ from loader import LocalPDFLoader
 from evaluator import RAGASEvaluator
 
 
-# Constants
 CACHE_DIR = "./chunk_cache"
 FAISS_INDEX_PATH = "./faiss_index"
 EMBEDDING_MODEL = "LazarusNLP/all-indo-e5-small-v4"
@@ -35,33 +28,18 @@ EVALUATION_TIMEOUT = 300
 
 
 class RAGComponentTester:
-    """Core RAG Component Tester with testing logic"""
     
     def __init__(self, testset_path: str, llm_type: str = "gemini", config: Optional[Config] = None):
-        """
-        Initialize RAGComponentTester
-        
-        Args:
-            testset_path: Path to the testset JSON file
-            llm_type: Type of LLM to use for answer generation ('gemini', 'chatgpt', 'ollama')
-            config: Optional Config instance (creates new one if not provided)
-        """
         self.config = config or Config()
         self.testset_path = testset_path
         self.all_results: List[Dict[str, Any]] = []
         
-        # Initialize primary LLM for answer generation
         self.primary_llm = self._create_primary_llm(llm_type)
-        
-        # Initialize RAGAS evaluator
         self.evaluator = RAGASEvaluator(testset_path, timeout=EVALUATION_TIMEOUT)
-        
-        Logger.log("RAGComponentTester initialized successfully")
     
     def _create_primary_llm(self, llm_type: str):
-        """Create primary LLM for answer generation"""
         llm_configs = {
-            "ollama": ("Ollama", lambda: Ollama("qwen3:8b", base_url="https://b84f92e0aabb.ngrok-free.app")),
+            "ollama": ("Ollama", lambda: Ollama("qwen3:8b", base_url=self.config.OLLAMA_BASE_URL)),
             "chatgpt": ("ChatGPT", lambda: ChatGPT("gpt-4o-mini", self.config.OPENAI_API_KEY)),
             "gemini": ("Gemini", lambda: Gemini("gemini-2.0-flash-lite", self.config.GOOGLE_API_KEY))
         }
@@ -72,7 +50,6 @@ class RAGComponentTester:
         return llm
     
     def _get_chunker_configs(self) -> List[Tuple[str, Any]]:
-        """Get all chunker configurations to test"""
         return [
             ("recursive", RecursiveChunker(cache_dir=CACHE_DIR)),
             ("agentic", AgenticChunker(self.primary_llm, cache_dir=CACHE_DIR)),
@@ -80,7 +57,6 @@ class RAGComponentTester:
         ]
     
     def _create_faiss_db(self, collection_name: str) -> FAISS:
-        """Create FAISS database instance"""
         return FAISS(
             index_path=FAISS_INDEX_PATH,
             dense_model_name=EMBEDDING_MODEL,
@@ -88,7 +64,6 @@ class RAGComponentTester:
         )
     
     def _create_qdrant_db(self, collection_name: str) -> Optional[Qdrant]:
-        """Create Qdrant database instance"""
         try:
             return Qdrant(
                 self.config.QDRANT_HOST,
@@ -100,7 +75,6 @@ class RAGComponentTester:
             return None
     
     def _get_search_strategies(self, db_type: str) -> List[Tuple[str, Any]]:
-        """Get compatible search strategies for database type"""
         if db_type == "faiss":
             return [("dense", DenseSearchStrategy())]
         
@@ -113,7 +87,6 @@ class RAGComponentTester:
         ]
     
     def _get_generator_class(self, chunker_type: str):
-        """Get appropriate generator class based on chunker type"""
         generator_map = {
             "semantic": SemanticGenerator,
             "agentic": AgenticGenerator,
@@ -132,7 +105,6 @@ class RAGComponentTester:
         use_cache: bool = True,
         skip_generation: bool = False
     ) -> Dict[str, Any]:
-        """Test a specific configuration and evaluate with RAGAS"""
         config_name = f"{chunker_name}_{db_name}_{search_strategy_name}"
         Logger.log(f"\n{'='*60}")
         Logger.log(f"Testing Configuration: {config_name}")
@@ -147,7 +119,6 @@ class RAGComponentTester:
                 generator=generator
             )
             
-            # Use RAGAS evaluator to evaluate the pipeline
             result_data = self.evaluator.evaluate_pipeline(
                 pipeline, 
                 config_name,
@@ -155,7 +126,6 @@ class RAGComponentTester:
                 skip_generation=skip_generation
             )
             
-            # Add additional metadata
             result_data["chunker"] = chunker_name
             result_data["database"] = db_name
             result_data["search_strategy"] = search_strategy_name
@@ -173,89 +143,7 @@ class RAGComponentTester:
                 "timestamp": datetime.now().isoformat()
             }
     
-    def _clear_database_collection(self, collection_name: str):
-        """Clear a single database collection"""
-        try:
-            Logger.log(f"Clearing FAISS collection: {collection_name}")
-            faiss_db = self._create_faiss_db(collection_name)
-            faiss_db.delete_collection()
-            faiss_db.close()
-            Logger.log(f"✓ Cleared FAISS collection: {collection_name}")
-        except Exception as e:
-            Logger.log(f"⚠ Error clearing FAISS collection: {e}")
-        
-        try:
-            Logger.log(f"Clearing Qdrant collection: {collection_name}")
-            qdrant_db = self._create_qdrant_db(collection_name)
-            if qdrant_db:
-                qdrant_db.delete_collection()
-                qdrant_db.close()
-                Logger.log(f"✓ Cleared Qdrant collection: {collection_name}")
-        except Exception as e:
-            Logger.log(f"⚠ Error clearing Qdrant collection: {e}")
-    
-    def _clear_all_databases(self, chunker_configs: List[Tuple[str, Any]]):
-        """Clear all database collections"""
-        Logger.log("\n" + "="*60)
-        Logger.log("CLEARING EXISTING DATABASE COLLECTIONS")
-        Logger.log("="*60)
-        
-        for chunker_name, _ in chunker_configs:
-            collection_name = f"{chunker_name}_chunks"
-            self._clear_database_collection(collection_name)
-        
-        Logger.log("\n" + "="*60)
-        Logger.log("DATABASE CLEARING COMPLETED")
-        Logger.log("="*60)
-    
-    async def _ingest_documents(self, chunker_configs: List[Tuple[str, Any]]):
-        """Load and ingest documents into databases"""
-        Logger.log("\n" + "="*60)
-        Logger.log("LOADING AND CHUNKING DOCUMENTS")
-        Logger.log("="*60)
-        
-        loader = LocalPDFLoader("./test")
-        await loader.load_data()
-        Logger.log(f"Loaded {len(loader.pages)} pages from test folder")
-        
-        for chunker_name, chunker in chunker_configs:
-            await self._ingest_with_chunker(chunker_name, chunker, loader.pages)
-        
-        Logger.log("\n" + "="*60)
-        Logger.log("DOCUMENT INGESTION COMPLETED")
-        Logger.log("="*60)
-    
-    async def _ingest_with_chunker(self, chunker_name: str, chunker: Any, pages: List[Any]):
-        """Ingest documents with a specific chunker"""
-        Logger.log(f"\n{'='*60}")
-        Logger.log(f"Processing with {chunker_name} chunker...")
-        Logger.log(f"{'='*60}")
-        
-        chunker.load_data_to_chunks(pages, use_cache=True)
-        Logger.log(f"✓ {chunker_name} chunker has {len(chunker.chunks)} total chunks")
-        
-        collection_name = f"{chunker_name}_chunks"
-        chunks_for_db = chunker.get_chunks_for_database()
-        chunks_dict = {chunk.id: chunk for chunk in chunks_for_db}
-        
-        Logger.log(f"Storing {len(chunks_dict)} {chunker_name} chunks in FAISS...")
-        faiss_db = self._create_faiss_db(collection_name)
-        faiss_db.store_chunks(chunks_dict)
-        faiss_db.close()
-        Logger.log(f"✓ Stored in FAISS")
-        
-        Logger.log(f"Storing {len(chunks_dict)} {chunker_name} chunks in Qdrant...")
-        try:
-            qdrant_db = self._create_qdrant_db(collection_name)
-            if qdrant_db:
-                qdrant_db.store_chunks(chunks_dict)
-                qdrant_db.close()
-                Logger.log(f"✓ Stored in Qdrant")
-        except Exception as e:
-            Logger.log(f"⚠ Error storing in Qdrant: {e}")
-            Logger.log("Continuing with FAISS only...")
-    
-    async def test_all_components(self, skip_ingestion: bool = True, clear_db: bool = False, use_cache: bool = True, skip_generation: bool = False):
+    async def test_all_components(self, use_cache: bool = True, skip_generation: bool = False):
         """Test all component combinations"""
         Logger.log("\n" + "="*60)
         Logger.log("STARTING COMPREHENSIVE RAG COMPONENT TESTING")
@@ -264,13 +152,6 @@ class RAGComponentTester:
         Logger.log(f"Skip generation: {skip_generation}")
         
         chunker_configs = self._get_chunker_configs()
-        
-        if clear_db and not skip_ingestion:
-            self._clear_all_databases(chunker_configs)
-        
-        if not skip_ingestion:
-            await self._ingest_documents(chunker_configs)
-        
         await self._run_all_tests(chunker_configs, use_cache, skip_generation)
         
         Logger.log("\n" + "="*60)
@@ -284,8 +165,6 @@ class RAGComponentTester:
         chunkers: List[str], 
         databases: List[str], 
         strategies: List[str],
-        skip_ingestion: bool = True, 
-        clear_db: bool = False,
         use_cache: bool = True,
         skip_generation: bool = False
     ):
@@ -299,15 +178,8 @@ class RAGComponentTester:
         Logger.log(f"Use cache: {use_cache}")
         Logger.log(f"Skip generation: {skip_generation}")
         
-        # Filter chunker configs
         all_chunker_configs = self._get_chunker_configs()
         chunker_configs = [(name, chunker) for name, chunker in all_chunker_configs if name in chunkers]
-        
-        if clear_db and not skip_ingestion:
-            self._clear_all_databases(chunker_configs)
-        
-        if not skip_ingestion:
-            await self._ingest_documents(chunker_configs)
         
         await self._run_selected_tests(chunker_configs, databases, strategies, use_cache, skip_generation)
         
@@ -325,10 +197,8 @@ class RAGComponentTester:
         use_cache: bool = True,
         skip_generation: bool = False
     ):
-        """Run tests on selected configurations"""
         database_cache = {}
         
-        # Map strategy names to search strategy objects
         strategy_map = {
             "dense": DenseSearchStrategy(),
             "sparse": SparseSearchStrategy(),
@@ -349,10 +219,9 @@ class RAGComponentTester:
             for db_name in selected_databases:
                 database = database_cache[collection_name].get(db_name)
                 if not database:
-                    Logger.log(f"⚠ Skipping {db_name} - not available")
+                    Logger.log(f"Skipping {db_name} - not available")
                     continue
                 
-                # Filter strategies based on database type
                 if db_name == "faiss":
                     available_strategies = ["dense"]
                 else:
@@ -364,7 +233,7 @@ class RAGComponentTester:
                     
                     search_strategy = strategy_map.get(strategy_name)
                     if not search_strategy:
-                        Logger.log(f"⚠ Unknown strategy: {strategy_name}")
+                        Logger.log(f"Unknown strategy: {strategy_name}")
                         continue
                     
                     generator_class = self._get_generator_class(chunker_name)
@@ -381,10 +250,8 @@ class RAGComponentTester:
                     )
                     
                     self.all_results.append(result)
-                    self._save_results()
     
     async def _run_all_tests(self, chunker_configs: List[Tuple[str, Any]], use_cache: bool = True, skip_generation: bool = False):
-        """Run tests on all configurations"""
         database_cache = {}
         
         for chunker_name, chunker in chunker_configs:
@@ -419,28 +286,6 @@ class RAGComponentTester:
                     )
                     
                     self.all_results.append(result)
-                    self._save_results()
-    
-    def _save_results(self):
-        """Save results to JSON file"""
-        results_dir = "./results"
-        os.makedirs(results_dir, exist_ok=True)
-        
-        output_file = os.path.join(results_dir, f"component_test_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
-        
-        try:
-            with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump({
-                    "test_date": datetime.now().isoformat(),
-                    "testset": self.testset_path,
-                    "num_questions": len(self.evaluator.questions),
-                    "results": self.all_results
-                }, f, indent=2, ensure_ascii=False)
-            
-            Logger.log(f"Results saved to: {output_file}")
-            
-        except Exception as e:
-            Logger.log(f"Error saving results: {e}")
     
     def _print_configuration_result(self, result: Dict[str, Any]):
         """Print a single configuration result"""
@@ -461,7 +306,6 @@ class RAGComponentTester:
             print(f"  Average Score: {avg_score:.4f}")
     
     def _print_summary(self):
-        """Print summary of all test results"""
         print("\n" + "="*80)
         print("TEST RESULTS SUMMARY")
         print("="*80)
@@ -479,20 +323,17 @@ class RAGComponentTester:
                 key=lambda r: self.evaluator.calculate_average_score(r['scores']) or 0
             )
             avg_score = self.evaluator.calculate_average_score(best_result['scores'])
-            print(f"\n🏆 BEST CONFIGURATION: {best_result['configuration']}")
+            print(f"\nBEST CONFIGURATION: {best_result['configuration']}")
             if avg_score:
-                print(f"   Average Score: {avg_score:.4f}")
+                print(f"Average Score: {avg_score:.4f}")
 
 
 class ComponentTester:
-    """UI wrapper for RAG component testing workflow"""
     
     def __init__(self, config: Config):
-        """Initialize ComponentTester with config only"""
         self.config = config
     
     async def run(self):
-        """Run component testing workflow with user interaction"""
         print("\n" + "="*80)
         print("RAG COMPONENT TESTING".center(80))
         print("="*80)
@@ -513,69 +354,53 @@ class ComponentTester:
         
         Logger.log("ℹ️ Evaluation will use ChatGPT (gpt-4o-mini) by default")
         
-        # Ingestion options
-        skip_ingestion_input = input("\nLoad and store documents first? (y/N): ").strip().lower()
-        skip_ingestion = skip_ingestion_input != 'y'
-        
-        clear_db = False
-        if not skip_ingestion:
-            clear_db_input = input("Clear existing database data? (y/N): ").strip().lower()
-            clear_db = clear_db_input == 'y'
-        
-        # Select testset file
         testset_path = self._select_testset_file()
         if not testset_path:
             Logger.log("❌ No testset file selected!")
             return
         
-        # Initialize core tester
         tester = RAGComponentTester(
             testset_path=testset_path,
             llm_type=llm_type,
             config=self.config
         )
         
-        # Run based on test mode
         if test_mode == "1":
-            await tester.test_all_components(skip_ingestion=skip_ingestion, clear_db=clear_db)
+            await tester.test_all_components()
         else:
             selected_chunkers = self._select_chunkers()
             if not selected_chunkers:
-                Logger.log("❌ No chunkers selected!")
+                Logger.log("No chunkers selected!")
                 return
             
             selected_databases = self._select_databases()
             if not selected_databases:
-                Logger.log("❌ No databases selected!")
+                Logger.log("No databases selected!")
                 return
             
             selected_strategies = self._select_search_strategies()
             if not selected_strategies:
-                Logger.log("❌ No search strategies selected!")
+                Logger.log("No search strategies selected!")
                 return
             
             await tester.test_individual_components(
                 chunkers=selected_chunkers,
                 databases=selected_databases,
-                strategies=selected_strategies,
-                skip_ingestion=skip_ingestion,
-                clear_db=clear_db
+                strategies=selected_strategies
             )
-        
-        Logger.log("✅ Testing completed!")
     
     def _select_testset_file(self) -> Optional[str]:
         """Select testset file from test_set folder"""
         testset_dir = "./test_set"
         
         if not os.path.exists(testset_dir):
-            Logger.log(f"⚠ Testset directory '{testset_dir}' does not exist!")
+            Logger.log(f"Testset directory '{testset_dir}' does not exist!")
             return None
         
         json_files = [f for f in os.listdir(testset_dir) if f.endswith('.json')]
         
         if not json_files:
-            Logger.log(f"⚠ No JSON files found in '{testset_dir}'!")
+            Logger.log(f"No JSON files found in '{testset_dir}'!")
             return None
         
         print("\nAvailable testset files:")
@@ -587,7 +412,7 @@ class ComponentTester:
         if choice.isdigit() and 1 <= int(choice) <= len(json_files):
             return os.path.join(testset_dir, json_files[int(choice) - 1])
         
-        Logger.log("❌ Invalid selection!")
+        Logger.log("Invalid selection!")
         return None
     
     def _select_chunkers(self) -> Optional[List[str]]:
@@ -661,22 +486,3 @@ class ComponentTester:
                 selected.append(strategy_map[c])
         
         return selected if selected else None
-
-
-# Convenience function for standalone usage
-async def run_component_testing(testset_path: Optional[str] = None, llm_type: str = "gemini"):
-    """
-    Run component testing workflow
-    
-    Args:
-        testset_path: Optional path to testset file (will prompt if not provided)
-        llm_type: LLM type to use ('gemini', 'chatgpt', 'ollama')
-    """
-    config = Config()
-    tester = ComponentTester(config)
-    await tester.run()
-
-
-if __name__ == "__main__":
-    # Run standalone
-    asyncio.run(run_component_testing())

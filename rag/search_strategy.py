@@ -32,7 +32,6 @@ class HybridColbertSearchStrategy(SearchStrategy):
 
 
 class HybridCrossEncoderSearchStrategy(SearchStrategy):
-    """Search strategy using hybrid search with cross-encoder reranking."""
     
     def search(self, database: CrossEncoderSearchable, query: str, limit: int) -> List[SearchResult]:
         return database.hybrid_search_with_crossencoder(query, limit)

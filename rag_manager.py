@@ -1,17 +1,10 @@
-"""
-RAG System Manager
-Unified interface for document chunking, database loading, and component testing
-"""
-
 import asyncio
-
 from config import Config
 from ui import UserInterface
 from workflow import DocumentChunker, DatabaseLoader, ComponentTester
 
 
 class RAGManager:
-    """Main RAG system manager"""
     
     def __init__(self):
         self.config = Config()
@@ -21,9 +14,7 @@ class RAGManager:
         self.tester = ComponentTester(self.config)
     
     async def run(self):
-        """Run main application loop"""
         self.ui.print_header("RAG SYSTEM MANAGER")
-        print("\nUnified interface for RAG operations")
         
         while True:
             options = [
@@ -52,7 +43,6 @@ class RAGManager:
 
 
 async def main():
-    """Application entry point"""
     manager = RAGManager()
     await manager.run()
 
