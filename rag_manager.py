@@ -1,7 +1,7 @@
 import asyncio
 from config import Config
 from ui import UserInterface
-from workflow import DocumentChunker, DatabaseLoader, ComponentTester
+from workflow import DocumentChunker, DatabaseLoader, ComponentTester, QdrantCheckerWorkflow
 
 
 class RAGManager:
@@ -12,6 +12,7 @@ class RAGManager:
         self.chunker = DocumentChunker(self.config)
         self.loader = DatabaseLoader(self.config)
         self.tester = ComponentTester(self.config)
+        self.qdrant_checker = QdrantCheckerWorkflow(self.config)
     
     async def run(self):
         self.ui.print_header("RAG SYSTEM MANAGER")
@@ -21,6 +22,7 @@ class RAGManager:
                 "Document Chunking - Process PDFs into chunks",
                 "Database Loading - Load chunks into FAISS/Qdrant",
                 "Component Testing - Test and evaluate RAG configurations",
+                "Qdrant Checker - Check and fix Qdrant collections",
                 "Exit"
             ]
             
@@ -33,6 +35,8 @@ class RAGManager:
             elif choice == "3":
                 await self.tester.run()
             elif choice == "4":
+                await self.qdrant_checker.run()
+            elif choice == "5":
                 self.ui.print_header("GOODBYE")
                 print("Thank you for using RAG System Manager!\n")
                 break
