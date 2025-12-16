@@ -121,9 +121,7 @@ class RAGComponentTester:
             
             result_data = self.evaluator.evaluate_pipeline(
                 pipeline, 
-                config_name,
-                use_cache=use_cache,
-                skip_generation=skip_generation
+                config_name
             )
             
             result_data["chunker"] = chunker_name
@@ -338,13 +336,11 @@ class ComponentTester:
         print("RAG COMPONENT TESTING".center(80))
         print("="*80)
         
-        # Select test mode
         print("\nSelect test mode:")
         print("  1. Test all components")
         print("  2. Test individual components")
         test_mode = input("\nEnter choice (1-2): ").strip()
         
-        # Get configuration
         print("\nChoose LLM for answers:")
         print("  1. Gemini")
         print("  2. ChatGPT")
@@ -415,7 +411,6 @@ class ComponentTester:
         return None
     
     def _select_chunkers(self) -> Optional[List[str]]:
-        """Select which chunkers to test"""
         print("\nSelect chunkers to test:")
         print("  1. Recursive")
         print("  2. Semantic")
@@ -438,7 +433,6 @@ class ComponentTester:
         return selected if selected else None
     
     def _select_databases(self) -> Optional[List[str]]:
-        """Select which databases to test"""
         print("\nSelect databases to test:")
         print("  1. FAISS")
         print("  2. Qdrant")
@@ -456,7 +450,6 @@ class ComponentTester:
         return None
     
     def _select_search_strategies(self) -> Optional[List[str]]:
-        """Select which search strategies to test"""
         print("\nSelect search strategies to test:")
         print("  1. Dense")
         print("  2. Sparse")

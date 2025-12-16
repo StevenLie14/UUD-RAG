@@ -3,6 +3,8 @@ from check_qdrant import QdrantChecker
 from ui import UserInterface
 
 
+
+
 class QdrantCheckerWorkflow:
     
     def __init__(self, config):
@@ -22,13 +24,10 @@ class QdrantCheckerWorkflow:
             collection_name = input("Enter collection name: ").strip()
         else:
             collection_name = "documents"
-        
-        qdrant_url = self.config.get("qdrant_url", "http://localhost:6333")
-        qdrant_api_key = self.config.get("qdrant_api_key")
-        
+
+        qdrant_url = self.config.QDRANT_HOST
+
         print(f"\nQdrant URL: {qdrant_url}")
-        if qdrant_api_key:
-            print("API Key: [configured]")
         
         cache_dir = input("\nCache directory (default: ./chunk_cache): ").strip() or "./chunk_cache"
         
@@ -51,10 +50,10 @@ class QdrantCheckerWorkflow:
         
         print("\nSelect operations to perform:")
         
-        insert_missing = self.ui.get_yes_no("Insert missing chunks from cache into Qdrant?", default=False)
-        delete_duplicates = self.ui.get_yes_no("Delete duplicate point IDs in Qdrant?", default=False)
-        delete_extra = self.ui.get_yes_no("Delete points not in cache from Qdrant?", default=False)
-        save_report = self.ui.get_yes_no("Save report to JSON file?", default=True)
+        insert_missing = self.ui.confirm("Insert missing chunks from cache into Qdrant?", default=False)
+        delete_duplicates = self.ui.confirm("Delete duplicate point IDs in Qdrant?", default=False)
+        delete_extra = self.ui.confirm("Delete points not in cache from Qdrant?", default=False)
+        save_report = self.ui.confirm("Save report to JSON file?", default=True)
         
         print("\n" + "="*70)
         print("OPERATION SUMMARY")
@@ -71,7 +70,7 @@ class QdrantCheckerWorkflow:
         print(f"Save report: {'YES' if save_report else 'NO'}")
         print("="*70)
         
-        if not self.ui.get_yes_no("\nProceed with check?", default=True):
+        if not self.ui.confirm("\nProceed with check?", default=True):
             print("Operation cancelled")
             return
         
@@ -79,7 +78,6 @@ class QdrantCheckerWorkflow:
             checker = QdrantChecker(
                 qdrant_url=qdrant_url,
                 collection_name=collection_name,
-                qdrant_api_key=qdrant_api_key
             )
             
             checker.run_full_check(

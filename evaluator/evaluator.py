@@ -147,7 +147,6 @@ class RAGASEvaluator:
             )
     
     def _extract_contexts(self, sources: List[Any]) -> List[str]:
-        """Extract context texts from sources"""
         contexts = []
         for source in sources:
             if isinstance(source, dict) and source.get('content'):
@@ -235,7 +234,7 @@ class RAGASEvaluator:
                     time.sleep(wait_time)
             
             try:
-                final_scores = ragas_result.get('scores', [])
+                final_scores = ragas_result.scores[0]
                 
                 result_data = {
                     "configuration": config_name,
