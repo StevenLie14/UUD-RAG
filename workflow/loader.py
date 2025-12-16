@@ -6,7 +6,6 @@ from logger import Logger
 from database import Qdrant, FAISS
 from model.chunk.recursive_chunk import RecursiveChunk
 from model.chunk.semantic_chunk import SemanticChunk
-from model.chunk.agentic_chunk import AgenticChunk
 from ui import UserInterface
 
 
@@ -154,19 +153,11 @@ class DatabaseLoader:
                 total_pages=chunk_data.get('total_pages'),
                 page_label=chunk_data.get('page_label'),
             )
-        elif chunker_type == 'agentic':
-            return AgenticChunk(
-                id=chunk_id,
-                title=chunk_data.get('title', ''),
-                summary=chunk_data.get('summary', ''),
-                propositions=chunk_data.get('propositions', [chunk_data['content']]),
-                index=chunk_data.get('index', 0),
-                metadata=chunk_data.get('metadata', {})
-            )
         else:
+            # default to recursive chunk structure
             return RecursiveChunk(
                 id=chunk_id,
-                content=chunk_data['content'],
+                content=chunk_data.get('content') or chunk_data.get('full_text') or '',
                 source=chunk_data.get('source'),
                 page=chunk_data.get('page'),
                 total_pages=chunk_data.get('total_pages'),

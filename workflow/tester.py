@@ -3,12 +3,12 @@ import json
 import os
 from typing import List, Dict, Any, Tuple, Optional
 from datetime import datetime
-from chunker import AgenticChunker, RecursiveChunker, SemanticChunker
+from chunker import RecursiveChunker, SemanticChunker
 from config import Config
 from logger import Logger
 from llm import Gemini, ChatGPT, Ollama
 from database import Qdrant, FAISS
-from generator import RecursiveGenerator, SemanticGenerator, AgenticGenerator
+from generator import RecursiveGenerator, SemanticGenerator
 from rag.search_strategy import (
     DenseSearchStrategy, 
     SparseSearchStrategy, 
@@ -52,7 +52,6 @@ class RAGComponentTester:
     def _get_chunker_configs(self) -> List[Tuple[str, Any]]:
         return [
             ("recursive", RecursiveChunker(cache_dir=CACHE_DIR)),
-            ("agentic", AgenticChunker(self.primary_llm, cache_dir=CACHE_DIR)),
             ("semantic", SemanticChunker(embedding_model_name=EMBEDDING_MODEL, cache_dir=CACHE_DIR))
         ]
     
@@ -89,7 +88,6 @@ class RAGComponentTester:
     def _get_generator_class(self, chunker_type: str):
         generator_map = {
             "semantic": SemanticGenerator,
-            "agentic": AgenticGenerator,
             "recursive": RecursiveGenerator
         }
         return generator_map.get(chunker_type, RecursiveGenerator)
@@ -411,15 +409,14 @@ class ComponentTester:
         print("\nSelect chunkers to test:")
         print("  1. Recursive")
         print("  2. Semantic")
-        print("  3. Agentic")
-        print("  4. All chunkers")
+        print("  3. All chunkers")
         
-        choice = input("\nEnter choice (1-4, or comma-separated like '1,2'): ").strip()
+        choice = input("\nEnter choice (1-3, or comma-separated like '1,2'): ").strip()
         
-        if choice == "4":
-            return ["recursive", "semantic", "agentic"]
+        if choice == "3":
+            return ["recursive", "semantic"]
         
-        chunker_map = {"1": "recursive", "2": "semantic", "3": "agentic"}
+        chunker_map = {"1": "recursive", "2": "semantic"}
         selected = []
         
         for c in choice.split(','):

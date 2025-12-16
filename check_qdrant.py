@@ -8,8 +8,6 @@ from logger import Logger
 from database.qdrant import Qdrant
 from model.chunk.semantic_chunk import SemanticChunk
 from model.chunk.recursive_chunk import RecursiveChunk
-from model.chunk.agentic_chunk import AgenticChunk
-from model.chunk.simple_chunk import SimpleChunk
 
 class QdrantChecker:
     def __init__(self, qdrant_url: str = "http://localhost:6333", collection_name: str = "documents", qdrant_api_key: str | None = None):
@@ -68,17 +66,13 @@ class QdrantChecker:
             return cache_files
         return {
             "recursive": os.path.join(cache_dir, "recursive_cache.json"),
-            "semantic": os.path.join(cache_dir, "semantic_cache.json"),
-            "agentic_v2": os.path.join(cache_dir, "agentic_v2_cache.json")
+            "semantic": os.path.join(cache_dir, "semantic_cache.json")
         }
 
     def _reconstruct_chunk(self, chunk_dict: dict, chunk_type: str):
         type_map = {
             "semantic": SemanticChunk,
             "recursive": RecursiveChunk,
-            "agentic": AgenticChunk,
-            "agentic_v2": SimpleChunk,
-            "simple": SimpleChunk,
         }
         cls = type_map.get(chunk_type)
         if not cls:
@@ -106,7 +100,7 @@ class QdrantChecker:
                 cid = str(chunk_dict.get('id'))
                 if cid not in missing_ids:
                     continue
-                chunk_obj = self._reconstruct_chunk(chunk_dict)
+                chunk_obj = self._reconstruct_chunk(chunk_dict, chunk_type)
                 if chunk_obj:
                     loaded[cid] = chunk_obj
         except Exception as e:

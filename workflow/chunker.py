@@ -1,11 +1,10 @@
 import os
 from typing import Any, Tuple
-from chunker import AgenticChunker, RecursiveChunker, SemanticChunker, AgenticChunkerV2, BaseChunker
+from chunker import RecursiveChunker, SemanticChunker, BaseChunker
 from config import Config
 from logger import Logger
 from loader import LocalPDFLoader
 from ui import UserInterface
-from factory import LLMFactory
 
 CACHE_DIR = "./chunk_cache"
 EMBEDDING_MODEL = "LazarusNLP/all-indo-e5-small-v4"
@@ -57,36 +56,15 @@ class DocumentChunker:
         
         options = [
             "Recursive",
-            "Semantic",
-            "Agentic V",
-            "Agentic V2"
+            "Semantic"
         ]
         
         choice = self.ui.get_choice("Choose chunker:", options)
         
         if choice == "1":
             return RecursiveChunker(cache_dir=CACHE_DIR), "recursive"
-        elif choice == "2":
-            return SemanticChunker(embedding_model_name=EMBEDDING_MODEL, cache_dir=CACHE_DIR), "semantic"
-        elif choice == "3":
-            llm = self._select_llm()
-            return AgenticChunker(llm, cache_dir=CACHE_DIR), "agentic"
         else:
-            llm = self._select_llm()
-            return AgenticChunkerV2(llm, cache_dir=CACHE_DIR), "agentic_v2"
-    
-    def _select_llm(self):
-        options = [
-            "ChatGPT (gpt-4o-mini)",
-            "Gemini (gemini-2.0-flash-lite)",
-            "Ollama (gemma3:12b)"
-        ]
-        
-        choice = self.ui.get_choice("Choose LLM:", options)
-        return LLMFactory.create_llm(
-            {"1": "chatgpt", "2": "gemini", "3": "ollama"}.get(choice, "chatgpt"),
-            self.config
-        )
+            return SemanticChunker(embedding_model_name=EMBEDDING_MODEL, cache_dir=CACHE_DIR), "semantic"
     
     def _print_chunk_summary(self, chunker: Any, chunker_name: str):
         self.ui.print_subheader("Summary")

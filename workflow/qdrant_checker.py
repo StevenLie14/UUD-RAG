@@ -32,7 +32,7 @@ class QdrantCheckerWorkflow:
         cache_dir = input("\nCache directory (default: ./chunk_cache): ").strip() or "./chunk_cache"
         
         print("\nSelect cache files to check:")
-        print("1. All cache files (recursive, semantic, agentic_v2)")
+        print("1. All cache files (recursive, semantic)")
         print("2. Specific cache file(s)")
         
         cache_choice = input("Select option (1-2, default: 1): ").strip()
