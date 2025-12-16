@@ -103,7 +103,6 @@ class FAISS(VectorStore, DenseSearchable):
             raise
     
     def dense_search(self, query: str, limit: int = 5) -> List[SearchResult]:
-        """Search using dense embeddings only"""
         try:
             if self.index.ntotal == 0:
                 Logger.log("No documents in FAISS index")

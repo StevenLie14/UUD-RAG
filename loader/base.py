@@ -24,7 +24,6 @@ class BaseLoader:
         raise NotImplementedError
 
     async def _load_single_pdf(self, file_path: str, file_name: str):
-        """Load a single PDF file"""
         try:
             Logger.log(f"Loading: {file_name}")
             

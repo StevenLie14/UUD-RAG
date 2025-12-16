@@ -15,13 +15,11 @@ class RecursiveChunker(BaseChunker):
         )
 
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
-        # Load existing cache
         if use_cache:
             self._load_consolidated_cache()
             if len(self.chunks) > 0:
                 Logger.log(f"Loaded {len(self.chunks)} chunks from cache")
         
-        # Filter uncached documents
         uncached_pages = self.get_uncached_documents(pages)
         if len(uncached_pages) < len(pages):
             Logger.log(f"Skipping {len(pages) - len(uncached_pages)} already processed documents")

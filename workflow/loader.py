@@ -200,7 +200,6 @@ class DatabaseLoader:
             Logger.log(f"FAISS error: {e}")
     
     def _store_in_qdrant(self, chunks_dict: Dict, collection_name: str, clear_db: bool):
-        """Store in Qdrant"""
         try:
             Logger.log("Storing in Qdrant...")
             qdrant_db = Qdrant(

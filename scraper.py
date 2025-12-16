@@ -17,7 +17,6 @@ if not os.path.exists(DOWNLOAD_DIR):
 
 
 def get_detail_page_links(page_url):
-    """Fetches a list page and extracts links to individual law detail pages."""
     print(f"\n--- Fetching list page: {page_url} ---")
     try:
         response = requests.get(page_url, headers=HEADERS, timeout=15)
@@ -43,7 +42,6 @@ def get_detail_page_links(page_url):
     return detail_links, has_next_page
 
 def _download_file(pdf_url, filename):
-    """Handles the actual file downloading and saving to disk."""
     save_path = os.path.join(DOWNLOAD_DIR, filename)
 
     if os.path.exists(save_path):
@@ -70,7 +68,6 @@ def _download_file(pdf_url, filename):
         return
     
 def download_pdf(link_url):
-    """Processes a link, either by downloading the file directly or by navigating to the detail page to find the PDF."""
     print(f"   -> Processing link: {link_url}")
 
     if '/files/' in link_url and '.pdf' in link_url:
@@ -83,7 +80,6 @@ def download_pdf(link_url):
         return
 
     print("   -> Assuming HTML detail page.")
-    # 1. Fetch the detail page
     try:
         response = requests.get(link_url, headers=HEADERS, timeout=15)
         response.raise_for_status()
@@ -118,7 +114,6 @@ def download_pdf(link_url):
     _download_file(pdf_url, valid_filename)
 
 def run_scraper():
-    """Main function to run the scraping process with pagination."""
     page_number = 1
     has_next = True
     total_downloaded = 0

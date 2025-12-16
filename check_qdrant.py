@@ -1,7 +1,3 @@
-"""
-Check Qdrant collection for duplicates and missing chunks
-Compares chunks in cache files against points stored in Qdrant
-"""
 import json
 import os
 from qdrant_client import QdrantClient
@@ -304,7 +300,7 @@ class QdrantChecker:
             "in_both": len(in_both),
             "missing_from_qdrant": len(missing_in_qdrant),
             "extra_in_qdrant": len(extra_in_qdrant),
-            "missing_ids": list(missing_in_qdrant)[:100],  # Save first 100
+            "missing_ids": list(missing_in_qdrant)[:100],
             "extra_ids": list(extra_in_qdrant)[:100]
         }
         return stats, missing_in_qdrant, extra_in_qdrant

@@ -142,7 +142,6 @@ class RAGComponentTester:
             }
     
     async def test_all_components(self, use_cache: bool = True, skip_generation: bool = False):
-        """Test all component combinations"""
         Logger.log("\n" + "="*60)
         Logger.log("STARTING COMPREHENSIVE RAG COMPONENT TESTING")
         Logger.log("="*60)
@@ -166,7 +165,6 @@ class RAGComponentTester:
         use_cache: bool = True,
         skip_generation: bool = False
     ):
-        """Test selected component combinations"""
         Logger.log("\n" + "="*60)
         Logger.log("STARTING INDIVIDUAL COMPONENT TESTING")
         Logger.log("="*60)
@@ -286,7 +284,6 @@ class RAGComponentTester:
                     self.all_results.append(result)
     
     def _print_configuration_result(self, result: Dict[str, Any]):
-        """Print a single configuration result"""
         print(f"\n{result['configuration']}:")
         print(f"  Chunker: {result['chunker']}")
         print(f"  Database: {result['database']}")

@@ -1,8 +1,3 @@
-"""
-RAGAS Evaluator
-Handles evaluation of RAG systems using RAGAS metrics
-"""
-
 import json
 from typing import List, Dict, Any, Optional, Tuple
 from datetime import datetime
@@ -60,7 +55,6 @@ class RAGASEvaluator:
         return LangchainEmbeddingsWrapper(embeddings)
     
     def _initialize_metrics(self):
-        """Initialize RAGAS evaluation metrics"""
         self.faithfulness_metric = Faithfulness(llm=self.evaluator_llm)
         self.context_recall_metric = LLMContextRecall(llm=self.evaluator_llm)
         self.answer_correctness_metric = AnswerCorrectness(

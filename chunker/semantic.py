@@ -4,7 +4,6 @@ from sentence_transformers import SentenceTransformer
 from .base import BaseChunker
 import uuid
 from model.chunk.semantic_chunk import SemanticChunk
-from typing import Dict, List
 from logger import Logger
 import re
 
@@ -42,33 +41,27 @@ class SemanticChunker(BaseChunker):
         
         Logger.log(f"Semantic chunker initialized with {breakpoint_threshold_type} threshold: {breakpoint_threshold_amount}")
         
-        # Heuristics for filtering chunks
         self.min_chunk_chars = 20
         self.min_alnum_ratio = 0.15
 
     def _is_meaningful_chunk(self, text: str) -> bool:
-        """Check if chunk has meaningful content"""
         if not text or len(text) < self.min_chunk_chars:
             return False
-        # Count alphanumeric characters
         alnum = sum(ch.isalnum() for ch in text)
         ratio = alnum / max(len(text), 1)
         if ratio < self.min_alnum_ratio:
             return False
-        # Avoid chunks that are only punctuation
         if re.fullmatch(r"\W+", text):
             return False
         return True
 
     def load_data_to_chunks(self, pages: list[Document], use_cache: bool = True):
         try:
-            # Load existing cache
             if use_cache:
                 self._load_consolidated_cache()
                 if len(self.chunks) > 0:
                     Logger.log(f"Loaded {len(self.chunks)} chunks from cache")
             
-            # Filter uncached documents
             uncached_pages = self.get_uncached_documents(pages)
             if len(uncached_pages) < len(pages):
                 Logger.log(f"Skipping {len(pages) - len(uncached_pages)} already processed documents")
@@ -80,23 +73,19 @@ class SemanticChunker(BaseChunker):
             Logger.log(f"Processing {len(uncached_pages)} new documents with semantic chunking...")
             Logger.log(f"This may take a while - calculating embeddings for all documents...")
             
-            # Process all uncached documents at once (simpler, faster)
             docs = self.text_splitter.split_documents(uncached_pages)
             
             Logger.log(f"Semantic chunker created {len(docs)} chunks from {len(uncached_pages)} documents")
             Logger.log(f"Filtering meaningful chunks...")
             
-            # Filter out non-meaningful chunks
             meaningful_count = 0
             skipped_count = 0
             total_docs = len(docs)
             
             for idx, doc in enumerate(docs, 1):
-                # Show progress every 1000 chunks
                 if idx % 250 == 0 or idx == total_docs:
                     Logger.log(f"Processing chunks: {idx}/{total_docs} ({idx*100//total_docs}%)")
                 
-                # Check if chunk is meaningful
                 if not self._is_meaningful_chunk(doc.page_content):
                     skipped_count += 1
                     continue
@@ -119,13 +108,11 @@ class SemanticChunker(BaseChunker):
             if skipped_count > 0:
                 Logger.log(f"Skipped {skipped_count} non-meaningful chunks")
             
-            # Mark all processed documents
             for page in uncached_pages:
                 self.mark_document_processed(page)
             
             Logger.log(f"Successfully created {len(self.chunks)} total semantic chunks ({meaningful_count} added)")
             
-            # Save cache
             self._save_consolidated_cache()
             
         except KeyboardInterrupt:

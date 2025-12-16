@@ -1,5 +1,3 @@
-"""Workflow classes for RAG operations"""
-
 from .chunker import DocumentChunker
 from .loader import DatabaseLoader
 from .tester import ComponentTester

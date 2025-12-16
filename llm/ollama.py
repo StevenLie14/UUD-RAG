@@ -5,14 +5,6 @@ from ragas.llms import LangchainLLMWrapper
 
 class Ollama(BaseLLM):
     def __init__(self, model_name: str, base_url: str = "https://b84f92e0aabb.ngrok-free.app"):
-        """
-        Initialize Ollama LLM client
-        
-        Args:
-            model_name: Name of the Ollama model (e.g., "llama3.2", "mistral", "qwen2.5")
-            base_url: Base URL of the Ollama server (default: https://b84f92e0aabb.ngrok-free.app)
-        """
-        # Ollama doesn't need an API key, so we pass a dummy value
         self.base_url = base_url
         super().__init__(model_name, api_key="ollama-local")
         
