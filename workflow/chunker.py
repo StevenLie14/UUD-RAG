@@ -68,6 +68,6 @@ class DocumentChunker:
     
     def _print_chunk_summary(self, chunker: Any, chunker_name: str):
         self.ui.print_subheader("Summary")
-        print(f"✓ Chunks created: {len(chunker.chunks)}")
-        print(f"✓ Chunker: {chunker_name}")
-        print(f"✓ Cache directory: {CACHE_DIR}")
+        print(f"Chunks created: {len(chunker.chunks)}")
+        print(f"Chunker: {chunker_name}")
+        print(f"Cache directory: {CACHE_DIR}")

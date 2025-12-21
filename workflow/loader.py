@@ -56,9 +56,9 @@ class DatabaseLoader:
         self._store_in_databases(chunks_to_load, collection_name, db_choice, clear_db)
         
         self.ui.print_subheader("Completed")
-        print(f"✓ Chunks stored: {len(chunks_to_load)} / {total_chunks}")
-        print(f"✓ Collection: {collection_name}")
-        print(f"✓ Database: {['FAISS', 'Qdrant', 'FAISS + Qdrant'][int(db_choice)-1]}")
+        print(f"Chunks stored: {len(chunks_to_load)} / {total_chunks}")
+        print(f"Collection: {collection_name}")
+        print(f"Database: {['FAISS', 'Qdrant', 'FAISS + Qdrant'][int(db_choice)-1]}")
     
     def _select_json_file(self) -> Optional[str]:
         json_files = []
@@ -154,7 +154,6 @@ class DatabaseLoader:
                 page_label=chunk_data.get('page_label'),
             )
         else:
-            # default to recursive chunk structure
             return RecursiveChunk(
                 id=chunk_id,
                 content=chunk_data.get('content') or chunk_data.get('full_text') or '',
