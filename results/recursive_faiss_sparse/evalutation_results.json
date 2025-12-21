@@ -1,0 +1,10 @@
+{
+  "configuration": "recursive_faiss_dense",
+  "scores": {
+    "context_recall": 0.11861904761904762,
+    "faithfulness": 0.6272751641436356,
+    "answer_correctness": 0.358566623050361
+  },
+  "timestamp": "2025-12-15T00:08:41.474259",
+  "num_questions": 100
+}

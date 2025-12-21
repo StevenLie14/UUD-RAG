@@ -249,7 +249,7 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
                 with open(progress_file, 'w') as f:
                     json.dump({'completed_batches': list(completed_batches)}, f)
                 
-                Logger.log(f"✓ Stored batch {batch_num} ({start}-{end}, {len(points)} chunks)")
+                Logger.log(f"Stored batch {batch_num} ({start}-{end}, {len(points)} chunks)")
             except Exception as e:
                 Logger.log(f"Error adding documents for batch {batch_num} ({start}-{end}): {e}")
                 Logger.log(f"Progress saved to {progress_file}. Run again to resume.")
@@ -259,7 +259,7 @@ class Qdrant(VectorStore, DenseSearchable, SparseSearchable, HybridSearchable, C
         
         if os.path.exists(progress_file):
             os.remove(progress_file)
-        Logger.log(f"✓ All chunks stored successfully!")
+        Logger.log(f"All chunks stored successfully!")
         
             
         
